@@ -39,7 +39,7 @@
   			<artifactId>javafx-maven-plugin</artifactId>
   			<version>0.0.4</version>
   			<configuration>
-  				<mainClass>br.com.pi.drot.MainFX</mainClass>
+  				<mainClass>br.com.pi.drot.UI.MainFX</mainClass>
   			</configuration>
   		</plugin>
   	</plugins>
