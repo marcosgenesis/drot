@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 
+import br.com.pi.drot.UI.MainFX;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,7 +18,7 @@ public class NovoUsuarioFXController implements Initializable{
 
 	@FXML
 	private void btnAction(ActionEvent event) {
-		JOptionPane.showMessageDialog(null, "O controller da tela de cadastro de novo usuário funcionou!", "Controller implementado com sucesso!", 0);
+		MainFX.chanceWindow("main");
 	}
 
 	public void initialize(URL location, ResourceBundle resources) {
