@@ -16,6 +16,12 @@ public class Cliente {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
+	public Cliente(int id, String nome) {
+		super();
+		this.id = id;
+		this.nome = nome;
+	}
+
 	@Column(name = "nome")
 	private String nome;
 

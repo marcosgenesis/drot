@@ -12,8 +12,7 @@ public class App {
 	private static EntityManager entityManager = entityManagerFactory.createEntityManager();
 
 	public static void main(String[] args) {
-		Cliente cliente = new Cliente();
-		cliente.setNome("Teste");
+		Cliente cliente = new Cliente(1, "Cliente Teste");
 
 		//entityManager.getTransaction().begin();
 		//entityManager.persist(cliente);
