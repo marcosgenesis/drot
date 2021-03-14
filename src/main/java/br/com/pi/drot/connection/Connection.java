@@ -1,4 +1,4 @@
-package br.com.pi.drot;
+package br.com.pi.drot.connection;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -6,7 +6,7 @@ import javax.persistence.Persistence;
 
 import br.com.pi.drot.model.Cliente;
 
-public class App {
+public class Connection {
 
 	private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("BancoJPA");
 	private static EntityManager entityManager = entityManagerFactory.createEntityManager();
