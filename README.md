@@ -6,6 +6,10 @@ Lhes apresento o sistema desktop DROT, um sistema voltado para a gerência médi
 
 [Nossa documentação](https://github.com/ericrodriguesfer/documentacao-drot)
 
+# Conheça o repositório do nosso site de amostragem do DROT
+
+[Nosso site](https://github.com/italolima04/DROT.github.io)
+
 # Quem somos?
 
 1. [Eric Rodrigues](https://github.com/ericrodriguesfer)
