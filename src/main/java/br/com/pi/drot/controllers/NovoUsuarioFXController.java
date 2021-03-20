@@ -1,7 +1,7 @@
 package br.com.pi.drot.controllers;
 
 import br.com.pi.drot.dto.UsuarioDTO;
-import br.com.pi.drot.model.Usuario;
+import br.com.pi.drot.entity.Usuario;
 
 public class NovoUsuarioFXController {
 

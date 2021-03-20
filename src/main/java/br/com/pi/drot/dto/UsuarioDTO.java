@@ -2,24 +2,33 @@ package br.com.pi.drot.dto;
 
 import java.util.ArrayList;
 
-import javax.persistence.EntityManager;
-
-import br.com.pi.drot.dao.JpaUtils;
+import br.com.pi.drot.connection.Connection;
 import br.com.pi.drot.dao.UsuarioDAO;
-import br.com.pi.drot.model.Usuario;
+import br.com.pi.drot.entity.Usuario;
+import br.com.pi.drot.utils.NameDataBaseConnection;
 
 public class UsuarioDTO implements UsuarioDAO{
 
+	private Connection connection;
+
+	public UsuarioDTO(NameDataBaseConnection nameDataBaseConnection) {
+		this.connection = new Connection(nameDataBaseConnection.getNameDataBase());
+	}
+
+	public Connection getConnection() {
+		return connection;
+	}
+
+	public void setConnection(Connection connection) {
+		this.connection = connection;
+	}
+
 	public boolean cadastrarUsuario(Usuario usuario) {
-		EntityManager entityManager = (EntityManager) JpaUtils.getEntityManager();
+		this.getConnection().getEntityManager().getTransaction().begin();
+		this.getConnection().getEntityManager().persist(usuario);
+		this.getConnection().getEntityManager().getTransaction().commit();
 
-		entityManager.persist(usuario);
-
-		entityManager.getTransaction().begin();
-		entityManager.getTransaction().commit();
-
-		entityManager.close();
-
+		this.getConnection().getEntityManager().close();
 
 		return true;
 	}
@@ -29,9 +38,10 @@ public class UsuarioDTO implements UsuarioDAO{
 	}
 
 	public ArrayList<Usuario> listarUsuarios() {
-		EntityManager entityManager = (EntityManager) JpaUtils.getEntityManager();
-		ArrayList<Usuario> usuarios = (ArrayList<Usuario>) entityManager.createQuery("from Usuario", Usuario.class).getResultList();
-		entityManager.close();
+		this.getConnection().getEntityManager();
+		ArrayList<Usuario> usuarios= (ArrayList<Usuario>) this.getConnection().getEntityManager().createQuery("from Usuario", Usuario.class).getResultList();
+		this.getConnection().getEntityManager().close();
+
 		return usuarios;
 	}
 

@@ -2,7 +2,7 @@ package br.com.pi.drot.dao;
 
 import java.util.ArrayList;
 
-import br.com.pi.drot.model.Usuario;
+import br.com.pi.drot.entity.Usuario;
 
 
 public interface UsuarioDAO {
