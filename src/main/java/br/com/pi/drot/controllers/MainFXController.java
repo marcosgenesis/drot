@@ -35,6 +35,4 @@ public class MainFXController implements Initializable {
 
 	}
 
-
-
 }

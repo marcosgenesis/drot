@@ -6,7 +6,6 @@ import br.com.pi.drot.utils.NameDataBaseConnection;
 
 public class NovoUsuarioFXController {
 
-
 	public boolean cadastrarUsuario() {
 		Usuario usuario = new Usuario();
 		usuario.setNome("Ítalo Lima");
@@ -22,6 +21,5 @@ public class NovoUsuarioFXController {
 
 		return true;
 	}
-
 
 }

@@ -1,6 +1,7 @@
 package br.com.pi.drot.utils;
 
 public class NameDataBaseConnection {
+
 	private String nameDataBase;
 
 	public NameDataBaseConnection(String nameDataBase) {

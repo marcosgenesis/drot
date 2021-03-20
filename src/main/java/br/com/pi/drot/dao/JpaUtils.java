@@ -4,8 +4,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class JpaUtils {
-	private static EntityManagerFactory ENTITY_MANAGER_FACTORY = null;
 
+	private static EntityManagerFactory ENTITY_MANAGER_FACTORY = null;
 
 	public static EntityManagerFactory getEntityManager() {
 		if(ENTITY_MANAGER_FACTORY == null) {
@@ -14,4 +14,5 @@ public class JpaUtils {
 
 		return (EntityManagerFactory) ENTITY_MANAGER_FACTORY.createEntityManager();
 	}
+
 }
