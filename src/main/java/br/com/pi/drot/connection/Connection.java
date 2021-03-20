@@ -5,6 +5,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import br.com.pi.drot.model.Cliente;
+import br.com.pi.drot.model.Usuario;
 
 public class Connection {
 
@@ -12,13 +13,13 @@ public class Connection {
 	private static EntityManager entityManager = entityManagerFactory.createEntityManager();
 
 	public static void main(String[] args) {
-		Cliente cliente = new Cliente(1, "Cliente Teste");
+		Usuario usuario = new Usuario(1, "Usuário Teste", null, null, null, null, null, false);
 
 		//entityManager.getTransaction().begin();
 		//entityManager.persist(cliente);
 		//entityManager.getTransaction().commit();
 
-		cliente = entityManager.find(Cliente.class, 5);
-		System.out.println("Nome do cliente: " + cliente.getNome());
+		usuario = entityManager.find(Usuario.class, 5);
+		System.out.println("Nome do cliente: " + usuario.getNome());
 	}
 }

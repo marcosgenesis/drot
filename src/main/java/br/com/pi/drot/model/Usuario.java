@@ -20,13 +20,19 @@ public class Usuario {
 	private String nome;
 
 	@Column(name = "CPF")
-	private int CPF;
+	private String CPF;
 
 	@Column(name = "RG")
-	private int RG;
+	private String RG;
 
 	@Column(name = "Data_nascimento")
-	private Date data_nascimento;
+	private Date dataNascimento;
+
+	@Column(name = "endereco")
+	private String endereco;
+
+	@Column(name = "telefone")
+	private String telefone;
 
 	@Column(name = "is_admin")
 	private boolean isAdmin;
@@ -34,18 +40,18 @@ public class Usuario {
 
 	public Usuario() {}
 
-	public Usuario(int id, String nome, int cPF, int rG, Date data_nascimento, boolean isAdmin) {
+	public Usuario(int id, String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone, boolean isAdmin) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		CPF = cPF;
-		RG = rG;
-		this.data_nascimento = data_nascimento;
+		this.CPF = CPF;
+		this.RG = RG;
+		this.dataNascimento = dataNascimento;
 		this.isAdmin = isAdmin;
 	}
 
 	public int getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(int id) {
@@ -53,39 +59,55 @@ public class Usuario {
 	}
 
 	public String getNome() {
-		return nome;
+		return this.nome;
 	}
 
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-	public int getCPF() {
-		return CPF;
+	public String getCPF() {
+		return this.CPF;
 	}
 
-	public void setCPF(int cPF) {
-		CPF = cPF;
+	public void setCPF(String CPF) {
+		this.CPF = CPF;
 	}
 
-	public int getRG() {
-		return RG;
+	public String getRG() {
+		return this.RG;
 	}
 
-	public void setRG(int rG) {
-		RG = rG;
+	public void setRG(String RG) {
+		this.RG = RG;
 	}
 
-	public Date getData_nascimento() {
-		return data_nascimento;
+	public Date getDataNascimento() {
+		return this.dataNascimento;
 	}
 
-	public void setData_nascimento(Date data_nascimento) {
-		this.data_nascimento = data_nascimento;
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+
+	public String getEndereco() {
+		return this.endereco;
+	}
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+
+	public String getTelefone() {
+		return this.telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
 	public boolean isAdmin() {
-		return isAdmin;
+		return this.isAdmin;
 	}
 
 	public void isAdmin(boolean is_admin) {
