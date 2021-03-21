@@ -2,6 +2,9 @@ package br.com.pi.drot.dto;
 
 import java.util.ArrayList;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+
 import br.com.pi.drot.connection.Connection;
 import br.com.pi.drot.dao.UsuarioDAO;
 import br.com.pi.drot.entity.Usuario;
@@ -35,7 +38,14 @@ public class UsuarioDTO implements UsuarioDAO {
 
 	@Override
 	public Usuario buscarUsuarioPorID(int id) {
-		return null;
+		Usuario usuario = this.getConnection().getEntityManager().find(Usuario.class, id);
+
+		if(usuario == null){
+			System.out.println("Usuário não encontrado");
+		}
+
+		this.getConnection().getEntityManager().close();
+		return usuario;
 	}
 
 	@Override
@@ -54,7 +64,21 @@ public class UsuarioDTO implements UsuarioDAO {
 
 	@Override
 	public boolean removerPorId(int id) {
-		return false;
+		Usuario usuario = this.getConnection().getEntityManager().find(Usuario.class, id);
+
+		if(usuario == null){
+			System.out.println("Usuário não encontrado");
+			return false;
+		}
+
+		this.getConnection().getEntityManager().remove(id);
+		this.getConnection().getEntityManager().getTransaction().begin();
+		this.getConnection().getEntityManager().getTransaction().commit();
+		this.getConnection().getEntityManager().close();
+
+		System.out.println("Usuário removido do banco com sucesso");
+
+		return true;
 	}
 
 	@Override
