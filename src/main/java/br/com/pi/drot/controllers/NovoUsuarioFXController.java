@@ -1,29 +1,25 @@
 package br.com.pi.drot.controllers;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import br.com.pi.drot.dto.UsuarioDTO;
+import br.com.pi.drot.entity.Usuario;
+import br.com.pi.drot.utils.NameDataBaseConnection;
 
-import javax.swing.JOptionPane;
+public class NovoUsuarioFXController {
 
-import br.com.pi.drot.UI.MainFX;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
+	public boolean cadastrarUsuario() {
+		Usuario usuario = new Usuario();
+		usuario.setNome("Ítalo Lima");
+		usuario.setRG("777");
+		usuario.setCPF("777");
+		usuario.setEndereco("Quixadá-CE");
+		usuario.setTelefone("777");
 
-public class NovoUsuarioFXController implements Initializable{
+		NameDataBaseConnection nameDataBaseConnection = new NameDataBaseConnection("myself-mysql");
 
-	@FXML
-	private Button clickBtn;
+		UsuarioDTO usuarioDTO = new UsuarioDTO(nameDataBaseConnection);
+		usuarioDTO.cadastrarUsuario(usuario);
 
-	@FXML
-	private void btnAction(ActionEvent event) {
-		MainFX.chanceWindow("main");
-	}
-
-	public void initialize(URL location, ResourceBundle resources) {
-
+		return true;
 	}
 
 }
-

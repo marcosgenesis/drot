@@ -10,7 +10,7 @@ public class MainFX extends Application {
 
 	private static Stage stage;
 	private static Scene mainScene;
-	private static Scene newUserScene;
+	//private static Scene newUserScene;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -18,11 +18,11 @@ public class MainFX extends Application {
 			stage = primaryStage;
 			primaryStage.setTitle("DROT SYSTEM");
 
-			Parent loaderMain = FXMLLoader.load(getClass().getResource("./Main.fxml"));
+			Parent loaderMain = FXMLLoader.load(getClass().getResource("/views/Main.fxml"));
 			mainScene = new Scene(loaderMain);
 
-			Parent loaderNewUser = FXMLLoader.load(getClass().getResource("/views/NovoUsuarioCeneFX.fxml"));
-			newUserScene = new Scene(loaderNewUser);
+			//Parent loaderNewUser = FXMLLoader.load(getClass().getResource("/views/NovoUsuarioCeneFX.fxml"));
+			//newUserScene = new Scene(loaderNewUser);
 
 			primaryStage.setResizable(false);
 			primaryStage.setScene(mainScene);
@@ -37,9 +37,9 @@ public class MainFX extends Application {
 			case "main":
 				stage.setScene(mainScene);
 				break;
-			case "newuser":
-				stage.setScene(newUserScene);
-				break;
+			//case "newuser":
+				//stage.setScene(newUserScene);
+				//break;
 		}
 	}
 
