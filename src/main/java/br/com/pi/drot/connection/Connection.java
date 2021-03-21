@@ -4,21 +4,27 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import br.com.pi.drot.model.Cliente;
 
 public class Connection {
 
-	private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("BancoJPA");
-	private static EntityManager entityManager = entityManagerFactory.createEntityManager();
+	private EntityManagerFactory entityManagerFactory;
+	private EntityManager entityManager;
 
-	public static void main(String[] args) {
-		Cliente cliente = new Cliente(1, "Cliente Teste");
-
-		//entityManager.getTransaction().begin();
-		//entityManager.persist(cliente);
-		//entityManager.getTransaction().commit();
-
-		cliente = entityManager.find(Cliente.class, 5);
-		System.out.println("Nome do cliente: " + cliente.getNome());
+	public Connection(String dataBase) {
+		this.entityManagerFactory = Persistence.createEntityManagerFactory(dataBase);
+		this.entityManager = entityManagerFactory.createEntityManager();
 	}
+
+	public EntityManagerFactory getEntityManagerFactory() {
+		return entityManagerFactory;
+	}
+
+	public void setEntityManagerFactory(EntityManagerFactory entityManagerFactory) {
+		this.entityManagerFactory = entityManagerFactory;
+	}
+
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+
 }
