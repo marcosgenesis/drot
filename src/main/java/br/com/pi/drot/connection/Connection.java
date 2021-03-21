@@ -27,9 +27,4 @@ public class Connection {
 		return entityManager;
 	}
 
-	public void setEntityManager(EntityManager entityManager) {
-		this.entityManager = entityManager;
-	}
-
->>>>>>> ca140107bde4d8de3c619023dc91cd3fed7e6871
 }
