@@ -45,13 +45,13 @@ public abstract class Medico{
 
 	public Medico(){}
 
-	public Medico(int id, String nome, String cPF, String rG, Date dataNascimento, String endereco, String telefone,
+	public Medico(int id, String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone,
 			boolean isAdmin, String cRM, String especialidade) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		CPF = cPF;
-		RG = rG;
+		this.CPF = CPF;
+		this.RG = RG;
 		this.dataNascimento = dataNascimento;
 		this.endereco = endereco;
 		this.telefone = telefone;
@@ -60,12 +60,77 @@ public abstract class Medico{
 		this.especialidade = especialidade;
 	}
 
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getCPF() {
+		return CPF;
+	}
+
+	public void setCPF(String cPF) {
+		CPF = cPF;
+	}
+
+	public String getRG() {
+		return RG;
+	}
+
+	public void setRG(String rG) {
+		RG = rG;
+	}
+
+	public Date getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+
+	public String getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public boolean isAdmin() {
+		return isAdmin;
+	}
+
+	public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
 	public String getCRM() {
 		return CRM;
 	}
 
-	public void setCRM(String CRM) {
-		CRM = CRM;
+	public void setCRM(String cRM) {
+		CRM = cRM;
 	}
 
 	public String getEspecialidade() {
