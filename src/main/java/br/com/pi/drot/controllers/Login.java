@@ -2,21 +2,26 @@ package br.com.pi.drot.controllers;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.event.ActionEvent;
+
+import br.com.pi.drot.dto.AdministradorDTO;
+import br.com.pi.drot.model.AdministradorModel;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
-public class Login() {
-    private UsuarioDTO usuario;
+public class Login {
+    private AdministradorModel administrador;
     FacesMessage message;
 
     private boolean verificaCadastroUsuario() {
+		return false;
 
     }
 
-     public UsuarioDTO getUsuarioLogado() {
-        return (UsuarioDTO) SessionContext.getInstance().getUsuarioLogado();
+     public AdministradorModel getUsuarioLogado() {
+        return (AdministradorModel) SessionContext.getInstance().getUsuarioLogado();
     }
 
 
@@ -28,7 +33,7 @@ public class Login() {
             mensagem = new FacesMessage(FacesMessage.SEVERITY_WARN, "Usuario não cadastrado!", null);
         }
 
-        usuario = UsuarioDAO.isAutentico(usuario);
+        administrador = AdministradorDTO.isAutentico(administrador);
         if (usuario != null) {
             SessionContext.getInstance().setUsuarioLogado(usuario);
             mensagem = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bem-Vindo!", usuario.getNome());

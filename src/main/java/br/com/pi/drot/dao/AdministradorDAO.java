@@ -2,6 +2,7 @@ package br.com.pi.drot.dao;
 
 import java.util.ArrayList;
 
+import br.com.pi.drot.model.AdministradorModel;
 import br.com.pi.drot.model.MedicoModel;
 import br.com.pi.drot.model.PacienteModel;
 import br.com.pi.drot.model.SecretariaModel;
@@ -43,4 +44,6 @@ public interface AdministradorDAO {
 	 boolean removerSecretaria(SecretariaModel secretaria);
 
 	 boolean removerSecretariaPorId(int id);
+
+	 AdministradorModel isAutentico(String ra, String senha);
 }

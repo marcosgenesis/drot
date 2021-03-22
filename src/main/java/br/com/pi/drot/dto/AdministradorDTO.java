@@ -4,16 +4,19 @@ import java.util.ArrayList;
 
 import br.com.pi.drot.connection.Connection;
 import br.com.pi.drot.dao.AdministradorDAO;
+import br.com.pi.drot.model.AdministradorModel;
 import br.com.pi.drot.model.MedicoModel;
 import br.com.pi.drot.model.PacienteModel;
 import br.com.pi.drot.model.SecretariaModel;
 import br.com.pi.drot.utils.NameDataBaseConnection;
+import br.edu.utfpr.biblioteca.salas.model.entity.UsuarioPO;
 
-public class AdministradorDTO implements AdministradorDAO{
+public class AdministradorDTO extends GenericDAO<AdministradorModel> implements AdministradorDAO{
 
 	private Connection connection;
 
 	public AdministradorDTO(NameDataBaseConnection nameDataBaseConnection) {
+        super(AdministradorModel.class);
 		this.connection = new Connection(nameDataBaseConnection.getNameDataBase());
 	}
 
@@ -178,5 +181,23 @@ public class AdministradorDTO implements AdministradorDAO{
 		return true;
 	}
 
+	public AdministradorModel isAutentico(int id, String senha) {
+		 AdministradorModel administrador = obter(id);
+	        if (administrador != null) {
+	            if (administrador.getSenha().equals(senha)) {
+	                return administrador;
+	            }
+	        }
+	        return null;
+	}
+
+	 public AdministradorModel obter(int id) {
+	        entityManager.clear();
+	        return (AdministradorModel) entityManager.find(AdministradorModel.class, id);
+	 }
+
+   public AdministradorModel isAutentico(AdministradorModel administrador) {
+        return isAutentico(administrador.getId(), administrador.getSenha());
+    }
 
 }
