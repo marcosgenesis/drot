@@ -8,11 +8,15 @@ import javax.persistence.EntityTransaction;
 import br.com.pi.drot.connection.Connection;
 import br.com.pi.drot.dao.AdministradorDAO;
 import br.com.pi.drot.entity.Paciente;
-import br.com.pi.drot.entity.Usuario;
+import br.com.pi.drot.utils.NameDataBaseConnection;
 
 public class AdministradorDTO implements AdministradorDAO{
 
 	private Connection connection;
+
+	public AdministradorDTO(NameDataBaseConnection nameDataBaseConnection) {
+		this.connection = new Connection(nameDataBaseConnection.getNameDataBase());
+	}
 
 	public Connection getConnection() {
 		return connection;

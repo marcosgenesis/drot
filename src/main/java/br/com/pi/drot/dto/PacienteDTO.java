@@ -1,17 +1,24 @@
 package br.com.pi.drot.dto;
 
-import java.util.ArrayList;
-
 import br.com.pi.drot.connection.Connection;
 import br.com.pi.drot.dao.PacienteDAO;
 import br.com.pi.drot.entity.Paciente;
+import br.com.pi.drot.utils.NameDataBaseConnection;
 
 public class PacienteDTO implements PacienteDAO{
 
 	private Connection connection;
 
+	public PacienteDTO(NameDataBaseConnection nameDataBaseConnection) {
+		this.connection = new Connection(nameDataBaseConnection.getNameDataBase());
+	}
+
 	public Connection getConnection() {
 		return connection;
+	}
+
+	public void setConnection(Connection connection) {
+		this.connection = connection;
 	}
 
 	@Override
