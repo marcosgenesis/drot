@@ -1,10 +1,7 @@
 package br.com.pi.drot.dto;
 
-import java.util.ArrayList;
-
 import br.com.pi.drot.connection.Connection;
 import br.com.pi.drot.dao.MedicoDAO;
-import br.com.pi.drot.entity.Paciente;
 import br.com.pi.drot.utils.NameDataBaseConnection;
 
 public class MedicoDTO implements MedicoDAO{

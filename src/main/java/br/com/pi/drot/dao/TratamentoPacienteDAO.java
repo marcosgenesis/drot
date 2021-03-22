@@ -2,18 +2,18 @@ package br.com.pi.drot.dao;
 
 import java.util.ArrayList;
 
-import br.com.pi.drot.entity.Paciente;
-import br.com.pi.drot.entity.TratamentoPaciente;
+import br.com.pi.drot.model.PacienteModel;
+import br.com.pi.drot.model.TratamentoPacienteModel;
 
 public interface TratamentoPacienteDAO {
 
-	boolean cadastrarTratamento(Paciente paciente, TratamentoPaciente tratamento);
+	boolean cadastrarTratamento(PacienteModel paciente, TratamentoPacienteModel tratamento);
 
-	TratamentoPaciente buscarTratamentoPorID(int id);
+	TratamentoPacienteModel buscarTratamentoPorID(int id);
 
-	ArrayList<TratamentoPaciente> listarTratamento();
+	ArrayList<TratamentoPacienteModel> listarTratamento();
 
-	boolean editar(TratamentoPaciente tratamento);
+	boolean editar(TratamentoPacienteModel tratamento);
 
 	boolean removerTratamentoPorId(int id);
 }

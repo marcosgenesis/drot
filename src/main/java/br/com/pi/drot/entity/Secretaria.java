@@ -10,8 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Medico")
-public abstract class Medico{
+@Table(name = "Secretaria")
+public class Secretaria{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -39,11 +39,5 @@ public abstract class Medico{
 
 	@Column(name = "senha")
 	private String senha;
-
-	@Column(name = "CRM")
-	private String CRM;
-
-	@Column(name = "especialidade")
-	private String especialidade;
 
 }

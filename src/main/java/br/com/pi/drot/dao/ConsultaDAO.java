@@ -1,13 +1,10 @@
 package br.com.pi.drot.dao;
 
-import java.util.ArrayList;
-
-import br.com.pi.drot.entity.Medico;
-import br.com.pi.drot.entity.Paciente;
-import br.com.pi.drot.entity.Remedio;
+import br.com.pi.drot.model.MedicoModel;
+import br.com.pi.drot.model.PacienteModel;
 
 public interface ConsultaDAO{
-	boolean cadastrarConsulta(Paciente paciente, Medico medico);
+	boolean cadastrarConsulta(PacienteModel paciente, MedicoModel medico);
 
 	boolean remarcarConsulta();
 

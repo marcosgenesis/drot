@@ -6,8 +6,7 @@ import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 
 import br.com.pi.drot.UI.MainFX;
-import br.com.pi.drot.dto.UsuarioDTO;
-import br.com.pi.drot.entity.Usuario;
+//import br.com.pi.drot.entity.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
