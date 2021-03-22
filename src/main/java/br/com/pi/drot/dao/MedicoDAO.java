@@ -1,20 +1,14 @@
 package br.com.pi.drot.dao;
 
-import java.util.ArrayList;
-
-import br.com.pi.drot.entity.Paciente;
-
 public interface MedicoDAO {
 
-	void consultarPaciente(Paciente usuario);
+	void consultarPaciente();
 
-	void editarHistoricoPaciente(int id);
+	void editarHistoricoPaciente();
 
-	ArrayList<Paciente> listarUsuarios();
+	void consultarHistoricoPaciente();
 
-	boolean editar(Paciente paciente);
+	void criarTratamentodoPaciente();
 
-	boolean removerPorId(int id);
-
-	boolean removerPorUsuario(Paciente paciente);
+	void editarTratamentodoPaciente();
 }

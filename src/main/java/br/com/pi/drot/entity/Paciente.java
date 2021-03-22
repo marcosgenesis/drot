@@ -150,14 +150,6 @@ public class Paciente {
 		return false;
 	}
 
-	public Paciente buscarUsuarioPorID(int id) {
-		return null;
-	}
-
-	public ArrayList<Paciente> listarUsuarios() {
-		return null;
-	}
-
 	public void preencherDadosRegistros(String restricaoMedicamental, String doencaHereditaria) {}
 
 }

@@ -6,9 +6,9 @@ import br.com.pi.drot.entity.Paciente;
 
 public interface PacienteDAO {
 
-	Paciente buscarUsuarioPorID(int id);
+	boolean login();
 
-	ArrayList<Paciente> listarUsuarios();
+	boolean logout();
 
 	void preencherDadosRegistros(String restricaoMedicamental, String doencaHereditaria);
 
