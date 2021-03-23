@@ -131,19 +131,34 @@ public class AdministradorModel extends GenericDAO<AdministradorModel> implement
 		this.getConnection().getEntityManager().persist(paciente);
 		this.getConnection().getEntityManager().getTransaction().commit();
 		this.getConnection().getEntityManager().close();
-		return false;
+		System.out.println("Novo paciente cadastrado com sucesso!");
+		return true;
 	}
 
 
 	public boolean editarPaciente(PacienteModel paciente) {
-		return false;
+	    try {
+            this.getConnection().getEntityManager().getTransaction().begin();
+            this.getConnection().getEntityManager().merge(paciente);
+            this.getConnection().getEntityManager().getTransaction().commit();
+    		this.getConnection().getEntityManager().close();
+        } catch (Exception ex) {
+    		System.out.println("Erro ao editar paciente.");
+            return false;
+        }
+
+		System.out.println("Paciente editado com sucesso!");
+
+        return true;
 	}
 
 	public PacienteModel buscarPacientePorID(int id) {
+		this.getConnection().getEntityManager().clear();
+
 		PacienteModel paciente = this.getConnection().getEntityManager().find(PacienteModel.class, id);
 
 		if(paciente == null){
-			System.out.println("Usuário não encontrado");
+			System.out.println("Paciente não encontrado");
 		}
 
 		this.getConnection().getEntityManager().close();
@@ -153,13 +168,28 @@ public class AdministradorModel extends GenericDAO<AdministradorModel> implement
 	public ArrayList<PacienteModel> listarPacientesCadastrados() {
 		this.getConnection().getEntityManager();
 		ArrayList<PacienteModel> pacientes = (ArrayList<PacienteModel>) this.getConnection().getEntityManager().createQuery("from Usuario", PacienteModel.class).getResultList();
+		if(pacientes == null) {
+			System.out.println("Não há pacientes cadastrados em nosso banco de dados.");
+		}
 		this.getConnection().getEntityManager().close();
 
 		return pacientes;
 	}
 
 	public boolean removerPaciente(PacienteModel paciente) {
-		return false;
+		if(paciente == null){
+			System.out.println("Paciente não encontrado");
+			return false;
+		}
+
+	 	this.getConnection().getEntityManager().getTransaction().begin();
+        this.getConnection().getEntityManager().remove(paciente);
+        this.getConnection().getEntityManager().getTransaction().commit();
+		this.getConnection().getEntityManager().close();
+
+		System.out.println("Paciente removido do banco com sucesso!");
+
+		return true;
 	}
 
 	public boolean removerPacientePorId(int id) {
@@ -185,14 +215,28 @@ public class AdministradorModel extends GenericDAO<AdministradorModel> implement
 		this.getConnection().getEntityManager().persist(medico);
 		this.getConnection().getEntityManager().getTransaction().commit();
 		this.getConnection().getEntityManager().close();
-		return false;
+		System.out.println("Novo médico cadastrado com sucesso!");
+		return true;
 	}
 
 	public boolean editarMedico(MedicoModel medico) {
-		return false;
+		 try {
+	            this.getConnection().getEntityManager().getTransaction().begin();
+	            this.getConnection().getEntityManager().merge(medico);
+	            this.getConnection().getEntityManager().getTransaction().commit();
+	    		this.getConnection().getEntityManager().close();
+	        } catch (Exception ex) {
+	    		System.out.println("Erro ao editar médico.");
+	            return false;
+	        }
+
+			System.out.println("Médico editado com sucesso!");
+
+	        return true;
 	}
 
 	public MedicoModel buscarMedicoPorID(int id) {
+		this.getConnection().getEntityManager().clear();
 		MedicoModel model = this.getConnection().getEntityManager().find(MedicoModel.class, id);
 		if(model == null){
 			System.out.println("Médico não encontrado");
@@ -205,13 +249,28 @@ public class AdministradorModel extends GenericDAO<AdministradorModel> implement
 	public ArrayList<MedicoModel> listarMedicosCadastrados() {
 		this.getConnection().getEntityManager();
 		ArrayList<MedicoModel> medicos = (ArrayList<MedicoModel>) this.getConnection().getEntityManager().createQuery("from Usuario", MedicoModel.class).getResultList();
+		if(medicos == null) {
+			System.out.println("Não há médicos cadastrados em nosso banco de dados.");
+		}
 		this.getConnection().getEntityManager().close();
 
 		return medicos;
 	}
 
 	public boolean removerMedico(MedicoModel medico) {
-		return false;
+		if(medico == null){
+			System.out.println("Médico não encontrado");
+			return false;
+		}
+
+	 	this.getConnection().getEntityManager().getTransaction().begin();
+        this.getConnection().getEntityManager().remove(medico);
+        this.getConnection().getEntityManager().getTransaction().commit();
+		this.getConnection().getEntityManager().close();
+
+		System.out.println("Médico removido do banco com sucesso!");
+
+		return true;
 	}
 
 	public boolean removerMedicoPorId(int id) {
@@ -237,18 +296,41 @@ public class AdministradorModel extends GenericDAO<AdministradorModel> implement
 		this.getConnection().getEntityManager().persist(secretaria);
 		this.getConnection().getEntityManager().getTransaction().commit();
 		this.getConnection().getEntityManager().close();
+		System.out.println("Nova secretária cadastrada com sucesso!");
 		return false;
 	}
 
 	public boolean editarSecretaria(SecretariaModel secretaria) {
-		return false;
-	}
+	   try {
+            this.getConnection().getEntityManager().getTransaction().begin();
+            this.getConnection().getEntityManager().merge(secretaria);
+            this.getConnection().getEntityManager().getTransaction().commit();
+    		this.getConnection().getEntityManager().close();
+        } catch (Exception ex) {
+    		System.out.println("Erro ao editar secretária.");
+            return false;
+        }
 
-	public MedicoModel buscarSecretariaPorID(int id) {
-		return null;
+		System.out.println("Secretária editada com sucesso!");
+
+        return true;
+    }
+
+	public SecretariaModel buscarSecretariaPorID(int id) {
+		this.getConnection().getEntityManager().clear();
+
+		SecretariaModel secretaria = this.getConnection().getEntityManager().find(SecretariaModel.class, id);
+
+		if(secretaria == null){
+			System.out.println("Secretária não encontrada");
+		}
+
+		this.getConnection().getEntityManager().close();
+		return secretaria;
 	}
 
 	public ArrayList<SecretariaModel> listarSecretariasCadastrados() {
+		this.getConnection().getEntityManager().clear();
 		this.getConnection().getEntityManager();
 		ArrayList<SecretariaModel> secretarias = (ArrayList<SecretariaModel>) this.getConnection().getEntityManager().createQuery("from Usuario", SecretariaModel.class).getResultList();
 		this.getConnection().getEntityManager().close();
@@ -258,7 +340,19 @@ public class AdministradorModel extends GenericDAO<AdministradorModel> implement
 
 
 	public boolean removerSecretaria(SecretariaModel secretaria) {
-		return false;
+		if(secretaria == null){
+			System.out.println("Secretária não encontrada");
+			return false;
+		}
+
+	 	this.getConnection().getEntityManager().getTransaction().begin();
+        this.getConnection().getEntityManager().remove(secretaria);
+        this.getConnection().getEntityManager().getTransaction().commit();
+		this.getConnection().getEntityManager().close();
+
+		System.out.println("Secretária removida do banco com sucesso!");
+
+		return true;
 	}
 
 	public boolean removerSecretariaPorId(int id) {
@@ -280,7 +374,7 @@ public class AdministradorModel extends GenericDAO<AdministradorModel> implement
 	}
 
 	public AdministradorModel isAutentico(int id, String senha) {
-		 AdministradorModel administrador = obter(id);
+		 AdministradorModel administrador = obterAdministrador(id);
 	        if (administrador != null) {
 	            if (administrador.getSenha().equals(senha)) {
 	                return administrador;
@@ -313,17 +407,8 @@ public class AdministradorModel extends GenericDAO<AdministradorModel> implement
 		}
 	}
 
-	public AdministradorModel obter(int id) {
-	      entityManager.clear();
+	public AdministradorModel obterAdministrador(int id) {
+		  this.getConnection().getEntityManager().clear();
 	      return (AdministradorModel) entityManager.find(AdministradorModel.class, id);
-	 }
-
-	public AdministradorModel isAutentico(AdministradorModel administrador) {
-        return isAutentico(administrador.getId(), administrador.getSenha());
-    }
-
-	public AdministradorModel isAutentico(String ra, String senha) {
-	return null;
 	}
-
 }

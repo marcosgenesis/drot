@@ -37,7 +37,7 @@ public interface AdministradorDAO {
 
 	 boolean editarSecretaria(SecretariaModel secretaria);
 
-	 MedicoModel buscarSecretariaPorID(int id);
+	 SecretariaModel buscarSecretariaPorID(int id);
 
 	 ArrayList<SecretariaModel> listarSecretariasCadastrados();
 
@@ -45,5 +45,7 @@ public interface AdministradorDAO {
 
 	 boolean removerSecretariaPorId(int id);
 
-	 AdministradorModel isAutentico(String ra, String senha);
+	 AdministradorModel isAutentico(int id, String senha);
+
+	 AdministradorModel obterAdministrador(int id);
 }

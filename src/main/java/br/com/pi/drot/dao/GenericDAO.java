@@ -14,14 +14,14 @@ public abstract class GenericDAO<T> {
         this.clazz = clazz;
     }
 
-    public boolean insert(T entity) {
+    public boolean cadastrarNovaInstancia(T entity) {
         entityManager.getTransaction().begin();
         entityManager.persist(entity);
         entityManager.getTransaction().commit();
         return true;
     }
 
-    public boolean update(T entity) {
+    public boolean editarInstancia(T entity) {
         try {
             entityManager.getTransaction().begin();
             entityManager.merge(entity);
@@ -32,7 +32,7 @@ public abstract class GenericDAO<T> {
         return true;
     }
 
-    public void delete(T entity) {
+    public void removerInstancia(T entity) {
         if (entity != null) {
             entityManager.getTransaction().begin();
             entityManager.remove(entity);
@@ -45,12 +45,12 @@ public abstract class GenericDAO<T> {
         return (T) entityManager.find(clazz, id);
     }
 
-    public T obter(T entity) {
+    public T obterInstancia(T entity) {
         entityManager.clear();
         return (T) entityManager.find(clazz, entity);
     }
 
-    public ArrayList<T> list() {
+    public ArrayList<T> listarInstancias() {
         return (ArrayList<T>) entityManager.createQuery("SELECT e FROM " + clazz.getSimpleName() + " e").getResultList();
     }
 
