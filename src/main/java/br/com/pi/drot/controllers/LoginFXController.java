@@ -3,6 +3,7 @@ package br.com.pi.drot.controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import br.com.pi.drot.UI.MainFX;
 import br.com.pi.drot.model.AdministradorModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,15 +21,15 @@ public class LoginFXController implements Initializable{
 
 	@FXML
 	private void loginAccess(ActionEvent event) {
-		//System.out.println(this.loginUser.getText());
-		//System.out.println(this.passUser.getText());
 
 		AdministradorModel admModel = new AdministradorModel();
 
 		if(admModel.logado(this.loginUser.getText(), this.passUser.getText())){
-			System.out.println("foi");
+			System.out.println("Foi");
+			//MainFX.chanceWindow("logado");
 		}else{
-			System.out.println("Nao foi");
+			//MainFX.chanceWindow("main");
+			System.out.println("Nao");
 		}
 	}
 
