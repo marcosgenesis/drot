@@ -35,9 +35,6 @@ public class Paciente {
 	@Column(name = "telefone")
 	private String telefone;
 
-	@Column(name = "is_admin")
-	private boolean isAdmin;
-
 	@Column(name = "restricaoMedicamental")
 	private  String restricaoMedicamental;
 
@@ -46,8 +43,7 @@ public class Paciente {
 
 	public Paciente() {}
 
-	public Paciente(int id, String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone,
-			boolean isAdmin, String restricaoMedicamental, String doencaHereditaria) {
+	public Paciente(int id, String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone, String restricaoMedicamental, String doencaHereditaria) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -56,7 +52,6 @@ public class Paciente {
 		this.dataNascimento = dataNascimento;
 		this.endereco = endereco;
 		this.telefone = telefone;
-		this.isAdmin = isAdmin;
 		this.restricaoMedicamental = restricaoMedicamental;
 		this.doencaHereditaria = doencaHereditaria;
 	}
@@ -116,14 +111,6 @@ public class Paciente {
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
-	}
-
-	public boolean isAdmin() {
-		return isAdmin;
-	}
-
-	public void setAdmin(boolean isAdmin) {
-		this.isAdmin = isAdmin;
 	}
 
 	public String getRestricaoMedicamental() {
