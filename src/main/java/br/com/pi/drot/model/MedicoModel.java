@@ -6,7 +6,6 @@ import br.com.pi.drot.connection.Connection;
 import br.com.pi.drot.dao.GenericDAO;
 import br.com.pi.drot.dao.MedicoDAO;
 import br.com.pi.drot.entity.Medico;
-import br.com.pi.drot.utils.NameDataBaseConnection;
 
 public class MedicoModel extends GenericDAO<MedicoModel> implements MedicoDAO {
 	private int id;
@@ -23,9 +22,9 @@ public class MedicoModel extends GenericDAO<MedicoModel> implements MedicoDAO {
 	private Connection connection;
 
 
-	public MedicoModel(NameDataBaseConnection nameDataBaseConnection) {
+	public MedicoModel() {
 		super(Medico.class);
-		this.connection = new Connection(nameDataBaseConnection.getNameDataBase());
+		this.connection = new Connection();
 	}
 
 	public MedicoModel(int id, String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone,

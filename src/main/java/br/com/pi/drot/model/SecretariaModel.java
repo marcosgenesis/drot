@@ -5,7 +5,6 @@ import java.sql.Date;
 import br.com.pi.drot.connection.Connection;
 import br.com.pi.drot.dao.GenericDAO;
 import br.com.pi.drot.entity.Secretaria;
-import br.com.pi.drot.utils.NameDataBaseConnection;
 
 public class SecretariaModel extends GenericDAO<SecretariaModel>{
 	private int id;
@@ -19,9 +18,9 @@ public class SecretariaModel extends GenericDAO<SecretariaModel>{
 	private String senha;
 	private Connection connection;
 
-	public SecretariaModel(NameDataBaseConnection nameDataBaseConnection) {
+	public SecretariaModel() {
 		super(Secretaria.class);
-		this.connection = new Connection(nameDataBaseConnection.getNameDataBase());
+		this.connection = new Connection();
 	}
 
 	public SecretariaModel(int id, String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone,
