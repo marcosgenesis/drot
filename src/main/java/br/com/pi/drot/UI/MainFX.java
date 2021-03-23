@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import br.com.pi.drot.controllers.Login;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,6 +24,9 @@ public class MainFX extends Application {
 
 		entityManager.close();
 		entityManagerFactory.close();
+
+		//Login login = new Login();
+		//login.doLogin(event);
 
 		try {
 			stage = primaryStage;
