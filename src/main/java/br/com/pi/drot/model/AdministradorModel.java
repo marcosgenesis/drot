@@ -125,6 +125,30 @@ public class AdministradorModel extends GenericDAO<AdministradorModel> implement
 		this.connection = connection;
 	}
 
+	public boolean cadastrarNovoAdministrador(AdministradorModel administrador) {
+		if(this.cadastrarNovaInstancia(administrador)) {
+			System.out.println("Novo administrador cadastrado com sucesso!");
+			return true;
+		}
+		return false;
+	}
+
+	public boolean editarAdministrador(AdministradorModel administrador) {
+		if(this.editarInstancia(administrador)) {
+			System.out.println("Administrador editado com sucesso!");
+			return true;
+		}
+		return false;
+	}
+
+	public AdministradorModel buscarAdministradorPorID(int id) {
+		return this.obterPorId(id);
+	}
+
+	public ArrayList<AdministradorModel> listarAdministradoresCadastrados() {
+		return this.listarInstancias();
+	}
+
 	public boolean cadastrarNovoPaciente(PacienteModel paciente) {
 		this.getConnection().getEntityManager().getTransaction().begin();
 		this.getConnection().getEntityManager().persist(paciente);

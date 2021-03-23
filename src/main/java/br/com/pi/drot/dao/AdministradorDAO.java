@@ -9,6 +9,14 @@ import br.com.pi.drot.model.SecretariaModel;
 
 public interface AdministradorDAO {
 
+	 boolean cadastrarNovoAdministrador(AdministradorModel administrador);
+
+	 boolean editarAdministrador(AdministradorModel administrador);
+
+	 AdministradorModel buscarAdministradorPorID(int id);
+
+	 ArrayList<AdministradorModel> listarAdministradoresCadastrados();
+
 	 boolean cadastrarNovoPaciente(PacienteModel paciente);
 
 	 boolean editarPaciente(PacienteModel paciente);

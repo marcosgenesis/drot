@@ -18,6 +18,7 @@ public abstract class GenericDAO<T> {
         entityManager.getTransaction().begin();
         entityManager.persist(entity);
         entityManager.getTransaction().commit();
+        entityManager.close();
         return true;
     }
 
@@ -26,6 +27,7 @@ public abstract class GenericDAO<T> {
             entityManager.getTransaction().begin();
             entityManager.merge(entity);
             entityManager.getTransaction().commit();
+            entityManager.close();
         } catch (Exception ex) {
             return false;
         }
@@ -37,6 +39,7 @@ public abstract class GenericDAO<T> {
             entityManager.getTransaction().begin();
             entityManager.remove(entity);
             entityManager.getTransaction().commit();
+            entityManager.close();
         }
     }
 

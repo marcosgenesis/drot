@@ -8,10 +8,14 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import br.com.pi.drot.model.AdministradorModel;
 
-public class Login {
+public class Login extends HttpServlet{
 	private AdministradorModel administrador;
 	FacesMessage mensagem;
 
