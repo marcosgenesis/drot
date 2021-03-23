@@ -3,6 +3,10 @@ package br.com.pi.drot.model;
 import java.sql.Date;
 import java.util.ArrayList;
 
+import javax.persistence.TypedQuery;
+
+import com.mysql.cj.Query;
+
 import br.com.pi.drot.connection.Connection;
 import br.com.pi.drot.dao.AdministradorDAO;
 import br.com.pi.drot.dao.GenericDAO;
@@ -283,6 +287,30 @@ public class AdministradorModel extends GenericDAO<AdministradorModel> implement
 	            }
 	        }
 	        return null;
+	}
+
+	public boolean logado(String email, String pass) {
+		/*String sql = "SELECT nome, email FROM Administrador WHERE email = :emailUser AND senha = :senhaUser";
+
+		String emailUser = email;
+		String senhaUser  = pass;
+
+		Query query = (Query) this.getConnection().getEntityManager().createQuery(sql, Administrador.class);
+		Administrador adm = (Administrador) ((javax.persistence.Query) query).getResultList();
+
+		if (adm == null) {
+			return false;
+		} else {
+			return true;
+		}*/
+
+		Administrador adm = entityManager.find(Administrador.class, 1);
+
+		if (adm == null) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	public AdministradorModel obter(int id) {

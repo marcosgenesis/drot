@@ -15,19 +15,11 @@ public class MainFX extends Application {
 
 	private static Stage stage;
 	private static Scene mainScene;
+	private static Scene loginScene;
 	//private static Scene newUserScene;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("BancoJPA");
-		EntityManager entityManager = entityManagerFactory.createEntityManager();
-
-		entityManager.close();
-		entityManagerFactory.close();
-
-		//Login login = new Login();
-		//login.doLogin(event);
-
 		try {
 			stage = primaryStage;
 			primaryStage.setTitle("DROT SYSTEM");
@@ -35,11 +27,11 @@ public class MainFX extends Application {
 			Parent loaderMain = FXMLLoader.load(getClass().getResource("/views/Main.fxml"));
 			mainScene = new Scene(loaderMain);
 
-			//Parent loaderNewUser = FXMLLoader.load(getClass().getResource("/views/NovoUsuarioCeneFX.fxml"));
-			//newUserScene = new Scene(loaderNewUser);
+			Parent loaderLogin = FXMLLoader.load(getClass().getResource("/views/Login.fxml"));
+			loginScene = new Scene(loaderLogin);
 
 			primaryStage.setResizable(false);
-			primaryStage.setScene(mainScene);
+			primaryStage.setScene(loginScene);
 			primaryStage.show();
 		} catch (Exception e) {
 			e.printStackTrace();

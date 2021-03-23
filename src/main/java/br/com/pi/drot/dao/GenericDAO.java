@@ -7,7 +7,7 @@ import javax.persistence.Persistence;
 
 public abstract class GenericDAO<T> {
 
-    public static EntityManager entityManager = Persistence.createEntityManagerFactory("UP").createEntityManager();
+    public static EntityManager entityManager = Persistence.createEntityManagerFactory("DROT").createEntityManager();
     private Class<?> clazz;
 
     public GenericDAO(Class<?> clazz) {

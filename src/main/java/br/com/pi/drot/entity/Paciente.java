@@ -43,8 +43,7 @@ public class Paciente {
 
 	public Paciente() {}
 
-	public Paciente(int id, String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone,
-			boolean isAdmin, String restricaoMedicamental, String doencaHereditaria) {
+	public Paciente(int id, String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone, String restricaoMedicamental, String doencaHereditaria) {
 		super();
 		this.id = id;
 		this.nome = nome;

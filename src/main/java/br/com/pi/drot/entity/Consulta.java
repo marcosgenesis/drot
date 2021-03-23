@@ -17,7 +17,7 @@ public class Consulta{
 	private int id;
 
 	@Column(name = "paciente_id")
-	private Paciente paciente;
+	private int paciente;
 
 	@Column(name = "dataConsulta")
 	private Date dataConsulta;
@@ -26,7 +26,7 @@ public class Consulta{
 	private String descricaoConsulta;
 
 	@Column(name = "medico_id")
-	private Medico medico;
+	private int medico;
 
 }
 
