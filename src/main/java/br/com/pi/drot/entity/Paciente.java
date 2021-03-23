@@ -35,9 +35,6 @@ public class Paciente {
 	@Column(name = "telefone")
 	private String telefone;
 
-	@Column(name = "is_admin")
-	private boolean isAdmin;
-
 	@Column(name = "restricaoMedicamental")
 	private  String restricaoMedicamental;
 
@@ -56,7 +53,6 @@ public class Paciente {
 		this.dataNascimento = dataNascimento;
 		this.endereco = endereco;
 		this.telefone = telefone;
-		this.isAdmin = isAdmin;
 		this.restricaoMedicamental = restricaoMedicamental;
 		this.doencaHereditaria = doencaHereditaria;
 	}
@@ -116,14 +112,6 @@ public class Paciente {
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
-	}
-
-	public boolean isAdmin() {
-		return isAdmin;
-	}
-
-	public void setAdmin(boolean isAdmin) {
-		this.isAdmin = isAdmin;
 	}
 
 	public String getRestricaoMedicamental() {
