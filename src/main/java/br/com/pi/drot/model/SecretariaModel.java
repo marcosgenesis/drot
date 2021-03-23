@@ -2,7 +2,12 @@ package br.com.pi.drot.model;
 
 import java.sql.Date;
 
-public class SecretariaModel{
+import br.com.pi.drot.connection.Connection;
+import br.com.pi.drot.dao.GenericDAO;
+import br.com.pi.drot.entity.Secretaria;
+import br.com.pi.drot.utils.NameDataBaseConnection;
+
+public class SecretariaModel extends GenericDAO<SecretariaModel>{
 	private int id;
 	private String nome;
 	private String CPF;
@@ -12,12 +17,16 @@ public class SecretariaModel{
 	private String telefone;
 	private String email;
 	private String senha;
+	private Connection connection;
 
-	public SecretariaModel() {}
+	public SecretariaModel(NameDataBaseConnection nameDataBaseConnection) {
+		super(Secretaria.class);
+		this.connection = new Connection(nameDataBaseConnection.getNameDataBase());
+	}
 
 	public SecretariaModel(int id, String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone,
 			String email, String senha) {
-		super();
+		super(Secretaria.class);
 		this.id = id;
 		this.nome = nome;
 		this.CPF = CPF;
@@ -101,6 +110,12 @@ public class SecretariaModel{
 		this.senha = senha;
 	}
 
+	public Connection getConnection() {
+		return connection;
+	}
 
+	public void setConnection(Connection connection) {
+		this.connection = connection;
+	}
 
 }

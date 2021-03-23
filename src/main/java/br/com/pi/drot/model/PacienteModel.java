@@ -2,7 +2,12 @@ package br.com.pi.drot.model;
 
 import java.sql.Date;
 
-public class PacienteModel {
+import br.com.pi.drot.connection.Connection;
+import br.com.pi.drot.dao.GenericDAO;
+import br.com.pi.drot.entity.Paciente;
+import br.com.pi.drot.utils.NameDataBaseConnection;
+
+public class PacienteModel extends GenericDAO<PacienteModel>{
 	private int id;
 	private String nome;
 	private String CPF;
@@ -14,13 +19,16 @@ public class PacienteModel {
 	private String senha;
 	private String restricaoMedicamental;
 	private String doencaHereditaria;
+	private Connection connection;
 
-
-	public PacienteModel() {}
+	public PacienteModel(NameDataBaseConnection nameDataBaseConnection) {
+		super(Paciente.class);
+		this.connection = new Connection(nameDataBaseConnection.getNameDataBase());
+	}
 
 	public PacienteModel(int id, String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone,
 			boolean isAdmin, String restricaoMedicamental, String doencaHereditaria) {
-		super();
+		super(Paciente.class);
 		this.id = id;
 		this.nome = nome;
 		this.CPF = CPF;
@@ -118,6 +126,14 @@ public class PacienteModel {
 
 	public void setDoencaHereditaria(String doencaHereditaria) {
 		this.doencaHereditaria = doencaHereditaria;
+	}
+
+	public Connection getConnection() {
+		return connection;
+	}
+
+	public void setConnection(Connection connection) {
+		this.connection = connection;
 	}
 
 }
