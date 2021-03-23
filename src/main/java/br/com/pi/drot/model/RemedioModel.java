@@ -6,7 +6,6 @@ import br.com.pi.drot.connection.Connection;
 import br.com.pi.drot.dao.GenericDAO;
 import br.com.pi.drot.dao.RemedioDAO;
 import br.com.pi.drot.entity.Remedio;
-import br.com.pi.drot.utils.NameDataBaseConnection;
 
 public class RemedioModel extends GenericDAO<RemedioModel> implements RemedioDAO{
 	private int id;
@@ -16,9 +15,9 @@ public class RemedioModel extends GenericDAO<RemedioModel> implements RemedioDAO
 	private String contraIndicacao;
 	private Connection connection;
 
-	public RemedioModel(NameDataBaseConnection nameDataBaseConnection) {
+	public RemedioModel() {
 		super(Remedio.class);
-		this.connection = new Connection(nameDataBaseConnection.getNameDataBase());
+		this.connection = new Connection();
 	}
 
 	public RemedioModel(int id, String nomeRemedio, String dosagem, String bula, String contraIndicacao) {

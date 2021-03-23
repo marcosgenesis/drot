@@ -5,7 +5,6 @@ import java.sql.Date;
 import br.com.pi.drot.connection.Connection;
 import br.com.pi.drot.dao.GenericDAO;
 import br.com.pi.drot.entity.Paciente;
-import br.com.pi.drot.utils.NameDataBaseConnection;
 
 public class PacienteModel extends GenericDAO<PacienteModel>{
 	private int id;
@@ -21,9 +20,9 @@ public class PacienteModel extends GenericDAO<PacienteModel>{
 	private String doencaHereditaria;
 	private Connection connection;
 
-	public PacienteModel(NameDataBaseConnection nameDataBaseConnection) {
+	public PacienteModel() {
 		super(Paciente.class);
-		this.connection = new Connection(nameDataBaseConnection.getNameDataBase());
+		this.connection = new Connection();
 	}
 
 	public PacienteModel(int id, String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone,

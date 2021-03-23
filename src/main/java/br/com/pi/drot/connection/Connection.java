@@ -7,12 +7,11 @@ import javax.persistence.Persistence;
 
 public class Connection {
 
-	private EntityManagerFactory entityManagerFactory;
-	private EntityManager entityManager;
+	private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("DROT");
+	private EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-	public Connection(String dataBase) {
-		this.entityManagerFactory = Persistence.createEntityManagerFactory(dataBase);
-		this.entityManager = entityManagerFactory.createEntityManager();
+	public Connection() {
+
 	}
 
 	public EntityManagerFactory getEntityManagerFactory() {

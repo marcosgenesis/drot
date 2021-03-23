@@ -11,7 +11,6 @@ import br.com.pi.drot.connection.Connection;
 import br.com.pi.drot.dao.AdministradorDAO;
 import br.com.pi.drot.dao.GenericDAO;
 import br.com.pi.drot.entity.Administrador;
-import br.com.pi.drot.utils.NameDataBaseConnection;
 
 public class AdministradorModel extends GenericDAO<AdministradorModel> implements AdministradorDAO{
 	private int id;
@@ -26,9 +25,9 @@ public class AdministradorModel extends GenericDAO<AdministradorModel> implement
 	private Connection connection;
 
 
-	public AdministradorModel(NameDataBaseConnection nameDataBaseConnection) {
+	public AdministradorModel() {
         super(Administrador.class);
-		this.connection = new Connection(nameDataBaseConnection.getNameDataBase());
+		this.connection = new Connection();
 
 	}
 

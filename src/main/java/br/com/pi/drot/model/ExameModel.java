@@ -7,7 +7,6 @@ import br.com.pi.drot.connection.Connection;
 import br.com.pi.drot.dao.ExameDAO;
 import br.com.pi.drot.dao.GenericDAO;
 import br.com.pi.drot.entity.Exame;
-import br.com.pi.drot.utils.NameDataBaseConnection;
 
 public class ExameModel extends GenericDAO<ExameModel> implements ExameDAO{
 	private int id;
@@ -18,9 +17,9 @@ public class ExameModel extends GenericDAO<ExameModel> implements ExameDAO{
 	private Connection connection;
 
 
-	public ExameModel(NameDataBaseConnection nameDataBaseConnection){
+	public ExameModel(){
 		super(Exame.class);
-		this.connection = new Connection(nameDataBaseConnection.getNameDataBase());
+		this.connection = new Connection();
 	}
 
 	public ExameModel(int id, String nomeExame, String diagnosticoExame, String descricaoExame, Date dataExame) {

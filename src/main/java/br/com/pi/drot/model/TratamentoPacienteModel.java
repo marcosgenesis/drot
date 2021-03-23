@@ -7,7 +7,6 @@ import br.com.pi.drot.connection.Connection;
 import br.com.pi.drot.dao.GenericDAO;
 import br.com.pi.drot.dao.TratamentoPacienteDAO;
 import br.com.pi.drot.entity.TratamentoPaciente;
-import br.com.pi.drot.utils.NameDataBaseConnection;
 
 public class TratamentoPacienteModel extends GenericDAO<TratamentoPacienteModel> implements TratamentoPacienteDAO{
 
@@ -17,9 +16,9 @@ public class TratamentoPacienteModel extends GenericDAO<TratamentoPacienteModel>
 	private Date tempoTratamento;
 	private Connection connection;
 
-	public TratamentoPacienteModel(NameDataBaseConnection nameDataBaseConnection){
+	public TratamentoPacienteModel(){
 		super(TratamentoPaciente.class);
-		this.connection = new Connection(nameDataBaseConnection.getNameDataBase());
+		this.connection = new Connection();
 
 	}
 
