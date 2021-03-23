@@ -6,7 +6,6 @@ import br.com.pi.drot.connection.Connection;
 import br.com.pi.drot.dao.ConsultaDAO;
 import br.com.pi.drot.dao.GenericDAO;
 import br.com.pi.drot.entity.Consulta;
-import br.com.pi.drot.utils.NameDataBaseConnection;
 
 public class ConsultaModel extends GenericDAO<ConsultaModel> implements ConsultaDAO {
 	private int id;
@@ -16,9 +15,9 @@ public class ConsultaModel extends GenericDAO<ConsultaModel> implements Consulta
 	private MedicoModel medico;
 	private Connection connection;
 
-	public ConsultaModel(NameDataBaseConnection nameDataBaseConnection){
+	public ConsultaModel(){
         super(Consulta.class);
-		this.connection = new Connection(nameDataBaseConnection.getNameDataBase());
+		this.connection = new Connection();
 	}
 
 	public ConsultaModel(int id, PacienteModel paciente, Date dataConsulta, String descricaoConsulta, MedicoModel medico) {

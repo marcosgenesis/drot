@@ -1,9 +1,5 @@
 package br.com.pi.drot.UI;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,16 +10,12 @@ public class MainFX extends Application {
 
 	private static Stage stage;
 	private static Scene mainScene;
+	private static Scene loginScene;
+	private static Scene LogadoScene;
 	//private static Scene newUserScene;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("BancoJPA");
-		EntityManager entityManager = entityManagerFactory.createEntityManager();
-
-		entityManager.close();
-		entityManagerFactory.close();
-
 		try {
 			stage = primaryStage;
 			primaryStage.setTitle("DROT SYSTEM");
@@ -31,11 +23,14 @@ public class MainFX extends Application {
 			Parent loaderMain = FXMLLoader.load(getClass().getResource("/views/Main.fxml"));
 			mainScene = new Scene(loaderMain);
 
-			//Parent loaderNewUser = FXMLLoader.load(getClass().getResource("/views/NovoUsuarioCeneFX.fxml"));
-			//newUserScene = new Scene(loaderNewUser);
+			Parent loaderLogin = FXMLLoader.load(getClass().getResource("/views/Login.fxml"));
+			loginScene = new Scene(loaderLogin);
+
+			Parent loaderLogado = FXMLLoader.load(getClass().getResource("/views/Logado.fxml"));
+			LogadoScene = new Scene(loaderLogado);
 
 			primaryStage.setResizable(false);
-			primaryStage.setScene(mainScene);
+			primaryStage.setScene(loginScene);
 			primaryStage.show();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -47,9 +42,14 @@ public class MainFX extends Application {
 			case "main":
 				stage.setScene(mainScene);
 				break;
-			//case "newuser":
-				//stage.setScene(newUserScene);
-				//break;
+
+			case "login":
+				stage.setScene(loginScene);
+				break;
+
+			case "logado":
+				stage.setScene(LogadoScene);
+				break;
 		}
 	}
 

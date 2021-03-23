@@ -9,6 +9,14 @@ import br.com.pi.drot.model.SecretariaModel;
 
 public interface AdministradorDAO {
 
+	 boolean cadastrarNovoAdministrador(AdministradorModel administrador);
+
+	 boolean editarAdministrador(AdministradorModel administrador);
+
+	 AdministradorModel buscarAdministradorPorID(int id);
+
+	 ArrayList<AdministradorModel> listarAdministradoresCadastrados();
+
 	 boolean cadastrarNovoPaciente(PacienteModel paciente);
 
 	 boolean editarPaciente(PacienteModel paciente);
@@ -37,7 +45,7 @@ public interface AdministradorDAO {
 
 	 boolean editarSecretaria(SecretariaModel secretaria);
 
-	 MedicoModel buscarSecretariaPorID(int id);
+	 SecretariaModel buscarSecretariaPorID(int id);
 
 	 ArrayList<SecretariaModel> listarSecretariasCadastrados();
 
@@ -45,5 +53,7 @@ public interface AdministradorDAO {
 
 	 boolean removerSecretariaPorId(int id);
 
-	 AdministradorModel isAutentico(String ra, String senha);
+	 AdministradorModel isAutentico(int id, String senha);
+
+	 AdministradorModel obterAdministrador(int id);
 }

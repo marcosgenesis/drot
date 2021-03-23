@@ -7,13 +7,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Administrador")
+@Table(name = "administrador")
+
+@NamedQueries({
+	@NamedQuery(name = "Administrador.loginAdm", query = "SELECT a FROM Administrador a WHERE a.email = :email AND a.senha = :senha"),
+    @NamedQuery(name="...", query="..."),
+})
+
 public class Administrador{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "codadmin")
 	private int id;
 
 	@Column(name = "nome")
@@ -25,7 +34,7 @@ public class Administrador{
 	@Column(name = "RG")
 	private String RG;
 
-	@Column(name = "Data_nascimento")
+	@Column(name = "dataNascimento")
 	private Date dataNascimento;
 
 	@Column(name = "endereco")
