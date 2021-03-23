@@ -1,5 +1,9 @@
 package br.com.pi.drot.UI;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,6 +18,12 @@ public class MainFX extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("BancoJPA");
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+		entityManager.close();
+		entityManagerFactory.close();
+
 		try {
 			stage = primaryStage;
 			primaryStage.setTitle("DROT SYSTEM");
