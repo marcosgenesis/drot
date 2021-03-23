@@ -4,7 +4,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import br.com.pi.drot.model.AdministradorModel;
-import br.com.pi.drot.utils.NameDataBaseConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -24,8 +23,7 @@ public class LoginFXController implements Initializable{
 		//System.out.println(this.loginUser.getText());
 		//System.out.println(this.passUser.getText());
 
-		NameDataBaseConnection nameBD = new NameDataBaseConnection("DROT");
-		AdministradorModel admModel = new AdministradorModel(nameBD);
+		AdministradorModel admModel = new AdministradorModel();
 
 		if(admModel.logado(this.loginUser.getText(), this.passUser.getText())){
 			System.out.println("foi");
