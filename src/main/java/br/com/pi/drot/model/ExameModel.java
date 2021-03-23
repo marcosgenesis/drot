@@ -1,28 +1,30 @@
 package br.com.pi.drot.model;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import br.com.pi.drot.connection.Connection;
+import br.com.pi.drot.dao.ExameDAO;
+import br.com.pi.drot.dao.GenericDAO;
+import br.com.pi.drot.entity.Exame;
+import br.com.pi.drot.utils.NameDataBaseConnection;
 
-@Entity
-@Table(name = "Exame")
-public class ExameModel {
+public class ExameModel extends GenericDAO<ExameModel> implements ExameDAO{
 	private int id;
 	private String nomeExame;
 	private String diagnosticoExame;
 	private String descricaoExame;
 	private Date dataExame;
+	private Connection connection;
 
 
-	public ExameModel(){}
+	public ExameModel(NameDataBaseConnection nameDataBaseConnection){
+		super(Exame.class);
+		this.connection = new Connection(nameDataBaseConnection.getNameDataBase());
+	}
 
 	public ExameModel(int id, String nomeExame, String diagnosticoExame, String descricaoExame, Date dataExame) {
-		super();
+		super(Exame.class);
 		this.id = id;
 		this.nomeExame = nomeExame;
 		this.diagnosticoExame = diagnosticoExame;
@@ -68,6 +70,38 @@ public class ExameModel {
 
 	public void setDataExame(Date dataExame) {
 		this.dataExame = dataExame;
+	}
+
+	public Connection getConnection() {
+		return connection;
+	}
+
+	public void setConnection(Connection connection) {
+		this.connection = connection;
+	}
+
+	@Override
+	public boolean cadastrarExame(String nomeExame, String diagnosticoExame, String descricaoExame, Date dataExame) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean listarExamePorId(int id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public ArrayList<Exame> listarExame() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean removerExamePorId(int id) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

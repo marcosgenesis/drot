@@ -1,14 +1,28 @@
 package br.com.pi.drot.model;
 
-public class RemedioModel{
+import java.util.ArrayList;
+
+import br.com.pi.drot.connection.Connection;
+import br.com.pi.drot.dao.GenericDAO;
+import br.com.pi.drot.dao.RemedioDAO;
+import br.com.pi.drot.entity.Remedio;
+import br.com.pi.drot.utils.NameDataBaseConnection;
+
+public class RemedioModel extends GenericDAO<RemedioModel> implements RemedioDAO{
 	private int id;
 	private String nomeRemedio;
 	private String dosagem;
 	private String bula;
 	private String contraIndicacao;
+	private Connection connection;
+
+	public RemedioModel(NameDataBaseConnection nameDataBaseConnection) {
+		super(Remedio.class);
+		this.connection = new Connection(nameDataBaseConnection.getNameDataBase());
+	}
 
 	public RemedioModel(int id, String nomeRemedio, String dosagem, String bula, String contraIndicacao) {
-		super();
+		super(Remedio.class);
 		this.id = id;
 		this.nomeRemedio = nomeRemedio;
 		this.dosagem = dosagem;
@@ -54,6 +68,44 @@ public class RemedioModel{
 
 	public void setContraIndicacao(String contraIndicacao) {
 		this.contraIndicacao = contraIndicacao;
+	}
+
+	public Connection getConnection() {
+		return connection;
+	}
+
+	public void setConnection(Connection connection) {
+		this.connection = connection;
+	}
+
+	@Override
+	public boolean cadastrarRemedio(TratamentoPacienteModel tratamento) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public RemedioModel buscarRemedioPorID(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<RemedioModel> listarRemedio() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean editar(RemedioModel remedio) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean removerRemedioPorId(int id) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 

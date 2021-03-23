@@ -2,7 +2,13 @@ package br.com.pi.drot.model;
 
 import java.sql.Date;
 
-public class MedicoModel {
+import br.com.pi.drot.connection.Connection;
+import br.com.pi.drot.dao.GenericDAO;
+import br.com.pi.drot.dao.MedicoDAO;
+import br.com.pi.drot.entity.Medico;
+import br.com.pi.drot.utils.NameDataBaseConnection;
+
+public class MedicoModel extends GenericDAO<MedicoModel> implements MedicoDAO {
 	private int id;
 	private String nome;
 	private String CPF;
@@ -14,12 +20,17 @@ public class MedicoModel {
 	private String senha;
 	private String CRM;
 	private String especialidade;
+	private Connection connection;
 
-	public MedicoModel() {}
+
+	public MedicoModel(NameDataBaseConnection nameDataBaseConnection) {
+		super(Medico.class);
+		this.connection = new Connection(nameDataBaseConnection.getNameDataBase());
+	}
 
 	public MedicoModel(int id, String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone,
 			String email, String senha, String CRM, String especialidade) {
-		super();
+		super(Medico.class);
 		this.id = id;
 		this.nome = nome;
 		this.CPF = CPF;
@@ -122,6 +133,47 @@ public class MedicoModel {
 	public void setEspecialidade(String especialidade) {
 		this.especialidade = especialidade;
 	}
+
+	public Connection getConnection() {
+		return connection;
+	}
+
+	public void setConnection(Connection connection) {
+		this.connection = connection;
+	}
+
+
+	@Override
+	public void consultarPaciente() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void editarHistoricoPaciente() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void consultarHistoricoPaciente() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void criarTratamentodoPaciente() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void editarTratamentodoPaciente() {
+		// TODO Auto-generated method stub
+
+	}
+
+
 }
 
 
