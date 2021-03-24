@@ -32,15 +32,6 @@
 			<attribute name="source_encoding" value="UTF-8"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/ericr/Downloads/eclipselink-2.5.2.jar">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="maven.groupId" value="org.eclipse.persistence"/>
-			<attribute name="maven.artifactId" value="eclipselink"/>
-			<attribute name="maven.version" value="2.5.2"/>
-			<attribute name="maven.scope" value="compile"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/ericr/.m2/repository/org/hibernate/hibernate-core/5.4.2.Final/hibernate-core-5.4.2.Final.jar" sourcepath="C:/Users/ericr/.m2/repository/org/hibernate/hibernate-core/5.4.2.Final/hibernate-core-5.4.2.Final-sources.jar">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
