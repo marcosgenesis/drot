@@ -61,7 +61,7 @@
                   <Text layoutX="142.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="pacientes atendidos" />
                   <ImageView fitHeight="90.0" fitWidth="125.0" layoutX="8.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/Doctor_Two%20Color.png" />
+                        <Image url="@../images/doctor.png" />
                      </image>
                   </ImageView>
                </children>
@@ -76,11 +76,12 @@
                   <Text layoutX="142.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="pacientes atendidos" />
                   <ImageView fitHeight="90.0" fitWidth="125.0" layoutX="8.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/Doctor_Two%20Color.png" />
+                        <Image url="@../images/Waiting_Two%20Color.png" />
                      </image>
                   </ImageView>
                </children>
             </Pane>
+            <Pane layoutX="1189.0" layoutY="41.0" prefHeight="60.0" prefWidth="59.0" style="-fx-background-radius: 50%; -fx-background-color: #fff;" />
 
          </children>
       </Pane>
