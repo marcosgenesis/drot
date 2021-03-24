@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -30,9 +31,21 @@
                         <Font name="Arial" size="34.0" />
                      </font>
                   </Text>
-                  <Text layoutX="98.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Painel de controle" />
-                  <Text fill="#7c7c7c" layoutX="98.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pacientes" />
-                  <Text fill="#7c7c7c" layoutX="97.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Médicos" />
+                  <Text layoutX="102.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Painel de controle">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Text>
+                  <Text fill="#7c7c7c" layoutX="100.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pacientes">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Text>
+                  <Text fill="#7c7c7c" layoutX="101.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Médicos">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Text>
+                  <FontAwesomeIcon fill="#d6dce2" iconName="USER" layoutX="50.0" layoutY="168.0" size="2em" />
+                  <FontAwesomeIcon fill="#d6dce2" iconName="USER_MD" layoutX="50.0" layoutY="210.0" size="2em" />
+                  <FontAwesomeIcon fill="#2784ff" iconName="DASHBOARD" layoutX="49.0" layoutY="130.0" size="2em" />
                </children>
             </Pane>
             <TextField layoutX="341.0" layoutY="44.0" prefHeight="53.0" prefWidth="549.0" promptText="Pesquisar Paciente" style="-fx-background-color: fff; -fx-background-radius: 10px 10px 00px 0px;" />
