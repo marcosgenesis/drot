@@ -10,6 +10,7 @@ import br.com.pi.drot.dao.AdministradorDAO;
 import br.com.pi.drot.dao.GenericDAO;
 import br.com.pi.drot.entity.Administrador;
 
+@SuppressWarnings("all")
 public class AdministradorModel extends GenericDAO<AdministradorModel> implements AdministradorDAO{
 	private int id;
 	private String nome;
@@ -405,20 +406,6 @@ public class AdministradorModel extends GenericDAO<AdministradorModel> implement
 	}
 
 	public boolean logado(String email, String pass) {
-		/*String sql = "SELECT nome, email FROM Administrador WHERE email = :emailUser AND senha = :senhaUser";
-
-		String emailUser = email;
-		String senhaUser  = pass;
-
-		Query query = (Query) this.getConnection().getEntityManager().createQuery(sql, Administrador.class);
-		Administrador adm = (Administrador) ((javax.persistence.Query) query).getResultList();
-
-		if (adm == null) {
-			return false;
-		} else {
-			return true;
-		}*/
-
 		try {
 			Administrador a = this.getConnection().getEntityManager().createNamedQuery("Administrador.loginAdm", Administrador.class).setParameter("email", email).setParameter("senha", pass).getSingleResult();
 
