@@ -26,46 +26,4 @@ public class TratamentoPaciente{
 	@Column(name = "tempoTratamento")
 	private Date tempoTratamento;
 
-	public TratamentoPaciente(){}
-
-	public TratamentoPaciente(int id, ArrayList<Exame> exame, ArrayList<Remedio> remedio, Date tempoTratamento) {
-		super();
-		this.id = id;
-		this.exame = exame;
-		this.remedio = remedio;
-		this.tempoTratamento = tempoTratamento;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public ArrayList<Exame> getExame() {
-		return exame;
-	}
-
-	public void setExame(ArrayList<Exame> exame) {
-		this.exame = exame;
-	}
-
-	public ArrayList<Remedio> getRemedio() {
-		return remedio;
-	}
-
-	public void setRemedio(ArrayList<Remedio> remedio) {
-		this.remedio = remedio;
-	}
-
-	public Date getTempoTratamento() {
-		return tempoTratamento;
-	}
-
-	public void setTempoTratamento(Date tempoTratamento) {
-		this.tempoTratamento = tempoTratamento;
-	}
-
 }

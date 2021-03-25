@@ -1,69 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane layoutX="-284.0" layoutY="-134.0" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: f3f8fd;">
+      <Pane layoutX="-3.0" layoutY="-2.0" prefHeight="808.0" prefWidth="1287.0" style="-fx-background-color: f3f8fd;">
          <children>
-            <TableView layoutX="557.0" layoutY="392.0" prefHeight="386.0" prefWidth="693.0">
+            <TableView layoutX="341.0" layoutY="286.0" prefHeight="493.0" prefWidth="877.0">
               <columns>
-                <TableColumn prefWidth="120.0" text="data" />
-                <TableColumn prefWidth="120.0" text="paciente" />
-                  <TableColumn prefWidth="200.0" text="classificação" />
-                  <TableColumn prefWidth="120.0" text="status" />
-                  <TableColumn prefWidth="130.0" text="Consultorio" />
+                <TableColumn prefWidth="120.0" style="-fx-background-color: ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #EFF0F2; -fx-pref-height: 40px;" text="data" />
+                <TableColumn prefWidth="263.0" style="-fx-background-color: ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #EFF0F2;" text="paciente" />
+                  <TableColumn prefWidth="147.0" style="-fx-background-color: ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #EFF0F2;" text="classificação" />
+                  <TableColumn minWidth="9.0" prefWidth="156.0" style="-fx-background-color: ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #EFF0F2;" text="status" />
+                  <TableColumn prefWidth="190.0" style="-fx-background-color: ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #EFF0F2;" text="Consultorio" />
               </columns>
             </TableView>
-            <Pane layoutX="297.0" layoutY="159.0" prefHeight="621.0" prefWidth="244.0" style="-fx-background-radius: 14px; -fx-background-color: fff;">
+            <Pane layoutX="30.0" layoutY="44.0" prefHeight="734.0" prefWidth="280.0" style="-fx-background-radius: 14px; -fx-background-color: fff;">
                <children>
                   <Text fill="#2784ff" layoutX="93.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="drot">
                      <font>
                         <Font name="Arial" size="34.0" />
                      </font>
                   </Text>
-                  <Text layoutX="98.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Painel de controle" />
-                  <Text fill="#7c7c7c" layoutX="98.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pacientes" />
-                  <Text fill="#7c7c7c" layoutX="97.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Médicos" />
+                  <Text layoutX="102.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Painel de controle">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Text>
+                  <Text fill="#7c7c7c" layoutX="100.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pacientes">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Text>
+                  <Text fill="#7c7c7c" layoutX="101.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Médicos">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Text>
+                  <FontAwesomeIcon fill="#d6dce2" iconName="USER" layoutX="50.0" layoutY="168.0" size="2em" />
+                  <FontAwesomeIcon fill="#d6dce2" iconName="USER_MD" layoutX="50.0" layoutY="210.0" size="2em" />
+                  <FontAwesomeIcon fill="#2784ff" iconName="DASHBOARD" layoutX="49.0" layoutY="130.0" size="2em" />
                </children>
             </Pane>
-            <TextField layoutX="557.0" layoutY="159.0" prefHeight="46.0" prefWidth="464.0" promptText="Pesquisar Paciente" style="-fx-background-color: fff; -fx-background-radius: 10px 10px 00px 0px;" />
-            <Pane layoutX="557.0" layoutY="230.0" prefHeight="133.0" prefWidth="210.0" style="-fx-background-color: fff;">
+            <TextField layoutX="425.0" layoutY="48.0" prefHeight="53.0" prefWidth="549.0" promptText="Pesquisar Paciente" style="-fx-background-color: fff; -fx-background-radius: 10px 10px 00px 0px; -fx-padding: 5 5 5 5;" />
+            <Pane layoutX="341.0" layoutY="135.0" prefHeight="124.0" prefWidth="260.0" style="-fx-background-color: fff;">
                <children>
-                  <Text fill="#2784ff" layoutX="81.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="250" wrappingWidth="95.71615600585938">
+                  <Text fill="#2784ff" layoutX="140.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="250" wrappingWidth="95.71615600585938">
                      <font>
                         <Font name="System Bold" size="45.0" />
                      </font>
                   </Text>
-                  <Text layoutX="81.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="pacientes atendidos" />
+                  <Text layoutX="142.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="pacientes atendidos" />
+                  <ImageView fitHeight="90.0" fitWidth="125.0" layoutX="8.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Doctor_Two%20Color.png" />
+                     </image>
+                  </ImageView>
                </children>
             </Pane>
-            <Pane layoutX="789.0" layoutY="230.0" prefHeight="133.0" prefWidth="210.0" style="-fx-background-color: fff;">
+            <Pane layoutX="652.0" layoutY="135.0" prefHeight="124.0" prefWidth="260.0" style="-fx-background-color: fff;">
                <children>
-                  <Text fill="#2784ff" layoutX="64.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="32" wrappingWidth="95.71615600585938">
+                  <Text fill="#2784ff" layoutX="140.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="250" wrappingWidth="95.71615600585938">
                      <font>
                         <Font name="System Bold" size="45.0" />
                      </font>
                   </Text>
-                  <Text layoutX="64.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="pacientes internados" />
+                  <Text layoutX="142.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="pacientes atendidos" />
+                  <ImageView fitHeight="90.0" fitWidth="125.0" layoutX="8.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/doctor.png" />
+                     </image>
+                  </ImageView>
                </children>
             </Pane>
-            <Pane layoutX="1021.0" layoutY="230.0" prefHeight="133.0" prefWidth="210.0" style="-fx-background-color: fff;">
+            <Pane layoutX="956.0" layoutY="135.0" prefHeight="124.0" prefWidth="260.0" style="-fx-background-color: fff;">
                <children>
-                  <Text fill="#2784ff" layoutX="76.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="43" wrappingWidth="95.71615600585938">
+                  <Text fill="#2784ff" layoutX="140.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="250" wrappingWidth="95.71615600585938">
                      <font>
                         <Font name="System Bold" size="45.0" />
                      </font>
                   </Text>
-                  <Text layoutX="76.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="pacientes na espera" />
+                  <Text layoutX="142.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="pacientes atendidos" />
+                  <ImageView fitHeight="90.0" fitWidth="125.0" layoutX="8.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Waiting_Two%20Color.png" />
+                     </image>
+                  </ImageView>
                </children>
             </Pane>
+            <Pane layoutX="1189.0" layoutY="41.0" prefHeight="60.0" prefWidth="59.0" style="-fx-background-radius: 50%; -fx-background-color: #fff;" />
+            <FontAwesomeIcon fill="#2784ff" iconName="SEARCH" layoutX="373.0" layoutY="84.0" size="3em" />
 
          </children>
       </Pane>

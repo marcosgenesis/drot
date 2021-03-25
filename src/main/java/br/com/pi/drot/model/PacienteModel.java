@@ -1,50 +1,33 @@
-package br.com.pi.drot.entity;
+package br.com.pi.drot.model;
 
 import java.sql.Date;
-import java.util.ArrayList;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import br.com.pi.drot.connection.Connection;
+import br.com.pi.drot.dao.GenericDAO;
+import br.com.pi.drot.entity.Paciente;
 
-@Entity
-@Table(name = "Paciente")
-public class Paciente {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class PacienteModel extends GenericDAO<PacienteModel>{
 	private int id;
-
-	@Column(name = "nome")
 	private String nome;
-
-	@Column(name = "CPF")
 	private String CPF;
-
-	@Column(name = "RG")
 	private String RG;
-
-	@Column(name = "Data_nascimento")
 	private Date dataNascimento;
-
-	@Column(name = "endereco")
 	private String endereco;
-
-	@Column(name = "telefone")
 	private String telefone;
-
-	@Column(name = "restricaoMedicamental")
-	private  String restricaoMedicamental;
-
-	@Column(name = "doencaHereditaria")
+	private String email;
+	private String senha;
+	private String restricaoMedicamental;
 	private String doencaHereditaria;
+	private Connection connection;
 
-	public Paciente() {}
+	public PacienteModel() {
+		super(Paciente.class);
+		this.connection = new Connection();
+	}
 
-	public Paciente(int id, String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone, String restricaoMedicamental, String doencaHereditaria) {
-		super();
+	public PacienteModel(int id, String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone,
+			boolean isAdmin, String restricaoMedicamental, String doencaHereditaria) {
+		super(Paciente.class);
 		this.id = id;
 		this.nome = nome;
 		this.CPF = CPF;
@@ -55,7 +38,6 @@ public class Paciente {
 		this.restricaoMedicamental = restricaoMedicamental;
 		this.doencaHereditaria = doencaHereditaria;
 	}
-
 
 	public int getId() {
 		return id;
@@ -77,8 +59,8 @@ public class Paciente {
 		return CPF;
 	}
 
-	public void setCPF(String CPF) {
-		this.CPF = CPF;
+	public void setCPF(String cPF) {
+		CPF = cPF;
 	}
 
 	public String getRG() {
@@ -86,7 +68,7 @@ public class Paciente {
 	}
 
 	public void setRG(String rG) {
-		this.RG = RG;
+		RG = rG;
 	}
 
 	public Date getDataNascimento() {
@@ -113,6 +95,22 @@ public class Paciente {
 		this.telefone = telefone;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
 	public String getRestricaoMedicamental() {
 		return restricaoMedicamental;
 	}
@@ -129,14 +127,12 @@ public class Paciente {
 		this.doencaHereditaria = doencaHereditaria;
 	}
 
-	public boolean login() {
-		return false;
+	public Connection getConnection() {
+		return connection;
 	}
 
-	public boolean logout() {
-		return false;
+	public void setConnection(Connection connection) {
+		this.connection = connection;
 	}
-
-	public void preencherDadosRegistros(String restricaoMedicamental, String doencaHereditaria) {}
 
 }

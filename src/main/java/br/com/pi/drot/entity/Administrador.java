@@ -1,21 +1,22 @@
 package br.com.pi.drot.entity;
 
 import java.sql.Date;
-import java.util.ArrayList;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+@NamedQuery(name = "Administrador.loginAdm", query = "SELECT a FROM Administrador a WHERE a.email = :email AND a.senha = :senha")
 @Entity
-@Table(name = "Medico")
+@Table(name = "administrador")
 public class Administrador{
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "codadmin")
 	private int id;
 
 	@Column(name = "nome")
@@ -27,7 +28,7 @@ public class Administrador{
 	@Column(name = "RG")
 	private String RG;
 
-	@Column(name = "Data_nascimento")
+	@Column(name = "dataNascimento")
 	private Date dataNascimento;
 
 	@Column(name = "endereco")
@@ -36,39 +37,10 @@ public class Administrador{
 	@Column(name = "telefone")
 	private String telefone;
 
-	@Column(name = "is_admin")
-	private boolean isAdmin;
+	@Column(name = "email")
+	private String email;
 
-	public void setIsAdmin(boolean isAdmin) {
-		isAdmin = true;
-	}
+	@Column(name = "senha")
+	private String senha;
 
-	public boolean cadastrarNovoUsuario(Paciente paciente) {
-		//Administrador admin = new Administrador("Ítalo", ", 2007005060018, "08/02/2001", true);
-		return false;
-	}
-
-	public boolean removerNovoUsuario(Usuario usuario) {
-		return false;
-	}
-
-	public boolean editarNovoUsuario(Paciente paciente) {
-		return false;
-	}
-
-	public Usuario buscarUsuarioPorID(int id){
-		return null;
-	}
-
-	public ArrayList<Paciente> listarUsuarios() {
-		return null;
-	}
-
-	public boolean editar(Paciente paciente){
-		return false;
-	}
-
-	public boolean removerPorId(int id){
-		return false;
-	}
 }
