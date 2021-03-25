@@ -2,15 +2,16 @@ package br.com.pi.drot.dao;
 
 import java.sql.Date;
 
-import br.com.pi.drot.model.MedicoRepository;
-import br.com.pi.drot.model.PacienteRepository;
+import br.com.pi.drot.entity.Consulta;
+import br.com.pi.drot.entity.Medico;
+import br.com.pi.drot.entity.Paciente;
 
 public interface ConsultaDAO{
-	boolean cadastrarConsulta(PacienteRepository paciente, MedicoRepository medico, Date dataConsulta);
+	boolean cadastrarConsulta(Consulta consulta, Paciente paciente, Medico medico, Date dataConsulta);
 
-	boolean remarcarConsulta(PacienteRepository paciente, MedicoRepository medico, Date dataConsulta);
+	boolean remarcarConsulta(Consulta consulta, Date dataConsulta);
 
-	boolean desmarcarConsulta(PacienteRepository paciente, MedicoRepository medico, Date dataConsulta);
+	boolean desmarcarConsulta(Consulta consulta);
 
 	boolean buscarConsultaPorId(int id);
 }
