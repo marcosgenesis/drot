@@ -81,26 +81,59 @@ public class ExameModel extends GenericDAO<ExameModel> implements ExameDAO{
 
 	@Override
 	public boolean cadastrarExame(String nomeExame, String diagnosticoExame, String descricaoExame, Date dataExame) {
-		// TODO Auto-generated method stub
-		return false;
+		this.getConnection().getEntityManager().getTransaction().begin();
+		this.getConnection().getEntityManager().persist(nomeExame);
+		this.getConnection().getEntityManager().persist(diagnosticoExame);
+		this.getConnection().getEntityManager().persist(descricaoExame);
+		this.getConnection().getEntityManager().persist(dataExame);
+		this.getConnection().getEntityManager().getTransaction().commit();
+		this.getConnection().getEntityManager().close();
+		System.out.println("Novo exame cadastrado com sucesso!" +this.getId());
+		return true;
 	}
 
 	@Override
 	public boolean listarExamePorId(int id) {
-		// TODO Auto-generated method stub
-		return false;
+		this.getConnection().getEntityManager().clear();
+
+		ExameModel exame = this.getConnection().getEntityManager().find(ExameModel.class, id);
+
+		if(exame == null){
+			System.out.println("Exame não encontrado");
+		}
+
+		this.getConnection().getEntityManager().close();
+		return true;
 	}
 
 	@Override
 	public ArrayList<Exame> listarExame() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		this.getConnection().getEntityManager();
+		ArrayList<Exame> exame = (ArrayList<Exame>) this.getConnection().getEntityManager().createQuery("from Exame", Exame.class).getResultList();
+		if(exame == null) {
+			System.out.println("Não há exames cadastrados em nosso banco de dados.");
+		}
+		this.getConnection().getEntityManager().close();
 
+		return exame;
+	}
 	@Override
 	public boolean removerExamePorId(int id) {
-		// TODO Auto-generated method stub
-		return false;
+		ExameModel exame = this.getConnection().getEntityManager().find(ExameModel.class, id);
+
+		if(exame == null){
+			System.out.println("Médico não encontrado");
+			return false;
+		}
+
+		this.getConnection().getEntityManager().remove(id);
+		this.getConnection().getEntityManager().getTransaction().begin();
+		this.getConnection().getEntityManager().getTransaction().commit();
+		this.getConnection().getEntityManager().close();
+
+		System.out.println("Exame removido do banco com sucesso");
+
+		return true;
 	}
 
 }

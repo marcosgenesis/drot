@@ -78,27 +78,82 @@ public class ConsultaModel extends GenericDAO<ConsultaModel> implements Consulta
 	}
 
 	@Override
-	public boolean cadastrarConsulta(PacienteModel paciente, MedicoModel medico) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean cadastrarConsulta(PacienteModel paciente, MedicoModel medico, Date dataConsulta) {
+		this.getConnection().getEntityManager().getTransaction().begin();
+
+		this.getConnection().getEntityManager().persist(paciente.getId());
+		this.getConnection().getEntityManager().persist(dataConsulta);
+		this.getConnection().getEntityManager().persist(medico.getId());
+		this.getConnection().getEntityManager().getTransaction().commit();
+
+		this.getConnection().getEntityManager().close();
+
+		System.out.println("Nova consulta cadastrada com sucesso! Com o id: " + this.getId());
+
+		return true;
 	}
 
 	@Override
-	public boolean remarcarConsulta() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean remarcarConsulta(PacienteModel paciente, MedicoModel medico, Date dataConsulta) {
+		if(paciente == null){
+			System.out.println("Paciente não encontrado para remarcar consulta");
+			return false;
+		}
+
+		System.out.println("Digite o id da consulta");
+
+		ConsultaModel procurarConsulta = this.getConnection().getEntityManager().find(ConsultaModel.class, id);
+
+		if(procurarConsulta == null){
+			System.out.println("Consulta não cadastrada para remarcar");
+			return false;
+		}
+
+		try {
+            this.getConnection().getEntityManager().getTransaction().begin();
+            this.getConnection().getEntityManager().merge(medico);
+            this.getConnection().getEntityManager().merge(dataConsulta);
+            this.getConnection().getEntityManager().getTransaction().commit();
+    		this.getConnection().getEntityManager().close();
+        } catch (Exception ex) {
+    		System.out.println("Erro remarcar consulta");
+            return false;
+        }
+
+		System.out.println("Consulta editada sucesso!");
+
+        return true;
 	}
 
 	@Override
-	public boolean desmarcarConsulta() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean desmarcarConsulta(PacienteModel paciente, MedicoModel medico, Date dataConsulta) {
+		if(paciente == null){
+			System.out.println("Paciente não encontrado para desmarcar consulta");
+			return false;
+		}
+
+	 	this.getConnection().getEntityManager().getTransaction().begin();
+        this.getConnection().getEntityManager().remove(this.getId());
+        this.getConnection().getEntityManager().getTransaction().commit();
+		this.getConnection().getEntityManager().close();
+
+		System.out.println("Consulta" + this.getId() + "desmarcada do banco com sucesso!");
+
+		return true;
 	}
 
 	@Override
 	public boolean buscarConsultaPorId(int id) {
-		// TODO Auto-generated method stub
-		return false;
+		this.getConnection().getEntityManager().clear();
+
+		ConsultaModel consulta = this.getConnection().getEntityManager().find(ConsultaModel.class, id);
+
+		if(consulta == null){
+			System.out.println("Consulta não encontrado");
+		}
+
+		this.getConnection().getEntityManager().close();
+		return true;
 	}
 
 }
