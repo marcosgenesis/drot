@@ -17,6 +17,9 @@ public class TratamentoPaciente{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
+	@Column(name = "paciente_id")
+	private int paciente;
+
 	@Column(name = "exame")
 	private ArrayList <Exame> exame;
 
@@ -32,6 +35,14 @@ public class TratamentoPaciente{
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public void setPaciente(int paciente) {
+		this.paciente = paciente;
+	}
+
+	public int getPaciente() {
+		return this.paciente;
 	}
 
 	public ArrayList<Exame> getExame() {
@@ -57,5 +68,6 @@ public class TratamentoPaciente{
 	public void setTempoTratamento(Date tempoTratamento) {
 		this.tempoTratamento = tempoTratamento;
 	}
+
 
 }

@@ -1,4 +1,4 @@
-package br.com.pi.drot.model;
+package br.com.pi.drot.repository;
 
 import java.sql.Date;
 import java.util.ArrayList;

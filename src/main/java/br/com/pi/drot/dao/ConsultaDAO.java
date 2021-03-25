@@ -13,5 +13,5 @@ public interface ConsultaDAO{
 
 	boolean desmarcarConsulta(Consulta consulta);
 
-	boolean buscarConsultaPorId(int id);
+	Consulta buscarConsultaPorId(int id);
 }

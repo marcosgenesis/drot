@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.pi.drot.model.AdministradorRepository;
+import br.com.pi.drot.repository.AdministradorRepository;
 
 public class Login extends HttpServlet{
 	private AdministradorRepository administrador;

@@ -1,4 +1,4 @@
-package br.com.pi.drot.model;
+package br.com.pi.drot.repository;
 
 import br.com.pi.drot.connection.Connection;
 import br.com.pi.drot.dao.GenericDAO;

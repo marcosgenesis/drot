@@ -41,6 +41,9 @@ public class Paciente {
 	@Column(name = "doencaHereditaria")
 	private String doencaHereditaria;
 
+	@Column(name = "tratamento")
+	private ArrayList<TratamentoPaciente> tratamentos;
+
 	public Paciente() {}
 
 	public Paciente(int id, String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone, String restricaoMedicamental, String doencaHereditaria) {
@@ -86,7 +89,7 @@ public class Paciente {
 	}
 
 	public void setRG(String rG) {
-		this.RG = RG;
+		this.RG = rG;
 	}
 
 	public Date getDataNascimento() {

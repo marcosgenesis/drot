@@ -2,8 +2,8 @@ package br.com.pi.drot.dao;
 
 import java.util.ArrayList;
 
-import br.com.pi.drot.model.RemedioRepository;
-import br.com.pi.drot.model.TratamentoPacienteRepository;
+import br.com.pi.drot.repository.RemedioRepository;
+import br.com.pi.drot.repository.TratamentoPacienteRepository;
 
 public interface RemedioDAO {
 

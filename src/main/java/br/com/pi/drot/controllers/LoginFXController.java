@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 
 import br.com.pi.drot.UI.MainFX;
-import br.com.pi.drot.model.AdministradorRepository;
+import br.com.pi.drot.repository.AdministradorRepository;
 import br.com.pi.drot.validations.EmailValidation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

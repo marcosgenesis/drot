@@ -1,4 +1,4 @@
-package br.com.pi.drot.model;
+package br.com.pi.drot.repository;
 
 import java.sql.Date;
 
@@ -27,7 +27,8 @@ public class ConsultaRepository extends GenericDAO<Consulta> implements Consulta
 	}
 
 	@Override
-	public boolean cadastrarConsulta(Consulta consulta, Paciente paciente, Medico medico, Date dataConsulta) {
+	public boolean cadastrarConsulta(Paciente paciente, Medico medico, Date dataConsulta) {
+		Consulta consulta = new Consulta();
 		consulta.setPaciente(paciente.getId());
 		consulta.setMedico(medico.getId());
 		consulta.setDataConsulta(dataConsulta);
@@ -45,8 +46,8 @@ public class ConsultaRepository extends GenericDAO<Consulta> implements Consulta
 
 	@Override
 	public boolean remarcarConsulta(Consulta consulta, Date dataConsulta) {
-		if(!buscarConsultaPorId(consulta.getId())) {
-			System.out.println("Consulta não cadastrada para remarcar");
+		if(consulta == null){
+			System.out.println("Consulta não encontrada.");
 			return false;
 		}
 
@@ -69,8 +70,9 @@ public class ConsultaRepository extends GenericDAO<Consulta> implements Consulta
 
 	@Override
 	public boolean desmarcarConsulta(Consulta consulta) {
-		if(!buscarConsultaPorId(consulta.getId())) {
-
+		if(consulta == null){
+			System.out.println("Consulta não encontrada.");
+			return false;
 		}
 
 	 	this.getConnection().getEntityManager().getTransaction().begin();
@@ -84,7 +86,7 @@ public class ConsultaRepository extends GenericDAO<Consulta> implements Consulta
 	}
 
 	@Override
-	public boolean buscarConsultaPorId(int id) {
+	public Consulta buscarConsultaPorId(int id) {
 		this.getConnection().getEntityManager().clear();
 
 		Consulta consulta = this.getConnection().getEntityManager().find(Consulta.class, id);
@@ -94,7 +96,7 @@ public class ConsultaRepository extends GenericDAO<Consulta> implements Consulta
 		}
 
 		this.getConnection().getEntityManager().close();
-		return true;
+		return consulta;
 	}
 
 }

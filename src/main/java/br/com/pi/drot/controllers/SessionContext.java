@@ -3,7 +3,7 @@ package br.com.pi.drot.controllers;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
-import br.com.pi.drot.model.AdministradorRepository;;
+import br.com.pi.drot.repository.AdministradorRepository;;
 
 public class SessionContext {
 
