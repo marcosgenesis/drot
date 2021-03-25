@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @NamedQuery(name = "Administrador.loginAdm", query = "SELECT a FROM Administrador a WHERE a.email = :email AND a.senha = :senha")
 @Entity
-@Table(name = "administrador")
+@Table(name = "Administrador")
 public class Administrador{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

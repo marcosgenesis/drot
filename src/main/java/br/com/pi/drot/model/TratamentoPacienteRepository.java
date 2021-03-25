@@ -8,58 +8,12 @@ import br.com.pi.drot.dao.GenericDAO;
 import br.com.pi.drot.dao.TratamentoPacienteDAO;
 import br.com.pi.drot.entity.TratamentoPaciente;
 
-public class TratamentoPacienteModel extends GenericDAO<TratamentoPacienteModel> implements TratamentoPacienteDAO{
-
-	private int id;
-	private ArrayList<ExameModel> exame;
-	private ArrayList<RemedioModel> remedio;
-	private Date tempoTratamento;
+public class TratamentoPacienteRepository extends GenericDAO<TratamentoPacienteRepository> implements TratamentoPacienteDAO{
 	private Connection connection;
 
-	public TratamentoPacienteModel(){
+	public TratamentoPacienteRepository(){
 		super(TratamentoPaciente.class);
 		this.connection = new Connection();
-
-	}
-
-	public TratamentoPacienteModel(int id, ArrayList<ExameModel> exame, ArrayList<RemedioModel> remedio, Date tempoTratamento) {
-		super(TratamentoPaciente.class);
-		this.id = id;
-		this.exame = exame;
-		this.remedio = remedio;
-		this.tempoTratamento = tempoTratamento;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public ArrayList<ExameModel> getExame() {
-		return exame;
-	}
-
-	public void setExame(ArrayList<ExameModel> exame) {
-		this.exame = exame;
-	}
-
-	public ArrayList<RemedioModel> getRemedio() {
-		return remedio;
-	}
-
-	public void setRemedio(ArrayList<RemedioModel> remedio) {
-		this.remedio = remedio;
-	}
-
-	public Date getTempoTratamento() {
-		return tempoTratamento;
-	}
-
-	public void setTempoTratamento(Date tempoTratamento) {
-		this.tempoTratamento = tempoTratamento;
 	}
 
 	public Connection getConnection() {
@@ -71,7 +25,7 @@ public class TratamentoPacienteModel extends GenericDAO<TratamentoPacienteModel>
 	}
 
 	@Override
-	public boolean cadastrarTratamento(PacienteModel paciente, TratamentoPacienteModel tratamento) {
+	public boolean cadastrarTratamento(PacienteRepository paciente, TratamentoPacienteRepository tratamento) {
 		this.getConnection().getEntityManager().getTransaction().begin();
 		this.getConnection().getEntityManager().persist(paciente);
 		this.getConnection().getEntityManager().persist(tratamento);
@@ -82,9 +36,9 @@ public class TratamentoPacienteModel extends GenericDAO<TratamentoPacienteModel>
 	}
 
 	@Override
-	public TratamentoPacienteModel buscarTratamentoPorID(int id) {
+	public TratamentoPacienteRepository buscarTratamentoPorID(int id) {
 		this.getConnection().getEntityManager().clear();
-		TratamentoPacienteModel tratamento = this.getConnection().getEntityManager().find(TratamentoPacienteModel.class, id);
+		TratamentoPacienteRepository tratamento = this.getConnection().getEntityManager().find(TratamentoPacienteRepository.class, id);
 		if(tratamento == null){
 			System.out.println("Tratamento para o usuário não encontrado");
 		}
@@ -94,9 +48,9 @@ public class TratamentoPacienteModel extends GenericDAO<TratamentoPacienteModel>
 	}
 
 	@Override
-	public ArrayList<TratamentoPacienteModel> listarTratamento() {
+	public ArrayList<TratamentoPacienteRepository> listarTratamento() {
 		this.getConnection().getEntityManager();
-		ArrayList<TratamentoPacienteModel> tratamentos = (ArrayList<TratamentoPacienteModel>) this.getConnection().getEntityManager().createQuery("from TratamentoPaciente", TratamentoPacienteModel.class).getResultList();
+		ArrayList<TratamentoPacienteRepository> tratamentos = (ArrayList<TratamentoPacienteRepository>) this.getConnection().getEntityManager().createQuery("from TratamentoPaciente", TratamentoPacienteRepository.class).getResultList();
 		if(tratamentos == null) {
 			System.out.println("Não há tratamentos cadastrados em nosso banco de dados.");
 		}
@@ -106,7 +60,7 @@ public class TratamentoPacienteModel extends GenericDAO<TratamentoPacienteModel>
 	}
 
 	@Override
-	public boolean editar(PacienteModel paciente, TratamentoPacienteModel tratamento) {
+	public boolean editar(PacienteRepository paciente, TratamentoPacienteRepository tratamento) {
 		if(paciente == null){
 			System.out.println("Paciente não encontrado para editar tratamento");
 			return false;
@@ -131,7 +85,7 @@ public class TratamentoPacienteModel extends GenericDAO<TratamentoPacienteModel>
 
 	@Override
 	public boolean removerTratamentoPorId(int id) {
-		TratamentoPacienteModel tratamento = this.getConnection().getEntityManager().find(TratamentoPacienteModel.class, id);
+		TratamentoPacienteRepository tratamento = this.getConnection().getEntityManager().find(TratamentoPacienteRepository.class, id);
 
 		if(tratamento == null){
 			System.out.println("Tratamento para paciente não encontrado");

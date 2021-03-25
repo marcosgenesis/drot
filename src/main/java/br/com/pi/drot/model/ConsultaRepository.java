@@ -7,66 +7,13 @@ import br.com.pi.drot.dao.ConsultaDAO;
 import br.com.pi.drot.dao.GenericDAO;
 import br.com.pi.drot.entity.Consulta;
 
-public class ConsultaModel extends GenericDAO<ConsultaModel> implements ConsultaDAO {
-	private int id;
-	private PacienteModel paciente;
-	private Date dataConsulta;
-	private String descricaoConsulta;
-	private MedicoModel medico;
+public class ConsultaRepository extends GenericDAO<ConsultaRepository> implements ConsultaDAO {
+
 	private Connection connection;
 
-	public ConsultaModel(){
+	public ConsultaRepository(){
         super(Consulta.class);
 		this.connection = new Connection();
-	}
-
-	public ConsultaModel(int id, PacienteModel paciente, Date dataConsulta, String descricaoConsulta, MedicoModel medico) {
-		super(Consulta.class);
-		this.id = id;
-		this.paciente = paciente;
-		this.dataConsulta = dataConsulta;
-		this.descricaoConsulta = descricaoConsulta;
-		this.medico = medico;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public PacienteModel getPaciente() {
-		return paciente;
-	}
-
-	public void setPaciente(PacienteModel paciente) {
-		this.paciente = paciente;
-	}
-
-	public Date getDataConsulta() {
-		return dataConsulta;
-	}
-
-	public void setDataConsulta(Date dataConsulta) {
-		this.dataConsulta = dataConsulta;
-	}
-
-	public String getDescricaoConsulta() {
-		return descricaoConsulta;
-	}
-
-	public void setDescricaoConsulta(String descricaoConsulta) {
-		this.descricaoConsulta = descricaoConsulta;
-	}
-
-	public MedicoModel getMedico() {
-		return medico;
-	}
-
-	public void setMedico(MedicoModel medico) {
-		this.medico = medico;
 	}
 
 	public Connection getConnection() {
@@ -78,7 +25,7 @@ public class ConsultaModel extends GenericDAO<ConsultaModel> implements Consulta
 	}
 
 	@Override
-	public boolean cadastrarConsulta(PacienteModel paciente, MedicoModel medico, Date dataConsulta) {
+	public boolean cadastrarConsulta(Paciente paciente, MedicoRepository medico, Date dataConsulta) {
 
 		Consulta c = new Consulta();
 
@@ -98,7 +45,7 @@ public class ConsultaModel extends GenericDAO<ConsultaModel> implements Consulta
 	}
 
 	@Override
-	public boolean remarcarConsulta(PacienteModel paciente, MedicoModel medico, Date dataConsulta) {
+	public boolean remarcarConsulta(PacienteRepository paciente, MedicoRepository medico, Date dataConsulta) {
 		if(paciente == null){
 			System.out.println("Paciente não encontrado para remarcar consulta");
 			return false;
@@ -106,7 +53,7 @@ public class ConsultaModel extends GenericDAO<ConsultaModel> implements Consulta
 
 		System.out.println("Digite o id da consulta");
 
-		ConsultaModel procurarConsulta = this.getConnection().getEntityManager().find(ConsultaModel.class, id);
+		ConsultaRepository procurarConsulta = this.getConnection().getEntityManager().find(ConsultaRepository.class, id);
 
 		if(procurarConsulta == null){
 			System.out.println("Consulta não cadastrada para remarcar");
@@ -130,7 +77,7 @@ public class ConsultaModel extends GenericDAO<ConsultaModel> implements Consulta
 	}
 
 	@Override
-	public boolean desmarcarConsulta(PacienteModel paciente, MedicoModel medico, Date dataConsulta) {
+	public boolean desmarcarConsulta(PacienteRepository paciente, MedicoRepository medico, Date dataConsulta) {
 		if(paciente == null){
 			System.out.println("Paciente não encontrado para desmarcar consulta");
 			return false;
@@ -150,7 +97,7 @@ public class ConsultaModel extends GenericDAO<ConsultaModel> implements Consulta
 	public boolean buscarConsultaPorId(int id) {
 		this.getConnection().getEntityManager().clear();
 
-		ConsultaModel consulta = this.getConnection().getEntityManager().find(ConsultaModel.class, id);
+		ConsultaRepository consulta = this.getConnection().getEntityManager().find(ConsultaRepository.class, id);
 
 		if(consulta == null){
 			System.out.println("Consulta não encontrado");

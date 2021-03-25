@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 
 import br.com.pi.drot.UI.MainFX;
-import br.com.pi.drot.model.AdministradorModel;
+import br.com.pi.drot.model.AdministradorRepository;
 import br.com.pi.drot.validations.EmailValidation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,7 +31,7 @@ public class LoginFXController implements Initializable{
 		if (!EmailValidation.emailEValido(this.loginUser.getText())) {
 			JOptionPane.showMessageDialog(null, "These email for access not is valid", "Email Invalid", 0);
 		} else {
-			AdministradorModel admModel = new AdministradorModel();
+			AdministradorRepository admModel = new AdministradorRepository();
 
 			if(admModel.logado(this.loginUser.getText(), this.passUser.getText())){
 				this.loginUser.setText("");

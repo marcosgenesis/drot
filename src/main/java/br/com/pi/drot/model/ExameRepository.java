@@ -8,67 +8,14 @@ import br.com.pi.drot.dao.ExameDAO;
 import br.com.pi.drot.dao.GenericDAO;
 import br.com.pi.drot.entity.Exame;
 
-public class ExameModel extends GenericDAO<ExameModel> implements ExameDAO{
-	private int id;
-	private String nomeExame;
-	private String diagnosticoExame;
-	private String descricaoExame;
-	private Date dataExame;
+public class ExameRepository extends GenericDAO<ExameRepository> implements ExameDAO{
+
 	private Connection connection;
 
 
-	public ExameModel(){
+	public ExameRepository(){
 		super(Exame.class);
 		this.connection = new Connection();
-	}
-
-	public ExameModel(int id, String nomeExame, String diagnosticoExame, String descricaoExame, Date dataExame) {
-		super(Exame.class);
-		this.id = id;
-		this.nomeExame = nomeExame;
-		this.diagnosticoExame = diagnosticoExame;
-		this.descricaoExame = descricaoExame;
-		this.dataExame = dataExame;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getNomeExame() {
-		return nomeExame;
-	}
-
-	public void setNomeExame(String nomeExame) {
-		this.nomeExame = nomeExame;
-	}
-
-	public String getDiagnosticoExame() {
-		return diagnosticoExame;
-	}
-
-	public void setDiagnosticoExame(String diagnosticoExame) {
-		this.diagnosticoExame = diagnosticoExame;
-	}
-
-	public String getDescricaoExame() {
-		return descricaoExame;
-	}
-
-	public void setDescricaoExame(String descricaoExame) {
-		this.descricaoExame = descricaoExame;
-	}
-
-	public Date getDataExame() {
-		return dataExame;
-	}
-
-	public void setDataExame(Date dataExame) {
-		this.dataExame = dataExame;
 	}
 
 	public Connection getConnection() {
@@ -96,7 +43,7 @@ public class ExameModel extends GenericDAO<ExameModel> implements ExameDAO{
 	public boolean listarExamePorId(int id) {
 		this.getConnection().getEntityManager().clear();
 
-		ExameModel exame = this.getConnection().getEntityManager().find(ExameModel.class, id);
+		ExameRepository exame = this.getConnection().getEntityManager().find(ExameRepository.class, id);
 
 		if(exame == null){
 			System.out.println("Exame não encontrado");
@@ -119,7 +66,7 @@ public class ExameModel extends GenericDAO<ExameModel> implements ExameDAO{
 	}
 	@Override
 	public boolean removerExamePorId(int id) {
-		ExameModel exame = this.getConnection().getEntityManager().find(ExameModel.class, id);
+		ExameRepository exame = this.getConnection().getEntityManager().find(ExameRepository.class, id);
 
 		if(exame == null){
 			System.out.println("Exame não encontrado");

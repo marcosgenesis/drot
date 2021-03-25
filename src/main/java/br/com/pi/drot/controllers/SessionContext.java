@@ -3,7 +3,7 @@ package br.com.pi.drot.controllers;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
-import br.com.pi.drot.model.AdministradorModel;;
+import br.com.pi.drot.model.AdministradorRepository;;
 
 public class SessionContext {
 
@@ -27,17 +27,17 @@ public class SessionContext {
         }
     }
 
-    public AdministradorModel getAdministradorLogado() {
-        return (AdministradorModel) getAttribute("usuarioLogado");
+    public AdministradorRepository getAdministradorLogado() {
+        return (AdministradorRepository) getAttribute("usuarioLogado");
     }
 
     public String getNomeAdministradorLogado() {
-    	AdministradorModel administrador = (AdministradorModel) getAttribute("usuarioLogado");
+    	AdministradorRepository administrador = (AdministradorRepository) getAttribute("usuarioLogado");
 
         return (administrador != null) ? "Bem vindo, " + administrador.getNome() : " ";
     }
 
-    public void setAdministradorLogado(AdministradorModel administrador) {
+    public void setAdministradorLogado(AdministradorRepository administrador) {
         setAttribute("usuarioLogado", administrador);
     }
 
