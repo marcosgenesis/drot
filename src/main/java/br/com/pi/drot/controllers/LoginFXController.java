@@ -11,6 +11,7 @@ import br.com.pi.drot.validations.EmailValidation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 public class LoginFXController implements Initializable{
@@ -20,6 +21,9 @@ public class LoginFXController implements Initializable{
 
 	@FXML
 	private TextField passUser;
+
+	@FXML
+	private Button btnLogin;
 
 	@FXML
 	private void loginAccess(ActionEvent event) {

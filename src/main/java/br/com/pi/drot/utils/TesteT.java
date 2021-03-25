@@ -4,15 +4,22 @@ import javax.persistence.NoResultException;
 
 import br.com.pi.drot.connection.Connection;
 import br.com.pi.drot.entity.Teste;
+import br.com.pi.drot.validations.CpfValidation;
 
 public class TesteT {
 	public static void main(String[] args) {
-		Connection connection = new Connection();
+		if (CpfValidation.cpfValido("11111111111")) {
+			System.out.println("Valido");
+		} else {
+			System.out.println("Nao Valido");
+		}
+
+		/*Connection connection = new Connection();
 
 		Teste t1 = new Teste();
 		t1.setName("eric");
 		t1.setEmail("teste@teste");
-		t1.setPass("qwe123");
+		t1.setPass("qwe123");*/
 
 		/*if (create(connection, t1)) {
 			System.out.println("Criou");
@@ -24,11 +31,11 @@ public class TesteT {
 
 		//System.out.println(testeByName(connection, "eric"));
 
-		if (login(connection, "teste@teste", "qwe123")) {
+		/*if (login(connection, "teste@teste", "qwe123")) {
 			System.out.println("Logou");
 		} else {
 			System.out.println("Nao Logou");
-		}
+		}*/
 	}
 
 	public static boolean create(Connection c, Teste t) {
