@@ -143,7 +143,7 @@ public class TratamentoPacienteModel extends GenericDAO<TratamentoPacienteModel>
 		this.getConnection().getEntityManager().getTransaction().commit();
 		this.getConnection().getEntityManager().close();
 
-		System.out.println("Médico removido do banco com sucesso");
+		System.out.println("Tratamento removido do banco com sucesso");
 
 		return true;
 	}

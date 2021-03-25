@@ -79,11 +79,15 @@ public class ConsultaModel extends GenericDAO<ConsultaModel> implements Consulta
 
 	@Override
 	public boolean cadastrarConsulta(PacienteModel paciente, MedicoModel medico, Date dataConsulta) {
-		this.getConnection().getEntityManager().getTransaction().begin();
 
-		this.getConnection().getEntityManager().persist(paciente.getId());
-		this.getConnection().getEntityManager().persist(dataConsulta);
-		this.getConnection().getEntityManager().persist(medico.getId());
+		Consulta c = new Consulta();
+
+		c.setPaciente(1);
+		c.setMedico(1);
+		c.setDataConsulta(dataConsulta);
+
+		this.getConnection().getEntityManager().getTransaction().begin();
+		this.getConnection().getEntityManager().persist(c);
 		this.getConnection().getEntityManager().getTransaction().commit();
 
 		this.getConnection().getEntityManager().close();
