@@ -72,32 +72,80 @@ public class TratamentoPacienteModel extends GenericDAO<TratamentoPacienteModel>
 
 	@Override
 	public boolean cadastrarTratamento(PacienteModel paciente, TratamentoPacienteModel tratamento) {
-		// TODO Auto-generated method stub
-		return false;
+		this.getConnection().getEntityManager().getTransaction().begin();
+		this.getConnection().getEntityManager().persist(paciente);
+		this.getConnection().getEntityManager().persist(tratamento);
+		this.getConnection().getEntityManager().getTransaction().commit();
+		this.getConnection().getEntityManager().close();
+		System.out.println("Novo tratamento cadastrado com sucesso!" +this.getId());
+		return true;
 	}
 
 	@Override
 	public TratamentoPacienteModel buscarTratamentoPorID(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		this.getConnection().getEntityManager().clear();
+		TratamentoPacienteModel tratamento = this.getConnection().getEntityManager().find(TratamentoPacienteModel.class, id);
+		if(tratamento == null){
+			System.out.println("Tratamento para o usuário não encontrado");
+		}
+
+		this.getConnection().getEntityManager().close();
+		return tratamento;
 	}
 
 	@Override
 	public ArrayList<TratamentoPacienteModel> listarTratamento() {
-		// TODO Auto-generated method stub
-		return null;
+		this.getConnection().getEntityManager();
+		ArrayList<TratamentoPacienteModel> tratamentos = (ArrayList<TratamentoPacienteModel>) this.getConnection().getEntityManager().createQuery("from TratamentoPaciente", TratamentoPacienteModel.class).getResultList();
+		if(tratamentos == null) {
+			System.out.println("Não há tratamentos cadastrados em nosso banco de dados.");
+		}
+		this.getConnection().getEntityManager().close();
+
+		return tratamentos;
 	}
 
 	@Override
-	public boolean editar(TratamentoPacienteModel tratamento) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean editar(PacienteModel paciente, TratamentoPacienteModel tratamento) {
+		if(paciente == null){
+			System.out.println("Paciente não encontrado para editar tratamento");
+			return false;
+		}
+
+		try {
+            this.getConnection().getEntityManager().getTransaction().begin();
+            this.getConnection().getEntityManager().merge(paciente);
+            this.getConnection().getEntityManager().merge(tratamento.getRemedio());
+            this.getConnection().getEntityManager().merge(tratamento.getTempoTratamento());
+            this.getConnection().getEntityManager().getTransaction().commit();
+    		this.getConnection().getEntityManager().close();
+        } catch (Exception ex) {
+    		System.out.println("Erro editar tratamento do paciente");
+            return false;
+        }
+
+		System.out.println("Tratamento editado com sucesso!");
+
+        return true;
 	}
 
 	@Override
 	public boolean removerTratamentoPorId(int id) {
-		// TODO Auto-generated method stub
-		return false;
+		TratamentoPacienteModel tratamento = this.getConnection().getEntityManager().find(TratamentoPacienteModel.class, id);
+
+		if(tratamento == null){
+			System.out.println("Tratamento para paciente não encontrado");
+			return false;
+		}
+
+		this.getConnection().getEntityManager().remove(id);
+		this.getConnection().getEntityManager().getTransaction().begin();
+		this.getConnection().getEntityManager().getTransaction().commit();
+		this.getConnection().getEntityManager().close();
+
+		System.out.println("Médico removido do banco com sucesso");
+
+		return true;
 	}
 
 }

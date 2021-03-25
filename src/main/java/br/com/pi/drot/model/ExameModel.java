@@ -122,7 +122,7 @@ public class ExameModel extends GenericDAO<ExameModel> implements ExameDAO{
 		ExameModel exame = this.getConnection().getEntityManager().find(ExameModel.class, id);
 
 		if(exame == null){
-			System.out.println("Médico não encontrado");
+			System.out.println("Exame não encontrado");
 			return false;
 		}
 

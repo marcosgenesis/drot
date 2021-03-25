@@ -13,7 +13,7 @@ public interface TratamentoPacienteDAO {
 
 	ArrayList<TratamentoPacienteModel> listarTratamento();
 
-	boolean editar(TratamentoPacienteModel tratamento);
+	boolean editar(PacienteModel paciente, TratamentoPacienteModel tratamento);
 
 	boolean removerTratamentoPorId(int id);
 }
