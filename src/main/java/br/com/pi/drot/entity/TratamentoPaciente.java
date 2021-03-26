@@ -27,7 +27,11 @@ public class TratamentoPaciente{
 	private ArrayList <Remedio> remedio;
 
 	@Column(name = "tempoTratamento")
-	private Date tempoTratamento;
+	private Date inicioTratamento;
+
+	@Column(name = "tempoTratamento")
+	private Date fimTratamento;
+
 
 	public int getId() {
 		return id;
@@ -61,12 +65,20 @@ public class TratamentoPaciente{
 		this.remedio = remedio;
 	}
 
-	public Date getTempoTratamento() {
-		return tempoTratamento;
+	public Date getInicioTratamento() {
+		return inicioTratamento;
 	}
 
-	public void setTempoTratamento(Date tempoTratamento) {
-		this.tempoTratamento = tempoTratamento;
+	public void setInicioTratamento(Date inicioTratamento) {
+		this.inicioTratamento = inicioTratamento;
+	}
+
+	public Date getFimTratamento() {
+		return fimTratamento;
+	}
+
+	public void setFimTratamento(Date fimTratamento) {
+		this.fimTratamento = fimTratamento;
 	}
 
 	public boolean adicionarRemedio(TratamentoPaciente tratamento, Remedio remedio) {
@@ -79,6 +91,20 @@ public class TratamentoPaciente{
 	public boolean adicionarExame(TratamentoPaciente tratamento, Exame exame) {
 		ArrayList<Exame> exames = tratamento.getExame();
 		exames.add(exame);
+		tratamento.setExame(exames);
+		return true;
+	}
+
+	public boolean removerRemedio(TratamentoPaciente tratamento, Remedio remedio) {
+		ArrayList<Remedio> remedios = tratamento.getRemedio();
+		remedios.remove(remedio);
+		tratamento.setRemedio(remedios);
+		return true;
+	}
+
+	public boolean removerExame(TratamentoPaciente tratamento, Exame exame) {
+		ArrayList<Exame> exames = tratamento.getExame();
+		exames.remove(exame);
 		tratamento.setExame(exames);
 		return true;
 	}

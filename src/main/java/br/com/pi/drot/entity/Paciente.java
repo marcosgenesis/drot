@@ -46,6 +46,14 @@ public class Paciente {
 
 	public Paciente() {}
 
+	public ArrayList<TratamentoPaciente> getTratamentos() {
+		return tratamentos;
+	}
+
+	public void setTratamentos(ArrayList<TratamentoPaciente> tratamentos) {
+		this.tratamentos = tratamentos;
+	}
+
 	public Paciente(int id, String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone, String restricaoMedicamental, String doencaHereditaria) {
 		super();
 		this.id = id;
