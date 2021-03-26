@@ -69,5 +69,19 @@ public class TratamentoPaciente{
 		this.tempoTratamento = tempoTratamento;
 	}
 
+	public boolean adicionarRemedio(TratamentoPaciente tratamento, Remedio remedio) {
+		ArrayList<Remedio> remedios = tratamento.getRemedio();
+		remedios.add(remedio);
+		tratamento.setRemedio(remedios);
+		return true;
+	}
+
+	public boolean adicionarExame(TratamentoPaciente tratamento, Exame exame) {
+		ArrayList<Exame> exames = tratamento.getExame();
+		exames.add(exame);
+		tratamento.setExame(exames);
+		return true;
+	}
+
 
 }

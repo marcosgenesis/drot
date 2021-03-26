@@ -27,7 +27,7 @@ public class ConsultaRepository extends GenericDAO<Consulta> implements Consulta
 	}
 
 	@Override
-	public boolean cadastrarConsulta(Paciente paciente, Medico medico, Date dataConsulta) {
+	public boolean criarConsulta(Paciente paciente, Medico medico, Date dataConsulta) {
 		Consulta consulta = new Consulta();
 		consulta.setPaciente(paciente.getId());
 		consulta.setMedico(medico.getId());

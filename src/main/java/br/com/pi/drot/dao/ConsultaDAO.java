@@ -7,7 +7,7 @@ import br.com.pi.drot.entity.Medico;
 import br.com.pi.drot.entity.Paciente;
 
 public interface ConsultaDAO{
-	boolean cadastrarConsulta(Consulta consulta, Paciente paciente, Medico medico, Date dataConsulta);
+	boolean criarConsulta(Paciente paciente, Medico medico, Date dataConsulta);
 
 	boolean remarcarConsulta(Consulta consulta, Date dataConsulta);
 
