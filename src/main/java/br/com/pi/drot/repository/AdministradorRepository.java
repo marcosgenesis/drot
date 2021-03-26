@@ -30,11 +30,26 @@ public class AdministradorRepository extends GenericDAO<Administrador> implement
 		this.connection = connection;
 	}
 
-	public boolean cadastrarNovoAdministrador(Administrador administrador) {
-		this.getConnection().getEntityManager().getTransaction().begin();
-		this.getConnection().getEntityManager().persist(administrador);
-		this.getConnection().getEntityManager().getTransaction().commit();
-		this.getConnection().getEntityManager().close();
+	public boolean cadastrarNovoAdministrador(String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone, String email, String senha) {
+		Administrador administrador = new Administrador();
+		administrador.setNome(nome);
+		administrador.setCPF(CPF);
+		administrador.setRG(RG);
+		administrador.setDataNascimento(dataNascimento);
+		administrador.setEndereco(endereco);
+		administrador.setTelefone(telefone);
+		administrador.setEmail(email);
+		administrador.setSenha(senha);
+		try{
+			this.getConnection().getEntityManager().getTransaction().begin();
+			this.getConnection().getEntityManager().persist(administrador);
+			this.getConnection().getEntityManager().getTransaction().commit();
+			this.getConnection().getEntityManager().close();
+		} catch(Exception ex) {
+			System.out.println("Erro ao criar administrador.");
+            return false;
+		}
+
 		System.out.println("Novo administrador cadastrado com sucesso!");
 		return true;
 	}
@@ -46,10 +61,10 @@ public class AdministradorRepository extends GenericDAO<Administrador> implement
 	            this.getConnection().getEntityManager().getTransaction().commit();
 	    		this.getConnection().getEntityManager().close();
 	        } catch (Exception ex) {
-	    		System.out.println("Erro ao administrador paciente.");
+	    		System.out.println("Erro ao editar administrador.");
 	            return false;
 	        }
-			System.out.println("Paciente administrador com sucesso!");
+			System.out.println("Administrador editado com sucesso!");
 	        return true;
 	}
 
@@ -69,6 +84,7 @@ public class AdministradorRepository extends GenericDAO<Administrador> implement
 	public ArrayList<Administrador> listarAdministradoresCadastrados() {
 		this.getConnection().getEntityManager();
 		ArrayList<Administrador> administradores = (ArrayList<Administrador>) this.getConnection().getEntityManager().createQuery("from Administrador", Administrador.class).getResultList();
+
 		if(administradores == null) {
 			System.out.println("Não há administradores cadastrados em nosso banco de dados.");
 		}
@@ -78,10 +94,16 @@ public class AdministradorRepository extends GenericDAO<Administrador> implement
 	}
 
 	public boolean cadastrarNovoPaciente(Paciente paciente) {
-		this.getConnection().getEntityManager().getTransaction().begin();
-		this.getConnection().getEntityManager().persist(paciente);
-		this.getConnection().getEntityManager().getTransaction().commit();
-		this.getConnection().getEntityManager().close();
+		try {
+			this.getConnection().getEntityManager().getTransaction().begin();
+			this.getConnection().getEntityManager().persist(paciente);
+			this.getConnection().getEntityManager().getTransaction().commit();
+			this.getConnection().getEntityManager().close();
+		} catch(Exception ex) {
+			System.out.println("Erro ao criar paciente");
+			return false;
+		}
+
 		System.out.println("Novo paciente cadastrado com sucesso!");
 		return true;
 	}
@@ -133,10 +155,16 @@ public class AdministradorRepository extends GenericDAO<Administrador> implement
 			return false;
 		}
 
-	 	this.getConnection().getEntityManager().getTransaction().begin();
-        this.getConnection().getEntityManager().remove(paciente);
-        this.getConnection().getEntityManager().getTransaction().commit();
-		this.getConnection().getEntityManager().close();
+		try {
+			this.getConnection().getEntityManager().getTransaction().begin();
+	        this.getConnection().getEntityManager().remove(paciente);
+	        this.getConnection().getEntityManager().getTransaction().commit();
+			this.getConnection().getEntityManager().close();
+
+		} catch(Exception ex) {
+			System.out.println("Erro ao remover paciente.");
+			return false;
+		}
 
 		System.out.println("Paciente removido do banco com sucesso!");
 
@@ -151,21 +179,46 @@ public class AdministradorRepository extends GenericDAO<Administrador> implement
 			return false;
 		}
 
-		this.getConnection().getEntityManager().remove(id);
-		this.getConnection().getEntityManager().getTransaction().begin();
-		this.getConnection().getEntityManager().getTransaction().commit();
-		this.getConnection().getEntityManager().close();
+		try {
+			this.getConnection().getEntityManager().remove(id);
+			this.getConnection().getEntityManager().getTransaction().begin();
+			this.getConnection().getEntityManager().getTransaction().commit();
+			this.getConnection().getEntityManager().close();
+
+		} catch(Exception ex) {
+			System.out.println("Erro ao remover paciente.");
+			return false;
+		}
 
 		System.out.println("Paciente removido do banco com sucesso");
 
 		return true;
 	}
 
-	public boolean cadastrarNovoMedico(Medico medico) {
-		this.getConnection().getEntityManager().getTransaction().begin();
-		this.getConnection().getEntityManager().persist(medico);
-		this.getConnection().getEntityManager().getTransaction().commit();
-		this.getConnection().getEntityManager().close();
+	public boolean cadastrarNovoMedico(String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone, String email, String senha) {
+		Medico medico = new Medico();
+
+		medico.setNome(nome);
+		medico.setCPF(CPF);
+		medico.setRG(RG);
+		medico.setDataNascimento(dataNascimento);
+		medico.setEndereco(endereco);
+		medico.setTelefone(telefone);
+		medico.setEmail(email);
+		medico.setSenha(senha);
+
+		try {
+			this.getConnection().getEntityManager().getTransaction().begin();
+			this.getConnection().getEntityManager().persist(medico);
+			this.getConnection().getEntityManager().getTransaction().commit();
+			this.getConnection().getEntityManager().close();
+
+		} catch(Exception ex) {
+			System.out.println("Erro ao criar médico.");
+			return false;
+		}
+
+
 		System.out.println("Novo médico cadastrado com sucesso!");
 		return true;
 	}
@@ -214,13 +267,17 @@ public class AdministradorRepository extends GenericDAO<Administrador> implement
 			return false;
 		}
 
-	 	this.getConnection().getEntityManager().getTransaction().begin();
-        this.getConnection().getEntityManager().remove(medico);
-        this.getConnection().getEntityManager().getTransaction().commit();
-		this.getConnection().getEntityManager().close();
+		try{
+		 	this.getConnection().getEntityManager().getTransaction().begin();
+	        this.getConnection().getEntityManager().remove(medico);
+	        this.getConnection().getEntityManager().getTransaction().commit();
+			this.getConnection().getEntityManager().close();
+		} catch(Exception ex) {
+			System.out.println("Erro ao remover médico.");
+			return false;
+		}
 
 		System.out.println("Médico removido do banco com sucesso!");
-
 		return true;
 	}
 
@@ -232,23 +289,34 @@ public class AdministradorRepository extends GenericDAO<Administrador> implement
 			return false;
 		}
 
-		this.getConnection().getEntityManager().remove(id);
-		this.getConnection().getEntityManager().getTransaction().begin();
-		this.getConnection().getEntityManager().getTransaction().commit();
-		this.getConnection().getEntityManager().close();
-
+		try{
+			this.getConnection().getEntityManager().remove(id);
+			this.getConnection().getEntityManager().getTransaction().begin();
+			this.getConnection().getEntityManager().getTransaction().commit();
+			this.getConnection().getEntityManager().close();
+		} catch(Exception ex) {
+			System.out.println("Erro ao remover médico.");
+			return false;
+		}
 		System.out.println("Médico removido do banco com sucesso");
 
 		return true;
 	}
 
 	public boolean cadastrarNovaSecretaria(Secretaria secretaria) {
-		this.getConnection().getEntityManager().getTransaction().begin();
-		this.getConnection().getEntityManager().persist(secretaria);
-		this.getConnection().getEntityManager().getTransaction().commit();
-		this.getConnection().getEntityManager().close();
+		try {
+			this.getConnection().getEntityManager().getTransaction().begin();
+			this.getConnection().getEntityManager().persist(secretaria);
+			this.getConnection().getEntityManager().getTransaction().commit();
+			this.getConnection().getEntityManager().close();
+		} catch(Exception ex){
+			System.out.println("Erro ao criar secretária.");
+			return false;
+		}
+
 		System.out.println("Nova secretária cadastrada com sucesso!");
-		return false;
+		return true;
+
 	}
 
 	public boolean editarSecretaria(Secretaria secretaria) {

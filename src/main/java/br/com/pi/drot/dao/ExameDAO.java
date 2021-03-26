@@ -8,9 +8,11 @@ import br.com.pi.drot.entity.Exame;
 public interface ExameDAO {
 	boolean cadastrarExame(String nomeExame, String diagnosticoExame, String descricaoExame, Date dataExame);
 
-	boolean listarExamePorId(int id);
+	Exame buscarExamePorId(int id);
 
-	ArrayList<Exame> listarExame();
+	ArrayList<Exame> listarExames();
+
+	boolean editarExame(Exame exame, String nomeExame, String diagnosticoExame, String descricaoExame, Date dataExame);
 
 	boolean removerExamePorId(int id);
 }

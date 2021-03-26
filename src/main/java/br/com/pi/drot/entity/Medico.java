@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Medico")
-public abstract class Medico{
+public class Medico{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import br.com.pi.drot.connection.Connection;
 import br.com.pi.drot.dao.ExameDAO;
 import br.com.pi.drot.dao.GenericDAO;
+import br.com.pi.drot.entity.Administrador;
 import br.com.pi.drot.entity.Exame;
 
 public class ExameRepository extends GenericDAO<ExameRepository> implements ExameDAO{
 
 	private Connection connection;
-
 
 	public ExameRepository(){
 		super(Exame.class);
@@ -26,55 +26,77 @@ public class ExameRepository extends GenericDAO<ExameRepository> implements Exam
 		this.connection = connection;
 	}
 
-	@Override
 	public boolean cadastrarExame(String nomeExame, String diagnosticoExame, String descricaoExame, Date dataExame) {
+		Exame exame = new Exame();
+		exame.setNomeExame(nomeExame);
+		exame.setDiagnosticoExame(diagnosticoExame);
+		exame.setDescricaoExame(descricaoExame);
+		exame.setDataExame(dataExame);
 		this.getConnection().getEntityManager().getTransaction().begin();
-		this.getConnection().getEntityManager().persist(nomeExame);
-		this.getConnection().getEntityManager().persist(diagnosticoExame);
-		this.getConnection().getEntityManager().persist(descricaoExame);
-		this.getConnection().getEntityManager().persist(dataExame);
+		this.getConnection().getEntityManager().persist(exame);
 		this.getConnection().getEntityManager().getTransaction().commit();
 		this.getConnection().getEntityManager().close();
-		System.out.println("Novo exame cadastrado com sucesso!" +this.getId());
+		System.out.println("Novo exame cadastrado com sucesso!" +exame.getId());
 		return true;
 	}
 
-	@Override
-	public boolean listarExamePorId(int id) {
+	public Exame buscarExamePorId(int id) {
 		this.getConnection().getEntityManager().clear();
 
-		ExameRepository exame = this.getConnection().getEntityManager().find(ExameRepository.class, id);
+		Exame exame = this.getConnection().getEntityManager().find(Exame.class, id);
 
 		if(exame == null){
 			System.out.println("Exame não encontrado");
 		}
 
 		this.getConnection().getEntityManager().close();
-		return true;
+		return exame;
 	}
 
-	@Override
-	public ArrayList<Exame> listarExame() {
+
+	public ArrayList<Exame> listarExames() {
 		this.getConnection().getEntityManager();
-		ArrayList<Exame> exame = (ArrayList<Exame>) this.getConnection().getEntityManager().createQuery("from Exame", Exame.class).getResultList();
-		if(exame == null) {
+		ArrayList<Exame> exames = (ArrayList<Exame>) this.getConnection().getEntityManager().createQuery("from Exame", Exame.class).getResultList();
+		if(exames == null) {
 			System.out.println("Não há exames cadastrados em nosso banco de dados.");
 		}
 		this.getConnection().getEntityManager().close();
 
-		return exame;
+		return exames;
 	}
-	@Override
+
+	public boolean editarExame(Exame exame, String nomeExame, String diagnosticoExame, String descricaoExame,
+			Date dataExame) {
+
+		exame.setNomeExame(nomeExame);
+		exame.setDiagnosticoExame(diagnosticoExame);
+		exame.setDescricaoExame(descricaoExame);
+		exame.setDataExame(dataExame);
+
+		 try {
+				this.getConnection().getEntityManager().getTransaction().begin();
+				this.getConnection().getEntityManager().merge(exame);
+				this.getConnection().getEntityManager().getTransaction().commit();
+				this.getConnection().getEntityManager().close();
+	        } catch (Exception ex) {
+	    		System.out.println("Erro ao editar exame.");
+	            return false;
+	        }
+			System.out.println("Exame editado com sucesso!");
+	        return true;
+	}
+
+
 	public boolean removerExamePorId(int id) {
-		ExameRepository exame = this.getConnection().getEntityManager().find(ExameRepository.class, id);
+		Exame exame = this.getConnection().getEntityManager().find(Exame.class, id);
 
 		if(exame == null){
 			System.out.println("Exame não encontrado");
 			return false;
 		}
 
-		this.getConnection().getEntityManager().remove(id);
 		this.getConnection().getEntityManager().getTransaction().begin();
+		this.getConnection().getEntityManager().remove(id);
 		this.getConnection().getEntityManager().getTransaction().commit();
 		this.getConnection().getEntityManager().close();
 
@@ -82,5 +104,6 @@ public class ExameRepository extends GenericDAO<ExameRepository> implements Exam
 
 		return true;
 	}
+
 
 }
