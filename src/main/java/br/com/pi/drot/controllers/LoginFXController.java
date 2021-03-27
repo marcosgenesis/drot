@@ -6,11 +6,12 @@ import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 
 import br.com.pi.drot.UI.MainFX;
-import br.com.pi.drot.model.AdministradorModel;
+import br.com.pi.drot.repository.AdministradorRepository;
 import br.com.pi.drot.validations.EmailValidation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 public class LoginFXController implements Initializable{
@@ -22,12 +23,15 @@ public class LoginFXController implements Initializable{
 	private TextField passUser;
 
 	@FXML
+	private Button btnLogin;
+
+	@FXML
 	private void loginAccess(ActionEvent event) {
 
 		if (!EmailValidation.emailEValido(this.loginUser.getText())) {
 			JOptionPane.showMessageDialog(null, "These email for access not is valid", "Email Invalid", 0);
 		} else {
-			AdministradorModel admModel = new AdministradorModel();
+			AdministradorRepository admModel = new AdministradorRepository();
 
 			if(admModel.logado(this.loginUser.getText(), this.passUser.getText())){
 				this.loginUser.setText("");

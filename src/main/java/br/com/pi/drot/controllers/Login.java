@@ -13,14 +13,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.pi.drot.model.AdministradorModel;
+import br.com.pi.drot.repository.AdministradorRepository;
 
 public class Login extends HttpServlet{
-	private AdministradorModel administrador;
+	private AdministradorRepository administrador;
 	FacesMessage mensagem;
 
 	public Login() {
-		this.administrador= new AdministradorModel(0, null, null, null, null, null, null, null, null);
+		this.administrador= new AdministradorRepository(0, null, null, null, null, null, null, null, null);
 	}
 
 	private boolean verificaCadastroUsuario() {
@@ -28,8 +28,8 @@ public class Login extends HttpServlet{
 		return false;
 	}
 
-	public AdministradorModel getUsuarioLogado() {
-		return (AdministradorModel) SessionContext.getInstance().getAdministradorLogado();
+	public AdministradorRepository getUsuarioLogado() {
+		return (AdministradorRepository) SessionContext.getInstance().getAdministradorLogado();
 	}
 
 	public String doLogin(javafx.event.ActionEvent event) {
@@ -55,7 +55,7 @@ public class Login extends HttpServlet{
 				Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
 			}
 		} else {
-			administrador = new AdministradorModel(0, null, null, null, null, null, null, null, null);
+			administrador = new AdministradorRepository(0, null, null, null, null, null, null, null, null);
 			mensagem = new FacesMessage(FacesMessage.SEVERITY_WARN,
 					"Email ou Senha incorretos! \n Por favor tente novamente.", null);
 		}

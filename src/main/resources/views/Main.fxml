@@ -96,7 +96,6 @@
             </Pane>
             <Pane layoutX="1189.0" layoutY="41.0" prefHeight="60.0" prefWidth="59.0" style="-fx-background-radius: 50%; -fx-background-color: #fff;" />
             <FontAwesomeIcon fill="#2784ff" iconName="SEARCH" layoutX="373.0" layoutY="84.0" size="3em" />
-
          </children>
       </Pane>
    </children>

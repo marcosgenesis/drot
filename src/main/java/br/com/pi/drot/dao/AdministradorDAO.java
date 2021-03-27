@@ -1,59 +1,59 @@
 package br.com.pi.drot.dao;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
-import br.com.pi.drot.model.AdministradorModel;
-import br.com.pi.drot.model.MedicoModel;
-import br.com.pi.drot.model.PacienteModel;
-import br.com.pi.drot.model.SecretariaModel;
+import br.com.pi.drot.entity.Administrador;
+import br.com.pi.drot.entity.Medico;
+import br.com.pi.drot.entity.Paciente;
+import br.com.pi.drot.entity.Secretaria;
 
 public interface AdministradorDAO {
 
-	 boolean cadastrarNovoAdministrador(AdministradorModel administrador);
+	 boolean cadastrarNovoAdministrador(String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone, String email, String senha);
 
-	 boolean editarAdministrador(AdministradorModel administrador);
+	 boolean editarAdministrador(Administrador administrador);
 
-	 AdministradorModel buscarAdministradorPorID(int id);
+	 Administrador buscarAdministradorPorID(int id);
 
-	 ArrayList<AdministradorModel> listarAdministradoresCadastrados();
+	 ArrayList<Administrador> listarAdministradoresCadastrados();
 
-	 boolean cadastrarNovoPaciente(PacienteModel paciente);
+	 boolean cadastrarNovoPaciente(String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone, String restricaoMedicamental, String doencaHereditaria, String email, String senha);
 
-	 boolean editarPaciente(PacienteModel paciente);
+	 boolean editarPaciente(Paciente paciente);
 
-	 PacienteModel buscarPacientePorID(int id);
+	 Paciente buscarPacientePorID(int id);
 
-	 ArrayList<PacienteModel> listarPacientesCadastrados();
+	 ArrayList<Paciente> listarPacientesCadastrados();
 
-	 boolean removerPaciente(PacienteModel paciente);
+	 boolean removerPaciente(Paciente paciente);
 
 	 boolean removerPacientePorId(int id);
 
-	 boolean cadastrarNovoMedico(MedicoModel medico);
+	 boolean cadastrarNovoMedico(String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone, String email, String senha);
 
-	 boolean editarMedico(MedicoModel medico);
+	 boolean editarMedico(Medico medico);
 
-	 MedicoModel buscarMedicoPorID(int id);
+	 Medico buscarMedicoPorID(int id);
 
-	 ArrayList<MedicoModel> listarMedicosCadastrados();
+	 ArrayList<Medico> listarMedicosCadastrados();
 
-	 boolean removerMedico(MedicoModel medico);
+	 boolean removerMedico(Medico medico);
 
 	 boolean removerMedicoPorId(int id);
 
-	 boolean cadastrarNovaSecretaria(SecretariaModel secretaria);
+	 boolean cadastrarNovaSecretaria(String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone, String email, String senha);
 
-	 boolean editarSecretaria(SecretariaModel secretaria);
+	 boolean editarSecretaria(Secretaria secretaria);
 
-	 SecretariaModel buscarSecretariaPorID(int id);
+	 Secretaria buscarSecretariaPorID(int id);
 
-	 ArrayList<SecretariaModel> listarSecretariasCadastrados();
+	 ArrayList<Secretaria> listarSecretariasCadastrados();
 
-	 boolean removerSecretaria(SecretariaModel secretaria);
+	 boolean removerSecretaria(Secretaria secretaria);
 
 	 boolean removerSecretariaPorId(int id);
 
-	 AdministradorModel isAutentico(int id, String senha);
+	 boolean logado(String email, String pass);
 
-	 AdministradorModel obterAdministrador(int id);
 }

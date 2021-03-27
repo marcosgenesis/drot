@@ -41,21 +41,45 @@ public class Paciente {
 	@Column(name = "doencaHereditaria")
 	private String doencaHereditaria;
 
+	@Column(name = "email")
+	private String email;
+
+
+	@Column(name = "senha")
+	private String senha;
+
+
+	@Column(name = "tratamento")
+	private ArrayList<TratamentoPaciente> tratamentos;
+
 	public Paciente() {}
 
-	public Paciente(int id, String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone, String restricaoMedicamental, String doencaHereditaria) {
+	public ArrayList<TratamentoPaciente> getTratamentos() {
+		return tratamentos;
+	}
+
+	public void setTratamentos(ArrayList<TratamentoPaciente> tratamentos) {
+		this.tratamentos = tratamentos;
+	}
+
+
+	public Paciente(int id, String nome, String cPF, String rG, Date dataNascimento, String endereco, String telefone,
+			String restricaoMedicamental, String doencaHereditaria, String email, String senha,
+			ArrayList<TratamentoPaciente> tratamentos) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.CPF = CPF;
-		this.RG = RG;
+		CPF = cPF;
+		RG = rG;
 		this.dataNascimento = dataNascimento;
 		this.endereco = endereco;
 		this.telefone = telefone;
 		this.restricaoMedicamental = restricaoMedicamental;
 		this.doencaHereditaria = doencaHereditaria;
+		this.email = email;
+		this.senha = senha;
+		this.tratamentos = tratamentos;
 	}
-
 
 	public int getId() {
 		return id;
@@ -86,7 +110,7 @@ public class Paciente {
 	}
 
 	public void setRG(String rG) {
-		this.RG = RG;
+		this.RG = rG;
 	}
 
 	public Date getDataNascimento() {
@@ -135,6 +159,24 @@ public class Paciente {
 
 	public boolean logout() {
 		return false;
+
+
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 	public void preencherDadosRegistros(String restricaoMedicamental, String doencaHereditaria) {}
