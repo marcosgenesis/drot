@@ -5,14 +5,13 @@ import java.util.ArrayList;
 import br.com.pi.drot.connection.Connection;
 import br.com.pi.drot.dao.MedicoDAO;
 import br.com.pi.drot.entity.Paciente;
-import br.com.pi.drot.utils.NameDataBaseConnection;
 
 public class MedicoDTO implements MedicoDAO{
 
 	private Connection connection;
 
-	public MedicoDTO(NameDataBaseConnection nameDataBaseConnection) {
-		this.connection = new Connection(nameDataBaseConnection.getNameDataBase());
+	public MedicoDTO() {
+		this.connection = new Connection();
 	}
 
 	public Connection getConnection() {
@@ -43,7 +42,7 @@ public class MedicoDTO implements MedicoDAO{
 
 	@Override
 	public void criarTratamentodoPaciente() {
-		
+
 		// TODO Auto-generated method stub
 
 	}
