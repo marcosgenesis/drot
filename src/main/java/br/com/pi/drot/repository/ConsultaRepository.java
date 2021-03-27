@@ -27,10 +27,11 @@ public class ConsultaRepository extends GenericDAO<Consulta> implements Consulta
 	}
 
 	@Override
-	public boolean criarConsulta(Paciente paciente, Medico medico, Date dataConsulta) {
+	public boolean criarConsulta(int paciente, int medico, String dataConsulta, String descricao) {
 		Consulta consulta = new Consulta();
-		consulta.setPaciente(paciente.getId());
-		consulta.setMedico(medico.getId());
+		consulta.setPaciente(paciente);
+		consulta.setMedico(medico);
+		consulta.setDescricaoConsulta(descricao);
 		consulta.setDataConsulta(dataConsulta);
 
 		this.getConnection().getEntityManager().getTransaction().begin();
@@ -45,7 +46,7 @@ public class ConsultaRepository extends GenericDAO<Consulta> implements Consulta
 	}
 
 	@Override
-	public boolean remarcarConsulta(Consulta consulta, Date dataConsulta) {
+	public boolean remarcarConsulta(Consulta consulta, String dataConsulta) {
 		if(consulta == null){
 			System.out.println("Consulta não encontrada.");
 			return false;

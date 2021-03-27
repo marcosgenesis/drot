@@ -103,8 +103,10 @@ public class AdministradorRepository extends GenericDAO<Administrador> implement
 		paciente.setTelefone(telefone);
 		paciente.setEmail(email);
 		paciente.setSenha(senha);
+		paciente.setDoencaHereditaria("JAVA");
 		paciente.setRestricaoMedicamental(restricaoMedicamental);
 		paciente.setSenha(doencaHereditaria);
+
 		try{
 			this.getConnection().getEntityManager().getTransaction().begin();
 			this.getConnection().getEntityManager().persist(paciente);
@@ -139,14 +141,28 @@ public class AdministradorRepository extends GenericDAO<Administrador> implement
 	public Paciente buscarPacientePorID(int id) {
 		this.getConnection().getEntityManager().clear();
 
-		Paciente paciente = this.getConnection().getEntityManager().find(Paciente.class, id);
+		/*Paciente paciente = this.getConnection().getEntityManager().createNamedQuery("Paciente.getIdByCpf", Paciente.class).setParameter("cpf", email).setParameter("senha", pass).getSingleResult();
 
 		if(paciente == null){
 			System.out.println("Paciente não encontrado");
 		}
 
 		this.getConnection().getEntityManager().close();
-		return paciente;
+		return paciente;*/
+
+		return null;
+	}
+
+	public int buscarPacientePorCPF(String cpf) {
+		this.getConnection().getEntityManager().clear();
+
+		try {
+			Paciente paciente = this.getConnection().getEntityManager().createNamedQuery("Paciente.getIdByCpf", Paciente.class).setParameter("cpf", cpf).getSingleResult();
+			return paciente.getId();
+		} catch (NoResultException e) {
+			return -1;
+		}
+
 	}
 
 	public ArrayList<Paciente> listarPacientesCadastrados() {
@@ -259,6 +275,17 @@ public class AdministradorRepository extends GenericDAO<Administrador> implement
 
 		this.getConnection().getEntityManager().close();
 		return medico;
+	}
+
+	public int buscarMedicoPorCPF(String cpf) {
+		this.getConnection().getEntityManager().clear();
+
+		try {
+			Medico medico = this.getConnection().getEntityManager().createNamedQuery("Medico.getIdByCpf", Medico.class).setParameter("cpf", cpf).getSingleResult();
+			return medico.getId();
+		} catch (NoResultException e) {
+			return -1;
+		}
 	}
 
 	public ArrayList<Medico> listarMedicosCadastrados() {

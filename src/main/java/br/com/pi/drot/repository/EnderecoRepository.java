@@ -39,7 +39,7 @@ public class EnderecoRepository implements EnderecoDAO{
 
 		System.out.println("Vai cão!");
 
-		return false;
+		return true;
 	}
 
 	@Override

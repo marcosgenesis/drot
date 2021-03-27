@@ -7,16 +7,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+@NamedQuery(name = "Paciente.getIdByCpf", query = "SELECT p FROM Paciente p WHERE p.CPF = :cpf")
 @Entity
 @Table(name = "Paciente")
 public class Paciente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "codpac")
 	private int id;
 
-	@Column(name = "nome")
+	@Column(name = "nome_paciente")
 	private String nome;
 
 	@Column(name = "CPF")
@@ -25,10 +28,10 @@ public class Paciente {
 	@Column(name = "RG")
 	private String RG;
 
-	@Column(name = "Data_nascimento")
+	@Column(name = "DataNascimento")
 	private String dataNascimento;
 
-	@Column(name = "endereco")
+	@Column(name = "cod_endereco")
 	private int endereco;
 
 	@Column(name = "telefone")
@@ -48,18 +51,18 @@ public class Paciente {
 	private String senha;
 
 
-	@Column(name = "tratamento")
-	private ArrayList<TratamentoPaciente> tratamentos;
+	/*@Column(name = "tratamento")
+	private ArrayList<TratamentoPaciente> tratamentos;*/
 
 	public Paciente() {}
 
-	public ArrayList<TratamentoPaciente> getTratamentos() {
+	/*public ArrayList<TratamentoPaciente> getTratamentos() {
 		return tratamentos;
 	}
 
 	public void setTratamentos(ArrayList<TratamentoPaciente> tratamentos) {
 		this.tratamentos = tratamentos;
-	}
+	}*/
 
 	public int getId() {
 		return id;

@@ -14,6 +14,7 @@ import br.com.pi.drot.connection.Connection;
 public class Secretaria{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "codsecretaria")
 	private int id;
 
 	@Column(name = "nome")
@@ -25,10 +26,10 @@ public class Secretaria{
 	@Column(name = "RG")
 	private String RG;
 
-	@Column(name = "Data_nascimento")
+	@Column(name = "DataNascimento")
 	private String dataNascimento;
 
-	@Column(name = "endereco")
+	@Column(name = "cod_endereco")
 	private int endereco;
 
 	@Column(name = "telefone")

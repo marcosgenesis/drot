@@ -1,6 +1,7 @@
 package br.com.pi.drot.utils;
 
 import br.com.pi.drot.repository.AdministradorRepository;
+import br.com.pi.drot.repository.ConsultaRepository;
 import br.com.pi.drot.repository.EnderecoRepository;
 
 public class TesteT {
@@ -9,7 +10,9 @@ public class TesteT {
 		AdministradorRepository aR = new AdministradorRepository();
 		EnderecoRepository eR = new EnderecoRepository();
 
-		eR.cadastrarEndereco("CE", "Rua Teste", 111, "Teste", "Onde o cão não habita", "88888-852");
+		//É SÓ LER PARA ENTENDER, :)
+
+		//eR.cadastrarEndereco("CE", "Rua Teste", 111, "Teste", "Onde o cão não habita", "88888-852");
 
 		/*if (eR.pegarIdEndereco("88888-852", 111) != -1) {
 			aR.cadastrarNovoAdministrador("Irineu 3", "076.221.343-41", "0000000000000", "1900/01/01", eR.pegarIdEndereco("88888-852", 111), "888888888888", "irineu@gmail.com", "qwe123");
@@ -17,12 +20,48 @@ public class TesteT {
 			System.out.println("Endereço não encontrado");
 		}
 		*/
-		eR.cadastrarEndereco("CE", "Rua Teste", 222, "Teste", "Onde o cão não habita", "0");
-		aR.cadastrarNovoMedico("t", "000000000", "00000", "1900/01/01", eR.pegarIdEndereco("0", 222), "9999999", "teste", "teste");
-		eR.cadastrarEndereco("CE", "Rua Teste", 333, "Teste", "Onde o cão não habita", "1");
-		aR.cadastrarNovoPaciente("t", "000000000", "00000", "1900/01/01", eR.pegarIdEndereco("1", 333), "9999999", "t", "t", "teste", "teste");
-		eR.cadastrarEndereco("CE", "Rua Teste", 444, "Teste", "Onde o cão não habita", "2");
-		aR.cadastrarNovaSecretaria("t", "000000000", "00000", "1900/01/01", eR.pegarIdEndereco("2", 444), "9999999", "teste", "teste");
+
+		//eR.cadastrarEndereco("CE", "Rua Teste", 222, "Teste", "Onde o cão não habita", "0");
+
+		/*int idEndereco = eR.pegarIdEndereco("0", 222);
+
+		if (idEndereco != -1) {
+			aR.cadastrarNovoMedico("t", "000000000", "00000", "1900/01/01", idEndereco, "9999999", "teste", "teste");
+		} else{
+			System.out.println("Endereço não encontrado");
+		}*/
+
+		//eR.cadastrarEndereco("CE", "Rua Teste", 333, "Teste", "Onde o cão não habita", "1");
+		/*int idEndereco = eR.pegarIdEndereco("1", 333);
+
+		if (idEndereco != -1) {
+			aR.cadastrarNovoPaciente("t2", "000000000", "00000", "1900/01/01", idEndereco, "9999999", "t", "t", "teste", "teste");
+			//aR.cadastrarNovoPaciente("t2", "000000000", "00000", "1900/01/01", idEndereco, "9999999", "t", "t", "teste", "teste");
+		} else{
+			System.out.println("Endereço não encontrado");
+		}*/
+
+
+		//eR.cadastrarEndereco("CE", "Rua Teste", 444, "Teste", "Onde o cão não habita", "2");
+		/*int idEndereco = eR.pegarIdEndereco("2", 444);
+
+		if (idEndereco != -1) {
+			aR.cadastrarNovaSecretaria("t", "000000000", "00000", "1900/01/01", idEndereco, "9999999", "teste", "teste");
+			//aR.cadastrarNovoPaciente("t2", "000000000", "00000", "1900/01/01", idEndereco, "9999999", "t", "t", "teste", "teste");
+		} else{
+			System.out.println("Endereço não encontrado");
+		}*/
+
+		int IdPaciente = aR.buscarPacientePorCPF("000000000");
+		int IdMedico = aR.buscarMedicoPorCPF("000000000");
+
+		if (IdPaciente != -1 && IdMedico != -1) {
+			ConsultaRepository cR = new ConsultaRepository();
+			cR.criarConsulta(IdPaciente, IdMedico, "1900/01/01", "Teste do teste do my eggys");
+		} else {
+			System.out.println("Num foi não!");
+		}
+
 	}
 
 }

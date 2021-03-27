@@ -5,13 +5,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+@NamedQuery(name = "Medico.getIdByCpf", query = "SELECT m FROM Medico m WHERE m.CPF = :cpf")
 @Entity
 @Table(name = "Medico")
 public class Medico{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "codmedico")
 	private int id;
 
 	@Column(name = "nome")
@@ -23,10 +26,10 @@ public class Medico{
 	@Column(name = "RG")
 	private String RG;
 
-	@Column(name = "Data_nascimento")
+	@Column(name = "DataNascimento")
 	private String dataNascimento;
 
-	@Column(name = "endereco")
+	@Column(name = "cod_endereco")
 	private int endereco;
 
 	@Column(name = "telefone")
@@ -34,6 +37,9 @@ public class Medico{
 
 	@Column(name = "email")
 	private String email;
+
+	@Column(name = "senha")
+	private String senha;
 
 	public int getId() {
 		return id;
@@ -106,30 +112,5 @@ public class Medico{
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
-	public String getCRM() {
-		return CRM;
-	}
-
-	public void setCRM(String cRM) {
-		CRM = cRM;
-	}
-
-	public String getEspecialidade() {
-		return especialidade;
-	}
-
-	public void setEspecialidade(String especialidade) {
-		this.especialidade = especialidade;
-	}
-
-	@Column(name = "senha")
-	private String senha;
-
-	@Column(name = "CRM")
-	private String CRM;
-
-	@Column(name = "especialidade")
-	private String especialidade;
 
 }
