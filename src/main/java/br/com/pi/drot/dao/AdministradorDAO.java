@@ -18,7 +18,7 @@ public interface AdministradorDAO {
 
 	 ArrayList<Administrador> listarAdministradoresCadastrados();
 
-	 boolean cadastrarNovoPaciente(Paciente paciente);
+	 boolean cadastrarNovoPaciente(String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone, String restricaoMedicamental, String doencaHereditaria, String email, String senha);
 
 	 boolean editarPaciente(Paciente paciente);
 
@@ -42,7 +42,7 @@ public interface AdministradorDAO {
 
 	 boolean removerMedicoPorId(int id);
 
-	 boolean cadastrarNovaSecretaria(Secretaria secretaria);
+	 boolean cadastrarNovaSecretaria(String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone, String email, String senha);
 
 	 boolean editarSecretaria(Secretaria secretaria);
 

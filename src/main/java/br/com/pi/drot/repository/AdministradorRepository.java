@@ -93,18 +93,29 @@ public class AdministradorRepository extends GenericDAO<Administrador> implement
 		return administradores;
 	}
 
-	public boolean cadastrarNovoPaciente(Paciente paciente) {
-		try {
+	public boolean cadastrarNovoPaciente(String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone, String restricaoMedicamental, String doencaHereditaria, String email, String senha) {
+		Paciente paciente = new Paciente();
+		paciente.setNome(nome);
+		paciente.setCPF(CPF);
+		paciente.setRG(RG);
+		paciente.setDataNascimento(dataNascimento);
+		paciente.setEndereco(endereco);
+		paciente.setTelefone(telefone);
+		paciente.setEmail(email);
+		paciente.setSenha(senha);
+		paciente.setRestricaoMedicamental(restricaoMedicamental);
+		paciente.setSenha(doencaHereditaria);
+		try{
 			this.getConnection().getEntityManager().getTransaction().begin();
 			this.getConnection().getEntityManager().persist(paciente);
 			this.getConnection().getEntityManager().getTransaction().commit();
 			this.getConnection().getEntityManager().close();
 		} catch(Exception ex) {
-			System.out.println("Erro ao criar paciente");
-			return false;
+			System.out.println("Erro ao criar paciente.");
+            return false;
 		}
 
-		System.out.println("Novo paciente cadastrado com sucesso!");
+		System.out.println("Nova(o) paciente cadastrado com sucesso!");
 		return true;
 	}
 
@@ -219,7 +230,7 @@ public class AdministradorRepository extends GenericDAO<Administrador> implement
 		}
 
 
-		System.out.println("Novo médico cadastrado com sucesso!");
+		System.out.println("Nova(o) medico(a) cadastrado com sucesso!");
 		return true;
 	}
 
@@ -303,20 +314,32 @@ public class AdministradorRepository extends GenericDAO<Administrador> implement
 		return true;
 	}
 
-	public boolean cadastrarNovaSecretaria(Secretaria secretaria) {
+	public boolean cadastrarNovaSecretaria(String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone, String email, String senha) {
+		Secretaria secretaria = new Secretaria();
+
+		secretaria.setNome(nome);
+		secretaria.setCPF(CPF);
+		secretaria.setRG(RG);
+		secretaria.setDataNascimento(dataNascimento);
+		secretaria.setEndereco(endereco);
+		secretaria.setTelefone(telefone);
+		secretaria.setEmail(email);
+		secretaria.setSenha(senha);
+
 		try {
 			this.getConnection().getEntityManager().getTransaction().begin();
 			this.getConnection().getEntityManager().persist(secretaria);
 			this.getConnection().getEntityManager().getTransaction().commit();
 			this.getConnection().getEntityManager().close();
-		} catch(Exception ex){
-			System.out.println("Erro ao criar secretária.");
+
+		} catch(Exception ex) {
+			System.out.println("Erro ao criar secretaria.");
 			return false;
 		}
 
-		System.out.println("Nova secretária cadastrada com sucesso!");
-		return true;
 
+		System.out.println("Nova(o) secretaria(o) cadastrado com sucesso!");
+		return true;
 	}
 
 	public boolean editarSecretaria(Secretaria secretaria) {
