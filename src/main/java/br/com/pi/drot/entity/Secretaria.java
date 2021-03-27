@@ -42,9 +42,6 @@ public class Secretaria{
 	@Column(name = "senha")
 	private String senha;
 
-	@Column(name = "connection")
-	private Connection connection;
-
 	public int getId() {
 		return id;
 	}
@@ -115,14 +112,6 @@ public class Secretaria{
 
 	public void setSenha(String senha) {
 		this.senha = senha;
-	}
-
-	public Connection getConnection() {
-		return connection;
-	}
-
-	public void setConnection(Connection connection) {
-		this.connection = connection;
 	}
 
 }

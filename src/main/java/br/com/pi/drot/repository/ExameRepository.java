@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import br.com.pi.drot.connection.Connection;
 import br.com.pi.drot.dao.ExameDAO;
 import br.com.pi.drot.dao.GenericDAO;
-import br.com.pi.drot.entity.Administrador;
 import br.com.pi.drot.entity.Exame;
 
 public class ExameRepository extends GenericDAO<ExameRepository> implements ExameDAO{

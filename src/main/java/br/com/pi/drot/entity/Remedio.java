@@ -66,5 +66,4 @@ public class Remedio {
 		this.contraIndicacao = contraIndicacao;
 	}
 
-
 }

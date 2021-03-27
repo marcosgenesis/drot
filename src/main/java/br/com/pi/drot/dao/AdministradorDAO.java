@@ -10,7 +10,7 @@ import br.com.pi.drot.entity.Secretaria;
 
 public interface AdministradorDAO {
 
-	 boolean cadastrarNovoAdministrador(String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone, String email, String senha);
+	 boolean cadastrarNovoAdministrador(String nome, String CPF, String RG, String dataNascimento, int endereco, String telefone, String email, String senha);
 
 	 boolean editarAdministrador(Administrador administrador);
 

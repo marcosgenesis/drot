@@ -30,7 +30,7 @@ public class AdministradorRepository extends GenericDAO<Administrador> implement
 		this.connection = connection;
 	}
 
-	public boolean cadastrarNovoAdministrador(String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone, String email, String senha) {
+	public boolean cadastrarNovoAdministrador(String nome, String CPF, String RG, String dataNascimento, int endereco, String telefone, String email, String senha) {
 		Administrador administrador = new Administrador();
 		administrador.setNome(nome);
 		administrador.setCPF(CPF);
@@ -40,6 +40,7 @@ public class AdministradorRepository extends GenericDAO<Administrador> implement
 		administrador.setTelefone(telefone);
 		administrador.setEmail(email);
 		administrador.setSenha(senha);
+
 		try{
 			this.getConnection().getEntityManager().getTransaction().begin();
 			this.getConnection().getEntityManager().persist(administrador);

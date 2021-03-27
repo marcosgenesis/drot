@@ -1,7 +1,5 @@
 package br.com.pi.drot.entity;
 
-import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,10 +27,10 @@ public class Administrador{
 	private String RG;
 
 	@Column(name = "dataNascimento")
-	private Date dataNascimento;
+	private String dataNascimento;
 
-	@Column(name = "endereco")
-	private String endereco;
+	@Column(name = "cod_endereco")
+	private int endereco;
 
 	@Column(name = "telefone")
 	private String telefone;
@@ -75,19 +73,19 @@ public class Administrador{
 		RG = rG;
 	}
 
-	public Date getDataNascimento() {
+	public String getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(Date dataNascimento) {
+	public void setDataNascimento(String dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public String getEndereco() {
+	public int getEndereco() {
 		return endereco;
 	}
 
-	public void setEndereco(String endereco) {
+	public void setEndereco(int endereco) {
 		this.endereco = endereco;
 	}
 

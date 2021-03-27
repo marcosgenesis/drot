@@ -29,8 +29,8 @@ public class TratamentoPaciente{
 	@Column(name = "tempoTratamento")
 	private Date inicioTratamento;
 
-	@Column(name = "tempoTratamento")
-	private Date fimTratamento;
+	/*@Column(name = "tempoTratamento")
+	private Date fimTratamento;*/
 
 
 	public int getId() {
@@ -73,13 +73,13 @@ public class TratamentoPaciente{
 		this.inicioTratamento = inicioTratamento;
 	}
 
-	public Date getFimTratamento() {
+	/*public Date getFimTratamento() {
 		return fimTratamento;
 	}
 
 	public void setFimTratamento(Date fimTratamento) {
 		this.fimTratamento = fimTratamento;
-	}
+	}*/
 
 	public boolean adicionarRemedio(TratamentoPaciente tratamento, Remedio remedio) {
 		ArrayList<Remedio> remedios = tratamento.getRemedio();
