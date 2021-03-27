@@ -30,7 +30,7 @@ public class MainFX extends Application {
 			LogadoScene = new Scene(loaderLogado);
 
 			primaryStage.setResizable(false);
-			primaryStage.setScene(mainScene);
+			primaryStage.setScene(loginScene);
 			primaryStage.show();
 		} catch (Exception e) {
 			e.printStackTrace();

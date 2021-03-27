@@ -5,11 +5,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-@NamedQuery(name = "Teste.byName", query = "SELECT t FROM Teste t WHERE t.name = :name")
-@NamedQuery(name = "Teste.byLogin", query = "SELECT t FROM Teste t WHERE t.email = :email AND t.pass = :pass")
+@NamedQueries({
+	@NamedQuery(name = "Teste.byName", query = "SELECT t FROM Teste t WHERE t.name = :name"),
+	@NamedQuery(name = "Teste.byLogin", query = "SELECT t FROM Teste t WHERE t.email = :email AND t.pass = :pass")
+})
+
 @Entity
 @Table(name = "teste")
 public class Teste {

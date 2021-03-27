@@ -401,4 +401,5 @@ public class AdministradorRepository extends GenericDAO<Administrador> implement
 			return false;
 		}
 	}
+
 }

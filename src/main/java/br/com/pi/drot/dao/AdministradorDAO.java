@@ -1,5 +1,6 @@
 package br.com.pi.drot.dao;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 import br.com.pi.drot.entity.Administrador;
@@ -9,7 +10,7 @@ import br.com.pi.drot.entity.Secretaria;
 
 public interface AdministradorDAO {
 
-	 boolean cadastrarNovoAdministrador(Administrador administrador);
+	 boolean cadastrarNovoAdministrador(String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone, String email, String senha);
 
 	 boolean editarAdministrador(Administrador administrador);
 
@@ -29,7 +30,7 @@ public interface AdministradorDAO {
 
 	 boolean removerPacientePorId(int id);
 
-	 boolean cadastrarNovoMedico(Medico medico);
+	 boolean cadastrarNovoMedico(String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone, String email, String senha);
 
 	 boolean editarMedico(Medico medico);
 
