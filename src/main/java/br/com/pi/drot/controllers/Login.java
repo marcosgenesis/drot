@@ -20,7 +20,7 @@ public class Login extends HttpServlet{
 	FacesMessage mensagem;
 
 	public Login() {
-		this.administrador= new AdministradorRepository(0, null, null, null, null, null, null, null, null);
+		this.administrador= new AdministradorRepository();
 	}
 
 	private boolean verificaCadastroUsuario() {
@@ -55,7 +55,7 @@ public class Login extends HttpServlet{
 				Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
 			}
 		} else {
-			administrador = new AdministradorRepository(0, null, null, null, null, null, null, null, null);
+			administrador = new AdministradorRepository();
 			mensagem = new FacesMessage(FacesMessage.SEVERITY_WARN,
 					"Email ou Senha incorretos! \n Por favor tente novamente.", null);
 		}
