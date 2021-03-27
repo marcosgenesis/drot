@@ -33,7 +33,6 @@ public class TratamentoPacienteRepository extends GenericDAO<TratamentoPacienteR
 		tratamento.adicionarRemedio(tratamento, remedio);
 		tratamento.setPaciente(paciente.getId());
 		tratamento.setInicioTratamento(inicioTratamento);
-		tratamento.setFimTratamento(fimTratamento);
 
 		this.getConnection().getEntityManager().getTransaction().begin();
 		this.getConnection().getEntityManager().persist(tratamento);
@@ -158,6 +157,7 @@ public class TratamentoPacienteRepository extends GenericDAO<TratamentoPacienteR
         return true;
 	}
 
+	/*
 	public boolean editarTratamentoPacienteAlterarFimTratamento(TratamentoPaciente tratamento, Date fimTratamento) {
 		if(tratamento == null){
 			System.out.println("Tratamento para o usuário não encontrado");
@@ -180,7 +180,7 @@ public class TratamentoPacienteRepository extends GenericDAO<TratamentoPacienteR
 
         return true;
 	}
-
+	*/
 	public boolean removerTratamentoPacientePorId(int id) {
 		TratamentoPaciente tratamento = this.getConnection().getEntityManager().find(TratamentoPaciente.class, id);
 

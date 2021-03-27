@@ -24,7 +24,7 @@ public interface TratamentoPacienteDAO {
 
 	boolean editarTratamentoPacienteRemoverExame(TratamentoPaciente tratamento, Exame exame);
 
-	boolean editarTratamentoPacienteAlterarFimTratamento(TratamentoPaciente tratamento, Date fimTratamento);
+	//boolean editarTratamentoPacienteAlterarFimTratamento(TratamentoPaciente tratamento, Date fimTratamento);
 
 	boolean removerTratamentoṔaciente(TratamentoPaciente tratamento);
 

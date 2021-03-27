@@ -1,6 +1,5 @@
 package br.com.pi.drot.repository;
 
-import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.persistence.NoResultException;
@@ -94,7 +93,7 @@ public class AdministradorRepository extends GenericDAO<Administrador> implement
 		return administradores;
 	}
 
-	public boolean cadastrarNovoPaciente(String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone, String restricaoMedicamental, String doencaHereditaria, String email, String senha) {
+	public boolean cadastrarNovoPaciente(String nome, String CPF, String RG, String dataNascimento, int endereco, String telefone, String restricaoMedicamental, String doencaHereditaria, String email, String senha) {
 		Paciente paciente = new Paciente();
 		paciente.setNome(nome);
 		paciente.setCPF(CPF);
@@ -207,14 +206,14 @@ public class AdministradorRepository extends GenericDAO<Administrador> implement
 		return true;
 	}
 
-	public boolean cadastrarNovoMedico(String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone, String email, String senha) {
+	public boolean cadastrarNovoMedico(String nome, String CPF, String RG, String dataNascimento, int i, String telefone, String email, String senha) {
 		Medico medico = new Medico();
 
 		medico.setNome(nome);
 		medico.setCPF(CPF);
 		medico.setRG(RG);
 		medico.setDataNascimento(dataNascimento);
-		medico.setEndereco(endereco);
+		medico.setEndereco(i);
 		medico.setTelefone(telefone);
 		medico.setEmail(email);
 		medico.setSenha(senha);
@@ -315,7 +314,7 @@ public class AdministradorRepository extends GenericDAO<Administrador> implement
 		return true;
 	}
 
-	public boolean cadastrarNovaSecretaria(String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone, String email, String senha) {
+	public boolean cadastrarNovaSecretaria(String nome, String CPF, String RG, String dataNascimento, int endereco, String telefone, String email, String senha) {
 		Secretaria secretaria = new Secretaria();
 
 		secretaria.setNome(nome);

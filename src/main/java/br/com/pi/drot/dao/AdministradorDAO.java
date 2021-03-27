@@ -1,6 +1,5 @@
 package br.com.pi.drot.dao;
 
-import java.sql.Date;
 import java.util.ArrayList;
 
 import br.com.pi.drot.entity.Administrador;
@@ -18,7 +17,7 @@ public interface AdministradorDAO {
 
 	 ArrayList<Administrador> listarAdministradoresCadastrados();
 
-	 boolean cadastrarNovoPaciente(String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone, String restricaoMedicamental, String doencaHereditaria, String email, String senha);
+	 boolean cadastrarNovoPaciente(String nome, String CPF, String RG, String dataNascimento, int endereco, String telefone, String restricaoMedicamental, String doencaHereditaria, String email, String senha);
 
 	 boolean editarPaciente(Paciente paciente);
 
@@ -30,7 +29,7 @@ public interface AdministradorDAO {
 
 	 boolean removerPacientePorId(int id);
 
-	 boolean cadastrarNovoMedico(String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone, String email, String senha);
+	 boolean cadastrarNovoMedico(String nome, String CPF, String RG, String dataNascimento, int endereco, String telefone, String email, String senha);
 
 	 boolean editarMedico(Medico medico);
 
@@ -42,7 +41,7 @@ public interface AdministradorDAO {
 
 	 boolean removerMedicoPorId(int id);
 
-	 boolean cadastrarNovaSecretaria(String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone, String email, String senha);
+	 boolean cadastrarNovaSecretaria(String nome, String CPF, String RG, String dataNascimento, int endereco, String telefone, String email, String senha);
 
 	 boolean editarSecretaria(Secretaria secretaria);
 

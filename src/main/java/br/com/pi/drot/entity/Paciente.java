@@ -1,6 +1,5 @@
 package br.com.pi.drot.entity;
 
-import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.persistence.Column;
@@ -27,10 +26,10 @@ public class Paciente {
 	private String RG;
 
 	@Column(name = "Data_nascimento")
-	private Date dataNascimento;
+	private String dataNascimento;
 
 	@Column(name = "endereco")
-	private String endereco;
+	private int endereco;
 
 	@Column(name = "telefone")
 	private String telefone;
@@ -59,25 +58,6 @@ public class Paciente {
 	}
 
 	public void setTratamentos(ArrayList<TratamentoPaciente> tratamentos) {
-		this.tratamentos = tratamentos;
-	}
-
-
-	public Paciente(int id, String nome, String cPF, String rG, Date dataNascimento, String endereco, String telefone,
-			String restricaoMedicamental, String doencaHereditaria, String email, String senha,
-			ArrayList<TratamentoPaciente> tratamentos) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		CPF = cPF;
-		RG = rG;
-		this.dataNascimento = dataNascimento;
-		this.endereco = endereco;
-		this.telefone = telefone;
-		this.restricaoMedicamental = restricaoMedicamental;
-		this.doencaHereditaria = doencaHereditaria;
-		this.email = email;
-		this.senha = senha;
 		this.tratamentos = tratamentos;
 	}
 
@@ -113,20 +93,20 @@ public class Paciente {
 		this.RG = rG;
 	}
 
-	public Date getDataNascimento() {
+	public String getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(Date dataNascimento) {
-		this.dataNascimento = dataNascimento;
+	public void setDataNascimento(String dataNascimento2) {
+		this.dataNascimento = dataNascimento2;
 	}
 
-	public String getEndereco() {
+	public int getEndereco() {
 		return endereco;
 	}
 
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
+	public void setEndereco(int endereco2) {
+		this.endereco = endereco2;
 	}
 
 	public String getTelefone() {
