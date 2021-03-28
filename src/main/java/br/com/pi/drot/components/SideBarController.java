@@ -3,8 +3,6 @@ package br.com.pi.drot.components;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javax.swing.JOptionPane;
-
 import br.com.pi.drot.UI.MainFX;
 //import br.com.pi.drot.entity.Usuario;
 import javafx.event.ActionEvent;
@@ -24,6 +22,11 @@ public class SideBarController implements Initializable {
 	@FXML
 	private void btnSwitchDoctorScreen(ActionEvent event) {
 		MainFX.chanceWindow("doctorsScene");
+	}
+	
+	@FXML
+	private void btnSwitchNewPatientScreen(ActionEvent event) {
+		MainFX.chanceWindow("newPatient");
 	}
 	
 

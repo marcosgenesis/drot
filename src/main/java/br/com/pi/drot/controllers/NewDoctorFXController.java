@@ -9,15 +9,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
-public class DoctorsFXController extends SideBarController implements Initializable{
+public class NewDoctorFXController extends SideBarController implements Initializable {
+	
 	@FXML
 	private void btnSwitchNewDoctorScreen(ActionEvent event) {
 		MainFX.chanceWindow("newDoctor");
 	}
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		
 	}
-
 }

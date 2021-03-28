@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -26,12 +27,15 @@
                   <FontAwesomeIcon fill="#d6dce2" iconName="DASHBOARD" layoutX="56.0" layoutY="209.0" size="2em" text="" />
                   <Button fx:id="clickBtn" layoutX="98.0" layoutY="182.0" mnemonicParsing="false" onAction="#btnSwitchControlPanel" prefHeight="36.0" prefWidth="157.0" style="-fx-background-color: transparent;">
                      <graphic>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Painel de controle">
+                        <Text fill="#cccccc" strokeType="OUTSIDE" strokeWidth="0.0" text="Painel de controle">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Text>
                      </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <Button fx:id="clickBtn1" layoutX="98.0" layoutY="240.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="157.0" style="-fx-background-color: transparent;">
                      <graphic>
@@ -41,20 +45,29 @@
                            </font>
                         </Text>
                      </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <Button fx:id="clickBtn11" layoutX="98.0" layoutY="298.0" mnemonicParsing="false" onAction="#btnSwitchDoctorScreen" prefHeight="36.0" prefWidth="157.0" style="-fx-background-color: transparent;">
                      <graphic>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Médicos">
+                        <Text fill="#cccccc" strokeType="OUTSIDE" strokeWidth="0.0" text="Médicos">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Text>
                      </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
-                  <Button layoutX="25.0" layoutY="85.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="231.0" style="-fx-background-color: #2784ff;" text="Adicionar Paciente na Fila" textFill="WHITE">
+                  <Button layoutX="25.0" layoutY="85.0" mnemonicParsing="false" onAction="#btnSwitchNewPatientScreen" prefHeight="53.0" prefWidth="231.0" style="-fx-background-color: #2784ff;" text="Novo Paciente" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="14.0" />
-                     </font></Button>
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
                </children>
             </Pane>
             <TextField layoutX="425.0" layoutY="48.0" prefHeight="53.0" prefWidth="549.0" promptText="Pesquisar Paciente" style="-fx-background-color: fff; -fx-background-radius: 10px 10px 00px 0px; -fx-padding: 5 5 5 5;" />

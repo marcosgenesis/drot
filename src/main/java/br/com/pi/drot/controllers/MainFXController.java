@@ -3,8 +3,6 @@ package br.com.pi.drot.controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javax.swing.JOptionPane;
-
 import br.com.pi.drot.UI.MainFX;
 import br.com.pi.drot.components.SideBarController;
 //import br.com.pi.drot.entity.Usuario;
@@ -23,7 +21,7 @@ public class MainFXController extends SideBarController implements Initializable
 
 	@FXML
 	private void btnAction(ActionEvent event) {
-		JOptionPane.showMessageDialog(null, "O controller da tela funcionou!", "Controller implementado com sucesso", 0);
+		MainFX.chanceWindow("newPacientInQueue");
 	}
 
 	
