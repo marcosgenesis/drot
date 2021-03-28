@@ -1,5 +1,7 @@
 package br.com.pi.drot.repository;
 
+import javax.persistence.NoResultException;
+
 import br.com.pi.drot.connection.Connection;
 import br.com.pi.drot.dao.GenericDAO;
 import br.com.pi.drot.dao.RemedioDAO;
@@ -31,7 +33,20 @@ public class RemedioRepository extends GenericDAO<RemedioRepository> implements 
 		this.getConnection().getEntityManager().persist(remedio);
 		this.getConnection().getEntityManager().getTransaction().commit();
 		this.getConnection().getEntityManager().close();
-		System.out.println("Novo remédio cadastrado com sucesso!" +remedio.getId());
+		System.out.println("Novo remédio cadastrado com sucesso!" + remedio.getId());
+
 		return remedio;
+	}
+
+	public int buscarIdByNome(String nome) {
+		try {
+			Remedio remedio = this.getConnection().getEntityManager().createNamedQuery("Remedio.getIdByName", Remedio.class).setParameter("nome", nome).getSingleResult();
+
+			System.out.println("=> R" + remedio.getId());
+
+			return remedio.getId();
+		} catch(NoResultException e) {
+			return -1;
+		}
 	}
 }

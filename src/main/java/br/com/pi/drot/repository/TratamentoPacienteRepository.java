@@ -2,6 +2,8 @@ package br.com.pi.drot.repository;
 
 import java.util.ArrayList;
 
+import javax.persistence.NoResultException;
+
 import br.com.pi.drot.connection.Connection;
 import br.com.pi.drot.dao.GenericDAO;
 import br.com.pi.drot.dao.TratamentoPacienteDAO;
@@ -38,14 +40,12 @@ public class TratamentoPacienteRepository extends GenericDAO<TratamentoPacienteR
 	}
 
 	public TratamentoPaciente buscarTratamentoPacientePorID(int id) {
-		this.getConnection().getEntityManager().clear();
-		TratamentoPaciente tratamento = this.getConnection().getEntityManager().find(TratamentoPaciente.class, id);
-		if(tratamento == null){
-			System.out.println("Tratamento para o usuário não encontrado");
+		try {
+			TratamentoPaciente tratamento = this.getConnection().getEntityManager().createNamedQuery("TratamentoPaciente.getById", TratamentoPaciente.class).setParameter("cod", id).getSingleResult();
+			return tratamento;
+		} catch (NoResultException e) {
+			return null;
 		}
-
-		this.getConnection().getEntityManager().close();
-		return tratamento;
 	}
 
 	public ArrayList<TratamentoPaciente> listarTratamentosPaciente() {
@@ -152,14 +152,38 @@ public class TratamentoPacienteRepository extends GenericDAO<TratamentoPacienteR
 
 	public boolean adicionarRemedio(int remedio, int idTratamento) {
 		TratamentoPaciente tratamento = buscarTratamentoPacientePorID(idTratamento);
-		tratamento.setRemedio(remedio);
-		return true;
+
+		if (tratamento != null) {
+			System.out.println("Aqui 2");
+			tratamento.setRemedio(remedio);
+
+			this.getConnection().getEntityManager().getTransaction().begin();
+			this.getConnection().getEntityManager().merge(tratamento);
+			this.getConnection().getEntityManager().getTransaction().commit();
+			this.getConnection().getEntityManager().close();
+
+			return true;
+		}
+
+		return false;
 	}
 
 	public boolean adicionarExame(int exame, int idTratamento) {
 		TratamentoPaciente tratamento = buscarTratamentoPacientePorID(idTratamento);
-		tratamento.setExame(exame);
-		return true;
+
+		if (tratamento != null) {
+			System.out.println("Aqui 1");
+			tratamento.setExame(exame);
+
+			this.getConnection().getEntityManager().getTransaction().begin();
+			this.getConnection().getEntityManager().merge(tratamento);
+			this.getConnection().getEntityManager().getTransaction().commit();
+			this.getConnection().getEntityManager().close();
+
+			return true;
+		}
+
+		return false;
 	}
 
 	public Remedio buscarRemedioPorID(int id) {

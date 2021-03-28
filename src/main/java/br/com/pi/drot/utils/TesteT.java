@@ -51,11 +51,11 @@ public class TesteT {
 		/*int idEndereco = eR.pegarIdEndereco("2", 444);
 
 		if (idEndereco != -1) {
-			aR.cadastrarNovaSecretaria("t", "000000000", "00000", "1900/01/01", idEndereco, "9999999", "teste", "teste");
+			aR.cadastrarNovaSecretaria("t2", "000000000", "00000", "1900/01/01", idEndereco, "9999999", "teste", "teste");
 			//aR.cadastrarNovoPaciente("t2", "000000000", "00000", "1900/01/01", idEndereco, "9999999", "t", "t", "teste", "teste");
 		} else{
 			System.out.println("Endereço não encontrado");
-		}*/
+		}
 
 		/*int IdPaciente = aR.buscarPacientePorCPF("000000000");
 		int IdMedico = aR.buscarMedicoPorCPF("000000000");
@@ -73,13 +73,22 @@ public class TesteT {
 		ExameRepository exameRepository = new ExameRepository();
 
 		//Remedio remedio = remedioRepository.criarRemedio("Dorflex", "15mg", "Bula.pdf", "Dor de cabeça e dores no corpo");
-		Exame exame = exameRepository.criarExame("Vista", "Miopia", "You cego man ?", "2021/10/10");
+		//Exame exame = exameRepository.criarExame("Vista", "Miopia", "You cego man ?", "2021/10/10");
 
 		//Criar paciente com ID 1d
-		tP.criarTratamentoPaciente(1, 45);
+		//tP.criarTratamentoPaciente(2, 15);
 
-		tP.adicionarExame(exame, 1);
-		//tP.adicionarRemedio(remedio, 1);
+		//tP.adicionarExame(exameRepository.getIdByName("Vista"), 3);
+		tP.adicionarRemedio(remedioRepository.buscarIdByNome("Dorflex"), 3);
+
+		/*if (remedioRepository.buscarIdByNome("Dorflex") != -1 && exameRepository.getIdByName("Vista") != -1) {
+			tP.adicionarExame(exameRepository.getIdByName("Vista"), 1);
+			tP.adicionarRemedio(remedioRepository.buscarIdByNome("Dorflex"), 1);
+		} else {
+			System.out.println("Menos sono!");
+		}*/
+
+
 
 	}
 

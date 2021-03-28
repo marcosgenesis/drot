@@ -5,13 +5,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+@NamedQuery(name = "TratamentoPaciente.getById", query = "SELECT t FROM TratamentoPaciente t WHERE t.id =: cod")
 @Entity
 @Table(name = "TratamentoPaciente")
 public class TratamentoPaciente{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "codtratamento")
 	private int id;
 
 	@Column(name = "cod_paciente")
