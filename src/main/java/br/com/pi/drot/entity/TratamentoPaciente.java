@@ -1,5 +1,4 @@
 package br.com.pi.drot.entity;
-import java.util.ArrayList;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,11 +17,11 @@ public class TratamentoPaciente{
 	@Column(name = "paciente_id")
 	private int paciente;
 
-	@Column(name = "exame")
-	private ArrayList <Exame> exame;
+	@Column(name = "cod_exame")
+	private int exame;
 
-	@Column(name = "remedio")
-	private ArrayList <Remedio> remedio;
+	@Column(name = "cod_remedio")
+	private int remedio;
 
 	@Column(name = "tempoTratamento")
 	private int tempoTratamento;
@@ -44,19 +43,19 @@ public class TratamentoPaciente{
 		return this.paciente;
 	}
 
-	public ArrayList<Exame> getExame() {
+	public int getExame() {
 		return exame;
 	}
 
-	public void setExame(ArrayList<Exame> exame) {
+	public void setExame(int exame) {
 		this.exame = exame;
 	}
 
-	public ArrayList<Remedio> getRemedio() {
+	public int getRemedio() {
 		return remedio;
 	}
 
-	public void setRemedio(ArrayList<Remedio> remedio) {
+	public void setRemedio(int remedio) {
 		this.remedio = remedio;
 	}
 

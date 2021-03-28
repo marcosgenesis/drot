@@ -16,25 +16,17 @@ import br.com.pi.drot.entity.TratamentoPaciente;
 
 	boolean editarTratamentoPacienteAdicionarRemedio(int idTratamento, int idRemedio);
 
-	boolean editarTratamentoPacienteRemoverRemedio(int idTratamento, int idRemedio);
-
 	boolean editarTratamentoPacienteAdicionarExame(int idTratamento, int idExame);
-
-	boolean editarTratamentoPacienteRemoverExame(int idTratamento, int idExame);
 
 	boolean editarTratamentoPacienteAlterarTempoTratamento(int idTratamento, int tempoTratamento);
 
-	boolean adicionarRemedio(Remedio remedio, int idTratamento);
-
 	boolean removerTratamentoPacientePorId(int idTratamento);
 
-	boolean adicionarExame(Exame exame, int idTratamento);
+	boolean adicionarRemedio(int remedio, int idTratamento);
+
+	boolean adicionarExame(int exame, int idTratamento);
 
 	Remedio buscarRemedioPorID(int id);
-
-	boolean removerRemedioPorID(int idRemedio, int idTratamento);
-
-	boolean removerExamePorID(Exame exame, int idTratamento);
 
 	Exame buscarExamePorID(int id);
 
