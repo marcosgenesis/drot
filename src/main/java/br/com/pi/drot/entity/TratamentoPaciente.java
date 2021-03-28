@@ -14,7 +14,7 @@ public class TratamentoPaciente{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "paciente_id")
+	@Column(name = "cod_paciente")
 	private int paciente;
 
 	@Column(name = "cod_exame")

@@ -66,9 +66,7 @@ public class TratamentoPacienteRepository extends GenericDAO<TratamentoPacienteR
 			return false;
 		}
 
-		Remedio remedio = buscarRemedioPorID(idRemedio);
-
-		this.adicionarRemedio(remedio, idTratamento);
+		this.adicionarRemedio(idRemedio, idTratamento);
 
 		try {
             this.getConnection().getEntityManager().getTransaction().begin();
@@ -92,9 +90,7 @@ public class TratamentoPacienteRepository extends GenericDAO<TratamentoPacienteR
 			return false;
 		}
 
-		Exame exame = buscarExamePorID(idExame);
-
-		this.adicionarExame(exame, idTratamento);
+		this.adicionarExame(idExame, idTratamento);
 
 		try {
             this.getConnection().getEntityManager().getTransaction().begin();
