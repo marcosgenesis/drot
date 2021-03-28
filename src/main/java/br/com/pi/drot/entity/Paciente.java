@@ -46,23 +46,8 @@ public class Paciente {
 	@Column(name = "email")
 	private String email;
 
-
 	@Column(name = "senha")
 	private String senha;
-
-
-	/*@Column(name = "tratamento")
-	private ArrayList<TratamentoPaciente> tratamentos;*/
-
-	public Paciente() {}
-
-	/*public ArrayList<TratamentoPaciente> getTratamentos() {
-		return tratamentos;
-	}
-
-	public void setTratamentos(ArrayList<TratamentoPaciente> tratamentos) {
-		this.tratamentos = tratamentos;
-	}*/
 
 	public int getId() {
 		return id;
@@ -92,24 +77,24 @@ public class Paciente {
 		return RG;
 	}
 
-	public void setRG(String rG) {
-		this.RG = rG;
+	public void setRG(String RG) {
+		this.RG = RG;
 	}
 
 	public String getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(String dataNascimento2) {
-		this.dataNascimento = dataNascimento2;
+	public void setDataNascimento(String dataNascimento) {
+		this.dataNascimento = dataNascimento;
 	}
 
 	public int getEndereco() {
 		return endereco;
 	}
 
-	public void setEndereco(int endereco2) {
-		this.endereco = endereco2;
+	public void setEndereco(int endereco) {
+		this.endereco = endereco;
 	}
 
 	public String getTelefone() {
@@ -136,16 +121,6 @@ public class Paciente {
 		this.doencaHereditaria = doencaHereditaria;
 	}
 
-	public boolean login() {
-		return false;
-	}
-
-	public boolean logout() {
-		return false;
-
-
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -161,7 +136,4 @@ public class Paciente {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
-	public void preencherDadosRegistros(String restricaoMedicamental, String doencaHereditaria) {}
-
 }

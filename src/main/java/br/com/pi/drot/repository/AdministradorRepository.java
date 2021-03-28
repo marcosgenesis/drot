@@ -6,18 +6,16 @@ import javax.persistence.NoResultException;
 
 import br.com.pi.drot.connection.Connection;
 import br.com.pi.drot.dao.AdministradorDAO;
-import br.com.pi.drot.dao.GenericDAO;
 import br.com.pi.drot.entity.Administrador;
 import br.com.pi.drot.entity.Medico;
 import br.com.pi.drot.entity.Paciente;
 import br.com.pi.drot.entity.Secretaria;
 
 @SuppressWarnings("all")
-public class AdministradorRepository extends GenericDAO<Administrador> implements AdministradorDAO{
+public class AdministradorRepository implements AdministradorDAO{
 	private Connection connection;
 
 	public AdministradorRepository() {
-        super(Administrador.class);
 		this.connection = new Connection();
 	}
 

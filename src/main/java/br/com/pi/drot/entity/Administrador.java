@@ -61,16 +61,16 @@ public class Administrador{
 		return CPF;
 	}
 
-	public void setCPF(String cPF) {
-		CPF = cPF;
+	public void setCPF(String CPF) {
+		this.CPF = CPF;
 	}
 
 	public String getRG() {
 		return RG;
 	}
 
-	public void setRG(String rG) {
-		RG = rG;
+	public void setRG(String RG) {
+		this.RG = RG;
 	}
 
 	public String getDataNascimento() {

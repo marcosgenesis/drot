@@ -4,15 +4,13 @@ import javax.persistence.NoResultException;
 
 import br.com.pi.drot.connection.Connection;
 import br.com.pi.drot.dao.ExameDAO;
-import br.com.pi.drot.dao.GenericDAO;
 import br.com.pi.drot.entity.Exame;
 
-public class ExameRepository extends GenericDAO<ExameRepository> implements ExameDAO{
+public class ExameRepository implements ExameDAO{
 
 	private Connection connection;
 
 	public ExameRepository(){
-		super(Exame.class);
 		this.connection = new Connection();
 	}
 

@@ -3,15 +3,13 @@ package br.com.pi.drot.repository;
 import javax.persistence.NoResultException;
 
 import br.com.pi.drot.connection.Connection;
-import br.com.pi.drot.dao.GenericDAO;
 import br.com.pi.drot.dao.RemedioDAO;
 import br.com.pi.drot.entity.Remedio;
 
-public class RemedioRepository extends GenericDAO<RemedioRepository> implements RemedioDAO{
+public class RemedioRepository implements RemedioDAO{
 	private Connection connection;
 
 	public RemedioRepository() {
-		super(Remedio.class);
 		this.connection = new Connection();
 	}
 

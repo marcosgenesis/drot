@@ -1,20 +1,14 @@
 package br.com.pi.drot.repository;
 
-import java.sql.Date;
-
 import br.com.pi.drot.connection.Connection;
 import br.com.pi.drot.dao.ConsultaDAO;
-import br.com.pi.drot.dao.GenericDAO;
 import br.com.pi.drot.entity.Consulta;
-import br.com.pi.drot.entity.Medico;
-import br.com.pi.drot.entity.Paciente;
 
-public class ConsultaRepository extends GenericDAO<Consulta> implements ConsultaDAO {
+public class ConsultaRepository implements ConsultaDAO {
 
 	private Connection connection;
 
 	public ConsultaRepository(){
-        super(Consulta.class);
 		this.connection = new Connection();
 	}
 

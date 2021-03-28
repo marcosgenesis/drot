@@ -5,17 +5,15 @@ import java.util.ArrayList;
 import javax.persistence.NoResultException;
 
 import br.com.pi.drot.connection.Connection;
-import br.com.pi.drot.dao.GenericDAO;
 import br.com.pi.drot.dao.TratamentoPacienteDAO;
 import br.com.pi.drot.entity.Exame;
 import br.com.pi.drot.entity.Remedio;
 import br.com.pi.drot.entity.TratamentoPaciente;
 
-public class TratamentoPacienteRepository extends GenericDAO<TratamentoPacienteRepository> implements TratamentoPacienteDAO{
+public class TratamentoPacienteRepository implements TratamentoPacienteDAO{
 	private Connection connection;
 
 	public TratamentoPacienteRepository(){
-		super(TratamentoPaciente.class);
 		this.connection = new Connection();
 	}
 

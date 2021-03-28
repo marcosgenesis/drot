@@ -61,24 +61,24 @@ public class Medico{
 		return CPF;
 	}
 
-	public void setCPF(String cPF) {
-		CPF = cPF;
+	public void setCPF(String CPF) {
+		this.CPF = CPF;
 	}
 
 	public String getRG() {
 		return RG;
 	}
 
-	public void setRG(String rG) {
-		RG = rG;
+	public void setRG(String RG) {
+		this.RG = RG;
 	}
 
 	public String getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(String dataNascimento2) {
-		this.dataNascimento = dataNascimento2;
+	public void setDataNascimento(String dataNascimento) {
+		this.dataNascimento = dataNascimento;
 	}
 
 	public int getEndereco() {
