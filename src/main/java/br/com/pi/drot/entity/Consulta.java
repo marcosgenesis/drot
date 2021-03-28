@@ -1,7 +1,5 @@
 package br.com.pi.drot.entity;
 
-import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,16 +14,16 @@ public class Consulta{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "paciente_id")
+	@Column(name = "cod_paciente")
 	private int paciente;
 
-	@Column(name = "dataConsulta")
-	private Date dataConsulta;
+	@Column(name = "data_consulta")
+	private String dataConsulta;
 
-	@Column(name = "descricaoConsulta")
+	@Column(name = "descricao")
 	private String descricaoConsulta;
 
-	@Column(name = "medico_id")
+	@Column(name = "cod_medico")
 	private int medico;
 
 	public int getId() {
@@ -44,11 +42,11 @@ public class Consulta{
 		this.paciente = paciente;
 	}
 
-	public Date getDataConsulta() {
+	public String getDataConsulta() {
 		return dataConsulta;
 	}
 
-	public void setDataConsulta(Date dataConsulta) {
+	public void setDataConsulta(String dataConsulta) {
 		this.dataConsulta = dataConsulta;
 	}
 

@@ -1,24 +1,21 @@
 package br.com.pi.drot.repository;
 
-import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.persistence.NoResultException;
 
 import br.com.pi.drot.connection.Connection;
 import br.com.pi.drot.dao.AdministradorDAO;
-import br.com.pi.drot.dao.GenericDAO;
 import br.com.pi.drot.entity.Administrador;
 import br.com.pi.drot.entity.Medico;
 import br.com.pi.drot.entity.Paciente;
 import br.com.pi.drot.entity.Secretaria;
 
 @SuppressWarnings("all")
-public class AdministradorRepository extends GenericDAO<Administrador> implements AdministradorDAO{
+public class AdministradorRepository implements AdministradorDAO{
 	private Connection connection;
 
 	public AdministradorRepository() {
-        super(Administrador.class);
 		this.connection = new Connection();
 	}
 
@@ -30,7 +27,7 @@ public class AdministradorRepository extends GenericDAO<Administrador> implement
 		this.connection = connection;
 	}
 
-	public boolean cadastrarNovoAdministrador(String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone, String email, String senha) {
+	public boolean cadastrarNovoAdministrador(String nome, String CPF, String RG, String dataNascimento, int endereco, String telefone, String email, String senha) {
 		Administrador administrador = new Administrador();
 		administrador.setNome(nome);
 		administrador.setCPF(CPF);
@@ -40,6 +37,7 @@ public class AdministradorRepository extends GenericDAO<Administrador> implement
 		administrador.setTelefone(telefone);
 		administrador.setEmail(email);
 		administrador.setSenha(senha);
+
 		try{
 			this.getConnection().getEntityManager().getTransaction().begin();
 			this.getConnection().getEntityManager().persist(administrador);
@@ -93,7 +91,7 @@ public class AdministradorRepository extends GenericDAO<Administrador> implement
 		return administradores;
 	}
 
-	public boolean cadastrarNovoPaciente(String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone, String restricaoMedicamental, String doencaHereditaria, String email, String senha) {
+	public boolean cadastrarNovoPaciente(String nome, String CPF, String RG, String dataNascimento, int endereco, String telefone, String restricaoMedicamental, String doencaHereditaria, String email, String senha) {
 		Paciente paciente = new Paciente();
 		paciente.setNome(nome);
 		paciente.setCPF(CPF);
@@ -103,8 +101,10 @@ public class AdministradorRepository extends GenericDAO<Administrador> implement
 		paciente.setTelefone(telefone);
 		paciente.setEmail(email);
 		paciente.setSenha(senha);
+		paciente.setDoencaHereditaria("JAVA");
 		paciente.setRestricaoMedicamental(restricaoMedicamental);
 		paciente.setSenha(doencaHereditaria);
+
 		try{
 			this.getConnection().getEntityManager().getTransaction().begin();
 			this.getConnection().getEntityManager().persist(paciente);
@@ -139,14 +139,28 @@ public class AdministradorRepository extends GenericDAO<Administrador> implement
 	public Paciente buscarPacientePorID(int id) {
 		this.getConnection().getEntityManager().clear();
 
-		Paciente paciente = this.getConnection().getEntityManager().find(Paciente.class, id);
+		/*Paciente paciente = this.getConnection().getEntityManager().createNamedQuery("Paciente.getIdByCpf", Paciente.class).setParameter("cpf", email).setParameter("senha", pass).getSingleResult();
 
 		if(paciente == null){
 			System.out.println("Paciente não encontrado");
 		}
 
 		this.getConnection().getEntityManager().close();
-		return paciente;
+		return paciente;*/
+
+		return null;
+	}
+
+	public int buscarPacientePorCPF(String cpf) {
+		this.getConnection().getEntityManager().clear();
+
+		try {
+			Paciente paciente = this.getConnection().getEntityManager().createNamedQuery("Paciente.getIdByCpf", Paciente.class).setParameter("cpf", cpf).getSingleResult();
+			return paciente.getId();
+		} catch (NoResultException e) {
+			return -1;
+		}
+
 	}
 
 	public ArrayList<Paciente> listarPacientesCadastrados() {
@@ -206,14 +220,14 @@ public class AdministradorRepository extends GenericDAO<Administrador> implement
 		return true;
 	}
 
-	public boolean cadastrarNovoMedico(String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone, String email, String senha) {
+	public boolean cadastrarNovoMedico(String nome, String CPF, String RG, String dataNascimento, int i, String telefone, String email, String senha) {
 		Medico medico = new Medico();
 
 		medico.setNome(nome);
 		medico.setCPF(CPF);
 		medico.setRG(RG);
 		medico.setDataNascimento(dataNascimento);
-		medico.setEndereco(endereco);
+		medico.setEndereco(i);
 		medico.setTelefone(telefone);
 		medico.setEmail(email);
 		medico.setSenha(senha);
@@ -259,6 +273,17 @@ public class AdministradorRepository extends GenericDAO<Administrador> implement
 
 		this.getConnection().getEntityManager().close();
 		return medico;
+	}
+
+	public int buscarMedicoPorCPF(String cpf) {
+		this.getConnection().getEntityManager().clear();
+
+		try {
+			Medico medico = this.getConnection().getEntityManager().createNamedQuery("Medico.getIdByCpf", Medico.class).setParameter("cpf", cpf).getSingleResult();
+			return medico.getId();
+		} catch (NoResultException e) {
+			return -1;
+		}
 	}
 
 	public ArrayList<Medico> listarMedicosCadastrados() {
@@ -314,7 +339,7 @@ public class AdministradorRepository extends GenericDAO<Administrador> implement
 		return true;
 	}
 
-	public boolean cadastrarNovaSecretaria(String nome, String CPF, String RG, Date dataNascimento, String endereco, String telefone, String email, String senha) {
+	public boolean cadastrarNovaSecretaria(String nome, String CPF, String RG, String dataNascimento, int endereco, String telefone, String email, String senha) {
 		Secretaria secretaria = new Secretaria();
 
 		secretaria.setNome(nome);

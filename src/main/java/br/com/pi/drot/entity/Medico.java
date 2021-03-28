@@ -1,19 +1,20 @@
 package br.com.pi.drot.entity;
 
-import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+@NamedQuery(name = "Medico.getIdByCpf", query = "SELECT m FROM Medico m WHERE m.CPF = :cpf")
 @Entity
 @Table(name = "Medico")
 public class Medico{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "codmedico")
 	private int id;
 
 	@Column(name = "nome")
@@ -25,17 +26,20 @@ public class Medico{
 	@Column(name = "RG")
 	private String RG;
 
-	@Column(name = "Data_nascimento")
-	private Date dataNascimento;
+	@Column(name = "DataNascimento")
+	private String dataNascimento;
 
-	@Column(name = "endereco")
-	private String endereco;
+	@Column(name = "cod_endereco")
+	private int endereco;
 
 	@Column(name = "telefone")
 	private String telefone;
 
 	@Column(name = "email")
 	private String email;
+
+	@Column(name = "senha")
+	private String senha;
 
 	public int getId() {
 		return id;
@@ -57,31 +61,31 @@ public class Medico{
 		return CPF;
 	}
 
-	public void setCPF(String cPF) {
-		CPF = cPF;
+	public void setCPF(String CPF) {
+		this.CPF = CPF;
 	}
 
 	public String getRG() {
 		return RG;
 	}
 
-	public void setRG(String rG) {
-		RG = rG;
+	public void setRG(String RG) {
+		this.RG = RG;
 	}
 
-	public Date getDataNascimento() {
+	public String getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(Date dataNascimento) {
+	public void setDataNascimento(String dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public String getEndereco() {
+	public int getEndereco() {
 		return endereco;
 	}
 
-	public void setEndereco(String endereco) {
+	public void setEndereco(int endereco) {
 		this.endereco = endereco;
 	}
 
@@ -108,30 +112,5 @@ public class Medico{
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
-	public String getCRM() {
-		return CRM;
-	}
-
-	public void setCRM(String cRM) {
-		CRM = cRM;
-	}
-
-	public String getEspecialidade() {
-		return especialidade;
-	}
-
-	public void setEspecialidade(String especialidade) {
-		this.especialidade = especialidade;
-	}
-
-	@Column(name = "senha")
-	private String senha;
-
-	@Column(name = "CRM")
-	private String CRM;
-
-	@Column(name = "especialidade")
-	private String especialidade;
 
 }

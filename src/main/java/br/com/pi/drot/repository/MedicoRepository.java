@@ -1,15 +1,13 @@
 package br.com.pi.drot.repository;
 
 import br.com.pi.drot.connection.Connection;
-import br.com.pi.drot.dao.GenericDAO;
 import br.com.pi.drot.dao.MedicoDAO;
 import br.com.pi.drot.entity.Medico;
 
-public class MedicoRepository extends GenericDAO<MedicoRepository> implements MedicoDAO {
+public class MedicoRepository implements MedicoDAO {
 	private Connection connection;
 
 	public MedicoRepository() {
-		super(Medico.class);
 		this.connection = new Connection();
 	}
 

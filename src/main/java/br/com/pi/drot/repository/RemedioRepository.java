@@ -1,17 +1,15 @@
 package br.com.pi.drot.repository;
 
-import java.util.ArrayList;
+import javax.persistence.NoResultException;
 
 import br.com.pi.drot.connection.Connection;
-import br.com.pi.drot.dao.GenericDAO;
 import br.com.pi.drot.dao.RemedioDAO;
 import br.com.pi.drot.entity.Remedio;
 
-public class RemedioRepository extends GenericDAO<RemedioRepository> implements RemedioDAO{
+public class RemedioRepository implements RemedioDAO{
 	private Connection connection;
 
 	public RemedioRepository() {
-		super(Remedio.class);
 		this.connection = new Connection();
 	}
 
@@ -23,35 +21,30 @@ public class RemedioRepository extends GenericDAO<RemedioRepository> implements 
 		this.connection = connection;
 	}
 
-	@Override
-	public boolean cadastrarRemedio(TratamentoPacienteRepository tratamento) {
-		// TODO Auto-generated method stub
-		return false;
+	public Remedio criarRemedio(String nomeRemedio, String dosagem, String bula, String contraIndicacao) {
+		Remedio remedio = new Remedio();
+		remedio.setNomeRemedio(nomeRemedio);
+		remedio.setDosagem(dosagem);
+		remedio.setBula(bula);
+		remedio.setContraIndicacao(contraIndicacao);
+		this.getConnection().getEntityManager().getTransaction().begin();
+		this.getConnection().getEntityManager().persist(remedio);
+		this.getConnection().getEntityManager().getTransaction().commit();
+		this.getConnection().getEntityManager().close();
+		System.out.println("Novo remédio cadastrado com sucesso!" + remedio.getId());
+
+		return remedio;
 	}
 
-	@Override
-	public RemedioRepository buscarRemedioPorID(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public int buscarIdByNome(String nome) {
+		try {
+			Remedio remedio = this.getConnection().getEntityManager().createNamedQuery("Remedio.getIdByName", Remedio.class).setParameter("nome", nome).getSingleResult();
+
+			System.out.println("=> R" + remedio.getId());
+
+			return remedio.getId();
+		} catch(NoResultException e) {
+			return -1;
+		}
 	}
-
-	@Override
-	public ArrayList<RemedioRepository> listarRemedio() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean editar(RemedioRepository remedio) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean removerRemedioPorId(int id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-
 }

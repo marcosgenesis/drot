@@ -7,13 +7,14 @@ import javax.swing.JOptionPane;
 
 import br.com.pi.drot.UI.MainFX;
 import br.com.pi.drot.repository.AdministradorRepository;
-import br.com.pi.drot.utils.CleanFormatCpf;
-import br.com.pi.drot.utils.MaskFormatter;
+import br.com.pi.drot.utils.FormatadorCPF;
+import br.com.pi.drot.utils.FormatadorMascara;
 import br.com.pi.drot.validations.CpfValidation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class LoginFXController implements Initializable{
@@ -22,7 +23,7 @@ public class LoginFXController implements Initializable{
 	private TextField loginUser;
 
 	@FXML
-	private TextField passUser;
+	private PasswordField passUser;
 
 	@FXML
 	private Button btnLogin;
@@ -32,7 +33,7 @@ public class LoginFXController implements Initializable{
 		if (this.loginUser.getText().equals("") || this.passUser.getText().equals("")) {
 			JOptionPane.showMessageDialog(null, "Insertion all inputs for login", "Input Invalid", 0);
 		} else {
-			if (!CpfValidation.cpfValido(CleanFormatCpf.cleanCpf(this.loginUser.getText()))) {
+			if (!CpfValidation.cpfValido(FormatadorCPF.cleanCpf(this.loginUser.getText()))) {
 				JOptionPane.showMessageDialog(null, "These CPF for access not is valid", "Email Invalid", 0);
 			} else {
 				AdministradorRepository admModel = new AdministradorRepository();
@@ -53,8 +54,8 @@ public class LoginFXController implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		MaskFormatter maskCpf = new MaskFormatter(loginUser);
-		maskCpf.setMask(MaskFormatter.CPF);
+		FormatadorMascara maskCpf = new FormatadorMascara(loginUser);
+		maskCpf.setMask(FormatadorMascara.CPF);
 	}
 
 }

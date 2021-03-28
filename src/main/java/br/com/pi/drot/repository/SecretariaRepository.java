@@ -1,14 +1,11 @@
 package br.com.pi.drot.repository;
 
 import br.com.pi.drot.connection.Connection;
-import br.com.pi.drot.dao.GenericDAO;
-import br.com.pi.drot.entity.Secretaria;
 
-public class SecretariaRepository extends GenericDAO<SecretariaRepository>{
+public class SecretariaRepository {
 	private Connection connection;
 
 	public SecretariaRepository() {
-		super(Secretaria.class);
 		this.connection = new Connection();
 	}
 

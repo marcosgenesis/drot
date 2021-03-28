@@ -1,7 +1,5 @@
 package br.com.pi.drot.entity;
 
-import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,13 +7,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import br.com.pi.drot.connection.Connection;
-
 @Entity
 @Table(name = "Secretaria")
 public class Secretaria{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "codsecretaria")
 	private int id;
 
 	@Column(name = "nome")
@@ -27,11 +24,11 @@ public class Secretaria{
 	@Column(name = "RG")
 	private String RG;
 
-	@Column(name = "Data_nascimento")
-	private Date dataNascimento;
+	@Column(name = "DataNascimento")
+	private String dataNascimento;
 
-	@Column(name = "endereco")
-	private String endereco;
+	@Column(name = "cod_endereco")
+	private int endereco;
 
 	@Column(name = "telefone")
 	private String telefone;
@@ -41,9 +38,6 @@ public class Secretaria{
 
 	@Column(name = "senha")
 	private String senha;
-
-	@Column(name = "connection")
-	private Connection connection;
 
 	public int getId() {
 		return id;
@@ -65,31 +59,31 @@ public class Secretaria{
 		return CPF;
 	}
 
-	public void setCPF(String cPF) {
-		CPF = cPF;
+	public void setCPF(String CPF) {
+		this.CPF = CPF;
 	}
 
 	public String getRG() {
 		return RG;
 	}
 
-	public void setRG(String rG) {
-		RG = rG;
+	public void setRG(String RG) {
+		this.RG = RG;
 	}
 
-	public Date getDataNascimento() {
+	public String getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(Date dataNascimento) {
+	public void setDataNascimento(String dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public String getEndereco() {
+	public int getEndereco() {
 		return endereco;
 	}
 
-	public void setEndereco(String endereco) {
+	public void setEndereco(int endereco) {
 		this.endereco = endereco;
 	}
 
@@ -115,14 +109,6 @@ public class Secretaria{
 
 	public void setSenha(String senha) {
 		this.senha = senha;
-	}
-
-	public Connection getConnection() {
-		return connection;
-	}
-
-	public void setConnection(Connection connection) {
-		this.connection = connection;
 	}
 
 }

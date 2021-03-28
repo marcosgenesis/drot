@@ -7,9 +7,9 @@ import br.com.pi.drot.entity.Medico;
 import br.com.pi.drot.entity.Paciente;
 
 public interface ConsultaDAO{
-	boolean criarConsulta(Paciente paciente, Medico medico, Date dataConsulta);
+	boolean criarConsulta(int paciente, int medico, String dataConsulta, String descricao);
 
-	boolean remarcarConsulta(Consulta consulta, Date dataConsulta);
+	boolean remarcarConsulta(Consulta consulta, String dataConsulta);
 
 	boolean desmarcarConsulta(Consulta consulta);
 
