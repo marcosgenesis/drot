@@ -57,7 +57,7 @@ public class TesteT {
 			System.out.println("Endereço não encontrado");
 		}*/
 
-		int IdPaciente = aR.buscarPacientePorCPF("000000000");
+		/*int IdPaciente = aR.buscarPacientePorCPF("000000000");
 		int IdMedico = aR.buscarMedicoPorCPF("000000000");
 
 		if (IdPaciente != -1 && IdMedico != -1) {
@@ -65,21 +65,21 @@ public class TesteT {
 			cR.criarConsulta(IdPaciente, IdMedico, "1900/01/01", "Teste do teste do my eggys");
 		} else {
 			System.out.println("Num foi não!");
-		}
+		}*/
 
 		TratamentoPacienteRepository tP = new TratamentoPacienteRepository();
 
 		RemedioRepository remedioRepository = new RemedioRepository();
 		ExameRepository exameRepository = new ExameRepository();
 
-		Remedio remedio =remedioRepository.criarRemedio("Dorflex", "15mg", "Bula.pdf", "Dor de cabeça e dores no corpo");
+		//Remedio remedio = remedioRepository.criarRemedio("Dorflex", "15mg", "Bula.pdf", "Dor de cabeça e dores no corpo");
 		Exame exame = exameRepository.criarExame("Vista", "Miopia", "You cego man ?", "2021/10/10");
 
 		//Criar paciente com ID 1d
 		tP.criarTratamentoPaciente(1, 45);
 
 		tP.adicionarExame(exame, 1);
-		tP.adicionarRemedio(remedio, 1);
+		//tP.adicionarRemedio(remedio, 1);
 
 	}
 
