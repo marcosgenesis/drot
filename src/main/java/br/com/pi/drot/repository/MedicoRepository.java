@@ -1,10 +1,8 @@
 package br.com.pi.drot.repository;
 
 import br.com.pi.drot.connection.Connection;
-import br.com.pi.drot.dao.MedicoDAO;
-import br.com.pi.drot.entity.Medico;
 
-public class MedicoRepository implements MedicoDAO {
+public class MedicoRepository {
 	private Connection connection;
 
 	public MedicoRepository() {
@@ -18,39 +16,6 @@ public class MedicoRepository implements MedicoDAO {
 	public void setConnection(Connection connection) {
 		this.connection = connection;
 	}
-
-
-	@Override
-	public void consultarPaciente() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void editarHistoricoPaciente() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void consultarHistoricoPaciente() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void criarTratamentodoPaciente() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void editarTratamentodoPaciente() {
-		// TODO Auto-generated method stub
-
-	}
-
-
 }
 
 
