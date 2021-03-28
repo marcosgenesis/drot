@@ -75,7 +75,7 @@ public class TesteT {
 		Remedio remedio =remedioRepository.criarRemedio("Dorflex", "15mg", "Bula.pdf", "Dor de cabeça e dores no corpo");
 		Exame exame = exameRepository.criarExame("Vista", "Miopia", "You cego man ?", "2021/10/10");
 
-		//Criar paciente com ID 1
+		//Criar paciente com ID 1d
 		tP.criarTratamentoPaciente(1, 45);
 
 		tP.adicionarExame(exame, 1);
