@@ -1,7 +1,6 @@
 package br.com.pi.drot.repository;
 
 import br.com.pi.drot.connection.Connection;
-import br.com.pi.drot.entity.Paciente;
 
 public class PacienteRepository {
 

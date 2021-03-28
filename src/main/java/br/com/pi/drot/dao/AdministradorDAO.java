@@ -11,47 +11,37 @@ public interface AdministradorDAO {
 
 	 boolean cadastrarNovoAdministrador(String nome, String CPF, String RG, String dataNascimento, int endereco, String telefone, String email, String senha);
 
-	 boolean editarAdministrador(Administrador administrador);
-
 	 Administrador buscarAdministradorPorID(int id);
-
-	 ArrayList<Administrador> listarAdministradoresCadastrados();
 
 	 boolean cadastrarNovoPaciente(String nome, String CPF, String RG, String dataNascimento, int endereco, String telefone, String restricaoMedicamental, String doencaHereditaria, String email, String senha);
 
-	 boolean editarPaciente(Paciente paciente);
+	 boolean editarPaciente(int idPaciente, int endereco, String telefone, String email, String senha);
 
-	 Paciente buscarPacientePorID(int id);
+	 Paciente buscarPacientePorID(int idPaciente);
 
 	 ArrayList<Paciente> listarPacientesCadastrados();
 
-	 boolean removerPaciente(Paciente paciente);
-
-	 boolean removerPacientePorId(int id);
+	 boolean removerPaciente(int idPaciente);
 
 	 boolean cadastrarNovoMedico(String nome, String CPF, String RG, String dataNascimento, int endereco, String telefone, String email, String senha);
 
-	 boolean editarMedico(Medico medico);
+	 boolean editarMedico(int idMedico, int endereco, String telefone, String email, String senha);
 
-	 Medico buscarMedicoPorID(int id);
+	 Medico buscarMedicoPorID(int idMedico);
 
 	 ArrayList<Medico> listarMedicosCadastrados();
 
-	 boolean removerMedico(Medico medico);
-
-	 boolean removerMedicoPorId(int id);
+	 boolean removerMedico(int idMedico);
 
 	 boolean cadastrarNovaSecretaria(String nome, String CPF, String RG, String dataNascimento, int endereco, String telefone, String email, String senha);
 
-	 boolean editarSecretaria(Secretaria secretaria);
+	 boolean editarSecretaria(int idSecretaria, int endereco, String telefone, String email, String senha);
 
-	 Secretaria buscarSecretariaPorID(int id);
+	 Secretaria buscarSecretariaPorID(int idSecretaria);
 
 	 ArrayList<Secretaria> listarSecretariasCadastrados();
 
-	 boolean removerSecretaria(Secretaria secretaria);
-
-	 boolean removerSecretariaPorId(int id);
+	 boolean removerSecretaria(int idSecretaria);
 
 	 boolean logado(String email, String pass);
 
