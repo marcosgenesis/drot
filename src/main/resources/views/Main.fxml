@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -11,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.pi.drot.controllers.MainFXController">
    <children>
       <Pane layoutX="-3.0" layoutY="-2.0" prefHeight="808.0" prefWidth="1287.0" style="-fx-background-color: f3f8fd;">
          <children>
@@ -31,21 +32,40 @@
                         <Font name="Arial" size="34.0" />
                      </font>
                   </Text>
-                  <Text layoutX="102.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Painel de controle">
+                  <FontAwesomeIcon fill="#d6dce2" iconName="USER" layoutX="59.0" layoutY="267.0" size="2em" text="" />
+                  <FontAwesomeIcon fill="#d6dce2" iconName="USER_MD" layoutX="59.0" layoutY="324.0" size="2em" />
+                  <FontAwesomeIcon fill="#2784ff" iconName="DASHBOARD" layoutX="56.0" layoutY="209.0" size="2em" text="" />
+                  <Button fx:id="clickBtn" layoutX="98.0" layoutY="182.0" mnemonicParsing="false" onAction="#btnSwitchWindow" prefHeight="36.0" prefWidth="157.0" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Painel de controle">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="clickBtn1" layoutX="98.0" layoutY="240.0" mnemonicParsing="false" onAction="#btnSwitchWindow" prefHeight="36.0" prefWidth="157.0" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pacientes">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="clickBtn11" layoutX="98.0" layoutY="298.0" mnemonicParsing="false" onAction="#btnSwitchWindow" prefHeight="36.0" prefWidth="157.0" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Médicos">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </graphic>
+                  </Button>
+                  <Button layoutX="25.0" layoutY="85.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="231.0" style="-fx-background-color: #2784ff;" text="Adicionar Paciente na Fila" textFill="WHITE">
                      <font>
-                        <Font size="18.0" />
-                     </font></Text>
-                  <Text fill="#7c7c7c" layoutX="100.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pacientes">
-                     <font>
-                        <Font size="18.0" />
-                     </font></Text>
-                  <Text fill="#7c7c7c" layoutX="101.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Médicos">
-                     <font>
-                        <Font size="18.0" />
-                     </font></Text>
-                  <FontAwesomeIcon fill="#d6dce2" iconName="USER" layoutX="50.0" layoutY="168.0" size="2em" />
-                  <FontAwesomeIcon fill="#d6dce2" iconName="USER_MD" layoutX="50.0" layoutY="210.0" size="2em" />
-                  <FontAwesomeIcon fill="#2784ff" iconName="DASHBOARD" layoutX="49.0" layoutY="130.0" size="2em" />
+                        <Font name="System Bold" size="14.0" />
+                     </font></Button>
                </children>
             </Pane>
             <TextField layoutX="425.0" layoutY="48.0" prefHeight="53.0" prefWidth="549.0" promptText="Pesquisar Paciente" style="-fx-background-color: fff; -fx-background-radius: 10px 10px 00px 0px; -fx-padding: 5 5 5 5;" />
@@ -96,6 +116,11 @@
             </Pane>
             <Pane layoutX="1189.0" layoutY="41.0" prefHeight="60.0" prefWidth="59.0" style="-fx-background-radius: 50%; -fx-background-color: #fff;" />
             <FontAwesomeIcon fill="#2784ff" iconName="SEARCH" layoutX="373.0" layoutY="84.0" size="3em" />
+            <Text layoutX="1069.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome do cara">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
          </children>
       </Pane>
    </children>

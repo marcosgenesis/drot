@@ -27,7 +27,14 @@ public class MainFXController implements Initializable {
 
 	@FXML
 	private void btnSwitchWindow(ActionEvent event) {
-		MainFX.chanceWindow("newuser");
+		System.out.println("teste");
+		MainFX.chanceWindow("");
+	}
+	
+	@FXML
+	private void changeLogin(ActionEvent event) {
+		System.out.println("teste");
+		MainFX.chanceWindow("login");
 	}
 
 	public void initialize(URL location, ResourceBundle resources) {

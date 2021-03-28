@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class MainFX extends Application {
@@ -20,7 +21,7 @@ public class MainFX extends Application {
 			stage = primaryStage;
 			primaryStage.setTitle("DROT SYSTEM");
 
-			Parent loaderLogin = FXMLLoader.load(getClass().getResource("/views/Login.fxml"));
+			Parent loaderLogin = FXMLLoader.load(getClass().getResource("/views/Main.fxml"));
 			loginScene = new Scene(loaderLogin);
 
 			Parent loaderMain = FXMLLoader.load(getClass().getResource("/views/Main.fxml"));
@@ -28,7 +29,7 @@ public class MainFX extends Application {
 
 			Parent loaderLogado = FXMLLoader.load(getClass().getResource("/views/Logado.fxml"));
 			LogadoScene = new Scene(loaderLogado);
-
+			
 			primaryStage.setResizable(false);
 			primaryStage.setScene(loginScene);
 			primaryStage.show();
