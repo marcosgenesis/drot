@@ -5,6 +5,8 @@ import br.com.pi.drot.entity.Remedio;
 import br.com.pi.drot.repository.AdministradorRepository;
 import br.com.pi.drot.repository.ConsultaRepository;
 import br.com.pi.drot.repository.EnderecoRepository;
+import br.com.pi.drot.repository.ExameRepository;
+import br.com.pi.drot.repository.RemedioRepository;
 import br.com.pi.drot.repository.TratamentoPacienteRepository;
 
 public class TesteT {
@@ -67,13 +69,17 @@ public class TesteT {
 
 		TratamentoPacienteRepository tP = new TratamentoPacienteRepository();
 
+		RemedioRepository remedioRepository = new RemedioRepository();
+		ExameRepository exameRepository = new ExameRepository();
 
+		Remedio remedio =remedioRepository.criarRemedio("Dorflex", "15mg", "Bula.pdf", "Dor de cabeça e dores no corpo");
+		Exame exame = exameRepository.criarExame("Vista", "Miopia", "You cego man ?", "2021/10/10");
 
-		rM.c
+		//Criar paciente com ID 1
+		tP.criarTratamentoPaciente(1, 45);
 
-		tP.adic
-
-		tP.criarTratamentoPaciente(1, remedio, exame, tempoTratamento)
+		tP.adicionarExame(exame, 1);
+		tP.adicionarRemedio(remedio, 1);
 
 	}
 

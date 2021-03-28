@@ -1,6 +1,7 @@
 package br.com.pi.drot.dao;
 
+import br.com.pi.drot.entity.Remedio;
 
 public interface RemedioDAO {
-	boolean criarRemedio(String nomeRemedio, String dosagem, String bula, String contraIndicacao);
+	Remedio criarRemedio(String nomeRemedio, String dosagem, String bula, String contraIndicacao);
 }

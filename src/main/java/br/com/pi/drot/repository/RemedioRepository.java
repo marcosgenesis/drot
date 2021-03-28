@@ -21,7 +21,7 @@ public class RemedioRepository extends GenericDAO<RemedioRepository> implements 
 		this.connection = connection;
 	}
 
-	public boolean criarRemedio(String nomeRemedio, String dosagem, String bula, String contraIndicacao) {
+	public Remedio criarRemedio(String nomeRemedio, String dosagem, String bula, String contraIndicacao) {
 		Remedio remedio = new Remedio();
 		remedio.setNomeRemedio(nomeRemedio);
 		remedio.setDosagem(dosagem);
@@ -32,6 +32,6 @@ public class RemedioRepository extends GenericDAO<RemedioRepository> implements 
 		this.getConnection().getEntityManager().getTransaction().commit();
 		this.getConnection().getEntityManager().close();
 		System.out.println("Novo remédio cadastrado com sucesso!" +remedio.getId());
-		return true;
+		return remedio;
 	}
 }

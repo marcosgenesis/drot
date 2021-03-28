@@ -22,7 +22,7 @@ public class ExameRepository extends GenericDAO<ExameRepository> implements Exam
 		this.connection = connection;
 	}
 
-	public boolean criarExame(String nomeExame, String diagnosticoExame, String descricaoExame, String dataExame) {
+	public Exame criarExame(String nomeExame, String diagnosticoExame, String descricaoExame, String dataExame) {
 		Exame exame = new Exame();
 		exame.setNomeExame(nomeExame);
 		exame.setDiagnosticoExame(diagnosticoExame);
@@ -34,6 +34,6 @@ public class ExameRepository extends GenericDAO<ExameRepository> implements Exam
 		this.getConnection().getEntityManager().getTransaction().commit();
 		this.getConnection().getEntityManager().close();
 		System.out.println("Novo exame cadastrado com sucesso!" +exame.getId());
-		return true;
+		return exame;
 	}
 }
