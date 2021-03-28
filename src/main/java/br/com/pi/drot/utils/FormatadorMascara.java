@@ -16,10 +16,10 @@ public class FormatadorMascara {
     public static final int RG = 3;
     public static final int DATA_BARRA = 4;
     public static final int DATA_TRACO = 5;
+    public static final int CEP = 6;
 
     public FormatadorMascara(TextField campoTexto) {
         this.campoTexto = campoTexto;
-
     }
 
     public FormatadorMascara(DatePicker datePicker) {
@@ -30,20 +30,27 @@ public class FormatadorMascara {
     public void setMask(int tipoMascara) {
         this.mascaraSelecionada = tipoMascara;
         if (!usarSelecionadorData) {
-
             switch (tipoMascara) {
                 case TEL_8DIG:
                 	mascaraTelefone8Dig();
                     break;
+
                 case TEL_9DIG:
                 	mascaraTelefone9Dig();
                     break;
+
                 case CPF:
                     mascaraCPF();
                     break;
+
                 case RG:
                     mascaraRG();
                     break;
+
+                case CEP:
+                	mascaraCEP();
+                	break;
+
                 default:
                     break;
             }
@@ -67,7 +74,6 @@ public class FormatadorMascara {
                 evento.consume();
             }
             if (evento.getCharacter().trim().length() == 0) {
-
                 switch (campoTexto.getText().length()) {
                     case 9:
                     	campoTexto.setText(campoTexto.getText().substring(0, 8));
@@ -112,7 +118,6 @@ public class FormatadorMascara {
             }
 
             if (evento.getCharacter().trim().length() == 0) {
-
                 switch (campoTexto.getText().length()) {
                     case 1:
                         campoTexto.setText("");
@@ -156,7 +161,6 @@ public class FormatadorMascara {
             }
 
             if (evento.getCharacter().trim().length() == 0) {
-
                 switch (campoTexto.getText().length()) {
                     case 11:
                         campoTexto.setText(campoTexto.getText().substring(0, 9));
@@ -175,6 +179,7 @@ public class FormatadorMascara {
             } else if (campoTexto.getText().length() == 14) {
                 evento.consume();
             }
+
             switch (campoTexto.getText().length()) {
                 case 3:
                     campoTexto.setText(campoTexto.getText() + ".");
@@ -193,6 +198,33 @@ public class FormatadorMascara {
         });
     }
 
+    public void mascaraCEP() {
+    	campoTexto.setOnKeyTyped((KeyEvent evento) -> {
+    		if (!"0123456789".contains(evento.getCharacter())) {
+    			evento.consume();
+    		}
+
+    		if (evento.getCharacter().trim().length() == 0) {
+    			switch (campoTexto.getText().length()) {
+    				case 5:
+    					campoTexto.setText(campoTexto.getText().substring(0, 4));
+    					campoTexto.positionCaret(campoTexto.getText().length());
+    					break;
+    			}
+    		} else if (campoTexto.getText().length() == 9) {
+    			evento.consume();
+    		}
+
+    		switch (campoTexto.getText().length()) {
+    			case 5:
+    				campoTexto.setText(campoTexto.getText() + "-");
+    				campoTexto.positionCaret(campoTexto.getText().length());
+    				break;
+    		}
+    	});
+    }
+
+
     private void mascaraRG() {
         campoTexto.setOnKeyTyped((KeyEvent evento) -> {
             if (!"0123456789".contains(evento.getCharacter())) {
@@ -200,7 +232,6 @@ public class FormatadorMascara {
             }
 
             if (evento.getCharacter().trim().length() == 0) {
-
                 switch (campoTexto.getText().length()) {
                     case 2:
                         campoTexto.setText(campoTexto.getText().substring(0, 1));
@@ -219,6 +250,7 @@ public class FormatadorMascara {
             } else if (campoTexto.getText().length() == 12) {
                 evento.consume();
             }
+
             switch (campoTexto.getText().length()) {
                 case 2:
                     campoTexto.setText(campoTexto.getText() + ".");
@@ -313,21 +345,31 @@ public class FormatadorMascara {
             case TEL_8DIG:
                 campoTexto.setPromptText("(__) ____-____");
                 break;
+
             case TEL_9DIG:
             	campoTexto.setPromptText("(__) _____-____");
                 break;
+
             case CPF:
                 campoTexto.setPromptText("___.___.___-__");
                 break;
+
             case RG:
                 campoTexto.setPromptText("__.___.___-_");
                 break;
+
             case DATA_BARRA:
             	selecionadorDado.setPromptText("__/__/____");
                 break;
+
             case DATA_TRACO:
                 selecionadorDado.setPromptText("__-__-____");
                 break;
+
+            case CEP:
+            	selecionadorDado.setPromptText("_____-___");
+            	break;
+
             default:
                 break;
         }
