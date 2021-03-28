@@ -1,13 +1,11 @@
 package br.com.pi.drot.repository;
 
-import java.sql.Date;
 import java.util.ArrayList;
 
 import br.com.pi.drot.connection.Connection;
 import br.com.pi.drot.dao.GenericDAO;
 import br.com.pi.drot.dao.TratamentoPacienteDAO;
 import br.com.pi.drot.entity.Exame;
-import br.com.pi.drot.entity.Paciente;
 import br.com.pi.drot.entity.Remedio;
 import br.com.pi.drot.entity.TratamentoPaciente;
 
@@ -27,12 +25,10 @@ public class TratamentoPacienteRepository extends GenericDAO<TratamentoPacienteR
 		this.connection = connection;
 	}
 
-	public boolean criarTratamentoPaciente(Paciente paciente, Remedio remedio, Exame exame, Date inicioTratamento, Date fimTratamento) {
+	public boolean criarTratamentoPaciente(int idPaciente, int tempoTratamento) {
 		TratamentoPaciente tratamento = new TratamentoPaciente();
-		tratamento.adicionarExame(tratamento, exame);
-		tratamento.adicionarRemedio(tratamento, remedio);
-		tratamento.setPaciente(paciente.getId());
-		tratamento.setInicioTratamento(inicioTratamento);
+		tratamento.setPaciente(idPaciente);
+		tratamento.setTempoTratamento(tempoTratamento);
 
 		this.getConnection().getEntityManager().getTransaction().begin();
 		this.getConnection().getEntityManager().persist(tratamento);
@@ -64,13 +60,16 @@ public class TratamentoPacienteRepository extends GenericDAO<TratamentoPacienteR
 		return tratamentos;
 	}
 
-	public boolean editarTratamentoPacienteAdicionarRemedio(TratamentoPaciente tratamento, Remedio remedio) {
+	public boolean editarTratamentoPacienteAdicionarRemedio(int idTratamento, int idRemedio) {
+		TratamentoPaciente tratamento = buscarTratamentoPacientePorID(idTratamento);
 		if(tratamento == null){
 			System.out.println("Tratamento para o usuário não encontrado");
 			return false;
 		}
 
-		tratamento.adicionarRemedio(tratamento, remedio);
+		Remedio remedio = buscarRemedioPorID(idRemedio);
+
+		this.adicionarRemedio(remedio, idTratamento);
 
 		try {
             this.getConnection().getEntityManager().getTransaction().begin();
@@ -88,13 +87,14 @@ public class TratamentoPacienteRepository extends GenericDAO<TratamentoPacienteR
 	}
 
 
-	public boolean editarTratamentoPacienteRemoverRemedio(TratamentoPaciente tratamento, Remedio remedio) {
+	public boolean editarTratamentoPacienteRemoverRemedio(int idTratamento, int idRemedio) {
+		TratamentoPaciente tratamento = buscarTratamentoPacientePorID(idTratamento);
 		if(tratamento == null){
 			System.out.println("Tratamento para o usuário não encontrado");
 			return false;
 		}
 
-		tratamento.removerRemedio(tratamento, remedio);
+		this.removerRemedioPorID(idTratamento, idRemedio);
 
 		try {
             this.getConnection().getEntityManager().getTransaction().begin();
@@ -111,13 +111,16 @@ public class TratamentoPacienteRepository extends GenericDAO<TratamentoPacienteR
         return true;
 	}
 
-	 public boolean editarTratamentoPacienteAdicionarExame(TratamentoPaciente tratamento, Exame exame) {
+	public boolean editarTratamentoPacienteAdicionarExame(int idTratamento, int idExame) {
+		TratamentoPaciente tratamento = buscarTratamentoPacientePorID(idTratamento);
 		if(tratamento == null){
 			System.out.println("Tratamento para o usuário não encontrado");
 			return false;
 		}
 
-		tratamento.adicionarExame(tratamento, exame);
+		Exame exame = buscarExamePorID(idExame);
+
+		this.adicionarExame(exame, idTratamento);
 
 		try {
             this.getConnection().getEntityManager().getTransaction().begin();
@@ -125,7 +128,7 @@ public class TratamentoPacienteRepository extends GenericDAO<TratamentoPacienteR
             this.getConnection().getEntityManager().getTransaction().commit();
     		this.getConnection().getEntityManager().close();
         } catch (Exception ex) {
-    		System.out.println("Erro ao adicionar exame ao tratamento do paciente");
+    		System.out.println("Erro ao adicionar remedio ao tratamento do paciente");
             return false;
         }
 
@@ -134,13 +137,15 @@ public class TratamentoPacienteRepository extends GenericDAO<TratamentoPacienteR
         return true;
 	}
 
-	public boolean editarTratamentoPacienteRemoverExame(TratamentoPaciente tratamento, Exame exame) {
+
+	public boolean editarTratamentoPacienteRemoverExame(int idTratamento, int idExame) {
+		TratamentoPaciente tratamento = buscarTratamentoPacientePorID(idTratamento);
 		if(tratamento == null){
 			System.out.println("Tratamento para o usuário não encontrado");
 			return false;
 		}
-
-		tratamento.removerExame(tratamento, exame);
+		Exame exame = buscarExamePorID(idExame);
+		this.removerExamePorID(exame, idTratamento);
 
 		try {
             this.getConnection().getEntityManager().getTransaction().begin();
@@ -148,7 +153,7 @@ public class TratamentoPacienteRepository extends GenericDAO<TratamentoPacienteR
             this.getConnection().getEntityManager().getTransaction().commit();
     		this.getConnection().getEntityManager().close();
         } catch (Exception ex) {
-    		System.out.println("Erro ao remover exame do tratamento do paciente");
+    		System.out.println("Erro ao remover remedio do tratamento do paciente");
             return false;
         }
 
@@ -157,14 +162,15 @@ public class TratamentoPacienteRepository extends GenericDAO<TratamentoPacienteR
         return true;
 	}
 
-	/*
-	public boolean editarTratamentoPacienteAlterarFimTratamento(TratamentoPaciente tratamento, Date fimTratamento) {
+	public boolean editarTratamentoPacienteAlterarTempoTratamento(int idTratamento, int tempoTratamento) {
+		TratamentoPaciente tratamento = buscarTratamentoPacientePorID(idTratamento);
+
 		if(tratamento == null){
 			System.out.println("Tratamento para o usuário não encontrado");
 			return false;
 		}
 
-		tratamento.setFimTratamento(fimTratamento);
+		tratamento.setTempoTratamento(tempoTratamento);
 
 		try {
             this.getConnection().getEntityManager().getTransaction().begin();
@@ -180,7 +186,7 @@ public class TratamentoPacienteRepository extends GenericDAO<TratamentoPacienteR
 
         return true;
 	}
-	*/
+
 	public boolean removerTratamentoPacientePorId(int id) {
 		TratamentoPaciente tratamento = this.getConnection().getEntityManager().find(TratamentoPaciente.class, id);
 
@@ -199,20 +205,59 @@ public class TratamentoPacienteRepository extends GenericDAO<TratamentoPacienteR
 		return true;
 	}
 
-	public boolean removerTratamentoṔaciente(TratamentoPaciente tratamento) {
-		if(tratamento == null){
-			System.out.println("Tratamento para paciente não encontrado");
-			return false;
+	public boolean adicionarRemedio(Remedio remedio, int idTratamento) {
+		TratamentoPaciente tratamento = buscarTratamentoPacientePorID(idTratamento);
+		ArrayList<Remedio> remedios = tratamento.getRemedio();
+		remedios.add(remedio);
+		tratamento.setRemedio(remedios);
+		return true;
+	}
+
+	public boolean adicionarExame(Exame exame, int idTratamento) {
+		TratamentoPaciente tratamento = buscarTratamentoPacientePorID(idTratamento);
+		ArrayList<Exame> exames = tratamento.getExame();
+		exames.add(exame);
+		tratamento.setExame(exames);
+		return true;
+	}
+
+	public Remedio buscarRemedioPorID(int id) {
+		this.getConnection().getEntityManager().clear();
+		Remedio remedio = this.getConnection().getEntityManager().find(Remedio.class, id);
+		if(remedio == null){
+			System.out.println("Remedio não encontrado");
 		}
 
-		this.getConnection().getEntityManager().getTransaction().begin();
-		this.getConnection().getEntityManager().remove(tratamento.getId());
-		this.getConnection().getEntityManager().getTransaction().commit();
 		this.getConnection().getEntityManager().close();
+		return remedio;
+	}
 
-		System.out.println("Tratamento removido do banco com sucesso");
-
+	public boolean removerRemedioPorID(int idRemedio, int idTratamento) {
+		Remedio remedio = buscarRemedioPorID(idRemedio);
+		TratamentoPaciente tratamento = buscarTratamentoPacientePorID(idTratamento);
+		ArrayList<Remedio> remedios = tratamento.getRemedio();
+		remedios.remove(remedio);
+		tratamento.setRemedio(remedios);
 		return true;
+	}
+
+
+	public boolean removerExamePorID(Exame exame, int idTratamento) {
+		TratamentoPaciente tratamento = buscarTratamentoPacientePorID(idTratamento);
+		ArrayList<Exame> exames = tratamento.getExame();
+		exames.remove(exame);
+		tratamento.setExame(exames);
+		return true;
+	}
+
+	public Exame buscarExamePorID(int id) {
+		this.getConnection().getEntityManager().clear();
+		Exame exame = this.getConnection().getEntityManager().find(Exame.class, id);
+		if(exame == null){
+			System.out.println("Exame não encontrado");
+		}
+		this.getConnection().getEntityManager().close();
+		return exame;
 	}
 
 }

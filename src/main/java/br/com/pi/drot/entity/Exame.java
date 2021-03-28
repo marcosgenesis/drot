@@ -1,7 +1,5 @@
 package br.com.pi.drot.entity;
 
-import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,7 +24,7 @@ public class Exame {
 	private String descricaoExame;
 
 	@Column(name = "dataExame")
-	private Date dataExame;
+	private String dataExame;
 
 	public int getId() {
 		return id;
@@ -60,11 +58,11 @@ public class Exame {
 		this.descricaoExame = descricaoExame;
 	}
 
-	public Date getDataExame() {
+	public String getDataExame() {
 		return dataExame;
 	}
 
-	public void setDataExame(Date dataExame) {
+	public void setDataExame(String dataExame) {
 		this.dataExame = dataExame;
 	}
 

@@ -1,8 +1,11 @@
 package br.com.pi.drot.utils;
 
+import br.com.pi.drot.entity.Exame;
+import br.com.pi.drot.entity.Remedio;
 import br.com.pi.drot.repository.AdministradorRepository;
 import br.com.pi.drot.repository.ConsultaRepository;
 import br.com.pi.drot.repository.EnderecoRepository;
+import br.com.pi.drot.repository.TratamentoPacienteRepository;
 
 public class TesteT {
 
@@ -61,6 +64,16 @@ public class TesteT {
 		} else {
 			System.out.println("Num foi não!");
 		}
+
+		TratamentoPacienteRepository tP = new TratamentoPacienteRepository();
+
+
+
+		rM.c
+
+		tP.adic
+
+		tP.criarTratamentoPaciente(1, remedio, exame, tempoTratamento)
 
 	}
 

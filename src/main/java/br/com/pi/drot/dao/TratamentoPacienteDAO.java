@@ -1,33 +1,41 @@
 package br.com.pi.drot.dao;
 
-import java.sql.Date;
 import java.util.ArrayList;
 
 import br.com.pi.drot.entity.Exame;
-import br.com.pi.drot.entity.Paciente;
 import br.com.pi.drot.entity.Remedio;
 import br.com.pi.drot.entity.TratamentoPaciente;
 
-public interface TratamentoPacienteDAO {
+ public interface TratamentoPacienteDAO {
 
-	boolean criarTratamentoPaciente(Paciente paciente, Remedio remedio, Exame exame, Date inicioTratamento, Date fimTratamento);
+	boolean criarTratamentoPaciente(int idPaciente, int tempoTratamento);
 
-	TratamentoPaciente buscarTratamentoPacientePorID(int id);
+	TratamentoPaciente buscarTratamentoPacientePorID(int idTratamento);
 
 	ArrayList<TratamentoPaciente> listarTratamentosPaciente();
 
-	boolean editarTratamentoPacienteAdicionarRemedio(TratamentoPaciente tratamento, Remedio remedio);
+	boolean editarTratamentoPacienteAdicionarRemedio(int idTratamento, int idRemedio);
 
-	boolean editarTratamentoPacienteRemoverRemedio(TratamentoPaciente tratamento, Remedio remedio);
+	boolean editarTratamentoPacienteRemoverRemedio(int idTratamento, int idRemedio);
 
-	boolean editarTratamentoPacienteAdicionarExame(TratamentoPaciente tratamento, Exame exame);
+	boolean editarTratamentoPacienteAdicionarExame(int idTratamento, int idExame);
 
-	boolean editarTratamentoPacienteRemoverExame(TratamentoPaciente tratamento, Exame exame);
+	boolean editarTratamentoPacienteRemoverExame(int idTratamento, int idExame);
 
-	//boolean editarTratamentoPacienteAlterarFimTratamento(TratamentoPaciente tratamento, Date fimTratamento);
+	boolean editarTratamentoPacienteAlterarTempoTratamento(int idTratamento, int tempoTratamento);
 
-	boolean removerTratamentoṔaciente(TratamentoPaciente tratamento);
+	boolean adicionarRemedio(Remedio remedio, int idTratamento);
 
-	boolean removerTratamentoPacientePorId(int id);
+	boolean removerTratamentoPacientePorId(int idTratamento);
+
+	boolean adicionarExame(Exame exame, int idTratamento);
+
+	Remedio buscarRemedioPorID(int id);
+
+	boolean removerRemedioPorID(int idRemedio, int idTratamento);
+
+	boolean removerExamePorID(Exame exame, int idTratamento);
+
+	Exame buscarExamePorID(int id);
 
 }

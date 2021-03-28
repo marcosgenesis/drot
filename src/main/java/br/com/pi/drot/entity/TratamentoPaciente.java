@@ -1,6 +1,4 @@
 package br.com.pi.drot.entity;
-
-import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.persistence.Column;
@@ -27,10 +25,7 @@ public class TratamentoPaciente{
 	private ArrayList <Remedio> remedio;
 
 	@Column(name = "tempoTratamento")
-	private Date inicioTratamento;
-
-	/*@Column(name = "tempoTratamento")
-	private Date fimTratamento;*/
+	private int tempoTratamento;
 
 
 	public int getId() {
@@ -65,49 +60,11 @@ public class TratamentoPaciente{
 		this.remedio = remedio;
 	}
 
-	public Date getInicioTratamento() {
-		return inicioTratamento;
+	public int getTempoTratamento() {
+		return tempoTratamento;
 	}
 
-	public void setInicioTratamento(Date inicioTratamento) {
-		this.inicioTratamento = inicioTratamento;
+	public void setTempoTratamento(int tempoTratamento) {
+		this.tempoTratamento = tempoTratamento;
 	}
-
-	/*public Date getFimTratamento() {
-		return fimTratamento;
-	}
-
-	public void setFimTratamento(Date fimTratamento) {
-		this.fimTratamento = fimTratamento;
-	}*/
-
-	public boolean adicionarRemedio(TratamentoPaciente tratamento, Remedio remedio) {
-		ArrayList<Remedio> remedios = tratamento.getRemedio();
-		remedios.add(remedio);
-		tratamento.setRemedio(remedios);
-		return true;
-	}
-
-	public boolean adicionarExame(TratamentoPaciente tratamento, Exame exame) {
-		ArrayList<Exame> exames = tratamento.getExame();
-		exames.add(exame);
-		tratamento.setExame(exames);
-		return true;
-	}
-
-	public boolean removerRemedio(TratamentoPaciente tratamento, Remedio remedio) {
-		ArrayList<Remedio> remedios = tratamento.getRemedio();
-		remedios.remove(remedio);
-		tratamento.setRemedio(remedios);
-		return true;
-	}
-
-	public boolean removerExame(TratamentoPaciente tratamento, Exame exame) {
-		ArrayList<Exame> exames = tratamento.getExame();
-		exames.remove(exame);
-		tratamento.setExame(exames);
-		return true;
-	}
-
-
 }
