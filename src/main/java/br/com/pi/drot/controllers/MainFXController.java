@@ -6,13 +6,14 @@ import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 
 import br.com.pi.drot.UI.MainFX;
+import br.com.pi.drot.components.SideBarController;
 //import br.com.pi.drot.entity.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
-public class MainFXController implements Initializable {
+public class MainFXController extends SideBarController implements Initializable{
 
 	@FXML
 	private Button clickBtn;
@@ -25,11 +26,6 @@ public class MainFXController implements Initializable {
 		JOptionPane.showMessageDialog(null, "O controller da tela funcionou!", "Controller implementado com sucesso", 0);
 	}
 
-	@FXML
-	private void btnSwitchWindow(ActionEvent event) {
-		System.out.println("teste");
-		MainFX.chanceWindow("");
-	}
 	
 	@FXML
 	private void changeLogin(ActionEvent event) {

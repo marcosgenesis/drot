@@ -13,7 +13,8 @@ public class MainFX extends Application {
 	private static Scene mainScene;
 	private static Scene loginScene;
 	private static Scene LogadoScene;
-	//private static Scene newUserScene;
+	private static Scene PatientsScene;
+	private static Scene DoctorsScene;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -30,6 +31,12 @@ public class MainFX extends Application {
 			Parent loaderLogado = FXMLLoader.load(getClass().getResource("/views/Logado.fxml"));
 			LogadoScene = new Scene(loaderLogado);
 			
+			Parent patientsScene = FXMLLoader.load(getClass().getResource("/views/Patients.fxml"));
+			PatientsScene = new Scene(patientsScene);
+			
+			Parent doctorsScene = FXMLLoader.load(getClass().getResource("/views/Doctors.fxml"));
+			DoctorsScene = new Scene(doctorsScene);
+			
 			primaryStage.setResizable(false);
 			primaryStage.setScene(loginScene);
 			primaryStage.show();
@@ -39,6 +46,7 @@ public class MainFX extends Application {
 	}
 
 	public static void chanceWindow (String windowOption) {
+		System.out.println(windowOption);
 		switch (windowOption) {
 			case "main":
 				stage.setScene(mainScene);
@@ -50,6 +58,14 @@ public class MainFX extends Application {
 
 			case "logado":
 				stage.setScene(LogadoScene);
+				break;
+
+			case "patientsScene":
+				stage.setScene(PatientsScene);
+				break;
+				
+			case "doctorsScene":
+				stage.setScene(DoctorsScene);
 				break;
 		}
 	}

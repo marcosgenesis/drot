@@ -29,13 +29,13 @@
                <children>
                   <Text fill="#2784ff" layoutX="93.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="drot">
                      <font>
-                        <Font name="Arial" size="34.0" />
+                        <Font name="Arial" size="34.0" /> 
                      </font>
                   </Text>
                   <FontAwesomeIcon fill="#d6dce2" iconName="USER" layoutX="59.0" layoutY="267.0" size="2em" text="" />
                   <FontAwesomeIcon fill="#d6dce2" iconName="USER_MD" layoutX="59.0" layoutY="324.0" size="2em" />
                   <FontAwesomeIcon fill="#2784ff" iconName="DASHBOARD" layoutX="56.0" layoutY="209.0" size="2em" text="" />
-                  <Button fx:id="clickBtn" layoutX="98.0" layoutY="182.0" mnemonicParsing="false" onAction="#btnSwitchWindow" prefHeight="36.0" prefWidth="157.0" style="-fx-background-color: transparent;">
+                  <Button fx:id="clickBtn" layoutX="98.0" layoutY="182.0" mnemonicParsing="false"  prefHeight="36.0" prefWidth="157.0" style="-fx-background-color: transparent;">
                      <graphic>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Painel de controle">
                            <font>
@@ -44,7 +44,7 @@
                         </Text>
                      </graphic>
                   </Button>
-                  <Button fx:id="clickBtn1" layoutX="98.0" layoutY="240.0" mnemonicParsing="false" onAction="#btnSwitchWindow" prefHeight="36.0" prefWidth="157.0" style="-fx-background-color: transparent;">
+                  <Button fx:id="clickBtn1" layoutX="98.0" layoutY="240.0" mnemonicParsing="false" onAction="#btnSwitchPatientScreen" prefHeight="36.0" prefWidth="157.0" style="-fx-background-color: transparent;">
                      <graphic>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pacientes">
                            <font>
@@ -53,7 +53,7 @@
                         </Text>
                      </graphic>
                   </Button>
-                  <Button fx:id="clickBtn11" layoutX="98.0" layoutY="298.0" mnemonicParsing="false" onAction="#btnSwitchWindow" prefHeight="36.0" prefWidth="157.0" style="-fx-background-color: transparent;">
+                  <Button fx:id="clickBtn11" layoutX="98.0" layoutY="298.0" mnemonicParsing="false" onAction="#btnSwitchDoctorScreen" prefHeight="36.0" prefWidth="157.0" style="-fx-background-color: transparent;">
                      <graphic>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Médicos">
                            <font>

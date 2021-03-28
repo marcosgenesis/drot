@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.pi.drot.controllers.MainFXController">
+<AnchorPane prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.pi.drot.controllers.DoctorsFXController">
    <children>
       <Pane layoutX="-3.0" layoutY="-2.0" prefHeight="808.0" prefWidth="1287.0" style="-fx-background-color: f3f8fd;">
          <children>
@@ -21,8 +21,8 @@
                         <Font name="Arial" size="34.0" />
                      </font>
                   </Text>
-                  <FontAwesomeIcon fill="#2784ff" iconName="USER" layoutX="59.0" layoutY="267.0" size="2em" text="" />
-                  <FontAwesomeIcon fill="#d6dce2" iconName="USER_MD" layoutX="59.0" layoutY="324.0" size="2em" />
+                  <FontAwesomeIcon fill="#d6dce2" iconName="USER" layoutX="59.0" layoutY="267.0" size="2em" text="" />
+                  <FontAwesomeIcon fill="#2784ff" iconName="USER_MD" layoutX="59.0" layoutY="324.0" size="2em" />
                   <FontAwesomeIcon fill="#d6dce2" iconName="DASHBOARD" layoutX="56.0" layoutY="209.0" size="2em" text="" />
                   <Button fx:id="clickBtn" layoutX="98.0" layoutY="182.0" mnemonicParsing="false" onAction="#btnSwitchControlPanel" prefHeight="36.0" prefWidth="157.0" style="-fx-background-color: transparent;">
                      <graphic>
@@ -33,7 +33,7 @@
                         </Text>
                      </graphic>
                   </Button>
-                  <Button fx:id="clickBtn1" layoutX="98.0" layoutY="240.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="157.0" style="-fx-background-color: transparent;">
+                  <Button fx:id="clickBtn1" layoutX="98.0" layoutY="240.0" mnemonicParsing="false" onAction="#btnSwitchPatientScreen" prefHeight="36.0" prefWidth="157.0" style="-fx-background-color: transparent;">
                      <graphic>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pacientes">
                            <font>
@@ -42,7 +42,7 @@
                         </Text>
                      </graphic>
                   </Button>
-                  <Button fx:id="clickBtn11" layoutX="98.0" layoutY="298.0" mnemonicParsing="false" onAction="#btnSwitchDoctorScreen" prefHeight="36.0" prefWidth="157.0" style="-fx-background-color: transparent;">
+                  <Button fx:id="clickBtn11" layoutX="98.0" layoutY="298.0" mnemonicParsing="false"  prefHeight="36.0" prefWidth="157.0" style="-fx-background-color: transparent;">
                      <graphic>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Médicos">
                            <font>
@@ -70,12 +70,13 @@
                   <TableView layoutY="68.0" prefHeight="572.0" prefWidth="877.0" style="-fx-border-color: #fff;">
                     <columns>
                       <TableColumn prefWidth="321.0" style="-fx-background-color: ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #EFF0F2;" text="paciente" />
-                        <TableColumn prefWidth="89.0" style="-fx-background-color: ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #EFF0F2;" text="idade" />
-                        <TableColumn minWidth="9.0" prefWidth="138.0" style="-fx-background-color: ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #EFF0F2;" text="data de nascimento" />
-                        <TableColumn prefWidth="327.0" style="-fx-background-color: ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #EFF0F2;" text="Endereço" />
+                        <TableColumn prefWidth="89.0" style="-fx-background-color: ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #EFF0F2;" text="CPF" />
+                        <TableColumn minWidth="9.0" prefWidth="138.0" style="-fx-background-color: ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #EFF0F2;" text="Pacientes" />
+                        <TableColumn prefWidth="160.0" style="-fx-background-color: ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #EFF0F2;" text="Internações" />
+                        <TableColumn minWidth="9.0" prefWidth="167.0" style="-fx-background-color: ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #EFF0F2;" text="Consultas Hoje" />
                     </columns>
                   </TableView>
-                  <Text layoutX="22.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Todos os pacientes">
+                  <Text layoutX="22.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Todos os médicos">
                      <font>
                         <Font size="22.0" />
                      </font>
