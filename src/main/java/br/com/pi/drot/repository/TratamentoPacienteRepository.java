@@ -3,12 +3,17 @@ package br.com.pi.drot.repository;
 import java.util.ArrayList;
 
 import javax.persistence.NoResultException;
+import javax.persistence.TypedQuery;
 
 import br.com.pi.drot.connection.Connection;
 import br.com.pi.drot.dao.TratamentoPacienteDAO;
+import br.com.pi.drot.entity.Consulta;
 import br.com.pi.drot.entity.Exame;
+import br.com.pi.drot.entity.Paciente;
 import br.com.pi.drot.entity.Remedio;
 import br.com.pi.drot.entity.TratamentoPaciente;
+import br.com.pi.drot.models.ConsultasPaciente;
+import br.com.pi.drot.models.TratamentosPaciente;
 
 public class TratamentoPacienteRepository implements TratamentoPacienteDAO{
 	private Connection connection;
@@ -203,6 +208,27 @@ public class TratamentoPacienteRepository implements TratamentoPacienteDAO{
 		}
 		this.getConnection().getEntityManager().close();
 		return exame;
+	}
+
+	public ArrayList<TratamentosPaciente> tratamentosPaciente(int idPaciente) {
+		String sqlConsulta = "SELECT c FROM Consulta c WHERE c.paciente =: id";
+		TypedQuery<TratamentoPaciente> queryTratamentos = this.getConnection().getEntityManager().createQuery(sqlConsulta, TratamentoPaciente.class).setParameter("id", idPaciente);
+		ArrayList<TratamentoPaciente> tratamentos = (ArrayList<TratamentoPaciente>) queryTratamentos.getResultList();
+
+
+		ArrayList<TratamentosPaciente> tratamentosPrescritos = new ArrayList<TratamentosPaciente>();
+
+		for (int i = 0; i < tratamentos.size(); i++) {
+			Exame exame = this.getConnection().getEntityManager().createNamedQuery("Exame.getById", Exame.class).setParameter("idE", tratamentos.get(i).getPaciente()).getSingleResult();
+			Remedio remedio = this.getConnection().getEntityManager().createNamedQuery("Remedio.getById", Remedio.class).setParameter("idR", tratamentos.get(i).getPaciente()).getSingleResult();
+			tratamentosPrescritos.add(new TratamentosPaciente(exame.getNomeExame(), remedio.getNomeRemedio(), tratamentos.get(i).getTempoTratamento()));
+		}
+
+		for (int i = 0; i < tratamentosPrescritos.size(); i++) {
+			System.out.println(tratamentosPrescritos.get(i));
+		}
+
+		return tratamentosPrescritos;
 	}
 
 }

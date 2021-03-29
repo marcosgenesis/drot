@@ -24,8 +24,6 @@ public class MedicoRepository {
 		this.connection = connection;
 	}
 
-<<<<<<< HEAD
-=======
 	public ArrayList<ConsultasMedico> consultasRealizadas(int idMedico) {
 		String sqlConsulta = "SELECT c FROM Consulta c WHERE c.medico =: id";
 		TypedQuery<Consulta> queryConsultas = this.getConnection().getEntityManager().createQuery(sqlConsulta, Consulta.class).setParameter("id", idMedico);
@@ -45,7 +43,6 @@ public class MedicoRepository {
 
 		return consultasRealizadas;
 	}
->>>>>>> a7e4cd67f4cc1c8eaa4fa3b33419bb11c1e15607
 }
 
 
