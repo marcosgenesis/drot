@@ -42,7 +42,7 @@ public class AdministradorRepository implements AdministradorDAO{
 			this.getConnection().getEntityManager().getTransaction().begin();
 			this.getConnection().getEntityManager().persist(administrador);
 			this.getConnection().getEntityManager().getTransaction().commit();
-			this.getConnection().getEntityManager().close();
+
 		} catch(Exception ex) {
 			System.out.println("Erro ao criar administrador.");
             return false;
@@ -56,7 +56,7 @@ public class AdministradorRepository implements AdministradorDAO{
 		this.getConnection().getEntityManager().clear();
 		try{
 			Administrador administrador = this.getConnection().getEntityManager().createNamedQuery("Administrador.getById", Administrador.class).setParameter(id, id).getSingleResult();
-			this.getConnection().getEntityManager().close();
+
 			return administrador;
 		} catch(NoResultException ex) {
 			System.out.println("Administrador não encontrado");
@@ -82,7 +82,7 @@ public class AdministradorRepository implements AdministradorDAO{
 			this.getConnection().getEntityManager().getTransaction().begin();
 			this.getConnection().getEntityManager().persist(paciente);
 			this.getConnection().getEntityManager().getTransaction().commit();
-			this.getConnection().getEntityManager().close();
+
 		} catch(Exception ex) {
 			System.out.println("Erro ao criar paciente.");
             return false;
@@ -103,7 +103,7 @@ public class AdministradorRepository implements AdministradorDAO{
             this.getConnection().getEntityManager().getTransaction().begin();
             this.getConnection().getEntityManager().merge(paciente);
             this.getConnection().getEntityManager().getTransaction().commit();
-    		this.getConnection().getEntityManager().close();
+
     		System.out.println("Paciente editado com sucesso!");
             return true;
         } catch (Exception ex) {
@@ -117,7 +117,7 @@ public class AdministradorRepository implements AdministradorDAO{
 
 		try{
 			Paciente paciente = this.getConnection().getEntityManager().createNamedQuery("Paciente.getById", Paciente.class).setParameter(id, id).getSingleResult();
-			this.getConnection().getEntityManager().close();
+
 			return paciente;
 		} catch(NoResultException ex) {
 			System.out.println("Paciente não encontrado");
@@ -130,7 +130,7 @@ public class AdministradorRepository implements AdministradorDAO{
 
 		try {
 			Paciente paciente = this.getConnection().getEntityManager().createNamedQuery("Paciente.getIdByCpf", Paciente.class).setParameter("cpf", cpf).getSingleResult();
-			this.getConnection().getEntityManager().close();
+
 			return paciente.getId();
 		} catch (NoResultException e) {
 			System.out.println("Paciente não encontrado");
@@ -142,7 +142,7 @@ public class AdministradorRepository implements AdministradorDAO{
 		this.getConnection().getEntityManager();
 		try {
 			ArrayList<Paciente> pacientes = (ArrayList<Paciente>) this.getConnection().getEntityManager().createQuery("from Paciente", Paciente.class).getResultList();
-			this.getConnection().getEntityManager().close();
+
 			return pacientes;
 		} catch (NoResultException e) {
 			System.out.println("Não há pacientes cadastrados.");
@@ -161,7 +161,7 @@ public class AdministradorRepository implements AdministradorDAO{
 			this.getConnection().getEntityManager().getTransaction().begin();
 	        this.getConnection().getEntityManager().remove(paciente);
 	        this.getConnection().getEntityManager().getTransaction().commit();
-			this.getConnection().getEntityManager().close();
+
 			System.out.println("Paciente removido do banco com sucesso!");
 			return true;
 		} catch(Exception ex) {
@@ -184,7 +184,7 @@ public class AdministradorRepository implements AdministradorDAO{
 			this.getConnection().getEntityManager().getTransaction().begin();
 			this.getConnection().getEntityManager().persist(medico);
 			this.getConnection().getEntityManager().getTransaction().commit();
-			this.getConnection().getEntityManager().close();
+
 			System.out.println("Nova(o) medico(a) cadastrado com sucesso!");
 			return true;
 		} catch(Exception ex) {
@@ -204,7 +204,7 @@ public class AdministradorRepository implements AdministradorDAO{
 	            this.getConnection().getEntityManager().getTransaction().begin();
 	            this.getConnection().getEntityManager().merge(medico);
 	            this.getConnection().getEntityManager().getTransaction().commit();
-	    		this.getConnection().getEntityManager().close();
+
 	    		System.out.println("Médico editado com sucesso!");
 		        return true;
 	        } catch (Exception ex) {
@@ -218,7 +218,7 @@ public class AdministradorRepository implements AdministradorDAO{
 
 		try{
 			Medico medico = this.getConnection().getEntityManager().createNamedQuery("Medico.getById", Medico.class).setParameter(id, id).getSingleResult();
-			this.getConnection().getEntityManager().close();
+
 			return medico;
 		} catch(NoResultException ex) {
 			System.out.println("Médico não encontrado");
@@ -242,7 +242,7 @@ public class AdministradorRepository implements AdministradorDAO{
 
 		try {
 			ArrayList<Medico> medicos = (ArrayList<Medico>) this.getConnection().getEntityManager().createQuery("from Medico", Medico.class).getResultList();
-			this.getConnection().getEntityManager().close();
+
 			return medicos;
 		}catch(NoResultException ex) {
 			System.out.println("Não há médicos cadastrados em nosso banco de dados.");
@@ -262,7 +262,7 @@ public class AdministradorRepository implements AdministradorDAO{
 		 	this.getConnection().getEntityManager().getTransaction().begin();
 	        this.getConnection().getEntityManager().remove(medico);
 	        this.getConnection().getEntityManager().getTransaction().commit();
-			this.getConnection().getEntityManager().close();
+
 			System.out.println("Médico removido do banco com sucesso!");
 			return true;
 		} catch(Exception ex) {
@@ -286,7 +286,7 @@ public class AdministradorRepository implements AdministradorDAO{
 			this.getConnection().getEntityManager().getTransaction().begin();
 			this.getConnection().getEntityManager().persist(secretaria);
 			this.getConnection().getEntityManager().getTransaction().commit();
-			this.getConnection().getEntityManager().close();
+
 			System.out.println("Nova(o) secretaria(o) cadastrado com sucesso!");
 			return true;
 		} catch(Exception ex) {
@@ -305,7 +305,7 @@ public class AdministradorRepository implements AdministradorDAO{
             this.getConnection().getEntityManager().getTransaction().begin();
             this.getConnection().getEntityManager().merge(secretaria);
             this.getConnection().getEntityManager().getTransaction().commit();
-    		this.getConnection().getEntityManager().close();
+
     		System.out.println("Secretária editada com sucesso!");
             return true;
         } catch (Exception ex) {
@@ -319,7 +319,7 @@ public class AdministradorRepository implements AdministradorDAO{
 
 		try{
 			Secretaria secretaria = this.getConnection().getEntityManager().createNamedQuery("Secretaria.getById", Secretaria.class).setParameter(id, id).getSingleResult();
-			this.getConnection().getEntityManager().close();
+
 			return secretaria;
 		} catch(NoResultException ex) {
 			System.out.println("Secretária não encontrada");
@@ -331,7 +331,7 @@ public class AdministradorRepository implements AdministradorDAO{
 		this.getConnection().getEntityManager().clear();
 		try {
 			ArrayList<Secretaria> secretarias = (ArrayList<Secretaria>) this.getConnection().getEntityManager().createQuery("from Secretaria", Secretaria.class).getResultList();
-			this.getConnection().getEntityManager().close();
+
 			return secretarias;
 		}catch(NoResultException ex) {
 			System.out.println("Não há secretaria cadastradas em nosso banco de dados.");
@@ -351,7 +351,7 @@ public class AdministradorRepository implements AdministradorDAO{
 		 	this.getConnection().getEntityManager().getTransaction().begin();
 	        this.getConnection().getEntityManager().remove(secretaria);
 	        this.getConnection().getEntityManager().getTransaction().commit();
-			this.getConnection().getEntityManager().close();
+
 			System.out.println("Secretária removida do banco com sucesso!");
 			return true;
 		} catch(Exception ex) {

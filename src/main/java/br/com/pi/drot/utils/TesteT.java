@@ -1,19 +1,25 @@
 package br.com.pi.drot.utils;
 
+import java.util.ArrayList;
+
+import com.sun.xml.bind.v2.schemagen.xmlschema.List;
+
 import br.com.pi.drot.entity.Exame;
 import br.com.pi.drot.entity.Remedio;
+import br.com.pi.drot.models.ConsultasMedico;
 import br.com.pi.drot.repository.AdministradorRepository;
 import br.com.pi.drot.repository.ConsultaRepository;
 import br.com.pi.drot.repository.EnderecoRepository;
 import br.com.pi.drot.repository.ExameRepository;
+import br.com.pi.drot.repository.MedicoRepository;
 import br.com.pi.drot.repository.RemedioRepository;
 import br.com.pi.drot.repository.TratamentoPacienteRepository;
 
 public class TesteT {
 
 	public static void main(String[] args) {
-		//AdministradorRepository aR = new AdministradorRepository();
-		//EnderecoRepository eR = new EnderecoRepository();
+		AdministradorRepository aR = new AdministradorRepository();
+		EnderecoRepository eR = new EnderecoRepository();
 
 		//É SÓ LER PARA ENTENDER, :)
 
@@ -81,10 +87,17 @@ public class TesteT {
 		tP.adicionarExame(exame, 1);*/
 		//tP.adicionarRemedio(remedio, 1);
 
-		String senha = "qwe1234";
+		/*String senha = "qwe1234";
 
 		System.out.println("Senha => " + senha);
-		System.out.println("Senha => " + CriptografarSenha.criptografarSenha(senha));
+		System.out.println("Senha => " + CriptografarSenha.criptografarSenha(senha));*/
+
+		MedicoRepository mR = new MedicoRepository();
+		ArrayList<ConsultasMedico> consultasRetorno = (ArrayList<ConsultasMedico>) mR.consultasRealizadas(1);
+
+		for (int i = 0; i < consultasRetorno.size(); i++) {
+			System.out.println(consultasRetorno.get(i));
+		}
 
 	}
 
