@@ -12,8 +12,8 @@ import br.com.pi.drot.repository.TratamentoPacienteRepository;
 public class TesteT {
 
 	public static void main(String[] args) {
-		//AdministradorRepository aR = new AdministradorRepository();
-		//EnderecoRepository eR = new EnderecoRepository();
+		AdministradorRepository aR = new AdministradorRepository();
+		EnderecoRepository eR = new EnderecoRepository();
 
 		//É SÓ LER PARA ENTENDER, :)
 
@@ -46,7 +46,7 @@ public class TesteT {
 			System.out.println("Endereço não encontrado");
 		}*/
 
-
+		
 		//eR.cadastrarEndereco("CE", "Rua Teste", 444, "Teste", "Onde o cão não habita", "2");
 		/*int idEndereco = eR.pegarIdEndereco("2", 444);
 
@@ -67,7 +67,7 @@ public class TesteT {
 			System.out.println("Num foi não!");
 		}*/
 
-		/*TratamentoPacienteRepository tP = new TratamentoPacienteRepository();
+		TratamentoPacienteRepository tP = new TratamentoPacienteRepository();
 
 		RemedioRepository remedioRepository = new RemedioRepository();
 		ExameRepository exameRepository = new ExameRepository();
@@ -78,13 +78,8 @@ public class TesteT {
 		//Criar paciente com ID 1d
 		tP.criarTratamentoPaciente(1, 45);
 
-		tP.adicionarExame(exame, 1);*/
+		tP.adicionarExame(exame, 1);
 		//tP.adicionarRemedio(remedio, 1);
-
-		String senha = "qwe1234";
-
-		System.out.println("Senha => " + senha);
-		System.out.println("Senha => " + CriptografarSenha.criptografarSenha(senha));
 
 	}
 
