@@ -32,7 +32,6 @@ public class ExameRepository implements ExameDAO{
 		this.getConnection().getEntityManager().getTransaction().begin();
 		this.getConnection().getEntityManager().persist(exame);
 		this.getConnection().getEntityManager().getTransaction().commit();
-		this.getConnection().getEntityManager().close();
 		System.out.println("Novo exame cadastrado com sucesso!" +exame.getId());
 
 		return exame;

@@ -5,13 +5,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+//@NamedQuery(name = "Consulta.getById", query = "SELECT c FROM Consulta c WHERE c.codconsulta = :id")
 @Entity
 @Table(name = "Consulta")
 public class Consulta{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "codconsulta")
 	private int id;
 
 	@Column(name = "cod_paciente")
@@ -25,6 +28,12 @@ public class Consulta{
 
 	@Column(name = "cod_medico")
 	private int medico;
+
+	@Column(name = "classificacaoUrgencia")
+	private String classificacaoUrgencia;
+
+	@Column(name = "consultaRealizada")
+	private boolean consultaRealizada;
 
 	public int getId() {
 		return id;
@@ -64,6 +73,22 @@ public class Consulta{
 
 	public void setMedico(int medico) {
 		this.medico = medico;
+	}
+
+	public boolean getConsultaRealizada(){
+		return consultaRealizada;
+	}
+
+	public void setConsultaRealizada(boolean consultaRealizada){
+		this.consultaRealizada = consultaRealizada;
+	}
+
+	public String getClassificacaoUrgencia(){
+		return classificacaoUrgencia;
+	}
+
+	public void setClassificacaoUrgencia(String classificacaoUrgencia){
+		this.classificacaoUrgencia = classificacaoUrgencia;
 	}
 
 }

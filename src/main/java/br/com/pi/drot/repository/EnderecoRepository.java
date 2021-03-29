@@ -22,7 +22,6 @@ public class EnderecoRepository implements EnderecoDAO{
 		this.connection = connection;
 	}
 
-	@Override
 	public boolean cadastrarEndereco(String uf, String rua, int numero, String bairro, String cidade, String cep) {
 		Endereco endereco = new Endereco();
 		endereco.setUf(uf);
@@ -42,7 +41,6 @@ public class EnderecoRepository implements EnderecoDAO{
 		return true;
 	}
 
-	@Override
 	public int pegarIdEndereco(String cep, int numero) {
 		try {
 			Endereco e = this.getConnection().getEntityManager().createNamedQuery("Endereco.getIdEndereco", Endereco.class).setParameter("numero", numero).setParameter("cep", cep).getSingleResult();

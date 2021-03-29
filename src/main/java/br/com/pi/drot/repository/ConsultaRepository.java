@@ -1,5 +1,7 @@
 package br.com.pi.drot.repository;
 
+import javax.persistence.NoResultException;
+
 import br.com.pi.drot.connection.Connection;
 import br.com.pi.drot.dao.ConsultaDAO;
 import br.com.pi.drot.entity.Consulta;
@@ -20,79 +22,104 @@ public class ConsultaRepository implements ConsultaDAO {
 		this.connection = connection;
 	}
 
-	@Override
-	public boolean criarConsulta(int paciente, int medico, String dataConsulta, String descricao) {
+	public boolean criarConsulta(int paciente, int medico, String dataConsulta, String descricao, String classificacaoUrgencia) {
 		Consulta consulta = new Consulta();
 		consulta.setPaciente(paciente);
 		consulta.setMedico(medico);
 		consulta.setDescricaoConsulta(descricao);
 		consulta.setDataConsulta(dataConsulta);
+		consulta.setClassificacaoUrgencia(classificacaoUrgencia);
+		consulta.setConsultaRealizada(false);
 
-		this.getConnection().getEntityManager().getTransaction().begin();
-		this.getConnection().getEntityManager().persist(consulta);
-		this.getConnection().getEntityManager().getTransaction().commit();
+		try {
+			this.getConnection().getEntityManager().getTransaction().begin();
+			this.getConnection().getEntityManager().persist(consulta);
+			this.getConnection().getEntityManager().getTransaction().commit();
 
-		this.getConnection().getEntityManager().close();
-
-		System.out.println("Nova consulta cadastrada com sucesso! Com o id: " + consulta.getId());
-
-		return true;
+			System.out.println("Nova consulta cadastrada com sucesso! Com o id: " + consulta.getId());
+			return true;
+        } catch (Exception ex) {
+    		System.out.println("Erro ao remarcar consulta");
+            return false;
+        }
 	}
 
-	@Override
-	public boolean remarcarConsulta(Consulta consulta, String dataConsulta) {
+
+	public boolean remarcarConsulta(int idConsulta, String dataConsulta) {
+		this.getConnection().getEntityManager().clear();
+		Consulta consulta = this.buscarConsultaPorId(idConsulta);
 		if(consulta == null){
 			System.out.println("Consulta não encontrada.");
 			return false;
 		}
 
 		consulta.setDataConsulta(dataConsulta);
-
 		try {
             this.getConnection().getEntityManager().getTransaction().begin();
             this.getConnection().getEntityManager().merge(consulta);
             this.getConnection().getEntityManager().getTransaction().commit();
-    		this.getConnection().getEntityManager().close();
+
+    		System.out.println("Consulta remarcada com sucesso!");
+            return true;
         } catch (Exception ex) {
     		System.out.println("Erro ao remarcar consulta");
             return false;
         }
-
-		System.out.println("Consulta remarcada com sucesso!");
-
-        return true;
 	}
 
-	@Override
-	public boolean desmarcarConsulta(Consulta consulta) {
+	public boolean desmarcarConsulta(int idConsulta) {
+		this.getConnection().getEntityManager().clear();
+		Consulta consulta = this.buscarConsultaPorId(idConsulta);
 		if(consulta == null){
 			System.out.println("Consulta não encontrada.");
 			return false;
 		}
+		try {
+		 	this.getConnection().getEntityManager().getTransaction().begin();
+	        this.getConnection().getEntityManager().remove(consulta);
+	        this.getConnection().getEntityManager().getTransaction().commit();
 
-	 	this.getConnection().getEntityManager().getTransaction().begin();
-        this.getConnection().getEntityManager().remove(consulta.getId());
-        this.getConnection().getEntityManager().getTransaction().commit();
-		this.getConnection().getEntityManager().close();
-
-		System.out.println("Consulta" + consulta.getId() + "desmarcada do banco com sucesso!");
-
-		return true;
+			System.out.println("Consulta" + consulta.getId() + "desmarcada do banco com sucesso!");
+			return true;
+		}catch(Exception ex) {
+			System.out.println("Erro ao remarcar consulta");
+            return false;
+		}
 	}
 
-	@Override
 	public Consulta buscarConsultaPorId(int id) {
 		this.getConnection().getEntityManager().clear();
 
-		Consulta consulta = this.getConnection().getEntityManager().find(Consulta.class, id);
+		try{
+			Consulta consulta = this.getConnection().getEntityManager().createNamedQuery("Consulta.getById", Consulta.class).setParameter(id, id).getSingleResult();
 
-		if(consulta == null){
-			System.out.println("Consulta não encontrada.");
+			return consulta;
+		} catch(NoResultException ex) {
+			System.out.println("Consulta não encontrada");
+			return null;
 		}
-
-		this.getConnection().getEntityManager().close();
-		return consulta;
 	}
 
+	public boolean marcarConsultaComoConcluida(int idConsulta){
+		this.getConnection().getEntityManager().clear();
+		try{
+			Consulta consulta = buscarConsultaPorId(idConsulta);
+			consulta.setConsultaRealizada(true);
+			try{
+				this.getConnection().getEntityManager().getTransaction().begin();
+		        this.getConnection().getEntityManager().merge(consulta);
+		        this.getConnection().getEntityManager().getTransaction().commit();
+
+				System.out.println("A Consulta foi concluída com sucesso.");
+				return true;
+			}catch(Exception ex) {
+				System.out.println("Erro na realização da consulta");
+	            return false;
+			}
+		}catch(NoResultException ex) {
+			System.out.println("Consulta não encontrada");
+			return false;
+		}
+	}
 }
 

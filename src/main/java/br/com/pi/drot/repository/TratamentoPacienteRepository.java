@@ -3,12 +3,17 @@ package br.com.pi.drot.repository;
 import java.util.ArrayList;
 
 import javax.persistence.NoResultException;
+import javax.persistence.TypedQuery;
 
 import br.com.pi.drot.connection.Connection;
 import br.com.pi.drot.dao.TratamentoPacienteDAO;
+import br.com.pi.drot.entity.Consulta;
 import br.com.pi.drot.entity.Exame;
+import br.com.pi.drot.entity.Paciente;
 import br.com.pi.drot.entity.Remedio;
 import br.com.pi.drot.entity.TratamentoPaciente;
+import br.com.pi.drot.models.ConsultasPaciente;
+import br.com.pi.drot.models.TratamentosPaciente;
 
 public class TratamentoPacienteRepository implements TratamentoPacienteDAO{
 	private Connection connection;
@@ -32,7 +37,7 @@ public class TratamentoPacienteRepository implements TratamentoPacienteDAO{
 		this.getConnection().getEntityManager().getTransaction().begin();
 		this.getConnection().getEntityManager().persist(tratamento);
 		this.getConnection().getEntityManager().getTransaction().commit();
-		this.getConnection().getEntityManager().close();
+
 		System.out.println("Novo tratamento cadastrado com sucesso!" +tratamento.getId());
 		return true;
 	}
@@ -52,7 +57,7 @@ public class TratamentoPacienteRepository implements TratamentoPacienteDAO{
 		if(tratamentos == null) {
 			System.out.println("Não há tratamentos cadastrados em nosso banco de dados.");
 		}
-		this.getConnection().getEntityManager().close();
+
 
 		return tratamentos;
 	}
@@ -70,7 +75,7 @@ public class TratamentoPacienteRepository implements TratamentoPacienteDAO{
             this.getConnection().getEntityManager().getTransaction().begin();
             this.getConnection().getEntityManager().merge(tratamento);
             this.getConnection().getEntityManager().getTransaction().commit();
-    		this.getConnection().getEntityManager().close();
+
         } catch (Exception ex) {
     		System.out.println("Erro ao adicionar remedio ao tratamento do paciente");
             return false;
@@ -94,7 +99,7 @@ public class TratamentoPacienteRepository implements TratamentoPacienteDAO{
             this.getConnection().getEntityManager().getTransaction().begin();
             this.getConnection().getEntityManager().merge(tratamento);
             this.getConnection().getEntityManager().getTransaction().commit();
-    		this.getConnection().getEntityManager().close();
+
         } catch (Exception ex) {
     		System.out.println("Erro ao adicionar remedio ao tratamento do paciente");
             return false;
@@ -119,7 +124,7 @@ public class TratamentoPacienteRepository implements TratamentoPacienteDAO{
             this.getConnection().getEntityManager().getTransaction().begin();
             this.getConnection().getEntityManager().merge(tratamento);
             this.getConnection().getEntityManager().getTransaction().commit();
-    		this.getConnection().getEntityManager().close();
+
         } catch (Exception ex) {
     		System.out.println("Erro editar a data final de tratamento do paciente");
             return false;
@@ -141,7 +146,7 @@ public class TratamentoPacienteRepository implements TratamentoPacienteDAO{
 		this.getConnection().getEntityManager().getTransaction().begin();
 		this.getConnection().getEntityManager().remove(id);
 		this.getConnection().getEntityManager().getTransaction().commit();
-		this.getConnection().getEntityManager().close();
+
 
 		System.out.println("Tratamento removido do banco com sucesso");
 
@@ -158,7 +163,7 @@ public class TratamentoPacienteRepository implements TratamentoPacienteDAO{
 			this.getConnection().getEntityManager().getTransaction().begin();
 			this.getConnection().getEntityManager().merge(tratamento);
 			this.getConnection().getEntityManager().getTransaction().commit();
-			this.getConnection().getEntityManager().close();
+
 
 			return true;
 		}
@@ -176,7 +181,7 @@ public class TratamentoPacienteRepository implements TratamentoPacienteDAO{
 			this.getConnection().getEntityManager().getTransaction().begin();
 			this.getConnection().getEntityManager().merge(tratamento);
 			this.getConnection().getEntityManager().getTransaction().commit();
-			this.getConnection().getEntityManager().close();
+
 
 			return true;
 		}
@@ -191,7 +196,7 @@ public class TratamentoPacienteRepository implements TratamentoPacienteDAO{
 			System.out.println("Remedio não encontrado");
 		}
 
-		this.getConnection().getEntityManager().close();
+
 		return remedio;
 	}
 
@@ -201,8 +206,36 @@ public class TratamentoPacienteRepository implements TratamentoPacienteDAO{
 		if(exame == null){
 			System.out.println("Exame não encontrado");
 		}
-		this.getConnection().getEntityManager().close();
+
 		return exame;
+	}
+
+	public ArrayList<TratamentosPaciente> tratamentosPaciente(int idPaciente) {
+		String sqlConsulta = "SELECT t FROM TratamentoPaciente t WHERE t.paciente =: id";
+		TypedQuery<TratamentoPaciente> queryTratamentos = this.getConnection().getEntityManager().createQuery(sqlConsulta, TratamentoPaciente.class).setParameter("id", idPaciente);
+		ArrayList<TratamentoPaciente> tratamentos = (ArrayList<TratamentoPaciente>) queryTratamentos.getResultList();
+
+
+		/*for (int i = 0; i < tratamentos.size(); i++) {
+			System.out.println(tratamentos.get(i).getId());
+		}*/
+
+		ArrayList<TratamentosPaciente> tratamentosPrescritos = new ArrayList<TratamentosPaciente>();
+
+		for (int i = 0; i < tratamentos.size(); i++) {
+			Exame exame = this.getConnection().getEntityManager().createNamedQuery("Exame.getById", Exame.class).setParameter("idE", tratamentos.get(i).getExame()).getSingleResult();
+			System.out.println(exame.getNomeExame());
+			Remedio remedio = this.getConnection().getEntityManager().createNamedQuery("Remedio.getById", Remedio.class).setParameter("idR", tratamentos.get(i).getRemedio()).getSingleResult();
+			System.out.println(remedio.getNomeRemedio());
+
+			tratamentosPrescritos.add(new TratamentosPaciente(exame.getNomeExame(), remedio.getNomeRemedio(), tratamentos.get(i).getTempoTratamento()));
+		}
+
+		for (int i = 0; i < tratamentosPrescritos.size(); i++) {
+			System.out.println(tratamentosPrescritos.get(i));
+		}
+
+		return tratamentosPrescritos;
 	}
 
 }

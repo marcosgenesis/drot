@@ -11,6 +11,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @NamedQuery(name = "Paciente.getIdByCpf", query = "SELECT p FROM Paciente p WHERE p.CPF = :cpf")
+@NamedQuery(name = "Paciente.getById", query = "SELECT p FROM Paciente p WHERE p.id =: idP")
 @Entity
 @Table(name = "Paciente")
 public class Paciente {
