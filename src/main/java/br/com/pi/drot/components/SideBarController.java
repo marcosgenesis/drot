@@ -23,13 +23,13 @@ public class SideBarController implements Initializable {
 	private void btnSwitchDoctorScreen(ActionEvent event) {
 		MainFX.chanceWindow("doctorsScene");
 	}
-	
+
 	@FXML
 	private void btnSwitchNewPatientScreen(ActionEvent event) {
 		MainFX.chanceWindow("newPatient");
 	}
-	
 
+	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
 	}

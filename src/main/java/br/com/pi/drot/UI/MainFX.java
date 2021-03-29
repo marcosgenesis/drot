@@ -32,22 +32,22 @@ public class MainFX extends Application {
 
 			Parent loaderLogado = FXMLLoader.load(getClass().getResource("/views/Logado.fxml"));
 			LogadoScene = new Scene(loaderLogado);
-			
+
 			Parent patientsScene = FXMLLoader.load(getClass().getResource("/views/Patients.fxml"));
 			PatientsScene = new Scene(patientsScene);
-			
+
 			Parent doctorsScene = FXMLLoader.load(getClass().getResource("/views/Doctors.fxml"));
 			DoctorsScene = new Scene(doctorsScene);
-			
+
 			Parent newPacientInQueue = FXMLLoader.load(getClass().getResource("/views/NewPacientInQueue.fxml"));
 			NewPatientInQueue = new Scene(newPacientInQueue);
-			
+
 			Parent newPatient = FXMLLoader.load(getClass().getResource("/views/NewPatient.fxml"));
 			NewPatient = new Scene(newPatient);
-			
+
 			Parent newDoctor = FXMLLoader.load(getClass().getResource("/views/NewDoctor.fxml"));
 			NewDoctor = new Scene(newDoctor);
-			
+
 			primaryStage.setResizable(false);
 			primaryStage.setScene(loginScene);
 			primaryStage.show();
@@ -74,19 +74,19 @@ public class MainFX extends Application {
 			case "patientsScene":
 				stage.setScene(PatientsScene);
 				break;
-				
+
 			case "doctorsScene":
 				stage.setScene(DoctorsScene);
 				break;
-				
+
 			case "newPacientInQueue":
 				stage.setScene(NewPatientInQueue);
 				break;
-				
+
 			case "newPatient":
 				stage.setScene(NewPatient);
 				break;
-				
+
 			case "newDoctor":
 				stage.setScene(NewDoctor);
 				break;

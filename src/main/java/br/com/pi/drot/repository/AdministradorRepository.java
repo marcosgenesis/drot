@@ -66,7 +66,6 @@ public class AdministradorRepository implements AdministradorDAO{
 	}
 
 	public boolean cadastrarNovoPaciente(String nome, String CPF, String RG, String dataNascimento, int endereco, String telefone, String restricaoMedicamental, String doencaHereditaria, String email, String senha) {
-		this.getConnection().getEntityManager().clear();
 		Paciente paciente = new Paciente();
 		paciente.setNome(nome);
 		paciente.setCPF(CPF);
@@ -78,7 +77,6 @@ public class AdministradorRepository implements AdministradorDAO{
 		paciente.setSenha(senha);
 		paciente.setDoencaHereditaria(doencaHereditaria);
 		paciente.setRestricaoMedicamental(restricaoMedicamental);
-		paciente.setSenha(senha);
 
 		try{
 			this.getConnection().getEntityManager().getTransaction().begin();
