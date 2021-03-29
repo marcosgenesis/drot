@@ -31,6 +31,8 @@ public class Administrador{
 	private String dataNascimento;
 
 	@Column(name = "cod_endereco")
+	private int endereco;
+
 	@Column(name = "email")
 	private String email;
 
