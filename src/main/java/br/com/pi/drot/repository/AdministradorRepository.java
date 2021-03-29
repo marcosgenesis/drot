@@ -28,6 +28,7 @@ public class AdministradorRepository implements AdministradorDAO{
 	}
 
 	public boolean cadastrarNovoAdministrador(String nome, String CPF, String RG, String dataNascimento, int endereco, String telefone, String email, String senha) {
+		this.getConnection().getEntityManager().clear();
 		Administrador administrador = new Administrador();
 		administrador.setNome(nome);
 		administrador.setCPF(CPF);
@@ -65,6 +66,7 @@ public class AdministradorRepository implements AdministradorDAO{
 	}
 
 	public boolean cadastrarNovoPaciente(String nome, String CPF, String RG, String dataNascimento, int endereco, String telefone, String restricaoMedicamental, String doencaHereditaria, String email, String senha) {
+		this.getConnection().getEntityManager().clear();
 		Paciente paciente = new Paciente();
 		paciente.setNome(nome);
 		paciente.setCPF(CPF);
@@ -94,6 +96,7 @@ public class AdministradorRepository implements AdministradorDAO{
 
 
 	public boolean editarPaciente(int idPaciente, int endereco, String telefone, String email, String senha) {
+		this.getConnection().getEntityManager().clear();
 		Paciente paciente = this.buscarPacientePorID(idPaciente);
 		paciente.setEndereco(endereco);
 		paciente.setTelefone(telefone);
@@ -139,6 +142,7 @@ public class AdministradorRepository implements AdministradorDAO{
 	}
 
 	public ArrayList<Paciente> listarPacientesCadastrados() {
+		this.getConnection().getEntityManager().clear();
 		this.getConnection().getEntityManager();
 		try {
 			ArrayList<Paciente> pacientes = (ArrayList<Paciente>) this.getConnection().getEntityManager().createQuery("from Paciente", Paciente.class).getResultList();
@@ -151,6 +155,7 @@ public class AdministradorRepository implements AdministradorDAO{
 	}
 
 	public boolean removerPaciente(int idPaciente) {
+		this.getConnection().getEntityManager().clear();
 		Paciente paciente = this.buscarPacientePorID(idPaciente);
 
 		if(paciente == null){
@@ -171,6 +176,7 @@ public class AdministradorRepository implements AdministradorDAO{
 	}
 
 	public boolean cadastrarNovoMedico(String nome, String CPF, String RG, String dataNascimento, int i, String telefone, String email, String senha) {
+		this.getConnection().getEntityManager().clear();
 		Medico medico = new Medico();
 		medico.setNome(nome);
 		medico.setCPF(CPF);
@@ -194,6 +200,7 @@ public class AdministradorRepository implements AdministradorDAO{
 	}
 
 	public boolean editarMedico(int idMedico, int endereco, String telefone, String email, String senha ) {
+		this.getConnection().getEntityManager().clear();
 		Medico medico = this.buscarMedicoPorID(idMedico);
 		medico.setEndereco(endereco);
 		medico.setTelefone(telefone);
@@ -238,6 +245,7 @@ public class AdministradorRepository implements AdministradorDAO{
 	}
 
 	public ArrayList<Medico> listarMedicosCadastrados() {
+		this.getConnection().getEntityManager().clear();
 		this.getConnection().getEntityManager();
 
 		try {
@@ -251,6 +259,8 @@ public class AdministradorRepository implements AdministradorDAO{
 	}
 
 	public boolean removerMedico(int idMedico) {
+		this.getConnection().getEntityManager().clear();
+
 		Medico medico = this.buscarMedicoPorID(idMedico);
 
 		if(medico == null){
@@ -272,6 +282,8 @@ public class AdministradorRepository implements AdministradorDAO{
 	}
 
 	public boolean cadastrarNovaSecretaria(String nome, String CPF, String RG, String dataNascimento, int endereco, String telefone, String email, String senha) {
+		this.getConnection().getEntityManager().clear();
+
 		Secretaria secretaria = new Secretaria();
 		secretaria.setNome(nome);
 		secretaria.setCPF(CPF);
@@ -296,6 +308,8 @@ public class AdministradorRepository implements AdministradorDAO{
 	}
 
 	public boolean editarSecretaria(int idSecretaria, int endereco, String telefone, String email, String senha) {
+		this.getConnection().getEntityManager().clear();
+
 		Secretaria secretaria = this.buscarSecretariaPorID(idSecretaria);
 		secretaria.setEndereco(endereco);
 		secretaria.setTelefone(telefone);
@@ -340,6 +354,7 @@ public class AdministradorRepository implements AdministradorDAO{
 	}
 
 	public boolean removerSecretaria(int idSecretaria) {
+		this.getConnection().getEntityManager().clear();
 		Secretaria secretaria = this.buscarSecretariaPorID(idSecretaria);
 
 		if(secretaria == null){

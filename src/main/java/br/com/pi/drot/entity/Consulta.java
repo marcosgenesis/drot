@@ -29,6 +29,12 @@ public class Consulta{
 	@Column(name = "cod_medico")
 	private int medico;
 
+	@Column(name = "classificacao")
+	private String classificacaoUrgencia;
+
+	@Column(name = "status_consulta")
+	private boolean consultaRealizada;
+
 	public int getId() {
 		return id;
 	}
@@ -67,6 +73,22 @@ public class Consulta{
 
 	public void setMedico(int medico) {
 		this.medico = medico;
+	}
+
+	public boolean getConsultaRealizada(){
+		return consultaRealizada;
+	}
+
+	public void setConsultaRealizada(boolean consultaRealizada){
+		this.consultaRealizada = consultaRealizada;
+	}
+
+	public String getClassificacaoUrgencia(){
+		return classificacaoUrgencia;
+	}
+
+	public void setClassificacaoUrgencia(String classificacaoUrgencia){
+		this.classificacaoUrgencia = classificacaoUrgencia;
 	}
 
 }
