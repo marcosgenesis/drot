@@ -24,7 +24,7 @@ public class MainFX extends Application {
 			stage = primaryStage;
 			primaryStage.setTitle("DROT SYSTEM");
 
-			Parent loaderLogin = FXMLLoader.load(getClass().getResource("/views/Main.fxml"));
+			Parent loaderLogin = FXMLLoader.load(getClass().getResource("/views/Login.fxml"));
 			loginScene = new Scene(loaderLogin);
 
 			Parent loaderMain = FXMLLoader.load(getClass().getResource("/views/Main.fxml"));
