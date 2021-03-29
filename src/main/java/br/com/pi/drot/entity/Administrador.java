@@ -33,6 +33,9 @@ public class Administrador{
 	@Column(name = "cod_endereco")
 	private int endereco;
 
+	@Column(name = "telefone")
+	private String telefone;
+
 	@Column(name = "email")
 	private String email;
 

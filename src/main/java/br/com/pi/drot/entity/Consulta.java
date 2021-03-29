@@ -29,10 +29,10 @@ public class Consulta{
 	@Column(name = "cod_medico")
 	private int medico;
 
-	@Column(name = "classificacao")
+	@Column(name = "classificacaoUrgencia")
 	private String classificacaoUrgencia;
 
-	@Column(name = "status_consulta")
+	@Column(name = "consultaRealizada")
 	private boolean consultaRealizada;
 
 	public int getId() {
