@@ -42,7 +42,7 @@ public class LoginFXController implements Initializable{
 					this.loginUser.setText("");
 					this.passUser.setText("");
 
-					MainFX.chanceWindow("logado");
+					MainFX.chanceWindow("main");
 				}else{
 					JOptionPane.showMessageDialog(null, "These data for access do not cross", "Fail Autenticad", 0);
 					this.loginUser.setText("");

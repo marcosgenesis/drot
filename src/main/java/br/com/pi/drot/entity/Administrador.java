@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-@NamedQuery(name = "Administrador.loginAdm", query = "SELECT a FROM Administrador a WHERE a.email = :email AND a.senha = :senha")
+@NamedQuery(name = "Administrador.loginAdm", query = "SELECT a FROM Administrador a WHERE a.CPF = :email AND a.senha = :senha")
 //@NamedQuery(name = "Administrador.getById", query = "SELECT a FROM Administrador a WHERE a.codadmin =: id")
 @Entity
 @Table(name = "Administrador")
@@ -32,6 +32,9 @@ public class Administrador{
 
 	@Column(name = "cod_endereco")
 	private int endereco;
+
+	@Column(name = "telefone")
+	private String telefone;
 
 	@Column(name = "email")
 	private String email;

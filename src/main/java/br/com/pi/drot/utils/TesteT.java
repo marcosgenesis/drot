@@ -6,12 +6,16 @@ import com.sun.xml.bind.v2.schemagen.xmlschema.List;
 
 import br.com.pi.drot.entity.Exame;
 import br.com.pi.drot.entity.Remedio;
+import br.com.pi.drot.entity.TratamentoPaciente;
 import br.com.pi.drot.models.ConsultasMedico;
+import br.com.pi.drot.models.ConsultasPaciente;
+import br.com.pi.drot.models.TratamentosPaciente;
 import br.com.pi.drot.repository.AdministradorRepository;
 import br.com.pi.drot.repository.ConsultaRepository;
 import br.com.pi.drot.repository.EnderecoRepository;
 import br.com.pi.drot.repository.ExameRepository;
 import br.com.pi.drot.repository.MedicoRepository;
+import br.com.pi.drot.repository.PacienteRepository;
 import br.com.pi.drot.repository.RemedioRepository;
 import br.com.pi.drot.repository.TratamentoPacienteRepository;
 
@@ -52,7 +56,7 @@ public class TesteT {
 			System.out.println("Endereço não encontrado");
 		}*/
 
-		
+
 		//eR.cadastrarEndereco("CE", "Rua Teste", 444, "Teste", "Onde o cão não habita", "2");
 		/*int idEndereco = eR.pegarIdEndereco("2", 444);
 
@@ -68,40 +72,53 @@ public class TesteT {
 
 		if (IdPaciente != -1 && IdMedico != -1) {
 			ConsultaRepository cR = new ConsultaRepository();
-			cR.criarConsulta(IdPaciente, IdMedico, "1900/01/01", "Teste do teste do my eggys");
+			cR.criarConsulta(IdPaciente, IdMedico, "1900/01/01", "Teste do teste do my eggys 2", "nenhuma");
 		} else {
 			System.out.println("Num foi não!");
 		}*/
 
-		TratamentoPacienteRepository tP = new TratamentoPacienteRepository();
+		/*TratamentoPacienteRepository tP = new TratamentoPacienteRepository();
 
 		RemedioRepository remedioRepository = new RemedioRepository();
 		ExameRepository exameRepository = new ExameRepository();
 
 		//Remedio remedio = remedioRepository.criarRemedio("Dorflex", "15mg", "Bula.pdf", "Dor de cabeça e dores no corpo");
-		Exame exame = exameRepository.criarExame("Vista", "Miopia", "You cego man ?", "2021/10/10");
+		//Exame exame = exameRepository.criarExame("Vista", "Miopia", "You cego man ?", "2021/10/10");
+
+		Remedio remedio = remedioRepository.criarRemedio("AS", "0.1mg", "Bula.pdf", "Dor de cabeça");
+		Exame exame = exameRepository.criarExame("Perna", "Fêmur", "You cego man ?", "2021/10/10");
 
 		//Criar paciente com ID 1d
-		tP.criarTratamentoPaciente(1, 45);
+		//tP.criarTratamentoPaciente(1, 45);
 
-		tP.adicionarExame(exame, 1);
-		//tP.adicionarRemedio(remedio, 1);
+		tP.adicionarExame(exame.getId(), 4);
+		tP.adicionarRemedio(remedio.getId(), 4);
 
-<<<<<<< HEAD
-=======
 		/*String senha = "qwe1234";
 
 		System.out.println("Senha => " + senha);
 		System.out.println("Senha => " + CriptografarSenha.criptografarSenha(senha));*/
 
-		MedicoRepository mR = new MedicoRepository();
-		ArrayList<ConsultasMedico> consultasRetorno = (ArrayList<ConsultasMedico>) mR.consultasRealizadas(1);
+		//MedicoRepository mR = new MedicoRepository();
+		//ArrayList<ConsultasMedico> consultasRetorno = (ArrayList<ConsultasMedico>) mR.consultasRealizadas(1);
 
-		for (int i = 0; i < consultasRetorno.size(); i++) {
+		/*for (int i = 0; i < consultasRetorno.size(); i++) {
 			System.out.println(consultasRetorno.get(i));
 		}
 
->>>>>>> a7e4cd67f4cc1c8eaa4fa3b33419bb11c1e15607
+		/*PacienteRepository pR = new PacienteRepository();
+		ArrayList<ConsultasPaciente> consultasRetorno = (ArrayList<ConsultasPaciente>) pR.consultasPaciente(1);
+
+		for (int i = 0; i < consultasRetorno.size(); i++) {
+			System.out.println(consultasRetorno.get(i));
+		}*/
+
+		TratamentoPacienteRepository tPR = new TratamentoPacienteRepository();
+		ArrayList<TratamentosPaciente> consultasRetorno = (ArrayList<TratamentosPaciente>) tPR.tratamentosPaciente(1);
+
+		/*for (int i = 0; i < consultasRetorno.size(); i++) {
+			System.out.println(consultasRetorno.get(i));
+		}*/
 	}
 
 }

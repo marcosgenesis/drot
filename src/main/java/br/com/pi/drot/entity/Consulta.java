@@ -29,7 +29,7 @@ public class Consulta{
 	@Column(name = "cod_medico")
 	private int medico;
 
-	@Column(name = "classificacao")
+	@Column(name = "classificacaoUrgencia")
 	private String classificacaoUrgencia;
 
 	@Column(name = "consultaRealizada")

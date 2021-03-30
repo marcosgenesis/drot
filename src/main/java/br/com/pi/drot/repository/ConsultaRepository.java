@@ -23,7 +23,6 @@ public class ConsultaRepository implements ConsultaDAO {
 	}
 
 	public boolean criarConsulta(int paciente, int medico, String dataConsulta, String descricao, String classificacaoUrgencia) {
-		this.getConnection().getEntityManager().clear();
 		Consulta consulta = new Consulta();
 		consulta.setPaciente(paciente);
 		consulta.setMedico(medico);
@@ -36,7 +35,7 @@ public class ConsultaRepository implements ConsultaDAO {
 			this.getConnection().getEntityManager().getTransaction().begin();
 			this.getConnection().getEntityManager().persist(consulta);
 			this.getConnection().getEntityManager().getTransaction().commit();
-			this.getConnection().getEntityManager().close();
+
 			System.out.println("Nova consulta cadastrada com sucesso! Com o id: " + consulta.getId());
 			return true;
         } catch (Exception ex) {
@@ -59,7 +58,7 @@ public class ConsultaRepository implements ConsultaDAO {
             this.getConnection().getEntityManager().getTransaction().begin();
             this.getConnection().getEntityManager().merge(consulta);
             this.getConnection().getEntityManager().getTransaction().commit();
-    		this.getConnection().getEntityManager().close();
+
     		System.out.println("Consulta remarcada com sucesso!");
             return true;
         } catch (Exception ex) {
