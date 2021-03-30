@@ -79,7 +79,6 @@ public class ConsultaRepository implements ConsultaDAO {
 		 	this.getConnection().getEntityManager().getTransaction().begin();
 	        this.getConnection().getEntityManager().remove(consulta);
 	        this.getConnection().getEntityManager().getTransaction().commit();
-			this.getConnection().getEntityManager().close();
 			System.out.println("Consulta" + consulta.getId() + "desmarcada do banco com sucesso!");
 			return true;
 		}catch(Exception ex) {
@@ -93,7 +92,6 @@ public class ConsultaRepository implements ConsultaDAO {
 
 		try{
 			Consulta consulta = this.getConnection().getEntityManager().createNamedQuery("Consulta.getById", Consulta.class).setParameter(id, id).getSingleResult();
-			this.getConnection().getEntityManager().close();
 			return consulta;
 		} catch(NoResultException ex) {
 			System.out.println("Consulta não encontrada");
@@ -110,7 +108,7 @@ public class ConsultaRepository implements ConsultaDAO {
 				this.getConnection().getEntityManager().getTransaction().begin();
 		        this.getConnection().getEntityManager().merge(consulta);
 		        this.getConnection().getEntityManager().getTransaction().commit();
-				this.getConnection().getEntityManager().close();
+
 				System.out.println("A Consulta foi concluída com sucesso.");
 				return true;
 			}catch(Exception ex) {

@@ -32,7 +32,7 @@ public class Consulta{
 	@Column(name = "classificacao")
 	private String classificacaoUrgencia;
 
-	@Column(name = "status_consulta")
+	@Column(name = "consultaRealizada")
 	private boolean consultaRealizada;
 
 	public int getId() {

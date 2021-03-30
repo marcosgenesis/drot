@@ -6,8 +6,12 @@ import javax.persistence.TypedQuery;
 
 import br.com.pi.drot.connection.Connection;
 import br.com.pi.drot.entity.Consulta;
+import br.com.pi.drot.entity.Exame;
 import br.com.pi.drot.entity.Paciente;
+import br.com.pi.drot.entity.Remedio;
+import br.com.pi.drot.entity.TratamentoPaciente;
 import br.com.pi.drot.models.ConsultasPaciente;
+import br.com.pi.drot.models.TratamentosPaciente;
 
 public class PacienteRepository {
 

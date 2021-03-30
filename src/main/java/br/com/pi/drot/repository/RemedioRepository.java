@@ -30,7 +30,6 @@ public class RemedioRepository implements RemedioDAO{
 		this.getConnection().getEntityManager().getTransaction().begin();
 		this.getConnection().getEntityManager().persist(remedio);
 		this.getConnection().getEntityManager().getTransaction().commit();
-		this.getConnection().getEntityManager().close();
 		System.out.println("Novo remédio cadastrado com sucesso!" + remedio.getId());
 
 		return remedio;
