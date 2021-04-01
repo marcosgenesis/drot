@@ -5,15 +5,16 @@ public class ConsultasDoDia {
 	private String dataOcorreuConsulta;
 	private String descricaoConsulta;
 	private String classificacaoUrgencia;
+	private int qtdConsultas;
 
 
-	public ConsultasDoDia(String nomePacienteConsulta, String dataOcorreuConsulta, String descricaoConsulta, String classificacaoUrgencia) {
+	public ConsultasDoDia(String nomePacienteConsulta, String dataOcorreuConsulta, String descricaoConsulta, String classificacaoUrgencia, int qtdConsultas) {
 		this.nomePacienteConsulta = nomePacienteConsulta;
 		this.dataOcorreuConsulta = dataOcorreuConsulta;
 		this.descricaoConsulta = descricaoConsulta;
 		this.classificacaoUrgencia = classificacaoUrgencia;
+		this.qtdConsultas = qtdConsultas;
 	}
-
 
 	public String getNomePacienteConsulta() {
 		return nomePacienteConsulta;
@@ -55,11 +56,20 @@ public class ConsultasDoDia {
 	}
 
 
+	public int getQtdConsultas() {
+		return qtdConsultas;
+	}
+
+
+	public void setQtdConsultas(int qtdConsultas) {
+		this.qtdConsultas = qtdConsultas;
+	}
+
 	@Override
 	public String toString() {
 		return "ConsultasDoDia [nomePacienteConsulta=" + nomePacienteConsulta + ", dataOcorreuConsulta="
 				+ dataOcorreuConsulta + ", descricaoConsulta=" + descricaoConsulta + ", classificacaoUrgencia="
-				+ classificacaoUrgencia + "]";
+				+ classificacaoUrgencia + ", qtdConsultas=" + qtdConsultas + "]";
 	}
 
 }

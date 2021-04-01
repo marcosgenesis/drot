@@ -31,12 +31,11 @@ public class SecretariaRepository implements SecretariaDAO{
 		TypedQuery<Consulta> queryConsultas = this.getConnection().getEntityManager().createQuery(sqlConsulta, Consulta.class).setParameter("dataConsulta", dataDoDia);
 		ArrayList<Consulta> consultas = (ArrayList<Consulta>) queryConsultas.getResultList();
 
-
 		ArrayList<ConsultasDoDia> consultasDoDia = new ArrayList<ConsultasDoDia>();
 
 		for (int i = 0; i < consultas.size(); i++) {
 			Paciente paciente = this.getConnection().getEntityManager().createNamedQuery("Paciente.getById", Paciente.class).setParameter("idP", consultas.get(i).getPaciente()).getSingleResult();
-			consultasDoDia.add(new ConsultasDoDia(paciente.getNome(), consultas.get(i).getDataConsulta(), consultas.get(i).getDescricaoConsulta(), consultas.get(i).getClassificacaoUrgencia()));
+			consultasDoDia.add(new ConsultasDoDia(paciente.getNome(), consultas.get(i).getDataConsulta(), consultas.get(i).getDescricaoConsulta(), consultas.get(i).getClassificacaoUrgencia(), consultas.size()));
 		}
 
 		for (int i = 0; i < consultasDoDia.size(); i++) {
@@ -53,4 +52,34 @@ public class SecretariaRepository implements SecretariaDAO{
 		return nomeSecretariaLogada;
 	}
 
+
+	public int quantidadeConsultasDoDia(String dataDoDia) {
+		String sqlConsulta = "SELECT COUNT(*) FROM Consulta c WHERE c.dataConsulta =: dataDoDia";
+		TypedQuery<ConsultasDoDia> queryConsultasRealizadasDoDia = this.getConnection().getEntityManager().createQuery(sqlConsulta, ConsultasDoDia.class).setParameter("dataConsulta", dataDoDia);
+		ConsultasDoDia qtdConsultasDoDia = (ConsultasDoDia)queryConsultasRealizadasDoDia.getResultList();
+		int qtdConsultasRealizadas = qtdConsultasDoDia.getQtdConsultas();
+		return qtdConsultasRealizadas;
+	}
+
+	public int quantidadeConsultasRealizadasDoDia(String dataDoDia) {
+		String sqlConsulta = "SELECT COUNT(*) FROM Consulta c WHERE c.dataConsulta =: dataDoDia AND c.consultaRealizada=: true";
+		TypedQuery<ConsultasDoDia> queryConsultasRealizadasDoDia = this.getConnection().getEntityManager().createQuery(sqlConsulta, ConsultasDoDia.class).setParameter("dataConsulta", dataDoDia);
+		ArrayList<ConsultasDoDia> consultasDoDia= (ArrayList<ConsultasDoDia>)queryConsultasRealizadasDoDia.getResultList();
+		int qtdConsultasRealizadas = 0;
+		for (int i = 0; i < consultasDoDia.size(); i++) {
+			qtdConsultasRealizadas++;
+		}
+		return qtdConsultasRealizadas;
+	}
+
+	public int quantidadeConsultasNaoRealizadasDoDia(String dataDoDia) {
+		String sqlConsulta = "SELECT COUNT(*) FROM Consulta c WHERE c.dataConsulta =: dataDoDia AND c.consultaRealizada=: false";
+		TypedQuery<ConsultasDoDia> queryConsultasNaoRealizadasDoDia = this.getConnection().getEntityManager().createQuery(sqlConsulta, ConsultasDoDia.class).setParameter("dataConsulta", dataDoDia);
+		ArrayList<ConsultasDoDia> consultasDoDia= (ArrayList<ConsultasDoDia>)queryConsultasNaoRealizadasDoDia.getResultList();
+		int qtdConsultasNaoRealizadas = 0;
+		for (int i = 0; i < consultasDoDia.size(); i++) {
+			qtdConsultasNaoRealizadas++;
+		}
+		return qtdConsultasNaoRealizadas;
+	}
 }

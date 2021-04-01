@@ -1,19 +1,19 @@
 package br.com.pi.drot.repository;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.TypedQuery;
 
 import br.com.pi.drot.connection.Connection;
 import br.com.pi.drot.dao.PacienteDAO;
 import br.com.pi.drot.entity.Consulta;
-import br.com.pi.drot.entity.Exame;
-import br.com.pi.drot.entity.Medico;
 import br.com.pi.drot.entity.Paciente;
-import br.com.pi.drot.entity.Remedio;
-import br.com.pi.drot.entity.TratamentoPaciente;
 import br.com.pi.drot.models.ConsultasPaciente;
-import br.com.pi.drot.models.TratamentosPaciente;
+import br.com.pi.drot.utils.CalcularIdade;
 
 public class PacienteRepository implements PacienteDAO{
 
@@ -57,4 +57,19 @@ public class PacienteRepository implements PacienteDAO{
 		String nomePacienteLogado = queryConsultas.getSingleResult().getNome();
 		return nomePacienteLogado;
 	}
+
+	public int pegarIdadePaciente(int idPaciente) {
+		String sqlConsulta = "SELECT p FROM Paciente p WHERE p.id =: id";
+		TypedQuery<Paciente> queryConsultas = this.getConnection().getEntityManager().createQuery(sqlConsulta, Paciente.class).setParameter("id", idPaciente);
+		String dataNascimento = queryConsultas.getSingleResult().getDataNascimento();
+	    try {
+			CalcularIdade calcularIdade = new CalcularIdade();
+			return calcularIdade.calcularIdade(dataNascimento);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+	    return 0;
+	}
 }
+

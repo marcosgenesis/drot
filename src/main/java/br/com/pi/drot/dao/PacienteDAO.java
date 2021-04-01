@@ -7,4 +7,5 @@ import br.com.pi.drot.models.ConsultasPaciente;
 public interface PacienteDAO {
 	ArrayList<ConsultasPaciente> consultasPaciente(int idPaciente);
 	String pegarNomePacienteLogado(int idPaciente);
-}
+	int pegarIdadePaciente(int idPaciente)
+;}
