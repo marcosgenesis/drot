@@ -35,6 +35,12 @@ public class Consulta{
 	@Column(name = "consultaRealizada")
 	private boolean consultaRealizada;
 
+	@Column(name = "andamentoConsulta")
+	private String andamentoConsulta;
+
+	@Column(name = "consultorioConsulta")
+	private String consultorioConsulta;
+
 	public int getId() {
 		return id;
 	}
@@ -89,6 +95,22 @@ public class Consulta{
 
 	public void setClassificacaoUrgencia(String classificacaoUrgencia){
 		this.classificacaoUrgencia = classificacaoUrgencia;
+	}
+
+	public String getAndamentoConsulta() {
+		return andamentoConsulta;
+	}
+
+	public void setAndamentoConsulta(String andamentoConsulta) {
+		this.andamentoConsulta = andamentoConsulta;
+	}
+
+	public String getConsultorioConsulta() {
+		return consultorioConsulta;
+	}
+
+	public void setConsultorioConsulta(String consultorioConsulta) {
+		this.consultorioConsulta = consultorioConsulta;
 	}
 
 }

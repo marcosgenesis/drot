@@ -1,7 +1,5 @@
 package br.com.pi.drot.entity;
 
-import java.util.ArrayList;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

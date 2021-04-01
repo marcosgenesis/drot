@@ -11,7 +11,6 @@ import br.com.pi.drot.entity.Medico;
 import br.com.pi.drot.entity.Paciente;
 import br.com.pi.drot.entity.Secretaria;
 
-@SuppressWarnings("all")
 public class AdministradorRepository implements AdministradorDAO{
 	private Connection connection;
 
@@ -197,27 +196,6 @@ public class AdministradorRepository implements AdministradorDAO{
 		}
 	}
 
-	public boolean editarMedico(int idMedico, int endereco, String telefone, String email, String senha ) {
-		this.getConnection().getEntityManager().clear();
-		Medico medico = this.buscarMedicoPorID(idMedico);
-		medico.setEndereco(endereco);
-		medico.setTelefone(telefone);
-		medico.setEmail(email);
-		medico.setSenha(senha);
-
-		try {
-	            this.getConnection().getEntityManager().getTransaction().begin();
-	            this.getConnection().getEntityManager().merge(medico);
-	            this.getConnection().getEntityManager().getTransaction().commit();
-
-	    		System.out.println("Médico editado com sucesso!");
-		        return true;
-	        } catch (Exception ex) {
-	    		System.out.println("Erro ao editar médico.");
-	            return false;
-	        }
-	}
-
 	public Medico buscarMedicoPorID(int id) {
 		this.getConnection().getEntityManager().clear();
 
@@ -305,27 +283,6 @@ public class AdministradorRepository implements AdministradorDAO{
 		}
 	}
 
-	public boolean editarSecretaria(int idSecretaria, int endereco, String telefone, String email, String senha) {
-		this.getConnection().getEntityManager().clear();
-
-		Secretaria secretaria = this.buscarSecretariaPorID(idSecretaria);
-		secretaria.setEndereco(endereco);
-		secretaria.setTelefone(telefone);
-		secretaria.setEmail(email);
-		secretaria.setSenha(senha);
-		try {
-            this.getConnection().getEntityManager().getTransaction().begin();
-            this.getConnection().getEntityManager().merge(secretaria);
-            this.getConnection().getEntityManager().getTransaction().commit();
-
-    		System.out.println("Secretária editada com sucesso!");
-            return true;
-        } catch (Exception ex) {
-    		System.out.println("Erro ao editar secretária.");
-            return false;
-        }
-    }
-
 	public Secretaria buscarSecretariaPorID(int id) {
 		this.getConnection().getEntityManager().clear();
 
@@ -380,5 +337,23 @@ public class AdministradorRepository implements AdministradorDAO{
 		} catch (NoResultException e) {
 			return false;
 		}
+	}
+
+	@Override
+	public String buscarNomePacientePorID(int idPaciente) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String buscarNomeMedicoPorID(int idMedico) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String buscarNomeSecretariaPorID(int idSecretaria) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

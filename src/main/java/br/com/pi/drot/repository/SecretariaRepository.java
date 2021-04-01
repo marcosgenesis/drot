@@ -5,12 +5,13 @@ import java.util.ArrayList;
 import javax.persistence.TypedQuery;
 
 import br.com.pi.drot.connection.Connection;
+import br.com.pi.drot.dao.SecretariaDAO;
 import br.com.pi.drot.entity.Consulta;
 import br.com.pi.drot.entity.Paciente;
+import br.com.pi.drot.entity.Secretaria;
 import br.com.pi.drot.models.ConsultasDoDia;
-import br.com.pi.drot.models.ConsultasPaciente;
 
-public class SecretariaRepository {
+public class SecretariaRepository implements SecretariaDAO{
 	private Connection connection;
 
 	public SecretariaRepository() {
@@ -44,13 +45,12 @@ public class SecretariaRepository {
 
 		return consultasDoDia;
 	}
-	
-	public int quantidadeConsultasEmEspera() {
-		
-	}
-	
-	public int quantidadeConsultasEmEspera() {
-		
+
+	public String pegarnomeSecretariaLogada(int idSecretaria) {
+		String sqlConsulta = "SELECT s FROM Secretaria s WHERE s.id =: id";
+		TypedQuery<Secretaria> queryConsultas = this.getConnection().getEntityManager().createQuery(sqlConsulta, Secretaria.class).setParameter("id", idSecretaria);
+		String nomeSecretariaLogada = queryConsultas.getSingleResult().getNome();
+		return nomeSecretariaLogada;
 	}
 
 }

@@ -5,15 +5,17 @@ import java.util.ArrayList;
 import javax.persistence.TypedQuery;
 
 import br.com.pi.drot.connection.Connection;
+import br.com.pi.drot.dao.PacienteDAO;
 import br.com.pi.drot.entity.Consulta;
 import br.com.pi.drot.entity.Exame;
+import br.com.pi.drot.entity.Medico;
 import br.com.pi.drot.entity.Paciente;
 import br.com.pi.drot.entity.Remedio;
 import br.com.pi.drot.entity.TratamentoPaciente;
 import br.com.pi.drot.models.ConsultasPaciente;
 import br.com.pi.drot.models.TratamentosPaciente;
 
-public class PacienteRepository {
+public class PacienteRepository implements PacienteDAO{
 
 	private Connection connection;
 
@@ -47,5 +49,12 @@ public class PacienteRepository {
 		}
 
 		return consultasRealizadas;
+	}
+
+	public String pegarNomePacienteLogado(int idPaciente) {
+		String sqlConsulta = "SELECT p FROM Paciente p WHERE p.id =: id";
+		TypedQuery<Paciente> queryConsultas = this.getConnection().getEntityManager().createQuery(sqlConsulta, Paciente.class).setParameter("id", idPaciente);
+		String nomePacienteLogado = queryConsultas.getSingleResult().getNome();
+		return nomePacienteLogado;
 	}
 }

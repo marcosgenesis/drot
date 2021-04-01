@@ -22,13 +22,15 @@ public class ConsultaRepository implements ConsultaDAO {
 		this.connection = connection;
 	}
 
-	public boolean criarConsulta(int paciente, int medico, String dataConsulta, String descricao, String classificacaoUrgencia) {
+	public boolean criarConsulta(int paciente, int medico, String dataConsulta, String descricao, String classificacaoUrgencia, boolean consultaRealizada, String andamentoConsulta, String consultorioConsulta) {
 		Consulta consulta = new Consulta();
 		consulta.setPaciente(paciente);
 		consulta.setMedico(medico);
 		consulta.setDescricaoConsulta(descricao);
 		consulta.setDataConsulta(dataConsulta);
 		consulta.setClassificacaoUrgencia(classificacaoUrgencia);
+		consulta.setAndamentoConsulta(andamentoConsulta);
+		consulta.setConsultorioConsulta(consultorioConsulta);
 		consulta.setConsultaRealizada(false);
 
 		try {
@@ -118,6 +120,49 @@ public class ConsultaRepository implements ConsultaDAO {
 			System.out.println("Consulta não encontrada");
 			return false;
 		}
+	}
+
+	public boolean editarAndamentoConsulta(int idConsulta, String andamentoConsulta) {
+		this.getConnection().getEntityManager().clear();
+		Consulta consulta = this.buscarConsultaPorId(idConsulta);
+		if(consulta == null){
+			System.out.println("Consulta não encontrada.");
+			return false;
+		}
+
+		consulta.setDataConsulta(andamentoConsulta);
+		try {
+            this.getConnection().getEntityManager().getTransaction().begin();
+            this.getConnection().getEntityManager().merge(consulta);
+            this.getConnection().getEntityManager().getTransaction().commit();
+
+    		System.out.println("Consulta editada com sucesso!");
+            return true;
+        } catch (Exception ex) {
+    		System.out.println("Erro ao editar consulta");
+            return false;
+        }
+	}
+
+	public boolean editarUrgenciaDaConsulta(int idConsulta, String classificacaoUrgencia) {
+		this.getConnection().getEntityManager().clear();
+		Consulta consulta = this.buscarConsultaPorId(idConsulta);
+		if(consulta == null){
+			System.out.println("Consulta não encontrada.");
+			return false;
+		}
+		consulta.setDataConsulta(classificacaoUrgencia);
+		try {
+            this.getConnection().getEntityManager().getTransaction().begin();
+            this.getConnection().getEntityManager().merge(consulta);
+            this.getConnection().getEntityManager().getTransaction().commit();
+
+    		System.out.println("Consulta editada com sucesso!");
+            return true;
+        } catch (Exception ex) {
+    		System.out.println("Erro ao editar consulta");
+            return false;
+        }
 	}
 }
 

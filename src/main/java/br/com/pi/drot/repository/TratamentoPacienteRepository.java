@@ -192,11 +192,6 @@ public class TratamentoPacienteRepository implements TratamentoPacienteDAO{
 		if(remedio == null){
 			System.out.println("Remedio não encontrado");
 		}
-<<<<<<< HEAD
-=======
-
-
->>>>>>> e2961ea4067cf12f85518b2d31859dd11eb7b731
 		return remedio;
 	}
 

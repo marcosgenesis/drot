@@ -19,15 +19,17 @@ public interface AdministradorDAO {
 
 	 Paciente buscarPacientePorID(int idPaciente);
 
+	 String buscarNomePacientePorID(int idPaciente);
+
 	 ArrayList<Paciente> listarPacientesCadastrados();
 
 	 boolean removerPaciente(int idPaciente);
 
 	 boolean cadastrarNovoMedico(String nome, String CPF, String RG, String dataNascimento, int endereco, String telefone, String email, String senha);
 
-	 boolean editarMedico(int idMedico, int endereco, String telefone, String email, String senha);
-
 	 Medico buscarMedicoPorID(int idMedico);
+
+	 String buscarNomeMedicoPorID(int idMedico);
 
 	 ArrayList<Medico> listarMedicosCadastrados();
 
@@ -35,9 +37,9 @@ public interface AdministradorDAO {
 
 	 boolean cadastrarNovaSecretaria(String nome, String CPF, String RG, String dataNascimento, int endereco, String telefone, String email, String senha);
 
-	 boolean editarSecretaria(int idSecretaria, int endereco, String telefone, String email, String senha);
-
 	 Secretaria buscarSecretariaPorID(int idSecretaria);
+
+	 String buscarNomeSecretariaPorID(int idSecretaria);
 
 	 ArrayList<Secretaria> listarSecretariasCadastrados();
 
