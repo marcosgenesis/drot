@@ -27,7 +27,7 @@ public class MainFX extends Application {
 			Parent loaderLogin = FXMLLoader.load(getClass().getResource("/views/Login.fxml"));
 			loginScene = new Scene(loaderLogin);
 
-			Parent loaderMain = FXMLLoader.load(getClass().getResource("/views/Main.fxml"));
+			Parent loaderMain = FXMLLoader.load(getClass().getResource("/views/Doctor/Main/Main.fxml"));
 			mainScene = new Scene(loaderMain);
 
 			Parent loaderLogado = FXMLLoader.load(getClass().getResource("/views/Logado.fxml"));
@@ -68,7 +68,7 @@ public class MainFX extends Application {
 				break;
 
 			case "logado":
-				stage.setScene(LogadoScene);
+				stage.setScene(mainScene);
 				break;
 
 			case "patientsScene":

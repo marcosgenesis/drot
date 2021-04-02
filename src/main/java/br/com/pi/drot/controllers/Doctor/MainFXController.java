@@ -25,7 +25,7 @@ public class MainFXController extends SideBarController implements Initializable
 	private VBox vitens = null;
 	
 	@FXML
-	private HBox alertItems = null;
+	private VBox treatmentItems = null;
 	
 	@FXML
 	private Button btnSwitchWindow;
@@ -43,7 +43,7 @@ public class MainFXController extends SideBarController implements Initializable
 
 	public void initialize(URL location, ResourceBundle resources) {
 		Node[] nodes = new Node[100];
-		Node[] alertItens = new Node[10];
+		Node[] treatmentItens = new Node[100];
 				
 		for (int i = 0; i < nodes.length; i++) {
 			try {
@@ -56,8 +56,8 @@ public class MainFXController extends SideBarController implements Initializable
 		
 		for (int i = 0; i < nodes.length; i++) {
 			try {
-				alertItens[i] = FXMLLoader.load(getClass().getResource("/views/Doctor/AlertListItem.fxml"));
-				alertItems.getChildren().add(alertItens[i]);
+				treatmentItens[i] = FXMLLoader.load(getClass().getResource("/views/Doctor/Main/TreatmentItem.fxml"));
+				treatmentItems.getChildren().add(treatmentItens[i]);
 			} catch (Exception e) {
 				System.out.println(e);
 			}

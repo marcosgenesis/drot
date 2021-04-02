@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-@NamedQuery(name = "Remedio.getIdByName", query = "SELECT r FROM Remedio r WHERE r.nomeRemedio =: nome")
+//@NamedQuery(name = "Remedio.getIdByName", query = "SELECT r FROM Remedio r WHERE r.nomeRemedio =: nome")
 @NamedQuery(name = "Remedio.getById", query = "SELECT r FROM Remedio r WHERE r.id =: idR")
 
 @Entity
