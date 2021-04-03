@@ -23,6 +23,8 @@ public class SideBarController extends EssentialsFXController {
 
 	@FXML
 	private void btnSwitchNewPatientScreen(ActionEvent event) {
+		System.out.println("tela de novo adress");
 		MainFX.chanceWindow("newPatient");
+
 	}
 }

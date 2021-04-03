@@ -29,13 +29,10 @@ public class EnderecoRepository implements EnderecoDAO{
 		endereco.setBairro(bairro);
 		endereco.setCidade(cidade);
 		endereco.setCep(cep);
-
 		this.getConnection().getEntityManager().getTransaction().begin();
 		this.getConnection().getEntityManager().persist(endereco);
 		this.getConnection().getEntityManager().getTransaction().commit();
-		this.getConnection().getEntityManager().close();
-
-		System.out.println("Vai cão!");
+		System.out.println("chegooou");
 
 		return true;
 	}
