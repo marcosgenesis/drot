@@ -1,6 +1,8 @@
 package br.com.pi.drot.repository;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
@@ -56,33 +58,52 @@ public class SecretariaRepository implements SecretariaDAO{
 
 
 	public int quantidadeConsultasDoDia(String dataDoDia) {
-		String sqlConsulta = "SELECT COUNT(*) FROM Consulta c WHERE c.dataConsulta =: dataDoDia";
-		TypedQuery<ConsultasDoDia> queryConsultasRealizadasDoDia = this.getConnection().getEntityManager().createQuery(sqlConsulta, ConsultasDoDia.class).setParameter("dataConsulta", dataDoDia);
-		ConsultasDoDia qtdConsultasDoDia = (ConsultasDoDia)queryConsultasRealizadasDoDia.getResultList();
-		int qtdConsultasRealizadas = qtdConsultasDoDia.getQtdConsultas();
-		return qtdConsultasRealizadas;
+		SimpleDateFormat formatoData = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar calendarDataAtual = Calendar.getInstance();
+		dataDoDia= formatoData.format(calendarDataAtual.getTime());
+		String sqlConsulta = "SELECT c FROM Consulta c WHERE c.dataConsulta =: dataDoDia";
+        TypedQuery<Consulta> queryConsultas = this.getConnection().getEntityManager().createQuery(sqlConsulta, Consulta.class).setParameter("dataDoDia", dataDoDia);
+        ArrayList<Consulta> consultas = (ArrayList<Consulta>) queryConsultas.getResultList();
+
+        ArrayList<ConsultasDoDia> consultasDoDia = new ArrayList<ConsultasDoDia>();
+
+        for (int i = 0; i < consultas.size(); i++) {
+            consultasDoDia.add(new ConsultasDoDia(buscarNomePacientePorID(consultas.get(i).getPaciente()), consultas.get(i).getDataConsulta(), consultas.get(i).getDescricaoConsulta(), consultas.get(i).getClassificacaoUrgencia(), consultas.size()));
+        }
+
+        return consultasDoDia.size();
 	}
 
 	public int quantidadeConsultasRealizadasDoDia(String dataDoDia) {
-		String sqlConsulta = "SELECT COUNT(*) FROM Consulta c WHERE c.dataConsulta =: dataDoDia AND c.consultaRealizada=: true";
-		TypedQuery<ConsultasDoDia> queryConsultasRealizadasDoDia = this.getConnection().getEntityManager().createQuery(sqlConsulta, ConsultasDoDia.class).setParameter("dataConsulta", dataDoDia);
-		ArrayList<ConsultasDoDia> consultasDoDia= (ArrayList<ConsultasDoDia>)queryConsultasRealizadasDoDia.getResultList();
-		int qtdConsultasRealizadas = 0;
-		for (int i = 0; i < consultasDoDia.size(); i++) {
-			qtdConsultasRealizadas++;
-		}
-		return qtdConsultasRealizadas;
+		SimpleDateFormat formatoData = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar calendarDataAtual = Calendar.getInstance();
+		dataDoDia= formatoData.format(calendarDataAtual.getTime());
+        String sqlConsulta = "SELECT c FROM Consulta c WHERE c.dataConsulta =: dataDoDia";
+        TypedQuery<Consulta> queryConsultas = this.getConnection().getEntityManager().createQuery(sqlConsulta, Consulta.class).setParameter("dataDoDia", dataDoDia);
+        ArrayList<Consulta> consultas = (ArrayList<Consulta>) queryConsultas.getResultList();
+        int consultasRealizadas = 0;
+        for (Consulta c: consultas) {
+            if(c.getConsultaRealizada() ==  true) {
+                consultasRealizadas++;
+            }
+        }
+        return consultasRealizadas;
 	}
 
 	public int quantidadeConsultasNaoRealizadasDoDia(String dataDoDia) {
-		String sqlConsulta = "SELECT COUNT(*) FROM Consulta c WHERE c.dataConsulta =: dataDoDia AND c.consultaRealizada=: false";
-		TypedQuery<ConsultasDoDia> queryConsultasNaoRealizadasDoDia = this.getConnection().getEntityManager().createQuery(sqlConsulta, ConsultasDoDia.class).setParameter("dataConsulta", dataDoDia);
-		ArrayList<ConsultasDoDia> consultasDoDia= (ArrayList<ConsultasDoDia>)queryConsultasNaoRealizadasDoDia.getResultList();
-		int qtdConsultasNaoRealizadas = 0;
-		for (int i = 0; i < consultasDoDia.size(); i++) {
-			qtdConsultasNaoRealizadas++;
-		}
-		return qtdConsultasNaoRealizadas;
+		SimpleDateFormat formatoData = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar calendarDataAtual = Calendar.getInstance();
+		dataDoDia= formatoData.format(calendarDataAtual.getTime());
+		String sqlConsulta = "SELECT c FROM Consulta c WHERE c.dataConsulta =: dataDoDia";
+        TypedQuery<Consulta> queryConsultas = this.getConnection().getEntityManager().createQuery(sqlConsulta, Consulta.class).setParameter("dataDoDia", dataDoDia);
+        ArrayList<Consulta> consultas = (ArrayList<Consulta>) queryConsultas.getResultList();
+        int consultasRealizadas = 0;
+        for (Consulta c: consultas) {
+            if(c.getConsultaRealizada() ==  false) {
+                consultasRealizadas++;
+            }
+        }
+        return consultasRealizadas;
 	}
 
 	public boolean cadastrarNovoMedico(String nome, String CPF, String RG, String dataNascimento, int i, String telefone, String email, String senha) {

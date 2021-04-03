@@ -88,7 +88,7 @@
             <TextField layoutX="425.0" layoutY="48.0" prefHeight="53.0" prefWidth="549.0" promptText="Pesquisar Paciente" style="-fx-background-color: fff; -fx-background-radius: 10px 10px 00px 0px; -fx-padding: 5 5 5 5;" />
             <Pane layoutX="495.0" layoutY="135.0" prefHeight="124.0" prefWidth="260.0" style="-fx-background-color: fff;">
                <children>
-                  <Text fill="#2784ff" layoutX="140.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="250" wrappingWidth="95.71615600585938">
+                  <Text fx:id="numPacientesAtendidosHoje" fill="#2784ff" layoutX="140.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="250" wrappingWidth="95.71615600585938">
                      <font>
                         <Font name="System Bold" size="45.0" />
                      </font>
@@ -103,7 +103,7 @@
             </Pane>
             <Pane layoutX="770.0" layoutY="135.0" prefHeight="124.0" prefWidth="260.0" style="-fx-background-color: fff;">
                <children>
-                  <Text fill="#2784ff" layoutX="140.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="250" wrappingWidth="95.71615600585938">
+                  <Text fx:id="numPacientesNaEspera" fill="#2784ff" layoutX="140.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="250" wrappingWidth="95.71615600585938">
                      <font>
                         <Font name="System Bold" size="45.0" />
                      </font>
