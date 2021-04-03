@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 
 public class NewPatientFXController extends SideBarController implements Initializable {
 
@@ -94,8 +95,29 @@ public class NewPatientFXController extends SideBarController implements Initial
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+
+		uf.setTextFormatter(new TextFormatter<>((change) -> {
+            change.setText(change.getText().toUpperCase());
+            return change;
+        }));
+
 		FormatadorMascara mascaraCPF = new FormatadorMascara(cpf);
 		mascaraCPF.setMask(FormatadorMascara.CPF);
+
+		FormatadorMascara mascaraRG = new FormatadorMascara(rg);
+		mascaraRG.setMask(FormatadorMascara.RG);
+
+		FormatadorMascara mascaraTelefone = new FormatadorMascara(telefone);
+		mascaraTelefone.setMask(FormatadorMascara.TEL_9DIG);
+
+		FormatadorMascara mascaraCEP = new FormatadorMascara(cep);
+		mascaraCEP.setMask(FormatadorMascara.CEP);
+
+		FormatadorMascara mascaraDATA = new FormatadorMascara(dataNascimento);
+		mascaraDATA.setMask(FormatadorMascara.DATA);
+
+		FormatadorMascara mascaraUF = new FormatadorMascara(uf);
+		mascaraUF.setMask(FormatadorMascara.UF);
 	}
 
 }

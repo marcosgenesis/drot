@@ -17,6 +17,8 @@ public class FormatadorMascara {
     public static final int DATA_BARRA = 4;
     public static final int DATA_TRACO = 5;
     public static final int CEP = 6;
+    public static final int DATA = 7;
+    public static final int UF = 8;
 
     public FormatadorMascara(TextField campoTexto) {
         this.campoTexto = campoTexto;
@@ -29,6 +31,7 @@ public class FormatadorMascara {
 
     public void setMask(int tipoMascara) {
         this.mascaraSelecionada = tipoMascara;
+
         if (!usarSelecionadorData) {
             switch (tipoMascara) {
                 case TEL_8DIG:
@@ -49,6 +52,14 @@ public class FormatadorMascara {
 
                 case CEP:
                 	mascaraCEP();
+                	break;
+
+                case DATA:
+                	mascaraDATA();
+                	break;
+
+                case UF:
+                	mascaraUF();
                 	break;
 
                 default:
@@ -223,6 +234,61 @@ public class FormatadorMascara {
     	});
     }
 
+    public void mascaraDATA() {
+    	campoTexto.setOnKeyTyped((KeyEvent evento) -> {
+    		if (!"0123456789".contains(evento.getCharacter())) {
+    			evento.consume();
+    		}
+
+    		if (evento.getCharacter().trim().length() == 0) {
+    			switch (campoTexto.getText().length()) {
+    				case 2:
+    					campoTexto.setText(campoTexto.getText().substring(0, 1));
+    					campoTexto.positionCaret(campoTexto.getText().length());
+    					break;
+
+    				case 6:
+    					campoTexto.setText(campoTexto.getText().substring(4, 5));
+    					campoTexto.positionCaret(campoTexto.getText().length());
+    					break;
+    			}
+    		} else if (campoTexto.getText().length() == 10) {
+    			evento.consume();
+    		}
+
+    		switch (campoTexto.getText().length()) {
+	    		case 2:
+	    			campoTexto.setText(campoTexto.getText() + "/");
+    				campoTexto.positionCaret(campoTexto.getText().length());
+    				break;
+
+				case 5:
+					campoTexto.setText(campoTexto.getText() + "/");
+    				campoTexto.positionCaret(campoTexto.getText().length());
+    				break;
+    		}
+    	});
+    }
+
+    public void mascaraUF() {
+    	campoTexto.setOnKeyTyped((KeyEvent evento) -> {
+    		if (!"ABCDEFGHIJKLMNOPQRSTUVWXYZ".contains(evento.getCharacter())) {
+    			evento.consume();
+    		}
+
+    		if (evento.getCharacter().trim().length() == 0) {
+    			switch (campoTexto.getText().length()) {
+    				case 2:
+    					campoTexto.setText(campoTexto.getText().substring(0, 1));
+    					campoTexto.positionCaret(campoTexto.getText().length());
+    					break;
+    			}
+    		} else if (campoTexto.getText().length() == 2) {
+    			evento.consume();
+    		}
+    	});
+    }
+
 
     private void mascaraRG() {
         campoTexto.setOnKeyTyped((KeyEvent evento) -> {
@@ -271,7 +337,6 @@ public class FormatadorMascara {
 
     private void mascaraBarraDeDados() {
         selecionadorDado.getEditor().setOnKeyTyped((KeyEvent evento) -> {
-
             if (!"0123456789".contains(evento.getCharacter())) {
                 evento.consume();
             }
@@ -361,12 +426,20 @@ public class FormatadorMascara {
             	selecionadorDado.setPromptText("__/__/____");
                 break;
 
+            case DATA:
+            	selecionadorDado.setPromptText("__/__/____");
+                break;
+
             case DATA_TRACO:
                 selecionadorDado.setPromptText("__-__-____");
                 break;
 
             case CEP:
             	selecionadorDado.setPromptText("_____-___");
+            	break;
+
+            case UF:
+            	selecionadorDado.setPromptText("__");
             	break;
 
             default:
