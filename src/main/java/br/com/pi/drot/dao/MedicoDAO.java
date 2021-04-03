@@ -10,4 +10,6 @@ public interface MedicoDAO {
 	String pegarNomeMedicoLogado(int idMedico);
 	ArrayList<ConsultasDoDia> consultasDoDia(int idMedico, String dataDoDia);
 	int quantidadeConsultasDoDia(int medico, String dataDoDia);
+	int pegarNumPacientes(int idMedico);
+
 }

@@ -1,6 +1,8 @@
 package br.com.pi.drot.repository;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import javax.persistence.TypedQuery;
 
@@ -54,9 +56,18 @@ public class MedicoRepository implements MedicoDAO{
 		return nomeMedicoLogado;
 	}
 
-	public ArrayList<ConsultasDoDia> consultasDoDia(int idMedico, String dataDoDia) {
+	public ArrayList<ConsultasDoDia> consultasDoDia(int idMedico,String dataDoDia) {
+		SimpleDateFormat formatoData = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar calendarDataAtual = Calendar.getInstance();
+        dataDoDia= formatoData.format(calendarDataAtual.getTime());
 		String sqlConsulta = "SELECT c FROM Consulta c WHERE c.medico =:idMedico AND c.dataConsulta =: dataDoDia";
-		TypedQuery<Consulta> queryConsultas = this.getConnection().getEntityManager().createQuery(sqlConsulta, Consulta.class).setParameter("dataConsulta", dataDoDia);
+		
+ 
+		TypedQuery<Consulta> queryConsultas = this.getConnection()
+				.getEntityManager()
+				.createQuery(sqlConsulta, Consulta.class)
+				.setParameter("idMedico", idMedico)
+				.setParameter("dataDoDia", dataDoDia);
 		ArrayList<Consulta> consultas = (ArrayList<Consulta>) queryConsultas.getResultList();
 
 
@@ -67,19 +78,57 @@ public class MedicoRepository implements MedicoDAO{
 			consultasDoDia.add(new ConsultasDoDia(paciente.getNome(), consultas.get(i).getDataConsulta(), consultas.get(i).getDescricaoConsulta(), consultas.get(i).getClassificacaoUrgencia(), consultas.size()));
 		}
 
-		for (int i = 0; i < consultasDoDia.size(); i++) {
-			System.out.println(consultasDoDia.get(i));
-		}
+//		for (int i = 0; i < consultasDoDia.size(); i++) {
+//			System.out.println(consultasDoDia.get(i));
+//		}
 
 		return consultasDoDia;
 	}
 
 	public int quantidadeConsultasDoDia(int medico, String dataDoDia) {
-		String sqlConsulta = "SELECT COUNT(*) FROM Consulta c WHERE c.medico =:idMedico AND c.dataConsulta =: dataDoDia";
-		TypedQuery<ConsultasDoDia> queryConsultasDoDia = this.getConnection().getEntityManager().createQuery(sqlConsulta, ConsultasDoDia.class).setParameter("dataConsulta", dataDoDia);
-		int qtdConsultas = queryConsultasDoDia.getSingleResult().getQtdConsultas();
-		return qtdConsultas;
-	}
+		SimpleDateFormat formatoData = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar calendarDataAtual = Calendar.getInstance();
+        dataDoDia= formatoData.format(calendarDataAtual.getTime());
+//        System.out.println(dataDoDia);
+        String sqlConsulta = "SELECT c FROM Consulta c WHERE c.medico =:idMedico AND c.dataConsulta =: dataDoDia";
+        TypedQuery<Consulta> queryConsultas = this.getConnection().getEntityManager().createQuery(sqlConsulta, Consulta.class).setParameter("idMedico", medico).setParameter("dataDoDia", dataDoDia);
+        ArrayList<Consulta> consultas = (ArrayList<Consulta>) queryConsultas.getResultList();
+
+
+        ArrayList<ConsultasDoDia> consultasDoDia = new ArrayList<ConsultasDoDia>();
+
+        for (int i = 0; i < consultas.size(); i++) {
+            Paciente paciente = this.getConnection().getEntityManager().createNamedQuery("Paciente.getById", Paciente.class).setParameter("idP", consultas.get(i).getPaciente()).getSingleResult();
+            consultasDoDia.add(new ConsultasDoDia(paciente.getNome(), consultas.get(i).getDataConsulta(), consultas.get(i).getDescricaoConsulta(), consultas.get(i).getClassificacaoUrgencia(), consultas.size()));
+        }
+
+//        for (int i = 0; i < consultasDoDia.size(); i++) {
+//            System.out.println(consultasDoDia.get(i));
+//        }
+
+        return consultasDoDia.size();
+    }
+	
+	public int pegarNumPacientes(int idMedico) {
+        String sqlConsulta = "SELECT c FROM Consulta c WHERE c.medico =: id";
+        TypedQuery<Consulta> queryConsultas = this.getConnection().getEntityManager().createQuery(sqlConsulta, Consulta.class).setParameter("id", idMedico);
+        ArrayList<Consulta> consultas = (ArrayList<Consulta>) queryConsultas.getResultList();
+
+
+        ArrayList<ConsultasMedico> consultasRealizadas = new ArrayList<ConsultasMedico>();
+
+        for (int i = 0; i < consultas.size(); i++) {
+            Paciente paciente = this.getConnection().getEntityManager().createNamedQuery("Paciente.getById", Paciente.class).setParameter("idP", consultas.get(i).getPaciente()).getSingleResult();
+            consultasRealizadas.add(new ConsultasMedico(paciente.getNome(), consultas.get(i).getDataConsulta(), consultas.get(i).getDescricaoConsulta()));
+        }
+
+//        for (int i = 0; i < consultasRealizadas.size(); i++) {
+//            System.out.println(consultasRealizadas.get(i));
+//        }
+//        System.out.println("numero de pacientes" + consultasRealizadas.size());
+        return consultasRealizadas.size();
+    }
+
 }
 
 
