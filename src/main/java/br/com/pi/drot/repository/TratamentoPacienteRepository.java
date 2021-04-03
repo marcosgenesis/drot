@@ -13,18 +13,17 @@ import br.com.pi.drot.entity.TratamentoPaciente;
 import br.com.pi.drot.models.TratamentosPaciente;
 
 public class TratamentoPacienteRepository implements TratamentoPacienteDAO{
-	private Connection connection;
+	Connection connection = Connection.getConnection();
 
-	public TratamentoPacienteRepository(){
-		this.connection = new Connection();
-	}
+	public TratamentoPacienteRepository() {}
 
 	public Connection getConnection() {
 		return connection;
 	}
 
-	public void setConnection(Connection connection) {
-		this.connection = connection;
+	public void setConnection(Connection conexao) {
+		this.connection = Connection.getConnection();
+		this.connection = conexao;
 	}
 
 	public boolean criarTratamentoPaciente(int idPaciente, int tempoTratamento) {

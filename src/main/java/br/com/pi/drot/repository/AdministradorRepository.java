@@ -12,18 +12,17 @@ import br.com.pi.drot.entity.Paciente;
 import br.com.pi.drot.entity.Secretaria;
 
 public class AdministradorRepository implements AdministradorDAO{
-	private Connection connection;
+	Connection connection = Connection.getConnection();
 
-	public AdministradorRepository() {
-		this.connection = new Connection();
-	}
+	public AdministradorRepository() {}
 
 	public Connection getConnection() {
 		return connection;
 	}
 
-	public void setConnection(Connection connection) {
-		this.connection = connection;
+	public void setConnection(Connection conexao) {
+		this.connection = Connection.getConnection();
+		this.connection = conexao;
 	}
 
 	public boolean cadastrarNovoAdministrador(String nome, String CPF, String RG, String dataNascimento, int endereco, String telefone, String email, String senha) {
@@ -339,7 +338,6 @@ public class AdministradorRepository implements AdministradorDAO{
 		}
 	}
 
-	@Override
 	public String buscarNomePacientePorID(int idPaciente) {
 		// TODO Auto-generated method stub
 		return null;

@@ -12,18 +12,17 @@ import br.com.pi.drot.entity.Secretaria;
 import br.com.pi.drot.models.ConsultasDoDia;
 
 public class SecretariaRepository implements SecretariaDAO{
-	private Connection connection;
+	Connection connection = Connection.getConnection();
 
-	public SecretariaRepository() {
-		this.connection = new Connection();
-	}
+	public SecretariaRepository() {}
 
 	public Connection getConnection() {
 		return connection;
 	}
 
-	public void setConnection(Connection connection) {
-		this.connection = connection;
+	public void setConnection(Connection conexao) {
+		this.connection = Connection.getConnection();
+		this.connection = conexao;
 	}
 
 	public ArrayList<ConsultasDoDia> consultasDoDia(int idPaciente, String dataDoDia) {

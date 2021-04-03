@@ -7,14 +7,27 @@ import javax.persistence.Persistence;
 
 public class Connection {
 
+	private static Connection connection;
 	private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("DROT");
 	private EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-	public Connection() {
-
+	private Connection() {
+		Connection.connection = new Connection();
 	}
 
-	public EntityManagerFactory getEntityManagerFactory() {
+
+	public static Connection getConnection() {
+		if(connection == null) {
+			synchronized(Connection.class) {
+				if(connection == null) {
+					connection = new Connection();
+				}
+			}
+		}
+		return connection;
+	}
+
+	private EntityManagerFactory getEntityManagerFactory() {
 		return entityManagerFactory;
 	}
 

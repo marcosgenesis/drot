@@ -1,10 +1,7 @@
 package br.com.pi.drot.repository;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
 import javax.persistence.TypedQuery;
 
@@ -16,19 +13,17 @@ import br.com.pi.drot.models.ConsultasPaciente;
 import br.com.pi.drot.utils.CalcularIdade;
 
 public class PacienteRepository implements PacienteDAO{
+	Connection connection = Connection.getConnection();
 
-	private Connection connection;
-
-	public PacienteRepository() {
-		this.connection = new Connection();
-	}
+	public PacienteRepository() {}
 
 	public Connection getConnection() {
 		return connection;
 	}
 
-	public void setConnection(Connection connection) {
-		this.connection = connection;
+	public void setConnection(Connection conexao) {
+		this.connection = Connection.getConnection();
+		this.connection = conexao;
 	}
 
 	public ArrayList<ConsultasPaciente> consultasPaciente(int idPaciente) {

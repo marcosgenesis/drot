@@ -8,18 +8,17 @@ import br.com.pi.drot.entity.Endereco;
 
 public class EnderecoRepository implements EnderecoDAO{
 
-	private Connection connection;
+	Connection connection = Connection.getConnection();
 
-	public EnderecoRepository() {
-		this.connection = new Connection();
-	}
+	public EnderecoRepository() {}
 
 	public Connection getConnection() {
 		return connection;
 	}
 
-	public void setConnection(Connection connection) {
-		this.connection = connection;
+	public void setConnection(Connection conexao) {
+		this.connection = Connection.getConnection();
+		this.connection = conexao;
 	}
 
 	public boolean cadastrarEndereco(String uf, String rua, int numero, String bairro, String cidade, String cep) {
