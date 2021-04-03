@@ -12,17 +12,17 @@ import br.com.pi.drot.entity.Paciente;
 import br.com.pi.drot.entity.Secretaria;
 
 public class AdministradorRepository implements AdministradorDAO{
-	Connection connection = Connection.getConnection();
-
-	public AdministradorRepository() {}
+	private Connection connection;
+	public AdministradorRepository() {
+		this.connection = new Connection();
+	}
 
 	public Connection getConnection() {
 		return connection;
 	}
 
-	public void setConnection(Connection conexao) {
-		this.connection = Connection.getConnection();
-		this.connection = conexao;
+	public void setConnection(Connection connection) {
+		this.connection = connection;
 	}
 
 	public boolean cadastrarNovoAdministrador(String nome, String CPF, String RG, String dataNascimento, int endereco, String telefone, String email, String senha) {

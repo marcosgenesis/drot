@@ -8,17 +8,17 @@ import br.com.pi.drot.entity.Consulta;
 
 public class ConsultaRepository implements ConsultaDAO {
 
-	Connection connection = Connection.getConnection();
-
-	public ConsultaRepository() {}
+	private Connection connection;
+	public ConsultaRepository(){
+		this.connection = new Connection();
+	}
 
 	public Connection getConnection() {
 		return connection;
 	}
 
-	public void setConnection(Connection conexao) {
-		this.connection = Connection.getConnection();
-		this.connection = conexao;
+	public void setConnection(Connection connection) {
+		this.connection = connection;
 	}
 
 	public boolean criarConsulta(int paciente, int medico, String dataConsulta, String descricao, String classificacaoUrgencia, boolean consultaRealizada, String andamentoConsulta, String consultorioConsulta) {

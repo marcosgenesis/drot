@@ -6,8 +6,6 @@ import java.util.ResourceBundle;
 
 import br.com.pi.drot.UI.MainFX;
 import br.com.pi.drot.components.SideBarController;
-//import br.com.pi.drot.observers.Observer;
-//import br.com.pi.drot.observers.Subject;
 //import br.com.pi.drot.entity.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
