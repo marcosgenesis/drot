@@ -17,7 +17,7 @@ public class MainFXController extends SideBarController implements Initializable
 
 	@FXML
 	private Button clickBtn;
-	
+
 	@FXML
 	private Label userName;
 
@@ -35,9 +35,9 @@ public class MainFXController extends SideBarController implements Initializable
 		System.out.println("teste");
 		MainFX.chanceWindow("login");
 	}
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+
 	}
 }
