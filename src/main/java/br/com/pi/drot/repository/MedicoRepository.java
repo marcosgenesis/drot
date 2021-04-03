@@ -13,17 +13,18 @@ import br.com.pi.drot.models.ConsultasDoDia;
 import br.com.pi.drot.models.ConsultasMedico;
 
 public class MedicoRepository implements MedicoDAO{
-	Connection connection = Connection.getConnection();
+	private Connection connection;
 
-	public MedicoRepository() {}
+	public MedicoRepository() {
+		this.connection = new Connection();
+	}
 
 	public Connection getConnection() {
 		return connection;
 	}
 
-	public void setConnection(Connection conexao) {
-		this.connection = Connection.getConnection();
-		this.connection = conexao;
+	public void setConnection(Connection connection) {
+		this.connection = connection;
 	}
 
 	public ArrayList<ConsultasMedico> consultasRealizadas(int idMedico) {

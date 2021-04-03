@@ -13,17 +13,18 @@ import br.com.pi.drot.models.ConsultasPaciente;
 import br.com.pi.drot.utils.CalcularIdade;
 
 public class PacienteRepository implements PacienteDAO{
-	Connection connection = Connection.getConnection();
+	private Connection connection;
 
-	public PacienteRepository() {}
+	public PacienteRepository() {
+		this.connection = new Connection();
+	}
 
 	public Connection getConnection() {
 		return connection;
 	}
 
-	public void setConnection(Connection conexao) {
-		this.connection = Connection.getConnection();
-		this.connection = conexao;
+	public void setConnection(Connection connection) {
+		this.connection = connection;
 	}
 
 	public ArrayList<ConsultasPaciente> consultasPaciente(int idPaciente) {

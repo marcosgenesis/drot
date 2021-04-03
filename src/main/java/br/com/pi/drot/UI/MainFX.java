@@ -1,6 +1,5 @@
 package br.com.pi.drot.UI;
 
-import br.com.pi.drot.observers.MainController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
