@@ -1,28 +1,29 @@
 package br.com.pi.drot.repository;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import javax.persistence.TypedQuery;
 
 import br.com.pi.drot.connection.Connection;
+import br.com.pi.drot.dao.PacienteDAO;
 import br.com.pi.drot.entity.Consulta;
 import br.com.pi.drot.entity.Paciente;
 import br.com.pi.drot.models.ConsultasPaciente;
+import br.com.pi.drot.utils.CalcularIdade;
 
-public class PacienteRepository {
+public class PacienteRepository implements PacienteDAO{
+	Connection connection = Connection.getConnection();
 
-	private Connection connection;
-
-	public PacienteRepository() {
-		this.connection = new Connection();
-	}
+	public PacienteRepository() {}
 
 	public Connection getConnection() {
 		return connection;
 	}
 
-	public void setConnection(Connection connection) {
-		this.connection = connection;
+	public void setConnection(Connection conexao) {
+		this.connection = Connection.getConnection();
+		this.connection = conexao;
 	}
 
 	public ArrayList<ConsultasPaciente> consultasPaciente(int idPaciente) {
@@ -44,4 +45,26 @@ public class PacienteRepository {
 
 		return consultasRealizadas;
 	}
+
+	public String pegarNomePacienteLogado(int idPaciente) {
+		String sqlConsulta = "SELECT p FROM Paciente p WHERE p.id =: id";
+		TypedQuery<Paciente> queryConsultas = this.getConnection().getEntityManager().createQuery(sqlConsulta, Paciente.class).setParameter("id", idPaciente);
+		String nomePacienteLogado = queryConsultas.getSingleResult().getNome();
+		return nomePacienteLogado;
+	}
+
+	public int pegarIdadePaciente(int idPaciente) {
+		String sqlConsulta = "SELECT p FROM Paciente p WHERE p.id =: id";
+		TypedQuery<Paciente> queryConsultas = this.getConnection().getEntityManager().createQuery(sqlConsulta, Paciente.class).setParameter("id", idPaciente);
+		String dataNascimento = queryConsultas.getSingleResult().getDataNascimento();
+	    try {
+			CalcularIdade calcularIdade = new CalcularIdade();
+			return calcularIdade.calcularIdade(dataNascimento);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+	    return 0;
+	}
 }
+

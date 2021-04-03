@@ -7,19 +7,17 @@ import br.com.pi.drot.dao.ExameDAO;
 import br.com.pi.drot.entity.Exame;
 
 public class ExameRepository implements ExameDAO{
+	Connection connection = Connection.getConnection();
 
-	private Connection connection;
-
-	public ExameRepository(){
-		this.connection = new Connection();
-	}
+	public ExameRepository() {}
 
 	public Connection getConnection() {
 		return connection;
 	}
 
-	public void setConnection(Connection connection) {
-		this.connection = connection;
+	public void setConnection(Connection conexao) {
+		this.connection = Connection.getConnection();
+		this.connection = conexao;
 	}
 
 	public Exame criarExame(String nomeExame, String diagnosticoExame, String descricaoExame, String dataExame) {

@@ -44,7 +44,7 @@ public class MainFX extends Application {
 			
 			Parent newDoctor = FXMLLoader.load(getClass().getResource("/views/Secretary/NewDoctor.fxml"));
 			NewDoctor = new Scene(newDoctor);
-			
+
 			primaryStage.setResizable(false);
 			primaryStage.setScene(loginScene);
 			primaryStage.show();
@@ -72,19 +72,19 @@ public class MainFX extends Application {
 			case "patientsScene":
 				stage.setScene(PatientsScene);
 				break;
-				
+
 			case "doctorsScene":
 				stage.setScene(DoctorsScene);
 				break;
-				
+
 			case "newPacientInQueue":
 				stage.setScene(NewPatientInQueue);
 				break;
-				
+
 			case "newPatient":
 				stage.setScene(NewPatient);
 				break;
-				
+
 			case "newDoctor":
 				stage.setScene(NewDoctor);
 				break;

@@ -52,8 +52,8 @@ public class LoginFXController extends SideBarController implements Initializabl
 				if(admModel.logado(this.loginUser.getText(), this.passUser.getText())){
 					this.loginUser.setText("");
 					this.passUser.setText("");
-					this.loggedUserName = "Marcos Gênesis";
-					MainFX.chanceWindow("logado");
+
+					MainFX.chanceWindow("main");
 				}else{
 					JOptionPane.showMessageDialog(null, "These data for access do not cross", "Fail Autenticad", 0);
 					this.loginUser.setText("");

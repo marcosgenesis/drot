@@ -3,21 +3,21 @@ package br.com.pi.drot.controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import br.com.pi.drot.UI.MainFX;
 import br.com.pi.drot.components.SideBarController;
+import br.com.pi.drot.repository.AdministradorRepository;
+import br.com.pi.drot.repository.EnderecoRepository;
+import br.com.pi.drot.repository.PacienteRepository;
 import br.com.pi.drot.utils.FormatadorMascara;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextField;
 
 public class NewPatientInQueueFXController extends SideBarController implements Initializable{
-	@FXML
-	private void btnSwitchNewPatientScreen(ActionEvent event) {
-		MainFX.chanceWindow("newPatient");
-	}
 	@FXML
     private Button clickBtn;
 
@@ -46,9 +46,6 @@ public class NewPatientInQueueFXController extends SideBarController implements 
     private TextField rua;
 
     @FXML
-    private TextField estado;
-
-    @FXML
     private TextField numero;
 
     @FXML
@@ -67,47 +64,29 @@ public class NewPatientInQueueFXController extends SideBarController implements 
     private TextField senha;
 
     @FXML
-    private TextField restricaoMedica;
+    private TextField restricao;
 
     @FXML
-    private TextField disfuncoesHereditarias;
+    private TextField doenca;
 
     @FXML
-    void btnSwitchControlPanel(ActionEvent event) {
+    private TextField uf;
 
+    @FXML
+    void cadastrarPaciente(ActionEvent event) {
+    	EnderecoRepository enderecoRepository = new EnderecoRepository();
+
+    	enderecoRepository.cadastrarEndereco(uf.getText(), rua.getText(), Integer.parseInt(numero.getText()), bairro.getText(), cidade.getText(), cep.getText());
+    	int idEndereco = enderecoRepository.pegarIdEndereco(cep.getText(), Integer.parseInt(numero.getText()));
+
+    	System.out.println(idEndereco);
+
+    	AdministradorRepository administradorRepository = new AdministradorRepository();
+    	if(administradorRepository.cadastrarNovoPaciente(nome.getText(), cpf.getText(), rg.getText(), dataNascimento.getText(), idEndereco, telefone.getText(), restricao.getText(), doenca.getText(), email.getText(), senha.getText())){
+    		JOptionPane.showMessageDialog(null, "O paciente foi cadastrado com sucesso", "Registrado com sucesso", 0);
+    	} else {
+    		JOptionPane.showMessageDialog(null, "O paciente nao cadastrado", "Falha ao registrar", 0);
+    	}
     }
 
-    @FXML
-    void btnSwitchDoctorScreen(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnSwitchPatientScreen(ActionEvent event) {
-
-    }
-
-    @FXML
-    void finalizarCadastro(ActionEvent event) {
-    	
-    }
-    
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-//    	FormatadorMascara mascaraCEP = new FormatadorMascara(cep);
-//    	mascaraCEP.setMask(FormatadorMascara.CEP);
-//    	
-//    	FormatadorMascara mascaraTelefone = new FormatadorMascara(telefone);
-//    	mascaraTelefone.setMask(FormatadorMascara.TEL_9DIG);
-//    	
-//    	FormatadorMascara mascaraCPF = new FormatadorMascara(cpf);
-//    	mascaraCPF.setMask(FormatadorMascara.CPF);
-//
-//        FormatadorMascara mascaraRG = new FormatadorMascara(rg);
-//    	mascaraRG.setMask(FormatadorMascara.RG);
-    	
-    	
-
-
-    }   
 }

@@ -7,27 +7,23 @@ import javax.persistence.TypedQuery;
 
 import br.com.pi.drot.connection.Connection;
 import br.com.pi.drot.dao.TratamentoPacienteDAO;
-import br.com.pi.drot.entity.Consulta;
 import br.com.pi.drot.entity.Exame;
-import br.com.pi.drot.entity.Paciente;
 import br.com.pi.drot.entity.Remedio;
 import br.com.pi.drot.entity.TratamentoPaciente;
-import br.com.pi.drot.models.ConsultasPaciente;
 import br.com.pi.drot.models.TratamentosPaciente;
 
 public class TratamentoPacienteRepository implements TratamentoPacienteDAO{
-	private Connection connection;
+	Connection connection = Connection.getConnection();
 
-	public TratamentoPacienteRepository(){
-		this.connection = new Connection();
-	}
+	public TratamentoPacienteRepository() {}
 
 	public Connection getConnection() {
 		return connection;
 	}
 
-	public void setConnection(Connection connection) {
-		this.connection = connection;
+	public void setConnection(Connection conexao) {
+		this.connection = Connection.getConnection();
+		this.connection = conexao;
 	}
 
 	public boolean criarTratamentoPaciente(int idPaciente, int tempoTratamento) {
@@ -195,8 +191,6 @@ public class TratamentoPacienteRepository implements TratamentoPacienteDAO{
 		if(remedio == null){
 			System.out.println("Remedio não encontrado");
 		}
-
-
 		return remedio;
 	}
 
@@ -206,7 +200,6 @@ public class TratamentoPacienteRepository implements TratamentoPacienteDAO{
 		if(exame == null){
 			System.out.println("Exame não encontrado");
 		}
-
 		return exame;
 	}
 

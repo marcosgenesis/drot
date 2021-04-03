@@ -10,19 +10,19 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @NamedQueries({
-	@NamedQuery(name = "Paciente.getIdByCpf", query = "SELECT p FROM Paciente p WHERE p.CPF = :cpf"),
-	@NamedQuery(name = "Paciente.getById", query = "SELECT p FROM Paciente p WHERE p.id =: idP")
+	@NamedQuery(name = "Enfermeiro.getIdByCpf", query = "SELECT e FROM Enfermeiro e WHERE e.CPF = :cpf"),
+	@NamedQuery(name = "Enfermeiro.getById", query = "SELECT e FROM Enfermeiro e WHERE e.id =: idP")
 })
 
 @Entity
-@Table(name = "Paciente")
-public class Paciente {
+@Table(name = "Enfermeiro")
+public class Enfermeiro {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "codpac")
+	@Column(name = "codenf")
 	private int id;
 
-	@Column(name = "nome_paciente")
+	@Column(name = "nome_enfermeiro")
 	private String nome;
 
 	@Column(name = "CPF")
@@ -39,12 +39,6 @@ public class Paciente {
 
 	@Column(name = "telefone")
 	private String telefone;
-
-	@Column(name = "restricaoMedicamental")
-	private  String restricaoMedicamental;
-
-	@Column(name = "doencaHereditaria")
-	private String doencaHereditaria;
 
 	@Column(name = "email")
 	private String email;
@@ -106,22 +100,6 @@ public class Paciente {
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
-	}
-
-	public String getRestricaoMedicamental() {
-		return restricaoMedicamental;
-	}
-
-	public void setRestricaoMedicamental(String restricaoMedicamental) {
-		this.restricaoMedicamental = restricaoMedicamental;
-	}
-
-	public String getDoencaHereditaria() {
-		return doencaHereditaria;
-	}
-
-	public void setDoencaHereditaria(String doencaHereditaria) {
-		this.doencaHereditaria = doencaHereditaria;
 	}
 
 	public String getEmail() {

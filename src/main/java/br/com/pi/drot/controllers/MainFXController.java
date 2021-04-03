@@ -30,7 +30,8 @@ public class MainFXController extends SideBarController implements Initializable
 	private void btnAction(ActionEvent event) {
 		MainFX.chanceWindow("newPacientInQueue");
 	}
-	
+
+
 	@FXML
 	private void changeLogin(ActionEvent event) {
 		System.out.println("teste");

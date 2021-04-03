@@ -22,6 +22,11 @@
       <scope>test</scope>
     </dependency>
     <dependency>
+	  	<groupId>joda-time</groupId>
+	 	 <artifactId>joda-time</artifactId>
+	  	<version>2.7</version>
+	</dependency>
+    <dependency>
     	<groupId>org.openjfx</groupId>
     	<artifactId>javafx-controls</artifactId>
     	<version>14</version>
@@ -41,11 +46,6 @@
 		<artifactId>mysql-connector-java</artifactId>
 		<version>8.0.16</version>
 	</dependency>
-	<dependency>
-         <groupId>postgresql</groupId>
-         <artifactId>postgresql</artifactId>
-         <version>9.1-901-1.jdbc4</version>
-     </dependency>
      <dependency>
          <groupId>org.primefaces</groupId>
          <artifactId>primefaces</artifactId>
