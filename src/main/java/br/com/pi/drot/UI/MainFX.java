@@ -1,6 +1,6 @@
 package br.com.pi.drot.UI;
 
-import br.com.pi.drot.observers.MainController;
+//import br.com.pi.drot.observers.MainController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,7 +17,7 @@ public class MainFX extends Application {
 	private static Scene NewPatientInQueue;
 	private static Scene NewPatient;
 	private static Scene NewDoctor;
-	
+
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		try {
@@ -29,26 +29,26 @@ public class MainFX extends Application {
 
 			Parent loaderMain = FXMLLoader.load(getClass().getResource("/views/Secretary/Main.fxml"));
 			mainScene = new Scene(loaderMain);
-			
+
 			Parent patientsScene = FXMLLoader.load(getClass().getResource("/views/Secretary/Patients.fxml"));
 			PatientsScene = new Scene(patientsScene);
-			
+
 			Parent doctorsScene = FXMLLoader.load(getClass().getResource("/views/Secretary/Doctors.fxml"));
 			DoctorsScene = new Scene(doctorsScene);
-			
+
 			Parent newPacientInQueue = FXMLLoader.load(getClass().getResource("/views/Secretary/NewPacientInQueue.fxml"));
 			NewPatientInQueue = new Scene(newPacientInQueue);
-			
+
 			Parent newPatient = FXMLLoader.load(getClass().getResource("/views/Secretary/NewPatient.fxml"));
 			NewPatient = new Scene(newPatient);
-			
+
 			Parent newDoctor = FXMLLoader.load(getClass().getResource("/views/Secretary/NewDoctor.fxml"));
 			NewDoctor = new Scene(newDoctor);
 
 			primaryStage.setResizable(false);
-			primaryStage.setScene(loginScene);
+			primaryStage.setScene(NewPatient);
 			primaryStage.show();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -90,7 +90,7 @@ public class MainFX extends Application {
 				break;
 		}
 	}
-	
+
 	public static void main(String[] args) {
 		launch(args);
 	}

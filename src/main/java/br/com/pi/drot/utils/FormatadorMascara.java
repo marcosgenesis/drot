@@ -154,7 +154,6 @@ public class FormatadorMascara {
     }
 
     private void mascaraCPF() {
-
         campoTexto.setOnKeyTyped((KeyEvent evento) -> {
             if (!"0123456789".contains(evento.getCharacter())) {
                 evento.consume();

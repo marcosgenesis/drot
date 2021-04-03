@@ -6,8 +6,8 @@ import java.util.ResourceBundle;
 
 import br.com.pi.drot.UI.MainFX;
 import br.com.pi.drot.components.SideBarController;
-import br.com.pi.drot.observers.Observer;
-import br.com.pi.drot.observers.Subject;
+//import br.com.pi.drot.observers.Observer;
+//import br.com.pi.drot.observers.Subject;
 //import br.com.pi.drot.entity.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,7 +19,7 @@ public class MainFXController extends SideBarController implements Initializable
 
 	@FXML
 	private Button clickBtn;
-	
+
 	@FXML
 	private Label userName;
 
@@ -37,9 +37,9 @@ public class MainFXController extends SideBarController implements Initializable
 		System.out.println("teste");
 		MainFX.chanceWindow("login");
 	}
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+
 	}
 }

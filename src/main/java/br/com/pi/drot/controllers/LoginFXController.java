@@ -22,15 +22,15 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class LoginFXController extends SideBarController implements Initializable{
-	
+
 	ObservableList<String> userTypes = FXCollections.observableArrayList("Administrador","Médico","Secretária");
-	
+
 	@FXML
 	private TextField loginUser;
 
 	@FXML
 	private PasswordField passUser;
-	
+
 	@FXML
 	private ChoiceBox<String> userType;
 
@@ -47,7 +47,7 @@ public class LoginFXController extends SideBarController implements Initializabl
 				JOptionPane.showMessageDialog(null, "These CPF for access not is valid", "Email Invalid", 0);
 			} else {
 				AdministradorRepository admModel = new AdministradorRepository();
-				
+
 
 				if(admModel.logado(this.loginUser.getText(), this.passUser.getText())){
 					this.loginUser.setText("");
@@ -67,7 +67,7 @@ public class LoginFXController extends SideBarController implements Initializabl
 	public void initialize(URL location, ResourceBundle resources) {
 		userType.setValue("Administrador");
 		userType.setItems(userTypes);
-		
+
 		FormatadorMascara maskCpf = new FormatadorMascara(loginUser);
 		maskCpf.setMask(FormatadorMascara.CPF);
 	}
