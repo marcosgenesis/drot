@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 
 import br.com.pi.drot.UI.MainFX;
+import br.com.pi.drot.components.SideBarController;
 import br.com.pi.drot.repository.AdministradorRepository;
 import br.com.pi.drot.utils.FormatadorCPF;
 import br.com.pi.drot.utils.FormatadorMascara;
@@ -20,7 +21,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-public class LoginFXController implements Initializable{
+public class LoginFXController extends SideBarController implements Initializable{
 	
 	ObservableList<String> userTypes = FXCollections.observableArrayList("Administrador","Médico","Secretária");
 	
@@ -46,11 +47,12 @@ public class LoginFXController implements Initializable{
 				JOptionPane.showMessageDialog(null, "These CPF for access not is valid", "Email Invalid", 0);
 			} else {
 				AdministradorRepository admModel = new AdministradorRepository();
+				
 
 				if(admModel.logado(this.loginUser.getText(), this.passUser.getText())){
 					this.loginUser.setText("");
 					this.passUser.setText("");
-
+					this.loggedUserName = "Marcos Gênesis";
 					MainFX.chanceWindow("logado");
 				}else{
 					JOptionPane.showMessageDialog(null, "These data for access do not cross", "Fail Autenticad", 0);
