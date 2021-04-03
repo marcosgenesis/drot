@@ -1,5 +1,6 @@
 package br.com.pi.drot.UI;
 
+import br.com.pi.drot.observers.MainController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,13 +12,12 @@ public class MainFX extends Application {
 	private static Stage stage;
 	private static Scene mainScene;
 	private static Scene loginScene;
-	private static Scene LogadoScene;
 	private static Scene PatientsScene;
 	private static Scene DoctorsScene;
 	private static Scene NewPatientInQueue;
 	private static Scene NewPatient;
 	private static Scene NewDoctor;
-
+	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		try {
@@ -27,30 +27,28 @@ public class MainFX extends Application {
 			Parent loaderLogin = FXMLLoader.load(getClass().getResource("/views/Login.fxml"));
 			loginScene = new Scene(loaderLogin);
 
-			Parent loaderMain = FXMLLoader.load(getClass().getResource("/views/Main.fxml"));
+			Parent loaderMain = FXMLLoader.load(getClass().getResource("/views/Secretary/Main.fxml"));
 			mainScene = new Scene(loaderMain);
-
-			Parent loaderLogado = FXMLLoader.load(getClass().getResource("/views/Logado.fxml"));
-			LogadoScene = new Scene(loaderLogado);
-
-			Parent patientsScene = FXMLLoader.load(getClass().getResource("/views/Patients.fxml"));
+			
+			Parent patientsScene = FXMLLoader.load(getClass().getResource("/views/Secretary/Patients.fxml"));
 			PatientsScene = new Scene(patientsScene);
-
-			Parent doctorsScene = FXMLLoader.load(getClass().getResource("/views/Doctors.fxml"));
+			
+			Parent doctorsScene = FXMLLoader.load(getClass().getResource("/views/Secretary/Doctors.fxml"));
 			DoctorsScene = new Scene(doctorsScene);
-
-			Parent newPacientInQueue = FXMLLoader.load(getClass().getResource("/views/NewPacientInQueue.fxml"));
+			
+			Parent newPacientInQueue = FXMLLoader.load(getClass().getResource("/views/Secretary/NewPacientInQueue.fxml"));
 			NewPatientInQueue = new Scene(newPacientInQueue);
-
-			Parent newPatient = FXMLLoader.load(getClass().getResource("/views/NewPatient.fxml"));
+			
+			Parent newPatient = FXMLLoader.load(getClass().getResource("/views/Secretary/NewPatient.fxml"));
 			NewPatient = new Scene(newPatient);
-
-			Parent newDoctor = FXMLLoader.load(getClass().getResource("/views/NewDoctor.fxml"));
+			
+			Parent newDoctor = FXMLLoader.load(getClass().getResource("/views/Secretary/NewDoctor.fxml"));
 			NewDoctor = new Scene(newDoctor);
 
 			primaryStage.setResizable(false);
 			primaryStage.setScene(loginScene);
 			primaryStage.show();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -68,7 +66,7 @@ public class MainFX extends Application {
 				break;
 
 			case "logado":
-				stage.setScene(LogadoScene);
+				stage.setScene(mainScene);
 				break;
 
 			case "patientsScene":
@@ -92,7 +90,7 @@ public class MainFX extends Application {
 				break;
 		}
 	}
-
+	
 	public static void main(String[] args) {
 		launch(args);
 	}

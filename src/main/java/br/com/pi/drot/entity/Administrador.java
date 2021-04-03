@@ -5,11 +5,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-@NamedQuery(name = "Administrador.loginAdm", query = "SELECT a FROM Administrador a WHERE a.CPF = :email AND a.senha = :senha")
-//@NamedQuery(name = "Administrador.getById", query = "SELECT a FROM Administrador a WHERE a.codadmin =: id")
+@NamedQueries({
+	@NamedQuery(name = "Administrador.loginAdm", query = "SELECT a FROM Administrador a WHERE a.CPF = :email AND a.senha = :senha"),
+//	@NamedQuery(name = "Administrador.getById", query = "SELECT a FROM Administrador a WHERE a.codadmin =: id")
+})
+
+
 @Entity
 @Table(name = "Administrador")
 public class Administrador{
