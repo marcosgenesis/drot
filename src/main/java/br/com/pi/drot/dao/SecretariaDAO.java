@@ -39,4 +39,7 @@ public interface SecretariaDAO {
 
 	boolean removerPaciente(int idPaciente);
 
+	boolean logado(String email, String pass);
+
+
 }

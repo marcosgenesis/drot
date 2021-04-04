@@ -11,5 +11,6 @@ public interface MedicoDAO {
 	ArrayList<ConsultasDoDia> consultasDoDia(int idMedico, String dataDoDia);
 	int quantidadeConsultasDoDia(int medico, String dataDoDia);
 	int pegarNumPacientes(int idMedico);
-
+	boolean logado(String email, String pass);
+ 	int pegarIdMedico(String cpf);
 }

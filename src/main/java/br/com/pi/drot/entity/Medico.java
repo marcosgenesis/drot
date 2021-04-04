@@ -12,7 +12,9 @@ import javax.persistence.Table;
 @Entity
 @NamedQueries({
 	@NamedQuery(name = "Medico.getIdByCpf", query = "SELECT m FROM Medico m WHERE m.CPF = :cpf"),
-	@NamedQuery(name = "Medico.getById", query = "SELECT m FROM Medico m WHERE m.id = :id")
+	@NamedQuery(name = "Medico.getById", query = "SELECT m FROM Medico m WHERE m.id = :id"),
+	@NamedQuery(name = "Medico.loginMedico", query = "SELECT m FROM Medico m WHERE m.CPF = :email AND m.senha = :senha"),
+	@NamedQuery(name = "Medico.getIdMedico", query = "SELECT m FROM Medico m WHERE m.CPF = :CPF")
 })
 @Table(name = "Medico")
 public class Medico{

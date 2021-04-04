@@ -9,6 +9,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 //@NamedQuery(name = "Secretaria.getById", query = "SELECT s FROM Secretaria s WHERE s.codsecretaria =: id")
+@NamedQuery(name = "Secretaria.loginSecretaria", query = "SELECT s FROM Secretaria s WHERE s.CPF = :email AND s.senha = :senha")
 @Entity
 @Table(name = "Secretaria")
 public class Secretaria{

@@ -16,7 +16,7 @@ public class MainFX extends Application {
 	private static Scene NewPatientInQueue;
 	private static Scene NewPatient;
 	private static Scene NewDoctor;
-	private static Scene NewAdress;
+	private static Scene MainDoctorScene;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -42,8 +42,8 @@ public class MainFX extends Application {
 			Parent newPatient = FXMLLoader.load(getClass().getResource("/views/Secretary/NewPatient.fxml"));
 			NewPatient = new Scene(newPatient);
 			
-//			Parent newAdress = FXMLLoader.load(getClass().getResource("/views/Secretary/newAdress.fxml"));
-//			NewAdress = new Scene(newAdress);
+			Parent mainDoctor = FXMLLoader.load(getClass().getResource("/views/Doctor/Main/Main.fxml"));
+			MainDoctorScene = new Scene(mainDoctor);
 
 			Parent newDoctor = FXMLLoader.load(getClass().getResource("/views/Secretary/NewDoctor.fxml"));
 			NewDoctor = new Scene(newDoctor);
@@ -92,9 +92,9 @@ public class MainFX extends Application {
 				stage.setScene(NewDoctor);
 				break;
 				
-//			case "newAdress":
-//				stage.setScene(NewAdress);
-//				break;
+			case "mainDoctorScene":
+				stage.setScene(MainDoctorScene);
+				break;
 		}
 	}
 

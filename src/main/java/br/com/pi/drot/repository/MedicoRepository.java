@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import br.com.pi.drot.connection.Connection;
@@ -128,6 +129,27 @@ public class MedicoRepository implements MedicoDAO{
 //        System.out.println("numero de pacientes" + consultasRealizadas.size());
         return consultasRealizadas.size();
     }
+
+	public boolean logado(String email, String pass) {
+		try {
+			this.getConnection().getEntityManager().createNamedQuery("Medico.loginMedico", Medico.class).setParameter("email", email).setParameter("senha", pass).getSingleResult();
+			return true;
+		} catch (NoResultException e) {
+			return false;
+		}
+	}
+		
+
+	public int pegarIdMedico(String cpf) {
+		try {
+			Medico m = this.getConnection().getEntityManager().createNamedQuery("Medico.getIdMedico", Medico.class).setParameter("cpf", cpf).getSingleResult();
+
+			return m.getId();
+		} catch(NoResultException e) {
+			return -1;
+
+		}
+	}
 
 }
 

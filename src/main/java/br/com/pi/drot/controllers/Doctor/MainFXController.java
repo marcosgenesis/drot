@@ -5,6 +5,8 @@ import java.util.ResourceBundle;
 
 import br.com.pi.drot.UI.MainFX;
 import br.com.pi.drot.components.SideBarController;
+import br.com.pi.drot.entity.Medico;
+import br.com.pi.drot.repository.MedicoRepository;
 //import br.com.pi.drot.entity.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,14 +14,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class MainFXController extends SideBarController implements Initializable{
-
+	public int medicoLogado;
 	@FXML
 	private Button clickBtn;
+	
+	@FXML
+	private Label numPacientesAtendidosHoje;
 
 	@FXML
 	private VBox vitens = null;
@@ -42,8 +48,11 @@ public class MainFXController extends SideBarController implements Initializable
 	}
 
 	public void initialize(URL location, ResourceBundle resources) {
-		Node[] nodes = new Node[100];
-		Node[] treatmentItens = new Node[100];
+		MedicoRepository medicoRepo = new MedicoRepository();
+		numPacientesAtendidosHoje.setText(Integer.toString(medicoRepo.quantidadeConsultasDoDia(medicoLogado, loggedUserName)));
+		
+		Node[] nodes = new Node[10];
+		Node[] treatmentItens = new Node[10];
 				
 		for (int i = 0; i < nodes.length; i++) {
 			try {

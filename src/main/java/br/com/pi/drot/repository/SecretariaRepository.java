@@ -305,6 +305,15 @@ public class SecretariaRepository implements SecretariaDAO{
 		}
 	}
 
+	public boolean logado(String email, String pass) {
+		try {
+			Secretaria s = this.getConnection().getEntityManager().createNamedQuery("Secretaria.loginSecretaria", Secretaria.class).setParameter("email", email).setParameter("senha", pass).getSingleResult();
+			return true;
+		} catch (NoResultException e) {
+			return false;
+		}
+	}
+
 	@Override
 	public String buscarNomePacientePorID(int idPaciente) {
 		// TODO Auto-generated method stub
