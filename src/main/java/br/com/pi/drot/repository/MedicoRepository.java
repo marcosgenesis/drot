@@ -14,6 +14,7 @@ import br.com.pi.drot.entity.Medico;
 import br.com.pi.drot.entity.Paciente;
 import br.com.pi.drot.models.ConsultasDoDia;
 import br.com.pi.drot.models.ConsultasMedico;
+import br.com.pi.drot.utils.DataDoDia;
 
 public class MedicoRepository implements MedicoDAO{
 	private Connection connection;
@@ -58,9 +59,8 @@ public class MedicoRepository implements MedicoDAO{
 	}
 
 	public ArrayList<ConsultasDoDia> consultasDoDia(int idMedico,String dataDoDia) {
-		SimpleDateFormat formatoData = new SimpleDateFormat("yyyy-MM-dd");
-        Calendar calendarDataAtual = Calendar.getInstance();
-        dataDoDia= formatoData.format(calendarDataAtual.getTime());
+		DataDoDia dataDoDiaFormatada = DataDoDia.getInstance();
+		dataDoDia = dataDoDiaFormatada.retornarDataDoDia();
 		String sqlConsulta = "SELECT c FROM Consulta c WHERE c.medico =:idMedico AND c.dataConsulta =: dataDoDia";
 		
  
@@ -83,9 +83,8 @@ public class MedicoRepository implements MedicoDAO{
 	}
 
 	public int quantidadeConsultasDoDia(int medico, String dataDoDia) {
-        SimpleDateFormat formatoData = new SimpleDateFormat("yyyy-MM-dd");
-        Calendar calendarDataAtual = Calendar.getInstance();
-        dataDoDia= formatoData.format(calendarDataAtual.getTime());
+		DataDoDia dataDoDiaFormatada = DataDoDia.getInstance();
+		dataDoDia = dataDoDiaFormatada.retornarDataDoDia();
         String sqlConsulta = "SELECT c FROM Consulta c WHERE c.medico =:medico AND c.dataConsulta =: dataDoDia";
         TypedQuery<Consulta> queryConsultas = this.getConnection().getEntityManager().createQuery(sqlConsulta, Consulta.class).setParameter("dataDoDia", dataDoDia).setParameter("medico", medico);
         ArrayList<Consulta> consultas = (ArrayList<Consulta>) queryConsultas.getResultList();
@@ -106,10 +105,6 @@ public class MedicoRepository implements MedicoDAO{
             consultasRealizadas.add(new ConsultasMedico(paciente.getNome(), consultas.get(i).getDataConsulta(), consultas.get(i).getDescricaoConsulta(),consultas.get(i).getAndamentoConsulta()));
         }
 
-//        for (int i = 0; i < consultasRealizadas.size(); i++) {
-//            System.out.println(consultasRealizadas.get(i));
-//        }
-//        System.out.println("numero de pacientes" + consultasRealizadas.size());
         return consultasRealizadas.size();
     }
 

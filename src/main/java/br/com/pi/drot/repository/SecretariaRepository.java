@@ -14,6 +14,7 @@ import br.com.pi.drot.entity.Medico;
 import br.com.pi.drot.entity.Paciente;
 import br.com.pi.drot.entity.Secretaria;
 import br.com.pi.drot.models.ConsultasDoDia;
+import br.com.pi.drot.utils.DataDoDia;
 
 public class SecretariaRepository implements SecretariaDAO{
 	private Connection connection;
@@ -58,9 +59,8 @@ public class SecretariaRepository implements SecretariaDAO{
 
 
 	public int quantidadeConsultasDoDia(String dataDoDia) {
-		SimpleDateFormat formatoData = new SimpleDateFormat("yyyy-MM-dd");
-		Calendar calendarDataAtual = Calendar.getInstance();
-		dataDoDia= formatoData.format(calendarDataAtual.getTime());
+		DataDoDia dataDoDiaFormatada = DataDoDia.getInstance();
+		dataDoDia = dataDoDiaFormatada.retornarDataDoDia();
 		String sqlConsulta = "SELECT c FROM Consulta c WHERE c.dataConsulta =: dataDoDia";
         TypedQuery<Consulta> queryConsultas = this.getConnection().getEntityManager().createQuery(sqlConsulta, Consulta.class).setParameter("dataDoDia", dataDoDia);
         ArrayList<Consulta> consultas = (ArrayList<Consulta>) queryConsultas.getResultList();
@@ -75,9 +75,8 @@ public class SecretariaRepository implements SecretariaDAO{
 	}
 
 	public int quantidadeConsultasRealizadasDoDia(String dataDoDia) {
-		SimpleDateFormat formatoData = new SimpleDateFormat("yyyy-MM-dd");
-		Calendar calendarDataAtual = Calendar.getInstance();
-		dataDoDia= formatoData.format(calendarDataAtual.getTime());
+		DataDoDia dataDoDiaFormatada = DataDoDia.getInstance();
+		dataDoDia = dataDoDiaFormatada.retornarDataDoDia();
         String sqlConsulta = "SELECT c FROM Consulta c WHERE c.dataConsulta =: dataDoDia";
         TypedQuery<Consulta> queryConsultas = this.getConnection().getEntityManager().createQuery(sqlConsulta, Consulta.class).setParameter("dataDoDia", dataDoDia);
         ArrayList<Consulta> consultas = (ArrayList<Consulta>) queryConsultas.getResultList();
@@ -91,9 +90,8 @@ public class SecretariaRepository implements SecretariaDAO{
 	}
 
 	public int quantidadeConsultasNaoRealizadasDoDia(String dataDoDia) {
-		SimpleDateFormat formatoData = new SimpleDateFormat("yyyy-MM-dd");
-		Calendar calendarDataAtual = Calendar.getInstance();
-		dataDoDia= formatoData.format(calendarDataAtual.getTime());
+		DataDoDia dataDoDiaFormatada = DataDoDia.getInstance();
+		dataDoDia = dataDoDiaFormatada.retornarDataDoDia();
 		String sqlConsulta = "SELECT c FROM Consulta c WHERE c.dataConsulta =: dataDoDia";
         TypedQuery<Consulta> queryConsultas = this.getConnection().getEntityManager().createQuery(sqlConsulta, Consulta.class).setParameter("dataDoDia", dataDoDia);
         ArrayList<Consulta> consultas = (ArrayList<Consulta>) queryConsultas.getResultList();

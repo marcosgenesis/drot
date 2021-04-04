@@ -26,12 +26,31 @@ public class TratamentoPaciente{
 	@Column(name = "cod_remedio")
 	private int remedio;
 
-	@Column(name = "tempoTratamento")
-	private int tempoTratamento;
+	@Column(name = "duracaoDiasTratamento")
+	private int duracaoDiasTratamento;
+	
+	@Column(name = "dataInicioTratamento")
+	private String dataInicioTratamento;
 
 
 	public int getId() {
 		return id;
+	}
+
+	public int getDuracaoDiasTratamento() {
+		return duracaoDiasTratamento;
+	}
+
+	public void setDuracaoDiasTratamento(int duracaoDiasTratamento) {
+		this.duracaoDiasTratamento = duracaoDiasTratamento;
+	}
+
+	public String getDataInicioTratamento() {
+		return dataInicioTratamento;
+	}
+
+	public void setDataInicioTratamento(String dataInicioTratamento) {
+		this.dataInicioTratamento = dataInicioTratamento;
 	}
 
 	public void setId(int id) {
@@ -63,10 +82,11 @@ public class TratamentoPaciente{
 	}
 
 	public int getTempoTratamento() {
-		return tempoTratamento;
+		return duracaoDiasTratamento;
 	}
 
 	public void setTempoTratamento(int tempoTratamento) {
-		this.tempoTratamento = tempoTratamento;
+		this.duracaoDiasTratamento = tempoTratamento;
 	}
+	
 }
