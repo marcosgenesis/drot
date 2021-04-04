@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class MainFX extends Application {
@@ -23,6 +24,7 @@ public class MainFX extends Application {
 		try {
 			stage = primaryStage;
 			primaryStage.setTitle("DROT SYSTEM");
+			primaryStage.getIcons().add(new Image("/images/logoazul.png"));
 
 			Parent loaderLogin = FXMLLoader.load(getClass().getResource("/views/Login.fxml"));
 			loginScene = new Scene(loaderLogin);
