@@ -3,10 +3,16 @@ package br.com.pi.drot.controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import br.com.pi.drot.components.SideBarController;
 import br.com.pi.drot.repository.EnderecoRepository;
 import br.com.pi.drot.repository.SecretariaRepository;
+import br.com.pi.drot.utils.CriptografarSenha;
+import br.com.pi.drot.utils.FormatadorCPF;
 import br.com.pi.drot.utils.FormatadorMascara;
+import br.com.pi.drot.validations.CpfValidation;
+import br.com.pi.drot.validations.EmailValidation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -87,27 +93,78 @@ public class NewPatientFXController extends SideBarController implements Initial
 
 	@FXML
 	void cadastrarPaciente(ActionEvent event) {
-		SecretariaRepository secretaryRepository=  new SecretariaRepository();
-		EnderecoRepository enderecoRepository = new EnderecoRepository();
-		enderecoRepository.cadastrarEndereco(
-				this.uf.getText(), 
-				this.rua.getText(), 
-				Integer.parseInt(this.numero.getText()),
-				this.bairro.getText(),
-				this.cidade.getText(),
-				this.cep.getText()
-		);
-		int codEndereco = enderecoRepository.pegarIdEndereco(this.cep.getText(),Integer.parseInt(this.numero.getText()));
-		secretaryRepository.cadastrarNovoPaciente(this.nome.getText(), 
-				this.cpf.getText(),
-				this.rg.getText(), 
-				this.dataNascimento.getText(),
-				codEndereco, 
-				this.telefone.getText(), 
-				this.restricao.getText(),
-				this.doenca.getText(),
-				this.email.getText(),
-				this.senha.getText());
+		if (this.nome.getText().equals("") || this.cpf.getText().equals("") || this.rg.getText().equals("") || this.dataNascimento.getText().equals("") || this.rua.getText().equals("") || this.numero.getText().equals("") || this.bairro.getText().equals("") || this.cidade.getText().equals("") || this.cep.getText().equals("") || this.email.getText().equals("") || this.senha.getText().equals("") ||	this.restricao.getText().equals("") || this.doenca.getText().equals("") || this.uf.getText().equals("")) {
+			JOptionPane.showMessageDialog(null, "Insertion all inputs for login", "Input Invalid", 0);
+			return;
+		} else {
+			if (!CpfValidation.cpfValido(FormatadorCPF.cleanCpf(this.cpf.getText()))) {
+				JOptionPane.showMessageDialog(null, "These CPF for access not is valid", "CPF Invalid", 0);
+			} else if (!EmailValidation.emailEValido(this.email.getText())) {
+				JOptionPane.showMessageDialog(null, "These e-mail for access not is valid", "Email Invalid", 0);
+			} else {
+				SecretariaRepository secretaryRepository=  new SecretariaRepository();
+				EnderecoRepository enderecoRepository = new EnderecoRepository();
+
+				int idEnderecoExistente = enderecoRepository.pegarIdEndereco(this.cep.getText(), Integer.parseInt(this.numero.getText()));
+
+				if (idEnderecoExistente != -1) {
+					secretaryRepository.cadastrarNovoPaciente(this.nome.getText(),
+							this.cpf.getText(),
+							this.rg.getText(),
+							this.dataNascimento.getText(),
+							idEnderecoExistente,
+							this.telefone.getText(),
+							this.restricao.getText(),
+							this.doenca.getText(),
+							this.email.getText(),
+							CriptografarSenha.criptografarSenha(this.senha.getText()));
+
+					this.limparFormularioCadastroPaciente();
+				} else {
+					enderecoRepository.cadastrarEndereco(
+							this.uf.getText(),
+							this.rua.getText(),
+							Integer.parseInt(this.numero.getText()),
+							this.bairro.getText(),
+							this.cidade.getText(),
+							this.cep.getText()
+					);
+					int codEndereco = enderecoRepository.pegarIdEndereco(this.cep.getText(),Integer.parseInt(this.numero.getText()));
+
+					secretaryRepository.cadastrarNovoPaciente(this.nome.getText(),
+							this.cpf.getText(),
+							this.rg.getText(),
+							this.dataNascimento.getText(),
+							codEndereco,
+							this.telefone.getText(),
+							this.restricao.getText(),
+							this.doenca.getText(),
+							this.email.getText(),
+							CriptografarSenha.criptografarSenha(this.senha.getText()));
+
+					this.limparFormularioCadastroPaciente();
+				}
+			}
+		}
+	}
+
+	public void limparFormularioCadastroPaciente() {
+		JOptionPane.showMessageDialog(null, "New patient adding with success!", "Patient add with success", 0);
+
+		this.nome.setText("");
+		this.cpf.setText("");
+		this.rg.setText("");
+		this.dataNascimento.setText("");
+		this.rua.setText("");
+		this.numero.setText("");
+		this.bairro.setText("");
+		this.cidade.setText("");
+		this.cep.setText("");
+		this.email.setText("");
+		this.senha.setText("");
+		this.restricao.setText("");
+		this.doenca.setText("");
+		this.uf.setText("");
 	}
 
 	@Override

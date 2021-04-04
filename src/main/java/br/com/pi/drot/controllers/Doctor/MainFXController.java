@@ -26,20 +26,20 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
-public class MainFXController extends SideBarController implements Initializable{
+public class MainFXController extends SideBarController implements Initializable {
 	public int medicoLogado;
 	@FXML
 	private Button clickBtn;
-	
+
 	@FXML
 	public Label numPacientesAtendidosHoje;
 
 	@FXML
 	private VBox vitens = null;
-	
+
 	@FXML
 	private VBox treatmentItems = null;
-	
+
 	@FXML
 	private Button btnSwitchWindow;
 
@@ -47,7 +47,7 @@ public class MainFXController extends SideBarController implements Initializable
 	private void btnAction(ActionEvent event) {
 		MainFX.chanceWindow("newPacientInQueue");
 	}
-	
+
 	@FXML
 	private void changeLogin(ActionEvent event) {
 		System.out.println("teste");
@@ -58,28 +58,32 @@ public class MainFXController extends SideBarController implements Initializable
 		MedicoRepository medicoRepo = new MedicoRepository();
 		System.out.println(medicoRepo.quantidadeConsultasDoDia(medicoLogado, ""));
 		numPacientesAtendidosHoje.setText(Integer.toString(medicoRepo.quantidadeConsultasDoDia(medicoLogado, "")));
-		
-//		ArrayList<Pane> nodes = new ArrayList<Pane>();
-//		for (ConsultasMedico consulta : medicoRepo.consultasRealizadas(1)) {
-//			Pane node;
-//			try {
-//				FXMLLoader loader = FXMLLoader.load(getClass().getResource("/views/Doctor/ListItem.fxml"));
-////				node.getProperties().put("nomePaciente", consulta.getNomePacienteConsulta());
-////				node.getProperties().put("statusPaciente", consulta.getStatusConsulta());
-////				System.out.println(node.getProperties().get("nomePaciente"));
-//				AnchorPane root = loader.load();
-//				ListItemController controller = loader.getController();
-//				controller.setData(consulta.getNomePacienteConsulta(), consulta.getStatusConsulta());
-//				
-////				vitens.getChildren().add(root);
-////				
-//			} catch (IOException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//			
-//		};
-////		vitens.getChildren().addAll(nodes);
-//	}
 
+		// ArrayList<Pane> nodes = new ArrayList<Pane>();
+		// for (ConsultasMedico consulta : medicoRepo.consultasRealizadas(1)) {
+		// Pane node;
+		// try {
+		// FXMLLoader loader =
+		// FXMLLoader.load(getClass().getResource("/views/Doctor/ListItem.fxml"));
+		//// node.getProperties().put("nomePaciente",
+		// consulta.getNomePacienteConsulta());
+		//// node.getProperties().put("statusPaciente",
+		// consulta.getStatusConsulta());
+		//// System.out.println(node.getProperties().get("nomePaciente"));
+		// AnchorPane root = loader.load();
+		// ListItemController controller = loader.getController();
+		// controller.setData(consulta.getNomePacienteConsulta(),
+		// consulta.getStatusConsulta());
+		//
+		//// vitens.getChildren().add(root);
+		////
+		// } catch (IOException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
+		//
+		// };
+		//// vitens.getChildren().addAll(nodes);
+		// }
+	}
 }

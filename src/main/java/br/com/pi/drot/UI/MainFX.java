@@ -41,7 +41,7 @@ public class MainFX extends Application {
 
 			Parent newPatient = FXMLLoader.load(getClass().getResource("/views/Secretary/NewPatient.fxml"));
 			NewPatient = new Scene(newPatient);
-			
+
 			Parent mainDoctor = FXMLLoader.load(getClass().getResource("/views/Doctor/Main/Main.fxml"));
 			MainDoctorScene = new Scene(mainDoctor);
 
@@ -91,7 +91,7 @@ public class MainFX extends Application {
 			case "newDoctor":
 				stage.setScene(NewDoctor);
 				break;
-				
+
 			case "mainDoctorScene":
 				stage.setScene(MainDoctorScene);
 				break;

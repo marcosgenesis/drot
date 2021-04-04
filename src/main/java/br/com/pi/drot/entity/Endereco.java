@@ -5,10 +5,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-@NamedQuery(name = "Endereco.getIdEndereco", query = "SELECT e FROM Endereco e WHERE e.numero = :numero AND e.cep = :cep")
+@NamedQueries({
+	@NamedQuery(name = "Endereco.getIdEndereco", query = "SELECT e FROM Endereco e WHERE e.numero = :numero AND e.cep = :cep")
+})
 @Entity
 @Table(name = "endereco")
 public class Endereco {

@@ -11,6 +11,7 @@ import br.com.pi.drot.controllers.Doctor.MainFXController;
 import br.com.pi.drot.repository.AdministradorRepository;
 import br.com.pi.drot.repository.MedicoRepository;
 import br.com.pi.drot.repository.SecretariaRepository;
+import br.com.pi.drot.utils.CriptografarSenha;
 import br.com.pi.drot.utils.FormatadorCPF;
 import br.com.pi.drot.utils.FormatadorMascara;
 import br.com.pi.drot.validations.CpfValidation;
@@ -53,7 +54,7 @@ public class LoginFXController extends SideBarController implements Initializabl
 				switch(userType.getValue()){
 					case "Administrador":{
 						AdministradorRepository admRepo = new AdministradorRepository();
-						if(admRepo.logado(this.loginUser.getText(), this.passUser.getText())){
+						if(admRepo.logado(this.loginUser.getText(), CriptografarSenha.criptografarSenha(this.passUser.getText()))){
 							this.loginUser.setText("");
 							this.passUser.setText("");
 
@@ -67,7 +68,7 @@ public class LoginFXController extends SideBarController implements Initializabl
 					}
 					case "Secretária":{
 						SecretariaRepository secreRepo = new SecretariaRepository();
-						if(secreRepo.logado(this.loginUser.getText(), this.passUser.getText())){
+						if(secreRepo.logado(this.loginUser.getText(), CriptografarSenha.criptografarSenha(this.passUser.getText()))){
 							this.loginUser.setText("");
 							this.passUser.setText("");
 
@@ -81,7 +82,7 @@ public class LoginFXController extends SideBarController implements Initializabl
 					}
 					case "Médico":{
 						MedicoRepository medicoRepo = new MedicoRepository();
-						if(medicoRepo.logado(this.loginUser.getText(), this.passUser.getText())){
+						if(medicoRepo.logado(this.loginUser.getText(), CriptografarSenha.criptografarSenha(this.passUser.getText()))){
 							MainFXController doctorController =  new MainFXController();
 							doctorController.medicoLogado = medicoRepo.pegarIdMedico(this.loginUser.getText());
 							this.loginUser.setText("");
@@ -95,7 +96,7 @@ public class LoginFXController extends SideBarController implements Initializabl
 						break;
 					}
 				}
-			
+
 			}
 		}
 	}

@@ -22,8 +22,8 @@ import br.com.pi.drot.repository.TratamentoPacienteRepository;
 public class TesteT {
 
 	public static void main(String[] args) {
-		AdministradorRepository aR = new AdministradorRepository();
-		EnderecoRepository eR = new EnderecoRepository();
+		//AdministradorRepository aR = new AdministradorRepository();
+		//EnderecoRepository eR = new EnderecoRepository();
 
 		//É SÓ LER PARA ENTENDER, :)
 
@@ -113,12 +113,14 @@ public class TesteT {
 			System.out.println(consultasRetorno.get(i));
 		}*/
 
-		TratamentoPacienteRepository tPR = new TratamentoPacienteRepository();
-		ArrayList<TratamentosPaciente> consultasRetorno = (ArrayList<TratamentosPaciente>) tPR.tratamentosPaciente(1);
+		//TratamentoPacienteRepository tPR = new TratamentoPacienteRepository();
+		//ArrayList<TratamentosPaciente> consultasRetorno = (ArrayList<TratamentosPaciente>) tPR.tratamentosPaciente(1);
 
 		/*for (int i = 0; i < consultasRetorno.size(); i++) {
 			System.out.println(consultasRetorno.get(i));
 		}*/
+
+		System.out.println(CriptografarSenha.criptografarSenha("qwe123"));
 	}
 
 }
