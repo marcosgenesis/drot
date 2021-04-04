@@ -4,11 +4,13 @@ public class ConsultasMedico {
 	private String nomePacienteConsulta;
 	private String dataOcorreuConsulta;
 	private String descricaoConsulta;
+	private String statusConsulta;
 
-	public ConsultasMedico(String nomePacienteConsulta, String dataOcorreuConsulta, String descricaoConsulta) {
+	public ConsultasMedico(String nomePacienteConsulta, String dataOcorreuConsulta, String descricaoConsulta,String statusConsulta) {
 		this.nomePacienteConsulta = nomePacienteConsulta;
 		this.dataOcorreuConsulta = dataOcorreuConsulta;
 		this.descricaoConsulta = descricaoConsulta;
+		this.statusConsulta = statusConsulta;
 	}
 
 	public String getNomePacienteConsulta() {
@@ -33,6 +35,14 @@ public class ConsultasMedico {
 
 	public void setDescricaoConsulta(String descricaoConsulta) {
 		this.descricaoConsulta = descricaoConsulta;
+	}
+
+	public String getStatusConsulta() {
+		return this.statusConsulta;
+	}
+
+	public void setStatusConsulta(String statusConsulta) {
+		this.statusConsulta = statusConsulta;
 	}
 
 	@Override

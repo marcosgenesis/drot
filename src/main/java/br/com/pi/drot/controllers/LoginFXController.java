@@ -82,10 +82,10 @@ public class LoginFXController extends SideBarController implements Initializabl
 					case "Médico":{
 						MedicoRepository medicoRepo = new MedicoRepository();
 						if(medicoRepo.logado(this.loginUser.getText(), this.passUser.getText())){
-							this.loginUser.setText("");
-							this.passUser.setText("");
 							MainFXController doctorController =  new MainFXController();
 							doctorController.medicoLogado = medicoRepo.pegarIdMedico(this.loginUser.getText());
+							this.loginUser.setText("");
+							this.passUser.setText("");
 							MainFX.chanceWindow("mainDoctorScene");
 						}else{
 							JOptionPane.showMessageDialog(null, "These data for access do not cross", "Fail Autenticad", 0);

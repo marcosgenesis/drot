@@ -14,7 +14,7 @@
             <Label layoutX="20.0" layoutY="22.0" text="MG" textFill="#2784ff" />
          </children>
       </Pane>
-      <Label layoutX="78.0" layoutY="21.0" text="Marcos Genesis da Silva">
+      <Label fx:id="nomePaciente" layoutX="78.0" layoutY="21.0">
          <font>
             <Font size="15.0" />
          </font>
@@ -24,6 +24,6 @@
             <Image url="@../../images/Liberado.png" />
          </image>
       </ImageView>
-      <Label layoutX="99.0" layoutY="49.0" text="Liberado" textFill="#9195a3" />
+      <Label fx:id="statusPaciente" layoutX="99.0" layoutY="49.0"  textFill="#9195a3" />
    </children>
 </AnchorPane>
