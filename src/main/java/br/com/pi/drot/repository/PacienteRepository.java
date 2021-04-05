@@ -3,6 +3,7 @@ package br.com.pi.drot.repository;
 import java.text.ParseException;
 import java.util.ArrayList;
 
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import br.com.pi.drot.connection.Connection;
@@ -46,7 +47,16 @@ public class PacienteRepository implements PacienteDAO{
 		String nomePacienteLogado = queryConsultas.getSingleResult().getNome();
 		return nomePacienteLogado;
 	}
+	public int pegarIdPaciente(String cpf) {
+        try {
+            Paciente p = this.connection.getEntityManager().createNamedQuery("Paciente.getIdByCpf", Paciente.class).setParameter("cpf", cpf).getSingleResult();
 
+            return p.getId();
+        } catch(NoResultException e) {
+            return -1;
+
+        }
+    }
 	public int pegarIdadePaciente(int idPaciente) {
 		String sqlConsulta = "SELECT p FROM Paciente p WHERE p.id =: id";
 		TypedQuery<Paciente> queryConsultas = this.connection.getEntityManager().createQuery(sqlConsulta, Paciente.class).setParameter("id", idPaciente);

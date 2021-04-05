@@ -89,7 +89,7 @@ public class LoginFXController extends SideBarController implements Initializabl
 							this.passUser.setText("");
 							MainFX.chanceWindow("mainDoctorScene");
 						}else{
-							JOptionPane.showMessageDialog(null, "These data for access do not cross", "Fail Autenticad", 0);
+							JOptionPane.showMessageDialog(null, "Erro ao fazer autenticação, tente novamente.");
 							this.loginUser.setText("");
 							this.passUser.setText("");
 						}

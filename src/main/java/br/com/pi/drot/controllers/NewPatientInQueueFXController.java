@@ -7,6 +7,7 @@ import br.com.pi.drot.components.SideBarController;
 import br.com.pi.drot.entity.Medico;
 import br.com.pi.drot.models.MedicoModel;
 import br.com.pi.drot.repository.ConsultaRepository;
+import br.com.pi.drot.repository.PacienteRepository;
 import br.com.pi.drot.repository.SecretariaRepository;
 import br.com.pi.drot.utils.FormatadorMascara;
 import javafx.collections.FXCollections;
@@ -35,8 +36,9 @@ public class NewPatientInQueueFXController extends SideBarController implements 
 	@FXML
 	private void adicionarPaciente(ActionEvent event) {
 		ConsultaRepository consultaRepo = new ConsultaRepository();
+		PacienteRepository pacienteRepo = new PacienteRepository();
 		consultaRepo.criarConsulta(
-				1,
+				pacienteRepo.pegarIdPaciente(cpfPaciente.getText()),
 				medicoChoiceBox.getValue().getId(),
 				descricaoSintomas.getText(),
 				classificacaoUrgenciacChoiceBox.getValue(),

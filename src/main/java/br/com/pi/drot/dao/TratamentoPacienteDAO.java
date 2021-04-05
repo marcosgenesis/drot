@@ -8,7 +8,7 @@ import br.com.pi.drot.entity.TratamentoPaciente;
 
  public interface TratamentoPacienteDAO {
 
-	boolean criarTratamentoPaciente(int idPaciente, int tempoTratamento);
+	boolean criarTratamentoPaciente(int idPaciente, String dataInicioTratamento, int tempoTratamento);
 
 	TratamentoPaciente buscarTratamentoPacientePorID(int idTratamento);
 

@@ -34,6 +34,9 @@ public class TratamentoPaciente{
 	
 	@Column(name = "estadoTratamento")
     private boolean estadoTratamento;
+	
+	@Column(name = "cod_consulta")
+    private int consulta;
 
 	public int getId() {
 		return id;

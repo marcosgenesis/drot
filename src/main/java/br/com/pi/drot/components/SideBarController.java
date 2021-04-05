@@ -44,4 +44,10 @@ public class SideBarController{
 
 	}
 	
+	@FXML
+	private void btnSwitchNeTreatmentScreen(ActionEvent event) {
+		MainFX.chanceWindow("newTreatmentScreen");
+
+	}
+	
 }

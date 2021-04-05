@@ -1,6 +1,7 @@
 package br.com.pi.drot.repository;
 
 import javax.persistence.NoResultException;
+import javax.swing.JOptionPane;
 
 import br.com.pi.drot.connection.Connection;
 import br.com.pi.drot.dao.ConsultaDAO;
@@ -35,7 +36,7 @@ public class ConsultaRepository implements ConsultaDAO {
 			System.out.println("Nova consulta cadastrada com sucesso! Com o id: " + consulta.getId());
 			return true;
         } catch (Exception ex) {
-    		System.out.println("Erro ao remarcar consulta");
+        	JOptionPane.showMessageDialog(null,"Erro ao criar consulta, Verifique os dados.");
             return false;
         }
 	}

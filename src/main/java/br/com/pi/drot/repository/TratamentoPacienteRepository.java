@@ -19,17 +19,19 @@ public class TratamentoPacienteRepository implements TratamentoPacienteDAO{
 	public TratamentoPacienteRepository(){
 	}
 
-	public boolean criarTratamentoPaciente(int idPaciente, int tempoTratamento) {
-		TratamentoPaciente tratamento = new TratamentoPaciente();
-		tratamento.setPaciente(idPaciente);
-		tratamento.setTempoTratamento(tempoTratamento);
-		this.connection.getEntityManager().getTransaction().begin();
-		this.connection.getEntityManager().persist(tratamento);
-		this.connection.getEntityManager().getTransaction().commit();
+	public boolean criarTratamentoPaciente(int idPaciente, String dataInicioTratamento, int tempoTratamento) {
+        TratamentoPaciente tratamento = new TratamentoPaciente();
+        tratamento.setPaciente(idPaciente);
+        tratamento.setTempoTratamento(tempoTratamento);
+        tratamento.setDataInicioTratamento(dataInicioTratamento);
+        tratamento.setEstadoTratamento(false);
+        this.connection.getEntityManager().getTransaction().begin();
+        this.connection.getEntityManager().persist(tratamento);
+        this.connection.getEntityManager().getTransaction().commit();
 
-		System.out.println("Novo tratamento cadastrado com sucesso!" +tratamento.getId());
-		return true;
-	}
+        System.out.println("Novo tratamento cadastrado com sucesso!" +tratamento.getId());
+        return true;
+    }
 
 	public TratamentoPaciente buscarTratamentoPacientePorID(int id) {
 		try {
