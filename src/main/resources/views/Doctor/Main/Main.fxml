@@ -71,6 +71,14 @@
                         <Image url="@../../../images/Icon%20awesome-pills.png" />
                      </image>
                   </ImageView>
+                  <Button layoutX="25.0" layoutY="88.0" mnemonicParsing="false" onAction="#btnSwitchNeTreatmentScreen" prefHeight="53.0" prefWidth="231.0" style="-fx-background-color: #2784ff;" text="Novo Tratamento" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
                </children>
             </Pane>
             <TextField layoutX="425.0" layoutY="48.0" prefHeight="53.0" prefWidth="549.0" promptText="Pesquisar Paciente" style="-fx-background-color: fff; -fx-background-radius: 10px 10px 00px 0px; -fx-padding: 5 5 5 5;" />
