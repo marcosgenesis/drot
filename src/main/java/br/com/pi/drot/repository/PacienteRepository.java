@@ -13,30 +13,23 @@ import br.com.pi.drot.models.ConsultasPaciente;
 import br.com.pi.drot.utils.CalcularIdade;
 
 public class PacienteRepository implements PacienteDAO{
-	private Connection connection;
+	Connection connection = Connection.getInstance();
+
 
 	public PacienteRepository() {
-		this.connection = new Connection();
 	}
 
-	public Connection getConnection() {
-		return connection;
-	}
-
-	public void setConnection(Connection connection) {
-		this.connection = connection;
-	}
 
 	public ArrayList<ConsultasPaciente> consultasPaciente(int idPaciente) {
 		String sqlConsulta = "SELECT c FROM Consulta c WHERE c.paciente =: id";
-		TypedQuery<Consulta> queryConsultas = this.getConnection().getEntityManager().createQuery(sqlConsulta, Consulta.class).setParameter("id", idPaciente);
+		TypedQuery<Consulta> queryConsultas = this.connection.getEntityManager().createQuery(sqlConsulta, Consulta.class).setParameter("id", idPaciente);
 		ArrayList<Consulta> consultas = (ArrayList<Consulta>) queryConsultas.getResultList();
 
 
 		ArrayList<ConsultasPaciente> consultasRealizadas = new ArrayList<ConsultasPaciente>();
 
 		for (int i = 0; i < consultas.size(); i++) {
-			Paciente paciente = this.getConnection().getEntityManager().createNamedQuery("Paciente.getById", Paciente.class).setParameter("idP", consultas.get(i).getPaciente()).getSingleResult();
+			Paciente paciente = this.connection.getEntityManager().createNamedQuery("Paciente.getById", Paciente.class).setParameter("idP", consultas.get(i).getPaciente()).getSingleResult();
 			consultasRealizadas.add(new ConsultasPaciente(paciente.getNome(), consultas.get(i).getDataConsulta(), consultas.get(i).getDescricaoConsulta(), consultas.get(i).getClassificacaoUrgencia()));
 		}
 
@@ -49,14 +42,14 @@ public class PacienteRepository implements PacienteDAO{
 
 	public String pegarNomePacienteLogado(int idPaciente) {
 		String sqlConsulta = "SELECT p FROM Paciente p WHERE p.id =: id";
-		TypedQuery<Paciente> queryConsultas = this.getConnection().getEntityManager().createQuery(sqlConsulta, Paciente.class).setParameter("id", idPaciente);
+		TypedQuery<Paciente> queryConsultas = this.connection.getEntityManager().createQuery(sqlConsulta, Paciente.class).setParameter("id", idPaciente);
 		String nomePacienteLogado = queryConsultas.getSingleResult().getNome();
 		return nomePacienteLogado;
 	}
 
 	public int pegarIdadePaciente(int idPaciente) {
 		String sqlConsulta = "SELECT p FROM Paciente p WHERE p.id =: id";
-		TypedQuery<Paciente> queryConsultas = this.getConnection().getEntityManager().createQuery(sqlConsulta, Paciente.class).setParameter("id", idPaciente);
+		TypedQuery<Paciente> queryConsultas = this.connection.getEntityManager().createQuery(sqlConsulta, Paciente.class).setParameter("id", idPaciente);
 		String dataNascimento = queryConsultas.getSingleResult().getDataNascimento();
 	    try {
 			CalcularIdade calcularIdade = new CalcularIdade();

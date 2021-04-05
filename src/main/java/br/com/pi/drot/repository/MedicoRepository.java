@@ -17,30 +17,23 @@ import br.com.pi.drot.models.ConsultasMedico;
 import br.com.pi.drot.utils.DataDoDia;
 
 public class MedicoRepository implements MedicoDAO{
-	private Connection connection;
+	Connection connection = Connection.getInstance();
+
 
 	public MedicoRepository() {
-		this.connection = new Connection();
 	}
 
-	public Connection getConnection() {
-		return connection;
-	}
-
-	public void setConnection(Connection connection) {
-		this.connection = connection;
-	}
 
 	public ArrayList<ConsultasMedico> consultasRealizadas(int idMedico) {
 		String sqlConsulta = "SELECT c FROM Consulta c WHERE c.medico =: id";
-		TypedQuery<Consulta> queryConsultas = this.getConnection().getEntityManager().createQuery(sqlConsulta, Consulta.class).setParameter("id", idMedico);
+		TypedQuery<Consulta> queryConsultas = this.connection.getEntityManager().createQuery(sqlConsulta, Consulta.class).setParameter("id", idMedico);
 		ArrayList<Consulta> consultas = (ArrayList<Consulta>) queryConsultas.getResultList();
 
 
 		ArrayList<ConsultasMedico> consultasRealizadas = new ArrayList<ConsultasMedico>();
 
 		for (int i = 0; i < consultas.size(); i++) {
-			Paciente paciente = this.getConnection().getEntityManager().createNamedQuery("Paciente.getById", Paciente.class).setParameter("idP", consultas.get(i).getPaciente()).getSingleResult();
+			Paciente paciente = this.connection.getEntityManager().createNamedQuery("Paciente.getById", Paciente.class).setParameter("idP", consultas.get(i).getPaciente()).getSingleResult();
 			consultasRealizadas.add(new ConsultasMedico(paciente.getNome(), consultas.get(i).getDataConsulta(), consultas.get(i).getDescricaoConsulta(),consultas.get(i).getAndamentoConsulta()));
 		}
 
@@ -53,7 +46,7 @@ public class MedicoRepository implements MedicoDAO{
 
 	public String pegarNomeMedicoLogado(int idMedico) {
 		String sqlConsulta = "SELECT m FROM Medico m WHERE m.id =: id";
-		TypedQuery<Medico> queryConsultas = this.getConnection().getEntityManager().createQuery(sqlConsulta, Medico.class).setParameter("id", idMedico);
+		TypedQuery<Medico> queryConsultas = this.connection.getEntityManager().createQuery(sqlConsulta, Medico.class).setParameter("id", idMedico);
 		String nomeMedicoLogado = queryConsultas.getSingleResult().getNome();
 		return nomeMedicoLogado;
 	}
@@ -64,7 +57,7 @@ public class MedicoRepository implements MedicoDAO{
 		String sqlConsulta = "SELECT c FROM Consulta c WHERE c.medico =:idMedico AND c.dataConsulta =: dataDoDia";
 		
  
-		TypedQuery<Consulta> queryConsultas = this.getConnection()
+		TypedQuery<Consulta> queryConsultas = this.connection
 				.getEntityManager()
 				.createQuery(sqlConsulta, Consulta.class)
 				.setParameter("idMedico", idMedico)
@@ -75,7 +68,7 @@ public class MedicoRepository implements MedicoDAO{
 		ArrayList<ConsultasDoDia> consultasDoDia = new ArrayList<ConsultasDoDia>();
 
 		for (int i = 0; i < consultas.size(); i++) {
-			Paciente paciente = this.getConnection().getEntityManager().createNamedQuery("Paciente.getById", Paciente.class).setParameter("idP", consultas.get(i).getPaciente()).getSingleResult();
+			Paciente paciente = this.connection.getEntityManager().createNamedQuery("Paciente.getById", Paciente.class).setParameter("idP", consultas.get(i).getPaciente()).getSingleResult();
 			consultasDoDia.add(new ConsultasDoDia(paciente.getNome(), consultas.get(i).getDataConsulta(), consultas.get(i).getDescricaoConsulta(), consultas.get(i).getClassificacaoUrgencia(), consultas.size()));
 		}
 
@@ -84,14 +77,14 @@ public class MedicoRepository implements MedicoDAO{
 	
 	public ArrayList<Paciente> pacientesDoMedico(int idMedico) {
         String sqlConsulta = "SELECT c FROM Consulta c WHERE c.medico =: id";
-        TypedQuery<Consulta> queryConsultas = this.getConnection().getEntityManager().createQuery(sqlConsulta, Consulta.class).setParameter("id", idMedico);
+        TypedQuery<Consulta> queryConsultas = this.connection.getEntityManager().createQuery(sqlConsulta, Consulta.class).setParameter("id", idMedico);
         ArrayList<Consulta> consultas = (ArrayList<Consulta>) queryConsultas.getResultList();
 
 
         ArrayList<Paciente> pacientes = new ArrayList<Paciente>();
 
         for (int i = 0; i < consultas.size(); i++) {
-            Paciente paciente = this.getConnection().getEntityManager().createNamedQuery("Paciente.getById", Paciente.class).setParameter("idP", consultas.get(i).getPaciente()).getSingleResult();
+            Paciente paciente = this.connection.getEntityManager().createNamedQuery("Paciente.getById", Paciente.class).setParameter("idP", consultas.get(i).getPaciente()).getSingleResult();
             pacientes.add(paciente);
         }
 
@@ -101,7 +94,7 @@ public class MedicoRepository implements MedicoDAO{
 		DataDoDia dataDoDiaFormatada = DataDoDia.getInstance();
 		dataDoDia = dataDoDiaFormatada.retornarDataDoDia();
         String sqlConsulta = "SELECT c FROM Consulta c WHERE c.medico =:medico AND c.dataConsulta =: dataDoDia";
-        TypedQuery<Consulta> queryConsultas = this.getConnection().getEntityManager().createQuery(sqlConsulta, Consulta.class).setParameter("dataDoDia", dataDoDia).setParameter("medico", medico);
+        TypedQuery<Consulta> queryConsultas = this.connection.getEntityManager().createQuery(sqlConsulta, Consulta.class).setParameter("dataDoDia", dataDoDia).setParameter("medico", medico);
         ArrayList<Consulta> consultas = (ArrayList<Consulta>) queryConsultas.getResultList();
         System.out.println("numero de consultas do dia: " + consultas.size() );
         return consultas.size();
@@ -109,14 +102,14 @@ public class MedicoRepository implements MedicoDAO{
 	
 	public int pegarNumPacientes(int idMedico) {
         String sqlConsulta = "SELECT c FROM Consulta c WHERE c.medico =: id";
-        TypedQuery<Consulta> queryConsultas = this.getConnection().getEntityManager().createQuery(sqlConsulta, Consulta.class).setParameter("id", idMedico);
+        TypedQuery<Consulta> queryConsultas = this.connection.getEntityManager().createQuery(sqlConsulta, Consulta.class).setParameter("id", idMedico);
         ArrayList<Consulta> consultas = (ArrayList<Consulta>) queryConsultas.getResultList();
 
 
         ArrayList<ConsultasMedico> consultasRealizadas = new ArrayList<ConsultasMedico>();
 
         for (int i = 0; i < consultas.size(); i++) {
-            Paciente paciente = this.getConnection().getEntityManager().createNamedQuery("Paciente.getById", Paciente.class).setParameter("idP", consultas.get(i).getPaciente()).getSingleResult();
+            Paciente paciente = this.connection.getEntityManager().createNamedQuery("Paciente.getById", Paciente.class).setParameter("idP", consultas.get(i).getPaciente()).getSingleResult();
             consultasRealizadas.add(new ConsultasMedico(paciente.getNome(), consultas.get(i).getDataConsulta(), consultas.get(i).getDescricaoConsulta(),consultas.get(i).getAndamentoConsulta()));
         }
 
@@ -125,7 +118,7 @@ public class MedicoRepository implements MedicoDAO{
 
 	public boolean logado(String email, String pass) {
 		try {
-			this.getConnection().getEntityManager().createNamedQuery("Medico.loginMedico", Medico.class).setParameter("email", email).setParameter("senha", pass).getSingleResult();
+			this.connection.getEntityManager().createNamedQuery("Medico.loginMedico", Medico.class).setParameter("email", email).setParameter("senha", pass).getSingleResult();
 			return true;
 		} catch (NoResultException e) {
 			return false;
@@ -136,7 +129,7 @@ public class MedicoRepository implements MedicoDAO{
 	public int pegarIdMedico(String cpf) {
 		try {
 			System.out.println("este é o cpf do medico: " + cpf);
-			Medico m = this.getConnection().getEntityManager().createNamedQuery("Medico.getIdMedico", Medico.class).setParameter("CPF", cpf).getSingleResult();
+			Medico m = this.connection.getEntityManager().createNamedQuery("Medico.getIdMedico", Medico.class).setParameter("CPF", cpf).getSingleResult();
 
 			System.out.println("este é o id do medico: " + m.getId());
 			return m.getId();

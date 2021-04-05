@@ -6,11 +6,18 @@ import javax.persistence.Persistence;
 
 
 public class Connection {
-
+	private static Connection connection;
 	private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("DROT");
 	private EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-	public Connection() {}
+	private Connection() {}
+
+	public static synchronized Connection getInstance() {
+	        if (connection == null) {
+	            connection = new Connection();
+	        }
+	        return connection;
+	    }
 
 
 	public EntityManagerFactory getEntityManagerFactory() {

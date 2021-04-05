@@ -13,27 +13,19 @@ import br.com.pi.drot.entity.TratamentoPaciente;
 import br.com.pi.drot.models.TratamentosPaciente;
 
 public class TratamentoPacienteRepository implements TratamentoPacienteDAO{
-	private Connection connection;
+	Connection connection = Connection.getInstance();
+
 
 	public TratamentoPacienteRepository(){
-		this.connection = new Connection();
-	}
-
-	public Connection getConnection() {
-		return connection;
-	}
-
-	public void setConnection(Connection connection) {
-		this.connection = connection;
 	}
 
 	public boolean criarTratamentoPaciente(int idPaciente, int tempoTratamento) {
 		TratamentoPaciente tratamento = new TratamentoPaciente();
 		tratamento.setPaciente(idPaciente);
 		tratamento.setTempoTratamento(tempoTratamento);
-		this.getConnection().getEntityManager().getTransaction().begin();
-		this.getConnection().getEntityManager().persist(tratamento);
-		this.getConnection().getEntityManager().getTransaction().commit();
+		this.connection.getEntityManager().getTransaction().begin();
+		this.connection.getEntityManager().persist(tratamento);
+		this.connection.getEntityManager().getTransaction().commit();
 
 		System.out.println("Novo tratamento cadastrado com sucesso!" +tratamento.getId());
 		return true;
@@ -41,7 +33,7 @@ public class TratamentoPacienteRepository implements TratamentoPacienteDAO{
 
 	public TratamentoPaciente buscarTratamentoPacientePorID(int id) {
 		try {
-			TratamentoPaciente tratamento = this.getConnection().getEntityManager().createNamedQuery("TratamentoPaciente.getById", TratamentoPaciente.class).setParameter("cod", id).getSingleResult();
+			TratamentoPaciente tratamento = this.connection.getEntityManager().createNamedQuery("TratamentoPaciente.getById", TratamentoPaciente.class).setParameter("cod", id).getSingleResult();
 			return tratamento;
 		} catch (NoResultException e) {
 			return null;
@@ -49,8 +41,8 @@ public class TratamentoPacienteRepository implements TratamentoPacienteDAO{
 	}
 
 	public ArrayList<TratamentoPaciente> listarTratamentosPaciente() {
-		this.getConnection().getEntityManager();
-		ArrayList<TratamentoPaciente> tratamentos = (ArrayList<TratamentoPaciente>) this.getConnection().getEntityManager().createQuery("from TratamentoPaciente", TratamentoPaciente.class).getResultList();
+		this.connection.getEntityManager();
+		ArrayList<TratamentoPaciente> tratamentos = (ArrayList<TratamentoPaciente>) this.connection.getEntityManager().createQuery("from TratamentoPaciente", TratamentoPaciente.class).getResultList();
 		if(tratamentos == null) {
 			System.out.println("Não há tratamentos cadastrados em nosso banco de dados.");
 		}
@@ -69,9 +61,9 @@ public class TratamentoPacienteRepository implements TratamentoPacienteDAO{
 		this.adicionarRemedio(idRemedio, idTratamento);
 
 		try {
-            this.getConnection().getEntityManager().getTransaction().begin();
-            this.getConnection().getEntityManager().merge(tratamento);
-            this.getConnection().getEntityManager().getTransaction().commit();
+            this.connection.getEntityManager().getTransaction().begin();
+            this.connection.getEntityManager().merge(tratamento);
+            this.connection.getEntityManager().getTransaction().commit();
 
         } catch (Exception ex) {
     		System.out.println("Erro ao adicionar remedio ao tratamento do paciente");
@@ -93,9 +85,9 @@ public class TratamentoPacienteRepository implements TratamentoPacienteDAO{
 		this.adicionarExame(idExame, idTratamento);
 
 		try {
-            this.getConnection().getEntityManager().getTransaction().begin();
-            this.getConnection().getEntityManager().merge(tratamento);
-            this.getConnection().getEntityManager().getTransaction().commit();
+            this.connection.getEntityManager().getTransaction().begin();
+            this.connection.getEntityManager().merge(tratamento);
+            this.connection.getEntityManager().getTransaction().commit();
 
         } catch (Exception ex) {
     		System.out.println("Erro ao adicionar remedio ao tratamento do paciente");
@@ -118,9 +110,9 @@ public class TratamentoPacienteRepository implements TratamentoPacienteDAO{
 		tratamento.setTempoTratamento(tempoTratamento);
 
 		try {
-            this.getConnection().getEntityManager().getTransaction().begin();
-            this.getConnection().getEntityManager().merge(tratamento);
-            this.getConnection().getEntityManager().getTransaction().commit();
+            this.connection.getEntityManager().getTransaction().begin();
+            this.connection.getEntityManager().merge(tratamento);
+            this.connection.getEntityManager().getTransaction().commit();
 
         } catch (Exception ex) {
     		System.out.println("Erro editar a data final de tratamento do paciente");
@@ -133,16 +125,16 @@ public class TratamentoPacienteRepository implements TratamentoPacienteDAO{
 	}
 
 	public boolean removerTratamentoPacientePorId(int id) {
-		TratamentoPaciente tratamento = this.getConnection().getEntityManager().find(TratamentoPaciente.class, id);
+		TratamentoPaciente tratamento = this.connection.getEntityManager().find(TratamentoPaciente.class, id);
 
 		if(tratamento == null){
 			System.out.println("Tratamento para paciente não encontrado");
 			return false;
 		}
 
-		this.getConnection().getEntityManager().getTransaction().begin();
-		this.getConnection().getEntityManager().remove(id);
-		this.getConnection().getEntityManager().getTransaction().commit();
+		this.connection.getEntityManager().getTransaction().begin();
+		this.connection.getEntityManager().remove(id);
+		this.connection.getEntityManager().getTransaction().commit();
 
 
 		System.out.println("Tratamento removido do banco com sucesso");
@@ -157,9 +149,9 @@ public class TratamentoPacienteRepository implements TratamentoPacienteDAO{
 			System.out.println("Aqui 2");
 			tratamento.setRemedio(remedio);
 
-			this.getConnection().getEntityManager().getTransaction().begin();
-			this.getConnection().getEntityManager().merge(tratamento);
-			this.getConnection().getEntityManager().getTransaction().commit();
+			this.connection.getEntityManager().getTransaction().begin();
+			this.connection.getEntityManager().merge(tratamento);
+			this.connection.getEntityManager().getTransaction().commit();
 
 
 			return true;
@@ -175,9 +167,9 @@ public class TratamentoPacienteRepository implements TratamentoPacienteDAO{
 			System.out.println("Aqui 1");
 			tratamento.setExame(exame);
 
-			this.getConnection().getEntityManager().getTransaction().begin();
-			this.getConnection().getEntityManager().merge(tratamento);
-			this.getConnection().getEntityManager().getTransaction().commit();
+			this.connection.getEntityManager().getTransaction().begin();
+			this.connection.getEntityManager().merge(tratamento);
+			this.connection.getEntityManager().getTransaction().commit();
 
 
 			return true;
@@ -187,8 +179,8 @@ public class TratamentoPacienteRepository implements TratamentoPacienteDAO{
 	}
 
 	public Remedio buscarRemedioPorID(int id) {
-		this.getConnection().getEntityManager().clear();
-		Remedio remedio = this.getConnection().getEntityManager().find(Remedio.class, id);
+		this.connection.getEntityManager().clear();
+		Remedio remedio = this.connection.getEntityManager().find(Remedio.class, id);
 		if(remedio == null){
 			System.out.println("Remedio não encontrado");
 		}
@@ -196,8 +188,8 @@ public class TratamentoPacienteRepository implements TratamentoPacienteDAO{
 	}
 
 	public Exame buscarExamePorID(int id) {
-		this.getConnection().getEntityManager().clear();
-		Exame exame = this.getConnection().getEntityManager().find(Exame.class, id);
+		this.connection.getEntityManager().clear();
+		Exame exame = this.connection.getEntityManager().find(Exame.class, id);
 		if(exame == null){
 			System.out.println("Exame não encontrado");
 		}
@@ -226,16 +218,16 @@ public class TratamentoPacienteRepository implements TratamentoPacienteDAO{
     }
 	public ArrayList<TratamentosPaciente> tratamentosPaciente(int idPaciente) {
 		String sqlConsulta = "SELECT t FROM TratamentoPaciente t WHERE t.paciente =: id";
-		TypedQuery<TratamentoPaciente> queryTratamentos = this.getConnection().getEntityManager().createQuery(sqlConsulta, TratamentoPaciente.class).setParameter("id", idPaciente);
+		TypedQuery<TratamentoPaciente> queryTratamentos = this.connection.getEntityManager().createQuery(sqlConsulta, TratamentoPaciente.class).setParameter("id", idPaciente);
 		ArrayList<TratamentoPaciente> tratamentos = (ArrayList<TratamentoPaciente>) queryTratamentos.getResultList();
 
 
 		ArrayList<TratamentosPaciente> tratamentosPrescritos = new ArrayList<TratamentosPaciente>();
 
 		for (int i = 0; i < tratamentos.size(); i++) {
-			Exame exame = this.getConnection().getEntityManager().createNamedQuery("Exame.getById", Exame.class).setParameter("idE", tratamentos.get(i).getExame()).getSingleResult();
+			Exame exame = this.connection.getEntityManager().createNamedQuery("Exame.getById", Exame.class).setParameter("idE", tratamentos.get(i).getExame()).getSingleResult();
 			System.out.println(exame.getNomeExame());
-			Remedio remedio = this.getConnection().getEntityManager().createNamedQuery("Remedio.getById", Remedio.class).setParameter("idR", tratamentos.get(i).getRemedio()).getSingleResult();
+			Remedio remedio = this.connection.getEntityManager().createNamedQuery("Remedio.getById", Remedio.class).setParameter("idR", tratamentos.get(i).getRemedio()).getSingleResult();
 			System.out.println(remedio.getNomeRemedio());
 
 			tratamentosPrescritos.add(new TratamentosPaciente(exame.getNomeExame(), remedio.getNomeRemedio(), tratamentos.get(i).getTempoTratamento()));

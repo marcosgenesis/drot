@@ -8,18 +8,11 @@ import br.com.pi.drot.entity.Endereco;
 
 public class EnderecoRepository implements EnderecoDAO{
 
-	private Connection connection;
+	Connection connection = Connection.getInstance();
+
 	public EnderecoRepository() {
-		this.connection = new Connection();
 	}
 
-	public Connection getConnection() {
-		return connection;
-	}
-
-	public void setConnection(Connection connection) {
-		this.connection = connection;
-	}
 
 	public boolean cadastrarEndereco(String uf, String rua, int numero, String bairro, String cidade, String cep) {
 		Endereco endereco = new Endereco();
@@ -29,9 +22,9 @@ public class EnderecoRepository implements EnderecoDAO{
 		endereco.setBairro(bairro);
 		endereco.setCidade(cidade);
 		endereco.setCep(cep);
-		this.getConnection().getEntityManager().getTransaction().begin();
-		this.getConnection().getEntityManager().persist(endereco);
-		this.getConnection().getEntityManager().getTransaction().commit();
+		this.connection.getEntityManager().getTransaction().begin();
+		this.connection.getEntityManager().persist(endereco);
+		this.connection.getEntityManager().getTransaction().commit();
 		System.out.println("chegooou");
 
 		return true;
@@ -50,7 +43,7 @@ public class EnderecoRepository implements EnderecoDAO{
     }
 	public int pegarIdEndereco(String cep, int numero) {
 		try {
-			Endereco e = this.getConnection().getEntityManager().createNamedQuery("Endereco.getIdEndereco", Endereco.class).setParameter("numero", numero).setParameter("cep", cep).getSingleResult();
+			Endereco e = this.connection.getEntityManager().createNamedQuery("Endereco.getIdEndereco", Endereco.class).setParameter("numero", numero).setParameter("cep", cep).getSingleResult();
 
 			return e.getId();
 		} catch(NoResultException e) {

@@ -12,21 +12,15 @@ import br.com.pi.drot.entity.Paciente;
 import br.com.pi.drot.entity.Secretaria;
 
 public class AdministradorRepository implements AdministradorDAO{
-	private Connection connection;
+	Connection connection = Connection.getInstance();
+
 	public AdministradorRepository() {
-		this.connection = new Connection();
+		
 	}
 
-	public Connection getConnection() {
-		return connection;
-	}
-
-	public void setConnection(Connection connection) {
-		this.connection = connection;
-	}
 
 	public boolean cadastrarNovoAdministrador(String nome, String CPF, String RG, String dataNascimento, int endereco, String telefone, String email, String senha) {
-		this.getConnection().getEntityManager().clear();
+		this.connection.getEntityManager().clear();
 		Administrador administrador = new Administrador();
 		administrador.setNome(nome);
 		administrador.setCPF(CPF);
@@ -38,9 +32,9 @@ public class AdministradorRepository implements AdministradorDAO{
 		administrador.setSenha(senha);
 
 		try{
-			this.getConnection().getEntityManager().getTransaction().begin();
-			this.getConnection().getEntityManager().persist(administrador);
-			this.getConnection().getEntityManager().getTransaction().commit();
+			this.connection.getEntityManager().getTransaction().begin();
+			this.connection.getEntityManager().persist(administrador);
+			this.connection.getEntityManager().getTransaction().commit();
 
 		} catch(Exception ex) {
 			System.out.println("Erro ao criar administrador.");
@@ -52,9 +46,9 @@ public class AdministradorRepository implements AdministradorDAO{
 	}
 
 	public Administrador buscarAdministradorPorID(int id) {
-		this.getConnection().getEntityManager().clear();
+		this.connection.getEntityManager().clear();
 		try{
-			Administrador administrador = this.getConnection().getEntityManager().createNamedQuery("Administrador.getById", Administrador.class).setParameter(id, id).getSingleResult();
+			Administrador administrador = this.connection.getEntityManager().createNamedQuery("Administrador.getById", Administrador.class).setParameter(id, id).getSingleResult();
 
 			return administrador;
 		} catch(NoResultException ex) {
@@ -65,7 +59,7 @@ public class AdministradorRepository implements AdministradorDAO{
 
 
 	public boolean cadastrarNovaSecretaria(String nome, String CPF, String RG, String dataNascimento, int endereco, String telefone, String email, String senha) {
-		this.getConnection().getEntityManager().clear();
+		this.connection.getEntityManager().clear();
 
 		Secretaria secretaria = new Secretaria();
 		secretaria.setNome(nome);
@@ -78,9 +72,9 @@ public class AdministradorRepository implements AdministradorDAO{
 		secretaria.setSenha(senha);
 
 		try {
-			this.getConnection().getEntityManager().getTransaction().begin();
-			this.getConnection().getEntityManager().persist(secretaria);
-			this.getConnection().getEntityManager().getTransaction().commit();
+			this.connection.getEntityManager().getTransaction().begin();
+			this.connection.getEntityManager().persist(secretaria);
+			this.connection.getEntityManager().getTransaction().commit();
 
 			System.out.println("Nova(o) secretaria(o) cadastrado com sucesso!");
 			return true;
@@ -91,10 +85,10 @@ public class AdministradorRepository implements AdministradorDAO{
 	}
 
 	public Secretaria buscarSecretariaPorID(int id) {
-		this.getConnection().getEntityManager().clear();
+		this.connection.getEntityManager().clear();
 
 		try{
-			Secretaria secretaria = this.getConnection().getEntityManager().createNamedQuery("Secretaria.getById", Secretaria.class).setParameter(id, id).getSingleResult();
+			Secretaria secretaria = this.connection.getEntityManager().createNamedQuery("Secretaria.getById", Secretaria.class).setParameter(id, id).getSingleResult();
 
 			return secretaria;
 		} catch(NoResultException ex) {
@@ -104,9 +98,9 @@ public class AdministradorRepository implements AdministradorDAO{
 	}
 
 	public ArrayList<Secretaria> listarSecretariasCadastrados() {
-		this.getConnection().getEntityManager().clear();
+		this.connection.getEntityManager().clear();
 		try {
-			ArrayList<Secretaria> secretarias = (ArrayList<Secretaria>) this.getConnection().getEntityManager().createQuery("from Secretaria", Secretaria.class).getResultList();
+			ArrayList<Secretaria> secretarias = (ArrayList<Secretaria>) this.connection.getEntityManager().createQuery("from Secretaria", Secretaria.class).getResultList();
 
 			return secretarias;
 		}catch(NoResultException ex) {
@@ -116,7 +110,7 @@ public class AdministradorRepository implements AdministradorDAO{
 	}
 
 	public boolean removerSecretaria(int idSecretaria) {
-		this.getConnection().getEntityManager().clear();
+		this.connection.getEntityManager().clear();
 		Secretaria secretaria = this.buscarSecretariaPorID(idSecretaria);
 
 		if(secretaria == null){
@@ -125,9 +119,9 @@ public class AdministradorRepository implements AdministradorDAO{
 		}
 
 		try{
-		 	this.getConnection().getEntityManager().getTransaction().begin();
-	        this.getConnection().getEntityManager().remove(secretaria);
-	        this.getConnection().getEntityManager().getTransaction().commit();
+		 	this.connection.getEntityManager().getTransaction().begin();
+	        this.connection.getEntityManager().remove(secretaria);
+	        this.connection.getEntityManager().getTransaction().commit();
 
 			System.out.println("Secretária removida do banco com sucesso!");
 			return true;
@@ -139,7 +133,7 @@ public class AdministradorRepository implements AdministradorDAO{
 
 	public boolean logado(String email, String pass) {
 		try {
-			Administrador a = this.getConnection().getEntityManager().createNamedQuery("Administrador.loginAdm", Administrador.class).setParameter("email", email).setParameter("senha", pass).getSingleResult();
+			Administrador a = this.connection.getEntityManager().createNamedQuery("Administrador.loginAdm", Administrador.class).setParameter("email", email).setParameter("senha", pass).getSingleResult();
 			return true;
 		} catch (NoResultException e) {
 			return false;

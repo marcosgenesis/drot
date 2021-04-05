@@ -7,18 +7,10 @@ import br.com.pi.drot.dao.RemedioDAO;
 import br.com.pi.drot.entity.Remedio;
 
 public class RemedioRepository implements RemedioDAO{
-	private Connection connection;
+	Connection connection = Connection.getInstance();
+
 
 	public RemedioRepository() {
-		this.connection = new Connection();
-	}
-
-	public Connection getConnection() {
-		return connection;
-	}
-
-	public void setConnection(Connection connection) {
-		this.connection = connection;
 	}
 
 	public Remedio criarRemedio(String nomeRemedio, String dosagem, String bula, String contraIndicacao) {
@@ -27,9 +19,9 @@ public class RemedioRepository implements RemedioDAO{
 		remedio.setDosagem(dosagem);
 		remedio.setBula(bula);
 		remedio.setContraIndicacao(contraIndicacao);
-		this.getConnection().getEntityManager().getTransaction().begin();
-		this.getConnection().getEntityManager().persist(remedio);
-		this.getConnection().getEntityManager().getTransaction().commit();
+		this.connection.getEntityManager().getTransaction().begin();
+		this.connection.getEntityManager().persist(remedio);
+		this.connection.getEntityManager().getTransaction().commit();
 		System.out.println("Novo remédio cadastrado com sucesso!" + remedio.getId());
 
 		return remedio;
@@ -37,7 +29,7 @@ public class RemedioRepository implements RemedioDAO{
 
 	public int buscarIdByNome(String nome) {
 		try {
-			Remedio remedio = this.getConnection().getEntityManager().createNamedQuery("Remedio.getIdByName", Remedio.class).setParameter("nome", nome).getSingleResult();
+			Remedio remedio = this.connection.getEntityManager().createNamedQuery("Remedio.getIdByName", Remedio.class).setParameter("nome", nome).getSingleResult();
 
 			System.out.println("=> R" + remedio.getId());
 
