@@ -1,13 +1,10 @@
 package br.com.pi.drot.utils;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
-import java.util.Date;
 
 public class DataDoDia {
     private static DataDoDia dataDoDiaFormatada;

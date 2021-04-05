@@ -31,7 +31,9 @@ public class TratamentoPaciente{
 	
 	@Column(name = "dataInicioTratamento")
 	private String dataInicioTratamento;
-
+	
+	@Column(name = "estadoTratamento")
+    private boolean estadoTratamento;
 
 	public int getId() {
 		return id;
@@ -67,6 +69,14 @@ public class TratamentoPaciente{
 
 	public int getExame() {
 		return exame;
+	}
+
+	public boolean isEstadoTratamento() {
+		return estadoTratamento;
+	}
+
+	public void setEstadoTratamento(boolean estadoTratamento) {
+		this.estadoTratamento = estadoTratamento;
 	}
 
 	public void setExame(int exame) {

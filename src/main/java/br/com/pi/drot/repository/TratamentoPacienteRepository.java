@@ -203,16 +203,32 @@ public class TratamentoPacienteRepository implements TratamentoPacienteDAO{
 		}
 		return exame;
 	}
+	
+	public ArrayList<TratamentoPaciente> listarTratamentosAtivos() {
+        ArrayList<TratamentoPaciente> tratamentos = listarTratamentosPaciente();
+        ArrayList<TratamentoPaciente> tratamentosAtivos = new ArrayList<TratamentoPaciente>();
 
+        for(TratamentoPaciente t: tratamentos) {
+            if(t.isEstadoTratamento()) {
+                tratamentosAtivos.add(t);
+            }
+        }
+        return tratamentosAtivos;
+    }
+	public int quantidadeTratamentos() {
+        ArrayList<TratamentoPaciente> tratamentos = listarTratamentosPaciente();
+        return tratamentos.size();
+    }
+
+    public int quantidadeTratamentosAtivos() {
+        ArrayList<TratamentoPaciente> tratamentosAtivos = listarTratamentosAtivos();
+        return tratamentosAtivos.size();
+    }
 	public ArrayList<TratamentosPaciente> tratamentosPaciente(int idPaciente) {
 		String sqlConsulta = "SELECT t FROM TratamentoPaciente t WHERE t.paciente =: id";
 		TypedQuery<TratamentoPaciente> queryTratamentos = this.getConnection().getEntityManager().createQuery(sqlConsulta, TratamentoPaciente.class).setParameter("id", idPaciente);
 		ArrayList<TratamentoPaciente> tratamentos = (ArrayList<TratamentoPaciente>) queryTratamentos.getResultList();
 
-
-		/*for (int i = 0; i < tratamentos.size(); i++) {
-			System.out.println(tratamentos.get(i).getId());
-		}*/
 
 		ArrayList<TratamentosPaciente> tratamentosPrescritos = new ArrayList<TratamentosPaciente>();
 

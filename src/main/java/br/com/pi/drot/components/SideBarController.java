@@ -20,6 +20,21 @@ public class SideBarController extends EssentialsFXController {
 	private void btnSwitchDoctorScreen(ActionEvent event) {
 		MainFX.chanceWindow("doctorsScene");
 	}
+	
+	@FXML
+	private void btnSwitchDoctorPactientsScreen(ActionEvent event) {
+		MainFX.chanceWindow("doctorPatientsScene");
+	}
+	
+	@FXML
+	private void btnSwitchMainDoctorScreen(ActionEvent event) {
+		MainFX.chanceWindow("mainDoctorScene");
+	}
+	
+	@FXML
+	private void btnSwitchTreatmentScreen(ActionEvent event) {
+		MainFX.chanceWindow("doctorTreatmentsScene");
+	}
 
 	@FXML
 	private void btnSwitchNewPatientScreen(ActionEvent event) {

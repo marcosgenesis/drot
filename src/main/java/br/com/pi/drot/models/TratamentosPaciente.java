@@ -2,10 +2,8 @@ package br.com.pi.drot.models;
 
 import java.text.DecimalFormat;
 
-import javax.persistence.Column;
 
 import br.com.pi.drot.repository.PacienteRepository;
-import br.com.pi.drot.repository.TratamentoPacienteRepository;
 import br.com.pi.drot.utils.DataDoDia;
 
 public class TratamentosPaciente {
@@ -15,14 +13,17 @@ public class TratamentosPaciente {
 	private int duracaoDiasTratamento;
 	private String dataInicioTratamento;
 	private int idPaciente;
+	private boolean estadoTratamento;
 
-	public TratamentosPaciente(int exame, int remedio, int tempoTratamento,int idPaciente,String dataInicioTratamento,int duracaoDiasTratamento) {
+
+	public TratamentosPaciente(int exame, int remedio, int tempoTratamento,int idPaciente,String dataInicioTratamento,int duracaoDiasTratamento,boolean estadoTratamento) {
 		this.exame = exame;
 		this.remedio = remedio;
 		this.idPaciente = idPaciente;
 		this.tempoTratamento = tempoTratamento;
 		this.dataInicioTratamento= dataInicioTratamento;
 		this.duracaoDiasTratamento= duracaoDiasTratamento;
+		this.estadoTratamento = estadoTratamento;
 	}
 	public int getDuracaoDiasTratamento() {
 		return duracaoDiasTratamento;
@@ -32,6 +33,12 @@ public class TratamentosPaciente {
 		this.duracaoDiasTratamento = duracaoDiasTratamento;
 	}
 
+	public boolean isEstadoTratamento() {
+		return estadoTratamento;
+	}
+	public void setEstadoTratamento(boolean estadoTratamento) {
+		this.estadoTratamento = estadoTratamento;
+	}
 	public String getDataInicioTratamento() {
 		return dataInicioTratamento;
 	}
@@ -81,6 +88,7 @@ public class TratamentosPaciente {
         Double resultado = new Double(divisao * 100);
         return resultado;
     }
+	
 	public int getIdPaciente() {
 		return idPaciente;
 	}
