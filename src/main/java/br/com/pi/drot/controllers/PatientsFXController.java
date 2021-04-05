@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import br.com.pi.drot.components.SideBarController;
 import br.com.pi.drot.entity.Paciente;
 import br.com.pi.drot.models.PacienteModel;
+import br.com.pi.drot.repository.EnderecoRepository;
 import br.com.pi.drot.repository.SecretariaRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,7 +37,6 @@ public class PatientsFXController extends SideBarController implements Initializ
 	
 	public void initialize(URL location, ResourceBundle resources) {
 		SecretariaRepository secretariaRepositorio = new SecretariaRepository();
-
 		
 		colunaDataNascimento.setCellValueFactory(
                 new PropertyValueFactory<>("dataNascimento"));
@@ -52,11 +52,19 @@ public class PatientsFXController extends SideBarController implements Initializ
 	}
 	
 	private ObservableList<PacienteModel> formataDadosPaciente(SecretariaRepository secretariaRepositorio){
+
+		EnderecoRepository enderecoRepositorio = new EnderecoRepository();
 		ArrayList<Paciente> lista = secretariaRepositorio.listarPacientesCadastrados();
 		ArrayList<PacienteModel> pacientesComDadosFormatados = new ArrayList<>();
 		
 		for (Paciente p : lista) {
-			pacientesComDadosFormatados.add(new PacienteModel(p.getId(), p.getNome(), p.getDataNascimento(), Integer.toString(p.getEndereco())));
+			pacientesComDadosFormatados.add(
+					new PacienteModel(
+							p.getId(),
+							p.getNome(),
+							enderecoRepositorio.pegarInformacoesEnderecoPorID(p.getEndereco()),
+							p.getDataNascimento()
+							));
 		}
 		return FXCollections.observableList(pacientesComDadosFormatados);
 	}

@@ -36,7 +36,18 @@ public class EnderecoRepository implements EnderecoDAO{
 
 		return true;
 	}
+	public String pegarInformacoesEnderecoPorID(int id) {
+        this.connection.getEntityManager().clear();
 
+        try{
+            Endereco endereco = this.connection.getEntityManager().createNamedQuery("Endereco.getById", Endereco.class).setParameter("id", id).getSingleResult();
+
+            return endereco.toString();
+        } catch(NoResultException ex) {
+            System.out.println("Endereço não encontrado.");
+            return null;
+        }
+    }
 	public int pegarIdEndereco(String cep, int numero) {
 		try {
 			Endereco e = this.getConnection().getEntityManager().createNamedQuery("Endereco.getIdEndereco", Endereco.class).setParameter("numero", numero).setParameter("cep", cep).getSingleResult();
