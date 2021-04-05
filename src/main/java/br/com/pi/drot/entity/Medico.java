@@ -18,6 +18,8 @@ import javax.persistence.Table;
 })
 @Table(name = "Medico")
 public class Medico{
+	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "codmedico")
@@ -117,6 +119,11 @@ public class Medico{
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	
+	@Override
+	public String toString() {
+		return "Medico [id=" + id + ", nome=" + nome + "]";
 	}
 
 }

@@ -3,7 +3,7 @@ package br.com.pi.drot.dao;
 import br.com.pi.drot.entity.Consulta;
 
 public interface ConsultaDAO{
-	boolean criarConsulta(int paciente, int medico, String dataConsulta, String descricao, String classificacaoUrgencia, boolean consultaRealizada, String andamentoConsulta, String consultorioConsulta);
+	boolean criarConsulta(int paciente, int medico, String descricao, String classificacaoUrgencia, boolean consultaRealizada, String consultorioConsulta);
 	
 	boolean remarcarConsulta(int idConsulta, String dataConsulta);
 

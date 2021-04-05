@@ -5,6 +5,7 @@ import javax.persistence.NoResultException;
 import br.com.pi.drot.connection.Connection;
 import br.com.pi.drot.dao.ConsultaDAO;
 import br.com.pi.drot.entity.Consulta;
+import br.com.pi.drot.utils.DataDoDia;
 
 public class ConsultaRepository implements ConsultaDAO {
 
@@ -14,14 +15,15 @@ public class ConsultaRepository implements ConsultaDAO {
 		
 	}
 
-	public boolean criarConsulta(int paciente, int medico, String dataConsulta, String descricao, String classificacaoUrgencia, boolean consultaRealizada, String andamentoConsulta, String consultorioConsulta) {
+	public boolean criarConsulta(int paciente, int medico, String descricao, String classificacaoUrgencia, boolean consultaRealizada, String consultorioConsulta) {
+		DataDoDia dataDoDiaFormatada = DataDoDia.getInstance();
+		String dataConsulta = dataDoDiaFormatada.retornarDataDoDia();
 		Consulta consulta = new Consulta();
 		consulta.setPaciente(paciente);
 		consulta.setMedico(medico);
 		consulta.setDescricaoConsulta(descricao);
 		consulta.setDataConsulta(dataConsulta);
 		consulta.setClassificacaoUrgencia(classificacaoUrgencia);
-		consulta.setAndamentoConsulta(andamentoConsulta);
 		consulta.setConsultorioConsulta(consultorioConsulta);
 		consulta.setConsultaRealizada(false);
 

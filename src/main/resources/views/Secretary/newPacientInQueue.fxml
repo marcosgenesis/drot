@@ -3,8 +3,8 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
@@ -78,14 +78,48 @@
                   <Font size="16.0" />
                </font>
             </Text>
-            <TableView layoutX="339.0" layoutY="128.0" prefHeight="650.0" prefWidth="913.0" style="-fx-border-color: #ccc;">
-              <columns>
-                <TableColumn prefWidth="452.0" style="-fx-background-color: ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #EFF0F2;" text="paciente" />
-                  <TableColumn minWidth="0.0" prefWidth="169.0" style="-fx-background-color: ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #EFF0F2;" text="CPF" />
-                  <TableColumn prefWidth="118.0" style="-fx-background-color: ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #EFF0F2;" text="Idade" />
-                  <TableColumn prefWidth="172.0" style="-fx-background-color: ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #EFF0F2;" text="Ação" />
-              </columns>
-            </TableView>
+            <Pane layoutX="391.0" layoutY="121.0" prefHeight="599.0" prefWidth="644.0" style="-fx-background-color: fff;">
+               <children>
+                  <TextField fx:id="cpfPaciente" layoutX="35.0" layoutY="44.0" prefHeight="38.0" prefWidth="574.0" promptText="Cpf do Paciente" style="-fx-background-color: fff; -fx-padding: 5 5 5 5; -fx-border-width: 1px; -fx-border-color: #ccc; -fx-border-radius: 5px;" />
+                  <Label layoutX="35.0" layoutY="14.0" text="CPF do Paciente">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="35.0" layoutY="90.0" text="Selecione o Médico">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="35.0" layoutY="182.0" text="Classificação Urgencia">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="35.0" layoutY="271.0" text="Consultório">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="descricaoSintomas" layoutX="35.0" layoutY="395.0" prefHeight="81.0" prefWidth="574.0" promptText="Cpf do Paciente" style="-fx-background-color: fff; -fx-padding: 5 5 5 5; -fx-border-width: 1px; -fx-border-color: #ccc; -fx-border-radius: 5px;" />
+                  <Label layoutX="35.0" layoutY="361.0" text="Descrição do sintômas">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="199.0" layoutY="514.0" mnemonicParsing="false" onAction="#adicionarPaciente" prefHeight="46.0" prefWidth="231.0" style="-fx-background-color: #2784ff;" text="Adicionar Paciente" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <ChoiceBox fx:id="medicoChoiceBox" layoutX="38.0" layoutY="125.0" prefHeight="38.0" prefWidth="574.0" style="-fx-background-color: fff; -fx-border-width: 1px; -fx-border-color: ccc; -fx-border-radius: 5px;" />
+                  <ChoiceBox fx:id="classificacaoUrgenciacChoiceBox" layoutX="38.0" layoutY="220.0" prefHeight="38.0" prefWidth="574.0" style="-fx-background-color: fff; -fx-border-width: 1px; -fx-border-color: ccc; -fx-border-radius: 5px;" />
+                  <ChoiceBox fx:id="consultoriosChoiceBox" layoutX="38.0" layoutY="300.0" prefHeight="38.0" prefWidth="574.0" style="-fx-background-color: fff; -fx-border-width: 1px; -fx-border-color: ccc; -fx-border-radius: 5px;" />
+               </children>
+            </Pane>
          </children>
       </Pane>
    </children>
