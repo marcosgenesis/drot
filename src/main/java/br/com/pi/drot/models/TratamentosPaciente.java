@@ -81,8 +81,6 @@ public class TratamentosPaciente {
 	
 	public Double getPorcentagemDouble() {
         DataDoDia dataDia = DataDoDia.getInstance();
-        System.out.println("gertporcentagemdouble = " + dataDia.diferencaEmDiasAteHoje(dataInicioTratamento, duracaoDiasTratamento));
-        System.out.println("duracaodiastratamento = " + duracaoDiasTratamento);
         Double diferenca = new Double(dataDia.diferencaEmDiasAteHoje(dataInicioTratamento, duracaoDiasTratamento));
         Double divisao = new Double(diferenca / duracaoDiasTratamento);
         Double resultado = new Double(divisao * 100);

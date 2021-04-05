@@ -8,8 +8,6 @@ import br.com.pi.drot.UI.MainFX;
 import br.com.pi.drot.components.SideBarController;
 import br.com.pi.drot.components.ListItem.ItemTabelaConsultaJaAtendida;
 import br.com.pi.drot.components.ListItem.ItemTabelaTratamentosEmAndamento;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import br.com.pi.drot.entity.TratamentoPaciente;
 import br.com.pi.drot.models.ConsultasMedico;
 import br.com.pi.drot.models.TratamentosPaciente;
@@ -25,25 +23,18 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 
-public class MainFXController extends SideBarController implements Initializable{
+public class TreatmentsFXController extends SideBarController implements Initializable{
 	public int medicoLogado;
 	@FXML
 	private Button clickBtn;
 	
 	@FXML
-	public Label numPacientesAtendidosHoje;
-	@FXML
-	public Label numTratamentosAtivos;
-
-	@FXML
-	private ListView<ConsultasMedico> vitens;
+	public Label numTratamentos;
 	
 	@FXML
 	private ListView<TratamentosPaciente> tratamentosItens;
 	
-	private ObservableList<ConsultasMedico> consultasObservableList;
 	private ObservableList<TratamentosPaciente> tratamentosObservableList;
 	
 	@FXML
@@ -64,25 +55,12 @@ public class MainFXController extends SideBarController implements Initializable
 	}
 
 	public void initialize(URL location, ResourceBundle resources) {
-		
 		MedicoRepository medicoRepo = new MedicoRepository();
-		consultasObservableList = FXCollections.observableArrayList();
-		for (ConsultasMedico consultaMedico : medicoRepo.consultasRealizadas(2)) {
-			consultasObservableList.add(
-					new ConsultasMedico(
-							consultaMedico.getNomePacienteConsulta(),
-							consultaMedico.getDataOcorreuConsulta(),
-							consultaMedico.getDescricaoConsulta(),
-							consultaMedico.getStatusConsulta()
-					));
-		}
-		vitens.setItems(consultasObservableList);
-		vitens.setCellFactory(vitens -> new ItemTabelaConsultaJaAtendida());
+		System.out.println(medicoRepo.quantidadeConsultasDoDia(medicoLogado, ""));
 		
 		TratamentoPacienteRepository tratamentoPacienteRepo = new TratamentoPacienteRepository();
-		numTratamentosAtivos.setText(Integer.toString(tratamentoPacienteRepo.quantidadeTratamentosAtivos()));
 		tratamentosObservableList = FXCollections.observableArrayList();
-		for (TratamentoPaciente tratamento : tratamentoPacienteRepo.listarTratamentosAtivos()) {
+		for (TratamentoPaciente tratamento : tratamentoPacienteRepo.listarTratamentosPaciente()) {
 		
 			tratamentosObservableList.add(new TratamentosPaciente(
 					tratamento.getExame(),tratamento.getRemedio(),
@@ -95,8 +73,7 @@ public class MainFXController extends SideBarController implements Initializable
 		}
 		tratamentosItens.setItems(tratamentosObservableList);
 		tratamentosItens.setCellFactory(tratamentosItens -> new ItemTabelaTratamentosEmAndamento());
-		
-		
+		numTratamentos.setText(Integer.toString(tratamentoPacienteRepo.quantidadeTratamentos()));
 		
 	}
 

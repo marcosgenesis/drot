@@ -53,7 +53,7 @@ public class MainFX extends Application {
 			Parent doctorPatients = FXMLLoader.load(getClass().getResource("/views/Doctor/Patients/Patients.fxml"));
 			DoctorPatients = new Scene(doctorPatients);
 			
-			Parent doctorTreatments= FXMLLoader.load(getClass().getResource("/views/Doctor/Patients/Patients.fxml"));
+			Parent doctorTreatments= FXMLLoader.load(getClass().getResource("/views/Doctor/Treatments/Treatments.fxml"));
 			DoctorPatients = new Scene(doctorTreatments);
 
 			primaryStage.setResizable(false);

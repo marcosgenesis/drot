@@ -81,7 +81,22 @@ public class MedicoRepository implements MedicoDAO{
 
 		return consultasDoDia;
 	}
+	
+	public ArrayList<Paciente> pacientesDoMedico(int idMedico) {
+        String sqlConsulta = "SELECT c FROM Consulta c WHERE c.medico =: id";
+        TypedQuery<Consulta> queryConsultas = this.getConnection().getEntityManager().createQuery(sqlConsulta, Consulta.class).setParameter("id", idMedico);
+        ArrayList<Consulta> consultas = (ArrayList<Consulta>) queryConsultas.getResultList();
 
+
+        ArrayList<Paciente> pacientes = new ArrayList<Paciente>();
+
+        for (int i = 0; i < consultas.size(); i++) {
+            Paciente paciente = this.getConnection().getEntityManager().createNamedQuery("Paciente.getById", Paciente.class).setParameter("idP", consultas.get(i).getPaciente()).getSingleResult();
+            pacientes.add(paciente);
+        }
+
+        return pacientes;
+    }
 	public int quantidadeConsultasDoDia(int medico, String dataDoDia) {
 		DataDoDia dataDoDiaFormatada = DataDoDia.getInstance();
 		dataDoDia = dataDoDiaFormatada.retornarDataDoDia();

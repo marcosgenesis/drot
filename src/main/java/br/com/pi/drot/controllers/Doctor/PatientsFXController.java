@@ -1,80 +1,64 @@
 package br.com.pi.drot.controllers.Doctor;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.ResourceBundle;
 
-
-import br.com.pi.drot.UI.MainFX;
 import br.com.pi.drot.components.SideBarController;
-import br.com.pi.drot.components.ListItem.ItemTabelaConsultaJaAtendida;
-import br.com.pi.drot.components.ListItem.ItemTabelaTratamentosEmAndamento;
-import br.com.pi.drot.entity.TratamentoPaciente;
-import br.com.pi.drot.models.ConsultasMedico;
-import br.com.pi.drot.models.TratamentosPaciente;
+import br.com.pi.drot.entity.Paciente;
+import br.com.pi.drot.models.PacienteModel;
 import br.com.pi.drot.repository.MedicoRepository;
-import br.com.pi.drot.repository.TratamentoPacienteRepository;
+import br.com.pi.drot.repository.SecretariaRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-//import br.com.pi.drot.entity.Usuario;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
-public class PatientsFXController extends SideBarController implements Initializable{
-	public int medicoLogado;
-	@FXML
-	private Button clickBtn;
+public class PatientsFXController extends SideBarController implements Initializable {
 	
 	@FXML
-	public Label numTratamentos;
+	private TableView<PacienteModel> tabelaPacientes;
 	
 	@FXML
-	private ListView<TratamentosPaciente> tratamentosItens;
+    private TableColumn<PacienteModel,String> colunaPaciente;
 	
-	private ObservableList<TratamentosPaciente> tratamentosObservableList;
+    @FXML
+    private TableColumn<PacienteModel,String> colunaIdade;
+    
+    @FXML
+    private TableColumn<PacienteModel,String> colunaDataNascimento;
+    
+    @FXML
+    private TableColumn<PacienteModel,String> colunaEndereco;
 	
-	@FXML
-	private VBox treatmentItems = null;
-	
-	@FXML
-	private Button btnSwitchWindow;
-
-	@FXML
-	private void btnAction(ActionEvent event) {
-		MainFX.chanceWindow("newPacientInQueue");
-	}
-	
-	@FXML
-	private void changeLogin(ActionEvent event) {
-		System.out.println("teste");
-		MainFX.chanceWindow("login");
-	}
-
 	public void initialize(URL location, ResourceBundle resources) {
 		MedicoRepository medicoRepo = new MedicoRepository();
-		System.out.println(medicoRepo.quantidadeConsultasDoDia(medicoLogado, ""));
+
 		
-		TratamentoPacienteRepository tratamentoPacienteRepo = new TratamentoPacienteRepository();
-		tratamentosObservableList = FXCollections.observableArrayList();
-		for (TratamentoPaciente tratamento : tratamentoPacienteRepo.listarTratamentosPaciente()) {
-		
-			tratamentosObservableList.add(new TratamentosPaciente(
-					tratamento.getExame(),tratamento.getRemedio(),
-					tratamento.getTempoTratamento(),
-					tratamento.getPaciente(),
-					tratamento.getDataInicioTratamento(),
-					tratamento.getDuracaoDiasTratamento(),
-					tratamento.isEstadoTratamento()
-					));
-		}
-		tratamentosItens.setItems(tratamentosObservableList);
-		tratamentosItens.setCellFactory(tratamentosItens -> new ItemTabelaTratamentosEmAndamento());
-		numTratamentos.setText(Integer.toString(tratamentoPacienteRepo.quantidadeTratamentos()));
+		colunaDataNascimento.setCellValueFactory(
+                new PropertyValueFactory<>("dataNascimento"));
+        colunaPaciente.setCellValueFactory(
+                new PropertyValueFactory<>("nome"));
+        colunaIdade.setCellValueFactory(
+                new PropertyValueFactory<>("idade"));
+        colunaEndereco.setCellValueFactory(
+                new PropertyValueFactory<>("endereco"));
+        
+//        tabelaPacientes.setItems(formataDadosPaciente(medicoRepo));
 		
 	}
-
+	
+//	private ObservableList<PacienteModel> formataDadosPaciente(MedicoRepository medicoRepositorio){
+////		ArrayList<Paciente> lista = medicoRepositorio.pegarNumPacientes(0));
+////		ArrayList<PacienteModel> pacientesComDadosFormatados = new ArrayList<>();
+////		
+////		for (Paciente p : lista) {
+////			pacientesComDadosFormatados.add(new PacienteModel(p.getId(), p.getNome(), p.getDataNascimento(), Integer.toString(p.getEndereco())));
+////		}
+//		return FXCollections.observableList(pacientesComDadosFormatados);
+//	}
 }

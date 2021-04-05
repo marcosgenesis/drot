@@ -3,9 +3,8 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -26,7 +25,7 @@
                      </font>
                   </Text>
                   <FontAwesomeIcon fill="#d6dce2" iconName="DASHBOARD" layoutX="56.0" layoutY="209.0" size="2em" text="" />
-                  <Button fx:id="clickBtn" layoutX="98.0" layoutY="182.0" onAction="#btnSwitchMainDoctorScreen" mnemonicParsing="false" prefHeight="36.0" prefWidth="157.0" style="-fx-background-color: transparent;">
+                  <Button fx:id="clickBtn" layoutX="98.0" layoutY="182.0" mnemonicParsing="false" onAction="#btnSwitchMainDoctorScreen" prefHeight="36.0" prefWidth="157.0" style="-fx-background-color: transparent;">
                      <graphic>
                         <Text fill="#cccccc" strokeType="OUTSIDE" strokeWidth="0.0" text="Painel de controle">
                            <font>
@@ -43,7 +42,7 @@
                   </Button>
                   <Button fx:id="clickBtn1" layoutX="98.0" layoutY="240.0" mnemonicParsing="false" onAction="#btnSwitchTreatmentScreen" prefHeight="36.0" prefWidth="157.0" style="-fx-background-color: transparent;">
                      <graphic>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tratamentos">
+                        <Text fill="#cccccc" strokeType="OUTSIDE" strokeWidth="0.0" text="Tratamentos">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -55,7 +54,7 @@
                   </Button>
                   <Button fx:id="clickBtn11" layoutX="98.0" layoutY="298.0" mnemonicParsing="false" onAction="#btnSwitchDoctorPactientsScreen" prefHeight="36.0" prefWidth="157.0" style="-fx-background-color: transparent;">
                      <graphic>
-                        <Text fill="#cccccc" strokeType="OUTSIDE" strokeWidth="0.0" text="Meus Pacientes">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Meus Pacientes">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -65,10 +64,10 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <FontAwesomeIcon fill="#d6dce2" iconName="USER" layoutX="59.0" layoutY="324.0" size="2em" text="" />
+                  <FontAwesomeIcon fill="#2784ff" iconName="USER" layoutX="59.0" layoutY="324.0" size="2em" text="" />
                   <ImageView fitHeight="24.0" fitWidth="33.0" layoutX="52.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../images/Icone-Pills-Azul.png" />
+                        <Image url="@../../../images/Icon%20awesome-pills.png" />
                      </image>
                   </ImageView>
                </children>
@@ -81,19 +80,21 @@
                   <Font size="16.0" />
                </font>
             </Text>
-            <Pane layoutX="327.0" layoutY="120.0" prefHeight="658.0" prefWidth="680.0" style="-fx-background-color: #fff;">
+            <Pane layoutX="341.0" layoutY="140.0" prefHeight="640.0" prefWidth="877.0" style="-fx-background-color: fff; -fx-background-radius: 14px;">
                <children>
-                  <ScrollPane layoutX="14.0" layoutY="61.0" prefHeight="583.0" prefWidth="652.0" style="-fx-border-color: #fff;">
-                     <content>
-                  	                  <ListView fx:id="tratamentosItens" prefHeight="578.0" prefWidth="648.0" style="-fx-background-color: fff; -fx-border-color: fff;" />
-                     </content>
-	            </ScrollPane>
-                  <Label fx:id="numTratamentos" layoutX="14.0" layoutY="14.0" textFill="#2784ff">
+                  <Text layoutX="22.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Todos os pacientes">
                      <font>
-                        <Font name="System Bold" size="32.0" />
+                        <Font size="22.0" />
                      </font>
-                  </Label>
-                  <Text layoutX="73.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tratamentos" />
+                  </Text>
+                  <TableView fx:id="tabelaPacientes" layoutX="15.0" layoutY="69.0" prefHeight="559.0" prefWidth="850.0" style="-fx-border-color: fff;">
+                    <columns>
+                      <TableColumn fx:id="colunaPaciente" prefWidth="218.0" style="-fx-background-color: fff; -fx-border-width: 0 0 1 0; -fx-border-color: #EFF0F2;" text="Paciente" />
+                        <TableColumn fx:id="colunaIdade" prefWidth="142.0" style="-fx-background-color: fff; -fx-border-width: 0 0 1 0; -fx-border-color: #EFF0F2;" text="Idade" />
+                        <TableColumn fx:id="colunaDataNascimento" prefWidth="134.0" style="-fx-background-color: fff; -fx-border-width: 0 0 1 0; -fx-border-color: #EFF0F2;" text="DataNascimento" />
+                        <TableColumn fx:id="colunaEndereco" prefWidth="351.0" style="-fx-background-color: fff; -fx-border-width: 0 0 1 0; -fx-border-color: #EFF0F2;" text="Endereço" />
+                    </columns>
+                  </TableView>
                </children>
             </Pane>
          </children>

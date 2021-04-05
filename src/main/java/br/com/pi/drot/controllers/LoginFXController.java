@@ -1,5 +1,7 @@
 package br.com.pi.drot.controllers;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -56,7 +58,6 @@ public class LoginFXController extends SideBarController implements Initializabl
 						if(admRepo.logado(this.loginUser.getText(), this.passUser.getText())){
 							this.loginUser.setText("");
 							this.passUser.setText("");
-
 							MainFX.chanceWindow("main");
 						}else{
 							JOptionPane.showMessageDialog(null, "These data for access do not cross", "Fail Autenticad", 0);
@@ -104,7 +105,7 @@ public class LoginFXController extends SideBarController implements Initializabl
 	public void initialize(URL location, ResourceBundle resources) {
 		userType.setValue("Administrador");
 		userType.setItems(userTypes);
-
+		
 		FormatadorMascara maskCpf = new FormatadorMascara(loginUser);
 		maskCpf.setMask(FormatadorMascara.CPF);
 	}

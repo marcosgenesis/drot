@@ -35,7 +35,6 @@ public class DataDoDia {
 
         float diff = dateInicioTratamentoFormatado.until(now, ChronoUnit.DAYS);
         
-        System.out.println("diferenca das datas: " + diff);
         return diff < 0 ? 0:diff;
     }
 }
