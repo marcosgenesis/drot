@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.pi.drot.controllers.PatientsFXController">
+   <children>
+      <Pane layoutX="-3.0" layoutY="-2.0" prefHeight="808.0" prefWidth="1287.0" style="-fx-background-color: f3f8fd;">
+         <children>
+            <Pane layoutX="30.0" layoutY="44.0" prefHeight="734.0" prefWidth="280.0" style="-fx-background-radius: 14px; -fx-background-color: fff;">
+               <children>
+                  <Text fill="#2784ff" layoutX="93.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="drot">
+                     <font>
+                        <Font name="Arial" size="34.0" />
+                     </font>
+                  </Text>
+                  <FontAwesomeIcon fill="#2784ff" iconName="USER" layoutX="59.0" layoutY="267.0" size="2em" text="" />
+                  <FontAwesomeIcon fill="#d6dce2" iconName="USER_MD" layoutX="59.0" layoutY="324.0" size="2em" />
+                  <FontAwesomeIcon fill="#d6dce2" iconName="DASHBOARD" layoutX="56.0" layoutY="209.0" size="2em" text="" />
+                  <Button fx:id="clickBtn" layoutX="98.0" layoutY="182.0" mnemonicParsing="false" onAction="#btnSwitchControlPanel" prefHeight="36.0" prefWidth="157.0" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <Text fill="#cccccc" strokeType="OUTSIDE" strokeWidth="0.0" text="Painel de controle">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="clickBtn1" layoutX="98.0" layoutY="240.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="157.0" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pacientes">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="clickBtn11" layoutX="98.0" layoutY="298.0" mnemonicParsing="false" onAction="#btnSwitchDoctorScreen" prefHeight="36.0" prefWidth="157.0" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <Text fill="#cccccc" strokeType="OUTSIDE" strokeWidth="0.0" text="Médicos">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button layoutX="25.0" layoutY="85.0" mnemonicParsing="false" onAction="#btnSwitchNewPatientScreen" prefHeight="53.0" prefWidth="231.0" style="-fx-background-color: #2784ff;" text="Novo Paciente" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+               </children>
+            </Pane>
+            <TextField layoutX="425.0" layoutY="48.0" prefHeight="53.0" prefWidth="549.0" promptText="Pesquisar Paciente" style="-fx-background-color: fff; -fx-background-radius: 10px 10px 00px 0px; -fx-padding: 5 5 5 5;" />
+            <Pane layoutX="1189.0" layoutY="41.0" prefHeight="60.0" prefWidth="59.0" style="-fx-background-radius: 50%; -fx-background-color: #fff;" />
+            <FontAwesomeIcon fill="#2784ff" iconName="SEARCH" layoutX="373.0" layoutY="84.0" size="3em" />
+            <Text layoutX="1069.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome do cara">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <Pane layoutX="341.0" layoutY="140.0" prefHeight="640.0" prefWidth="877.0" style="-fx-background-color: fff; -fx-background-radius: 14px;">
+               <children>
+                  <TableView fx:id="tabelaPacientes" layoutY="68.0" prefHeight="572.0" prefWidth="877.0" style="-fx-border-color: #fff;">
+                    <columns>
+                      <TableColumn fx:id="colunaPaciente" prefWidth="321.0" style="-fx-background-color: ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #EFF0F2;" text="paciente" />
+                        <TableColumn fx:id="colunaIdade" prefWidth="89.0" style="-fx-background-color: ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #EFF0F2;" text="idade" />
+                        <TableColumn fx:id="colunaDataNascimento" minWidth="9.0" prefWidth="138.0" style="-fx-background-color: ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #EFF0F2;" text="data de nascimento" />
+                        <TableColumn fx:id="colunaEndereco" prefWidth="327.0" style="-fx-background-color: ffffff; -fx-border-width: 0 0 1 0; -fx-border-color: #EFF0F2;" text="Endereço" />
+                    </columns>
+                  </TableView>
+                  <Text layoutX="22.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Todos os pacientes">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

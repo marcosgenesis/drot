@@ -1,16 +1,20 @@
 package br.com.pi.drot.entity;
 
-import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-@NamedQuery(name = "Administrador.loginAdm", query = "SELECT a FROM Administrador a WHERE a.email = :email AND a.senha = :senha")
+@NamedQueries({
+	@NamedQuery(name = "Administrador.loginAdm", query = "SELECT a FROM Administrador a WHERE a.CPF = :email AND a.senha = :senha"),
+//	@NamedQuery(name = "Administrador.getById", query = "SELECT a FROM Administrador a WHERE a.codadmin =: id")
+})
+
+
 @Entity
 @Table(name = "Administrador")
 public class Administrador{
@@ -29,10 +33,10 @@ public class Administrador{
 	private String RG;
 
 	@Column(name = "dataNascimento")
-	private Date dataNascimento;
+	private String dataNascimento;
 
-	@Column(name = "endereco")
-	private String endereco;
+	@Column(name = "cod_endereco")
+	private int endereco;
 
 	@Column(name = "telefone")
 	private String telefone;
@@ -63,31 +67,31 @@ public class Administrador{
 		return CPF;
 	}
 
-	public void setCPF(String cPF) {
-		CPF = cPF;
+	public void setCPF(String CPF) {
+		this.CPF = CPF;
 	}
 
 	public String getRG() {
 		return RG;
 	}
 
-	public void setRG(String rG) {
-		RG = rG;
+	public void setRG(String RG) {
+		this.RG = RG;
 	}
 
-	public Date getDataNascimento() {
+	public String getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(Date dataNascimento) {
+	public void setDataNascimento(String dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public String getEndereco() {
+	public int getEndereco() {
 		return endereco;
 	}
 
-	public void setEndereco(String endereco) {
+	public void setEndereco(int endereco) {
 		this.endereco = endereco;
 	}
 

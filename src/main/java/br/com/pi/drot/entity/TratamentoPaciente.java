@@ -1,40 +1,58 @@
 package br.com.pi.drot.entity;
 
-import java.sql.Date;
-import java.util.ArrayList;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+@NamedQuery(name = "TratamentoPaciente.getById", query = "SELECT t FROM TratamentoPaciente t WHERE t.id =: cod")
 @Entity
 @Table(name = "TratamentoPaciente")
 public class TratamentoPaciente{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "codtratamento")
 	private int id;
 
-	@Column(name = "paciente_id")
+	@Column(name = "cod_paciente")
 	private int paciente;
 
-	@Column(name = "exame")
-	private ArrayList <Exame> exame;
+	@Column(name = "cod_exame")
+	private int exame;
 
-	@Column(name = "remedio")
-	private ArrayList <Remedio> remedio;
+	@Column(name = "cod_remedio")
+	private int remedio;
 
-	@Column(name = "tempoTratamento")
-	private Date inicioTratamento;
+	@Column(name = "duracaoDiasTratamento")
+	private int duracaoDiasTratamento;
 
-	@Column(name = "tempoTratamento")
-	private Date fimTratamento;
+	@Column(name = "dataInicioTratamento")
+	private String dataInicioTratamento;
 
+	@Column(name = "estadoTratamento")
+    private boolean estadoTratamento;
 
 	public int getId() {
 		return id;
+	}
+
+	public int getDuracaoDiasTratamento() {
+		return duracaoDiasTratamento;
+	}
+
+	public void setDuracaoDiasTratamento(int duracaoDiasTratamento) {
+		this.duracaoDiasTratamento = duracaoDiasTratamento;
+	}
+
+	public String getDataInicioTratamento() {
+		return dataInicioTratamento;
+	}
+
+	public void setDataInicioTratamento(String dataInicioTratamento) {
+		this.dataInicioTratamento = dataInicioTratamento;
 	}
 
 	public void setId(int id) {
@@ -49,65 +67,36 @@ public class TratamentoPaciente{
 		return this.paciente;
 	}
 
-	public ArrayList<Exame> getExame() {
+	public int getExame() {
 		return exame;
 	}
 
-	public void setExame(ArrayList<Exame> exame) {
+	public boolean isEstadoTratamento() {
+		return estadoTratamento;
+	}
+
+	public void setEstadoTratamento(boolean estadoTratamento) {
+		this.estadoTratamento = estadoTratamento;
+	}
+
+	public void setExame(int exame) {
 		this.exame = exame;
 	}
 
-	public ArrayList<Remedio> getRemedio() {
+	public int getRemedio() {
 		return remedio;
 	}
 
-	public void setRemedio(ArrayList<Remedio> remedio) {
+	public void setRemedio(int remedio) {
 		this.remedio = remedio;
 	}
 
-	public Date getInicioTratamento() {
-		return inicioTratamento;
+	public int getTempoTratamento() {
+		return duracaoDiasTratamento;
 	}
 
-	public void setInicioTratamento(Date inicioTratamento) {
-		this.inicioTratamento = inicioTratamento;
+	public void setTempoTratamento(int tempoTratamento) {
+		this.duracaoDiasTratamento = tempoTratamento;
 	}
-
-	public Date getFimTratamento() {
-		return fimTratamento;
-	}
-
-	public void setFimTratamento(Date fimTratamento) {
-		this.fimTratamento = fimTratamento;
-	}
-
-	public boolean adicionarRemedio(TratamentoPaciente tratamento, Remedio remedio) {
-		ArrayList<Remedio> remedios = tratamento.getRemedio();
-		remedios.add(remedio);
-		tratamento.setRemedio(remedios);
-		return true;
-	}
-
-	public boolean adicionarExame(TratamentoPaciente tratamento, Exame exame) {
-		ArrayList<Exame> exames = tratamento.getExame();
-		exames.add(exame);
-		tratamento.setExame(exames);
-		return true;
-	}
-
-	public boolean removerRemedio(TratamentoPaciente tratamento, Remedio remedio) {
-		ArrayList<Remedio> remedios = tratamento.getRemedio();
-		remedios.remove(remedio);
-		tratamento.setRemedio(remedios);
-		return true;
-	}
-
-	public boolean removerExame(TratamentoPaciente tratamento, Exame exame) {
-		ArrayList<Exame> exames = tratamento.getExame();
-		exames.remove(exame);
-		tratamento.setExame(exames);
-		return true;
-	}
-
 
 }

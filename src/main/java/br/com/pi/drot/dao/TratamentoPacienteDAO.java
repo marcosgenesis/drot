@@ -1,33 +1,27 @@
 package br.com.pi.drot.dao;
 
-import java.sql.Date;
 import java.util.ArrayList;
 
-import br.com.pi.drot.entity.Exame;
-import br.com.pi.drot.entity.Paciente;
-import br.com.pi.drot.entity.Remedio;
 import br.com.pi.drot.entity.TratamentoPaciente;
 
-public interface TratamentoPacienteDAO {
+ public interface TratamentoPacienteDAO {
 
-	boolean criarTratamentoPaciente(Paciente paciente, Remedio remedio, Exame exame, Date inicioTratamento, Date fimTratamento);
+	boolean criarTratamentoPaciente(int idPaciente, String dataInicioTratamento, int tempoTratamento);
 
-	TratamentoPaciente buscarTratamentoPacientePorID(int id);
+	TratamentoPaciente buscarTratamentoPacientePorID(int idTratamento);
 
 	ArrayList<TratamentoPaciente> listarTratamentosPaciente();
 
-	boolean editarTratamentoPacienteAdicionarRemedio(TratamentoPaciente tratamento, Remedio remedio);
+	boolean editarTratamentoPacienteAdicionarRemedio(int idTratamento, int idRemedio);
 
-	boolean editarTratamentoPacienteRemoverRemedio(TratamentoPaciente tratamento, Remedio remedio);
+	boolean editarTratamentoPacienteAdicionarExame(int idTratamento, int idExame);
 
-	boolean editarTratamentoPacienteAdicionarExame(TratamentoPaciente tratamento, Exame exame);
+	boolean editarTratamentoPacienteAlterarTempoTratamento(int idTratamento, int tempoTratamento);
 
-	boolean editarTratamentoPacienteRemoverExame(TratamentoPaciente tratamento, Exame exame);
+	boolean removerTratamentoPacientePorId(int idTratamento);
 
-	boolean editarTratamentoPacienteAlterarFimTratamento(TratamentoPaciente tratamento, Date fimTratamento);
+	boolean adicionarRemedio(int remedio, int idTratamento);
 
-	boolean removerTratamentoṔaciente(TratamentoPaciente tratamento);
-
-	boolean removerTratamentoPacientePorId(int id);
+	boolean adicionarExame(int exame, int idTratamento);
 
 }
