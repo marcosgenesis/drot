@@ -84,7 +84,7 @@ public class TratamentosPaciente {
         Double diferenca = new Double(dataDia.diferencaEmDiasAteHoje(dataInicioTratamento, duracaoDiasTratamento));
         Double divisao = new Double(diferenca / duracaoDiasTratamento);
         Double resultado = new Double(divisao * 100);
-        return resultado;
+        return resultado > 100.0 ? 100 : resultado;
     }
 	
 	public int getIdPaciente() {

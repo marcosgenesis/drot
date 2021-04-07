@@ -62,12 +62,14 @@ public class ItemTabelaConsultaJaAtendida extends ListCell<ConsultasMedico>{
             }
 
             nomePaciente.setText(String.valueOf(consulta.getNomePacienteConsulta()));
+            System.out.println("consulta"+consulta);
             statusPaciente.setText(consulta.getStatusConsulta());
             String[] nomesSeparadosPorEspacos = nomePaciente.getText().split(" ");
       
             String iniciais = String.valueOf(nomesSeparadosPorEspacos[0].charAt(0));
             iniciais += String.valueOf(nomesSeparadosPorEspacos[1].charAt(0));
             iniciaisNome.setText(iniciais.toUpperCase());
+            System.out.println("teste " + this.statusPaciente.getText());
             switch (this.statusPaciente.getText()) {
 			case "Internação":
 				{
