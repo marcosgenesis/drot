@@ -1,14 +1,22 @@
 package br.com.pi.drot.dao;
 
+import java.util.ArrayList;
+
+import br.com.pi.drot.entity.Medico;
+
 public interface MedicoDAO {
+	boolean cadastrarNovoMedico(String nome, String CPF, String RG, String dataNascimento, int endereco, String telefone, String email, String senha);
 
-	void consultarPaciente();
+	Medico buscarMedicoPorID(int idMedico);
 
-	void editarHistoricoPaciente();
+	ArrayList<Medico> listarMedicosCadastrados();
 
-	void consultarHistoricoPaciente();
+	String pegarNomeMedicoLogado(int idMedico);
 
-	void criarTratamentodoPaciente();
+	boolean removerMedico(int idMedico);
 
-	void editarTratamentodoPaciente();
+	int buscarIdMedicoPorCPF(String cpf);
+
+	boolean logado(String email, String pass);
+
 }

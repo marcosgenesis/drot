@@ -1,19 +1,26 @@
 package br.com.pi.drot.entity;
 
-import java.sql.Date;
-
 import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+
+@NamedQueries({
+	@NamedQuery(name = "Exame.getIdByName", query = "SELECT e FROM Exame e WHERE e.nomeExame =: nome"),
+	@NamedQuery(name = "Exame.getById", query = "SELECT e FROM Exame e WHERE e.id =: idE")
+})
 
 @Entity
 @Table(name = "Exame")
 public class Exame {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "codexame")
 	private int id;
 
 	@Column(name = "nomeExame")
@@ -26,7 +33,7 @@ public class Exame {
 	private String descricaoExame;
 
 	@Column(name = "dataExame")
-	private Date dataExame;
+	private String dataExame;
 
 	public int getId() {
 		return id;
@@ -60,11 +67,11 @@ public class Exame {
 		this.descricaoExame = descricaoExame;
 	}
 
-	public Date getDataExame() {
+	public String getDataExame() {
 		return dataExame;
 	}
 
-	public void setDataExame(Date dataExame) {
+	public void setDataExame(String dataExame) {
 		this.dataExame = dataExame;
 	}
 

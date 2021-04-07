@@ -1,23 +1,28 @@
 package br.com.pi.drot.entity;
 
-import java.sql.Date;
-import java.util.ArrayList;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+
+@NamedQueries({
+	@NamedQuery(name = "Paciente.getIdByCpf", query = "SELECT p FROM Paciente p WHERE p.CPF = :cpf"),
+	@NamedQuery(name = "Paciente.getById", query = "SELECT p FROM Paciente p WHERE p.id =: idP")
+})
 
 @Entity
 @Table(name = "Paciente")
 public class Paciente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "codpac")
 	private int id;
 
-	@Column(name = "nome")
+	@Column(name = "nome_paciente")
 	private String nome;
 
 	@Column(name = "CPF")
@@ -26,11 +31,11 @@ public class Paciente {
 	@Column(name = "RG")
 	private String RG;
 
-	@Column(name = "Data_nascimento")
-	private Date dataNascimento;
+	@Column(name = "DataNascimento")
+	private String dataNascimento;
 
-	@Column(name = "endereco")
-	private String endereco;
+	@Column(name = "cod_endereco")
+	private int endereco;
 
 	@Column(name = "telefone")
 	private String telefone;
@@ -44,42 +49,8 @@ public class Paciente {
 	@Column(name = "email")
 	private String email;
 
-
 	@Column(name = "senha")
 	private String senha;
-
-
-	@Column(name = "tratamento")
-	private ArrayList<TratamentoPaciente> tratamentos;
-
-	public Paciente() {}
-
-	public ArrayList<TratamentoPaciente> getTratamentos() {
-		return tratamentos;
-	}
-
-	public void setTratamentos(ArrayList<TratamentoPaciente> tratamentos) {
-		this.tratamentos = tratamentos;
-	}
-
-
-	public Paciente(int id, String nome, String cPF, String rG, Date dataNascimento, String endereco, String telefone,
-			String restricaoMedicamental, String doencaHereditaria, String email, String senha,
-			ArrayList<TratamentoPaciente> tratamentos) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		CPF = cPF;
-		RG = rG;
-		this.dataNascimento = dataNascimento;
-		this.endereco = endereco;
-		this.telefone = telefone;
-		this.restricaoMedicamental = restricaoMedicamental;
-		this.doencaHereditaria = doencaHereditaria;
-		this.email = email;
-		this.senha = senha;
-		this.tratamentos = tratamentos;
-	}
 
 	public int getId() {
 		return id;
@@ -109,23 +80,23 @@ public class Paciente {
 		return RG;
 	}
 
-	public void setRG(String rG) {
-		this.RG = rG;
+	public void setRG(String RG) {
+		this.RG = RG;
 	}
 
-	public Date getDataNascimento() {
+	public String getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(Date dataNascimento) {
+	public void setDataNascimento(String dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public String getEndereco() {
+	public int getEndereco() {
 		return endereco;
 	}
 
-	public void setEndereco(String endereco) {
+	public void setEndereco(int endereco) {
 		this.endereco = endereco;
 	}
 
@@ -153,16 +124,6 @@ public class Paciente {
 		this.doencaHereditaria = doencaHereditaria;
 	}
 
-	public boolean login() {
-		return false;
-	}
-
-	public boolean logout() {
-		return false;
-
-
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -178,7 +139,4 @@ public class Paciente {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
-	public void preencherDadosRegistros(String restricaoMedicamental, String doencaHereditaria) {}
-
 }

@@ -11,15 +11,8 @@ Lhes apresento o sistema desktop DROT, um sistema voltado para a gerência médi
 [Nosso site](https://github.com/italolima04/DROT.github.io)
 
 # Quem somos?
-Nosso time é composto por 4 alunos e amigos do 4º semestre do curso de Engenharia de Software, na Universidade Federal do Ceará, desde o 1º semestre nos aproximamos e mantemos contato, sempre formando equipes para o desenvolvimento de trabalhos e a realização de atividades curriculares e extracurriculares, somos apaixonados por desenvolvimento e pela resolução de problemas e desafios, acreditamos fiealmente no impacto que o trabalho em grupo, quando realizado com envolvimento e dedicação, por isso estamos sempre buscando a excelência máxima.
-1.**Eric Rodrigues:** 
-[Github](https://github.com/ericrodriguesfer)
-2.**Gustavo Clemente:**
-[Linkedin](https://www.linkedin.com/in/gustavo-colombo-9940011a6/)
-[Github](https://github.com/gustavocolombo)
-3.**Ítalo Lima:**
-[Linkedin](https://www.linkedin.com/in/%C3%ADtalo-lima-8338b118a/)
-[Github](https://github.com/italolima04)
-4.**Marcos Gênesis:**
-[Linkedin](https://www.linkedin.com/in/marcosgenesis/)
-[Github](https://github.com/marcosgenesis)
+
+1. [Eric Rodrigues](https://github.com/ericrodriguesfer)
+2. [Gustavo Clemente](https://github.com/gustavocolombo)
+3. [Ítalo Lima](https://github.com/italolima04)
+4. [Marcos Gênesis](https://github.com/marcosgenesis)
