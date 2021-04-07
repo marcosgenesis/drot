@@ -10,26 +10,26 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="60.0" prefWidth="590.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.pi.drot.controllers.DoctorsFXController">
+<AnchorPane fx:id="content" prefHeight="60.0" prefWidth="569.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane layoutX="16.0" layoutY="5.0" prefHeight="47.0" prefWidth="47.0" style="-fx-background-color: #B7D6FF; -fx-background-radius: 13px;">
+      <Pane layoutX="4.0" layoutY="5.0" prefHeight="47.0" prefWidth="47.0" style="-fx-background-color: #B7D6FF; -fx-background-radius: 13px;">
          <children>
-            <Label layoutX="14.0" layoutY="14.0" text="MG" textFill="#2784ff" />
+            <Label fx:id="iniciaisNome" layoutX="14.0" layoutY="14.0" text="MG" textFill="#2784ff" />
          </children>
       </Pane>
-      <Label layoutX="71.0" layoutY="21.0" text="Marcos Gênesis da silva" />
-      <ProgressBar layoutX="221.0" layoutY="21.0" prefHeight="18.0" prefWidth="175.0" progress="0.0" style="-fx-text-box-border: transparent; -fx-control-inner-background: #D6DCE2; -fx-progress-color: #2784FF;" />
-      <ImageView fitHeight="17.0" fitWidth="22.0" layoutX="413.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+      <Label fx:id="nomePaciente" layoutX="55.0" layoutY="21.0" text="Marcos Gênesis da silva" />
+      <ProgressBar fx:id="progresso" layoutX="195.0" layoutY="21.0" prefHeight="18.0" prefWidth="175.0" progress="0.0" style="-fx-text-box-border: transparent; -fx-control-inner-background: #D6DCE2; -fx-progress-color: #2784FF;" />
+      <ImageView fitHeight="17.0" fitWidth="22.0" layoutX="387.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../images/icone%20estavel.png" />
          </image>
       </ImageView>
-      <Label layoutX="440.0" layoutY="20.0" text="73%" textFill="#2784ff">
+      <Label fx:id="progressoAndamento" layoutX="414.0" layoutY="20.0" text="73%" textFill="#2784ff">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Button layoutX="478.0" layoutY="17.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="107.0" style="-fx-background-color: transparent;" text="Ver Histórico" textFill="#9195a3">
+      <Button fx:id="verHistorico" layoutX="455.0" layoutY="17.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="107.0" style="-fx-background-color: transparent;" text="Ver Histórico" textFill="#9195a3">
          <graphic>
             <ImageView fitHeight="12.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
                <image>

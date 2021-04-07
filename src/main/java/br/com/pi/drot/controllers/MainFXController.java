@@ -1,13 +1,11 @@
 package br.com.pi.drot.controllers;
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import br.com.pi.drot.UI.MainFX;
 import br.com.pi.drot.components.SideBarController;
-import br.com.pi.drot.repository.SecretariaRepository;
-//import br.com.pi.drot.entity.Usuario;
+import br.com.pi.drot.repository.RelatorioConsultasDoDiaRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,10 +20,10 @@ public class MainFXController extends SideBarController implements Initializable
 
 	@FXML
 	private Label userName;
-	
+
 	@FXML
 	private Text numPacientesAtendidosHoje;
-	
+
 	@FXML
 	private Text numPacientesNaEspera;
 
@@ -46,10 +44,10 @@ public class MainFXController extends SideBarController implements Initializable
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		SecretariaRepository secretariaRepositorio = new SecretariaRepository();
-		numPacientesAtendidosHoje.setText(Integer.toString(secretariaRepositorio.quantidadeConsultasRealizadasDoDia("")));
-		numPacientesNaEspera.setText(Integer.toString(secretariaRepositorio.quantidadeConsultasNaoRealizadasDoDia("")));
-		
+		RelatorioConsultasDoDiaRepository relatorioConsultasDoDiaRepositorio = new RelatorioConsultasDoDiaRepository();
+		numPacientesAtendidosHoje.setText(Integer.toString(relatorioConsultasDoDiaRepositorio.quantidadeConsultasRealizadasDoDia("")));
+		numPacientesNaEspera.setText(Integer.toString(relatorioConsultasDoDiaRepositorio.quantidadeConsultasNaoRealizadasDoDia("")));
+
 
 	}
 }

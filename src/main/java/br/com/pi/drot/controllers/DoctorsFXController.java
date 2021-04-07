@@ -10,6 +10,7 @@ import br.com.pi.drot.entity.Medico;
 import br.com.pi.drot.entity.Paciente;
 import br.com.pi.drot.models.MedicoModel;
 import br.com.pi.drot.models.PacienteModel;
+import br.com.pi.drot.repository.MedicoRepository;
 import br.com.pi.drot.repository.SecretariaRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,28 +25,27 @@ public class DoctorsFXController extends SideBarController implements Initializa
 
 	@FXML
 	private TableView<MedicoModel> tabelaMedicos;
-	
+
 	@FXML
     private TableColumn<MedicoModel,String> ColunaNome;
-	
+
     @FXML
     private TableColumn<MedicoModel,String> ColunaCpf;
-    
+
     @FXML
     private TableColumn<MedicoModel,Integer> ColunaNumPacientes;
-    
+
     @FXML
     private TableColumn<MedicoModel,Integer> ColunaNumConsultasHoje;
-	
+
 	@FXML
 	private void btnSwitchNewDoctorScreen(ActionEvent event) {
 		MainFX.chanceWindow("newDoctor");
 	}
-	
-	public void initialize(URL location, ResourceBundle resources) {
-		SecretariaRepository secretariaRepositorio = new SecretariaRepository();
 
-		
+	public void initialize(URL location, ResourceBundle resources) {
+		MedicoRepository medicoRepositorio = new MedicoRepository();
+
 		ColunaNome.setCellValueFactory(
                 new PropertyValueFactory<>("nome"));
         ColunaCpf.setCellValueFactory(
@@ -54,15 +54,15 @@ public class DoctorsFXController extends SideBarController implements Initializa
                 new PropertyValueFactory<>("numConsultasHoje"));
         ColunaNumPacientes.setCellValueFactory(
                 new PropertyValueFactory<>("numPacientes"));
-        
-        tabelaMedicos.setItems(formataDadosPaciente(secretariaRepositorio));
-		
+
+        tabelaMedicos.setItems(formataDadosPaciente(medicoRepositorio));
+
 	}
-	
-	private ObservableList<MedicoModel> formataDadosPaciente(SecretariaRepository secretariaRepositorio){
-		ArrayList<Medico> lista = secretariaRepositorio.listarMedicosCadastrados();
+
+	private ObservableList<MedicoModel> formataDadosPaciente(MedicoRepository medicoRepositorio){
+		ArrayList<Medico> lista = medicoRepositorio.listarMedicosCadastrados();
 		ArrayList<MedicoModel> pacientesComDadosFormatados = new ArrayList<>();
-		
+
 		for (Medico p : lista) {
 			System.out.println("numero de pacientes: "+new MedicoModel(p.getId(), p.getNome(), p.getCPF()).getNumPacientes());
 			pacientesComDadosFormatados.add(new MedicoModel(p.getId(), p.getNome(), p.getCPF()));

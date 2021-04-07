@@ -7,19 +7,9 @@ import br.com.pi.drot.dao.RemedioDAO;
 import br.com.pi.drot.entity.Remedio;
 
 public class RemedioRepository implements RemedioDAO{
-	private Connection connection;
+	Connection connection = Connection.getInstance();
 
-	public RemedioRepository() {
-		this.connection = new Connection();
-	}
-
-	public Connection getConnection() {
-		return connection;
-	}
-
-	public void setConnection(Connection connection) {
-		this.connection = connection;
-	}
+	public RemedioRepository() {}
 
 	public Remedio criarRemedio(String nomeRemedio, String dosagem, String bula, String contraIndicacao) {
 		Remedio remedio = new Remedio();
@@ -27,17 +17,17 @@ public class RemedioRepository implements RemedioDAO{
 		remedio.setDosagem(dosagem);
 		remedio.setBula(bula);
 		remedio.setContraIndicacao(contraIndicacao);
-		this.getConnection().getEntityManager().getTransaction().begin();
-		this.getConnection().getEntityManager().persist(remedio);
-		this.getConnection().getEntityManager().getTransaction().commit();
+		this.connection.getEntityManager().getTransaction().begin();
+		this.connection.getEntityManager().persist(remedio);
+		this.connection.getEntityManager().getTransaction().commit();
 		System.out.println("Novo remédio cadastrado com sucesso!" + remedio.getId());
 
 		return remedio;
 	}
 
-	public int buscarIdByNome(String nome) {
+	public int buscarIdDoRemedioPeloNome(String nome) {
 		try {
-			Remedio remedio = this.getConnection().getEntityManager().createNamedQuery("Remedio.getIdByName", Remedio.class).setParameter("nome", nome).getSingleResult();
+			Remedio remedio = this.connection.getEntityManager().createNamedQuery("Remedio.getIdByName", Remedio.class).setParameter("nome", nome).getSingleResult();
 
 			System.out.println("=> R" + remedio.getId());
 
@@ -45,5 +35,14 @@ public class RemedioRepository implements RemedioDAO{
 		} catch(NoResultException e) {
 			return -1;
 		}
+	}
+
+	public Remedio buscarRemedioPorID(int id) {
+		this.connection.getEntityManager().clear();
+		Remedio remedio = this.connection.getEntityManager().find(Remedio.class, id);
+		if(remedio == null){
+			System.out.println("Remedio não encontrado");
+		}
+		return remedio;
 	}
 }

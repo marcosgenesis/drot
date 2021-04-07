@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 
 import br.com.pi.drot.components.SideBarController;
 import br.com.pi.drot.repository.EnderecoRepository;
-import br.com.pi.drot.repository.SecretariaRepository;
+import br.com.pi.drot.repository.PacienteRepository;
 import br.com.pi.drot.utils.FormatadorMascara;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -87,23 +87,23 @@ public class NewPatientFXController extends SideBarController implements Initial
 
 	@FXML
 	void cadastrarPaciente(ActionEvent event) {
-		SecretariaRepository secretaryRepository=  new SecretariaRepository();
+		PacienteRepository pacienteRepository=  new PacienteRepository();
 		EnderecoRepository enderecoRepository = new EnderecoRepository();
 		enderecoRepository.cadastrarEndereco(
-				this.uf.getText(), 
-				this.rua.getText(), 
+				this.uf.getText(),
+				this.rua.getText(),
 				Integer.parseInt(this.numero.getText()),
 				this.bairro.getText(),
 				this.cidade.getText(),
 				this.cep.getText()
 		);
 		int codEndereco = enderecoRepository.pegarIdEndereco(this.cep.getText(),Integer.parseInt(this.numero.getText()));
-		secretaryRepository.cadastrarNovoPaciente(this.nome.getText(), 
+		pacienteRepository.cadastrarNovoPaciente(this.nome.getText(),
 				this.cpf.getText(),
-				this.rg.getText(), 
+				this.rg.getText(),
 				this.dataNascimento.getText(),
-				codEndereco, 
-				this.telefone.getText(), 
+				codEndereco,
+				this.telefone.getText(),
 				this.restricao.getText(),
 				this.doenca.getText(),
 				this.email.getText(),

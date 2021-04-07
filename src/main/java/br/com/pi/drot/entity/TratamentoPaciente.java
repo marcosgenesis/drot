@@ -26,12 +26,33 @@ public class TratamentoPaciente{
 	@Column(name = "cod_remedio")
 	private int remedio;
 
-	@Column(name = "tempoTratamento")
-	private int tempoTratamento;
+	@Column(name = "duracaoDiasTratamento")
+	private int duracaoDiasTratamento;
 
+	@Column(name = "dataInicioTratamento")
+	private String dataInicioTratamento;
+
+	@Column(name = "estadoTratamento")
+    private boolean estadoTratamento;
 
 	public int getId() {
 		return id;
+	}
+
+	public int getDuracaoDiasTratamento() {
+		return duracaoDiasTratamento;
+	}
+
+	public void setDuracaoDiasTratamento(int duracaoDiasTratamento) {
+		this.duracaoDiasTratamento = duracaoDiasTratamento;
+	}
+
+	public String getDataInicioTratamento() {
+		return dataInicioTratamento;
+	}
+
+	public void setDataInicioTratamento(String dataInicioTratamento) {
+		this.dataInicioTratamento = dataInicioTratamento;
 	}
 
 	public void setId(int id) {
@@ -50,6 +71,14 @@ public class TratamentoPaciente{
 		return exame;
 	}
 
+	public boolean isEstadoTratamento() {
+		return estadoTratamento;
+	}
+
+	public void setEstadoTratamento(boolean estadoTratamento) {
+		this.estadoTratamento = estadoTratamento;
+	}
+
 	public void setExame(int exame) {
 		this.exame = exame;
 	}
@@ -63,10 +92,11 @@ public class TratamentoPaciente{
 	}
 
 	public int getTempoTratamento() {
-		return tempoTratamento;
+		return duracaoDiasTratamento;
 	}
 
 	public void setTempoTratamento(int tempoTratamento) {
-		this.tempoTratamento = tempoTratamento;
+		this.duracaoDiasTratamento = tempoTratamento;
 	}
+
 }

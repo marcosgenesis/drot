@@ -7,23 +7,23 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="87.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="content" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="87.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane layoutX="39.0" layoutY="14.0" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #B7D6FF; -fx-background-radius: 20px;" AnchorPane.rightAnchor="181.0">
          <children>
-            <Label layoutX="20.0" layoutY="22.0" text="MG" textFill="#2784ff" />
+            <Label fx:id="iniciaisNome" layoutX="20.0" layoutY="22.0" textFill="#2784ff" />
          </children>
       </Pane>
-      <Label layoutX="78.0" layoutY="21.0" text="Marcos Genesis da Silva">
+      <Label fx:id="nomePaciente" layoutX="78.0" layoutY="21.0">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="78.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="iconeStatus" fitHeight="15.0" fitWidth="15.0" layoutX="78.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../images/Liberado.png" />
+            <Image url="@../../images/Icone-Pills-Azul.png" />
          </image>
       </ImageView>
-      <Label layoutX="99.0" layoutY="49.0" text="Liberado" textFill="#9195a3" />
+      <Label fx:id="statusPaciente" layoutX="99.0" layoutY="49.0" textFill="#9195a3" />
    </children>
 </AnchorPane>

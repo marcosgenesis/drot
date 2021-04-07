@@ -8,18 +8,9 @@ import br.com.pi.drot.entity.Endereco;
 
 public class EnderecoRepository implements EnderecoDAO{
 
-	private Connection connection;
-	public EnderecoRepository() {
-		this.connection = new Connection();
-	}
+	Connection connection = Connection.getInstance();
 
-	public Connection getConnection() {
-		return connection;
-	}
-
-	public void setConnection(Connection connection) {
-		this.connection = connection;
-	}
+	public EnderecoRepository() {}
 
 	public boolean cadastrarEndereco(String uf, String rua, int numero, String bairro, String cidade, String cep) {
 		Endereco endereco = new Endereco();
@@ -29,17 +20,28 @@ public class EnderecoRepository implements EnderecoDAO{
 		endereco.setBairro(bairro);
 		endereco.setCidade(cidade);
 		endereco.setCep(cep);
-		this.getConnection().getEntityManager().getTransaction().begin();
-		this.getConnection().getEntityManager().persist(endereco);
-		this.getConnection().getEntityManager().getTransaction().commit();
+		this.connection.getEntityManager().getTransaction().begin();
+		this.connection.getEntityManager().persist(endereco);
+		this.connection.getEntityManager().getTransaction().commit();
 		System.out.println("chegooou");
 
 		return true;
 	}
+	public String pegarInformacoesEnderecoPorID(int id) {
+        this.connection.getEntityManager().clear();
 
+        try{
+            Endereco endereco = this.connection.getEntityManager().createNamedQuery("Endereco.getById", Endereco.class).setParameter("id", id).getSingleResult();
+
+            return endereco.toString();
+        } catch(NoResultException ex) {
+            System.out.println("Endereço não encontrado.");
+            return null;
+        }
+    }
 	public int pegarIdEndereco(String cep, int numero) {
 		try {
-			Endereco e = this.getConnection().getEntityManager().createNamedQuery("Endereco.getIdEndereco", Endereco.class).setParameter("numero", numero).setParameter("cep", cep).getSingleResult();
+			Endereco e = this.connection.getEntityManager().createNamedQuery("Endereco.getIdEndereco", Endereco.class).setParameter("numero", numero).setParameter("cep", cep).getSingleResult();
 
 			return e.getId();
 		} catch(NoResultException e) {

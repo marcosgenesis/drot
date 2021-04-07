@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 import br.com.pi.drot.UI.MainFX;
 import br.com.pi.drot.components.SideBarController;
 import br.com.pi.drot.repository.EnderecoRepository;
-import br.com.pi.drot.repository.SecretariaRepository;
+import br.com.pi.drot.repository.MedicoRepository;
 import br.com.pi.drot.utils.FormatadorMascara;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -68,26 +68,26 @@ public class NewDoctorFXController extends SideBarController implements Initiali
 		FormatadorMascara mascaraCPF = new FormatadorMascara(cpf);
 		mascaraCPF.setMask(FormatadorMascara.CPF);
 	}
-	
+
 	@FXML
 	void cadastrarMedico(ActionEvent event) {
-		SecretariaRepository secretaryRepository=  new SecretariaRepository();
+		MedicoRepository medicoRepository=  new MedicoRepository();
 		EnderecoRepository enderecoRepository = new EnderecoRepository();
 		enderecoRepository.cadastrarEndereco(
-				this.uf.getText(), 
-				this.rua.getText(), 
+				this.uf.getText(),
+				this.rua.getText(),
 				Integer.parseInt(this.numero.getText()),
 				this.bairro.getText(),
 				this.cidade.getText(),
 				this.cep.getText()
 		);
 		int codEndereco = enderecoRepository.pegarIdEndereco(this.cep.getText(),Integer.parseInt(this.numero.getText()));
-		secretaryRepository.cadastrarNovoMedico(this.nome.getText(), 
+		medicoRepository.cadastrarNovoMedico(this.nome.getText(),
 				this.cpf.getText(),
-				this.rg.getText(), 
+				this.rg.getText(),
 				this.dataNascimento.getText(),
-				codEndereco, 
-				this.telefone.getText(), 
+				codEndereco,
+				this.telefone.getText(),
 				this.email.getText(),
 				this.senha.getText());
 	}

@@ -7,19 +7,9 @@ import br.com.pi.drot.dao.ConsultaDAO;
 import br.com.pi.drot.entity.Consulta;
 
 public class ConsultaRepository implements ConsultaDAO {
+	Connection connection = Connection.getInstance();
 
-	private Connection connection;
-	public ConsultaRepository(){
-		this.connection = new Connection();
-	}
-
-	public Connection getConnection() {
-		return connection;
-	}
-
-	public void setConnection(Connection connection) {
-		this.connection = connection;
-	}
+	public ConsultaRepository(){}
 
 	public boolean criarConsulta(int paciente, int medico, String dataConsulta, String descricao, String classificacaoUrgencia, boolean consultaRealizada, String andamentoConsulta, String consultorioConsulta) {
 		Consulta consulta = new Consulta();
@@ -33,9 +23,9 @@ public class ConsultaRepository implements ConsultaDAO {
 		consulta.setConsultaRealizada(false);
 
 		try {
-			this.getConnection().getEntityManager().getTransaction().begin();
-			this.getConnection().getEntityManager().persist(consulta);
-			this.getConnection().getEntityManager().getTransaction().commit();
+			this.connection.getEntityManager().getTransaction().begin();
+			this.connection.getEntityManager().persist(consulta);
+			this.connection.getEntityManager().getTransaction().commit();
 
 			System.out.println("Nova consulta cadastrada com sucesso! Com o id: " + consulta.getId());
 			return true;
@@ -47,7 +37,7 @@ public class ConsultaRepository implements ConsultaDAO {
 
 
 	public boolean remarcarConsulta(int idConsulta, String dataConsulta) {
-		this.getConnection().getEntityManager().clear();
+		this.connection.getEntityManager().clear();
 		Consulta consulta = this.buscarConsultaPorId(idConsulta);
 		if(consulta == null){
 			System.out.println("Consulta não encontrada.");
@@ -56,9 +46,9 @@ public class ConsultaRepository implements ConsultaDAO {
 
 		consulta.setDataConsulta(dataConsulta);
 		try {
-            this.getConnection().getEntityManager().getTransaction().begin();
-            this.getConnection().getEntityManager().merge(consulta);
-            this.getConnection().getEntityManager().getTransaction().commit();
+            this.connection.getEntityManager().getTransaction().begin();
+            this.connection.getEntityManager().merge(consulta);
+            this.connection.getEntityManager().getTransaction().commit();
 
     		System.out.println("Consulta remarcada com sucesso!");
             return true;
@@ -69,16 +59,16 @@ public class ConsultaRepository implements ConsultaDAO {
 	}
 
 	public boolean desmarcarConsulta(int idConsulta) {
-		this.getConnection().getEntityManager().clear();
+		this.connection.getEntityManager().clear();
 		Consulta consulta = this.buscarConsultaPorId(idConsulta);
 		if(consulta == null){
 			System.out.println("Consulta não encontrada.");
 			return false;
 		}
 		try {
-		 	this.getConnection().getEntityManager().getTransaction().begin();
-	        this.getConnection().getEntityManager().remove(consulta);
-	        this.getConnection().getEntityManager().getTransaction().commit();
+		 	this.connection.getEntityManager().getTransaction().begin();
+	        this.connection.getEntityManager().remove(consulta);
+	        this.connection.getEntityManager().getTransaction().commit();
 			System.out.println("Consulta" + consulta.getId() + "desmarcada do banco com sucesso!");
 			return true;
 		}catch(Exception ex) {
@@ -88,10 +78,10 @@ public class ConsultaRepository implements ConsultaDAO {
 	}
 
 	public Consulta buscarConsultaPorId(int id) {
-		this.getConnection().getEntityManager().clear();
+		this.connection.getEntityManager().clear();
 
 		try{
-			Consulta consulta = this.getConnection().getEntityManager().createNamedQuery("Consulta.getById", Consulta.class).setParameter(id, id).getSingleResult();
+			Consulta consulta = this.connection.getEntityManager().createNamedQuery("Consulta.getById", Consulta.class).setParameter(id, id).getSingleResult();
 			return consulta;
 		} catch(NoResultException ex) {
 			System.out.println("Consulta não encontrada");
@@ -100,14 +90,14 @@ public class ConsultaRepository implements ConsultaDAO {
 	}
 
 	public boolean marcarConsultaComoConcluida(int idConsulta){
-		this.getConnection().getEntityManager().clear();
+		this.connection.getEntityManager().clear();
 		try{
 			Consulta consulta = buscarConsultaPorId(idConsulta);
 			consulta.setConsultaRealizada(true);
 			try{
-				this.getConnection().getEntityManager().getTransaction().begin();
-		        this.getConnection().getEntityManager().merge(consulta);
-		        this.getConnection().getEntityManager().getTransaction().commit();
+				this.connection.getEntityManager().getTransaction().begin();
+		        this.connection.getEntityManager().merge(consulta);
+		        this.connection.getEntityManager().getTransaction().commit();
 
 				System.out.println("A Consulta foi concluída com sucesso.");
 				return true;
@@ -122,7 +112,7 @@ public class ConsultaRepository implements ConsultaDAO {
 	}
 
 	public boolean editarAndamentoConsulta(int idConsulta, String andamentoConsulta) {
-		this.getConnection().getEntityManager().clear();
+		this.connection.getEntityManager().clear();
 		Consulta consulta = this.buscarConsultaPorId(idConsulta);
 		if(consulta == null){
 			System.out.println("Consulta não encontrada.");
@@ -131,9 +121,9 @@ public class ConsultaRepository implements ConsultaDAO {
 
 		consulta.setDataConsulta(andamentoConsulta);
 		try {
-            this.getConnection().getEntityManager().getTransaction().begin();
-            this.getConnection().getEntityManager().merge(consulta);
-            this.getConnection().getEntityManager().getTransaction().commit();
+            this.connection.getEntityManager().getTransaction().begin();
+            this.connection.getEntityManager().merge(consulta);
+            this.connection.getEntityManager().getTransaction().commit();
 
     		System.out.println("Consulta editada com sucesso!");
             return true;
@@ -144,7 +134,7 @@ public class ConsultaRepository implements ConsultaDAO {
 	}
 
 	public boolean editarUrgenciaDaConsulta(int idConsulta, String classificacaoUrgencia) {
-		this.getConnection().getEntityManager().clear();
+		this.connection.getEntityManager().clear();
 		Consulta consulta = this.buscarConsultaPorId(idConsulta);
 		if(consulta == null){
 			System.out.println("Consulta não encontrada.");
@@ -152,9 +142,9 @@ public class ConsultaRepository implements ConsultaDAO {
 		}
 		consulta.setDataConsulta(classificacaoUrgencia);
 		try {
-            this.getConnection().getEntityManager().getTransaction().begin();
-            this.getConnection().getEntityManager().merge(consulta);
-            this.getConnection().getEntityManager().getTransaction().commit();
+            this.connection.getEntityManager().getTransaction().begin();
+            this.connection.getEntityManager().merge(consulta);
+            this.connection.getEntityManager().getTransaction().commit();
 
     		System.out.println("Consulta editada com sucesso!");
             return true;

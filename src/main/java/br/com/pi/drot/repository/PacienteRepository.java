@@ -3,60 +3,137 @@ package br.com.pi.drot.repository;
 import java.text.ParseException;
 import java.util.ArrayList;
 
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import br.com.pi.drot.connection.Connection;
 import br.com.pi.drot.dao.PacienteDAO;
-import br.com.pi.drot.entity.Consulta;
 import br.com.pi.drot.entity.Paciente;
-import br.com.pi.drot.models.ConsultasPaciente;
 import br.com.pi.drot.utils.CalcularIdade;
 
 public class PacienteRepository implements PacienteDAO{
-	private Connection connection;
+	Connection connection = Connection.getInstance();
 
-	public PacienteRepository() {
-		this.connection = new Connection();
-	}
+	public PacienteRepository() {}
 
-	public Connection getConnection() {
-		return connection;
-	}
+	public boolean cadastrarNovoPaciente(String nome, String CPF, String RG, String dataNascimento, int endereco, String telefone, String restricaoMedicamental, String doencaHereditaria, String email, String senha) {
+		Paciente paciente = new Paciente();
+		paciente.setNome(nome);
+		paciente.setCPF(CPF);
+		paciente.setRG(RG);
+		paciente.setDataNascimento(dataNascimento);
+		paciente.setEndereco(endereco);
+		paciente.setTelefone(telefone);
+		paciente.setEmail(email);
+		paciente.setSenha(senha);
+		paciente.setDoencaHereditaria(doencaHereditaria);
+		paciente.setRestricaoMedicamental(restricaoMedicamental);
 
-	public void setConnection(Connection connection) {
-		this.connection = connection;
-	}
+		try{
+			this.connection.getEntityManager().getTransaction().begin();
+			this.connection.getEntityManager().persist(paciente);
+			this.connection.getEntityManager().getTransaction().commit();
 
-	public ArrayList<ConsultasPaciente> consultasPaciente(int idPaciente) {
-		String sqlConsulta = "SELECT c FROM Consulta c WHERE c.paciente =: id";
-		TypedQuery<Consulta> queryConsultas = this.getConnection().getEntityManager().createQuery(sqlConsulta, Consulta.class).setParameter("id", idPaciente);
-		ArrayList<Consulta> consultas = (ArrayList<Consulta>) queryConsultas.getResultList();
-
-
-		ArrayList<ConsultasPaciente> consultasRealizadas = new ArrayList<ConsultasPaciente>();
-
-		for (int i = 0; i < consultas.size(); i++) {
-			Paciente paciente = this.getConnection().getEntityManager().createNamedQuery("Paciente.getById", Paciente.class).setParameter("idP", consultas.get(i).getPaciente()).getSingleResult();
-			consultasRealizadas.add(new ConsultasPaciente(paciente.getNome(), consultas.get(i).getDataConsulta(), consultas.get(i).getDescricaoConsulta(), consultas.get(i).getClassificacaoUrgencia()));
+		} catch(Exception ex) {
+			System.out.println("Erro ao criar paciente.");
+            return false;
 		}
 
-		for (int i = 0; i < consultasRealizadas.size(); i++) {
-			System.out.println(consultasRealizadas.get(i));
-		}
+		System.out.println("Nova(o) paciente cadastrado com sucesso!");
+		return true;
+	}
 
-		return consultasRealizadas;
+
+	public boolean editarPaciente(int idPaciente, int endereco, String telefone, String email, String senha) {
+		this.connection.getEntityManager().clear();
+		Paciente paciente = this.buscarPacientePorID(idPaciente);
+		paciente.setEndereco(endereco);
+		paciente.setTelefone(telefone);
+		paciente.setEmail(email);
+		paciente.setSenha(senha);
+		try {
+            this.connection.getEntityManager().getTransaction().begin();
+            this.connection.getEntityManager().merge(paciente);
+            this.connection.getEntityManager().getTransaction().commit();
+
+    		System.out.println("Paciente editado com sucesso!");
+            return true;
+        } catch (Exception ex) {
+    		System.out.println("Erro ao editar paciente.");
+            return false;
+        }
+	}
+
+	public Paciente buscarPacientePorID(int id) {
+		this.connection.getEntityManager().clear();
+
+		try{
+			Paciente paciente = this.connection.getEntityManager().createNamedQuery("Paciente.getById", Paciente.class).setParameter(id, id).getSingleResult();
+
+			return paciente;
+		} catch(NoResultException ex) {
+			System.out.println("Paciente não encontrado");
+			return null;
+		}
+	}
+
+	public int buscarPacientePorCPF(String cpf) {
+		this.connection.getEntityManager().clear();
+
+		try {
+			Paciente paciente = this.connection.getEntityManager().createNamedQuery("Paciente.getIdByCpf", Paciente.class).setParameter("cpf", cpf).getSingleResult();
+
+			return paciente.getId();
+		} catch (NoResultException e) {
+			System.out.println("Paciente não encontrado");
+			return -1;
+		}
+	}
+
+	public ArrayList<Paciente> listarPacientesCadastrados() {
+		this.connection.getEntityManager().clear();
+		this.connection.getEntityManager();
+		try {
+			ArrayList<Paciente> pacientes = (ArrayList<Paciente>) this.connection.getEntityManager().createQuery("from Paciente", Paciente.class).getResultList();
+
+			return pacientes;
+		} catch (NoResultException e) {
+			System.out.println("Não há pacientes cadastrados.");
+			return null;
+		}
+	}
+
+	public boolean removerPaciente(int idPaciente) {
+		this.connection.getEntityManager().clear();
+		Paciente paciente = this.buscarPacientePorID(idPaciente);
+
+		if(paciente == null){
+			System.out.println("Paciente não encontrado");
+			return false;
+		}
+		try {
+			this.connection.getEntityManager().getTransaction().begin();
+	        this.connection.getEntityManager().remove(paciente);
+	        this.connection.getEntityManager().getTransaction().commit();
+
+			System.out.println("Paciente removido do banco com sucesso!");
+			return true;
+		} catch(Exception ex) {
+			System.out.println("Erro ao remover paciente.");
+			return false;
+		}
 	}
 
 	public String pegarNomePacienteLogado(int idPaciente) {
 		String sqlConsulta = "SELECT p FROM Paciente p WHERE p.id =: id";
-		TypedQuery<Paciente> queryConsultas = this.getConnection().getEntityManager().createQuery(sqlConsulta, Paciente.class).setParameter("id", idPaciente);
+		TypedQuery<Paciente> queryConsultas = this.connection.getEntityManager().createQuery(sqlConsulta, Paciente.class).setParameter("id", idPaciente);
 		String nomePacienteLogado = queryConsultas.getSingleResult().getNome();
 		return nomePacienteLogado;
 	}
 
 	public int pegarIdadePaciente(int idPaciente) {
 		String sqlConsulta = "SELECT p FROM Paciente p WHERE p.id =: id";
-		TypedQuery<Paciente> queryConsultas = this.getConnection().getEntityManager().createQuery(sqlConsulta, Paciente.class).setParameter("id", idPaciente);
+		TypedQuery<Paciente> queryConsultas = this.connection.getEntityManager().createQuery(sqlConsulta, Paciente.class).setParameter("id", idPaciente);
 		String dataNascimento = queryConsultas.getSingleResult().getDataNascimento();
 	    try {
 			CalcularIdade calcularIdade = new CalcularIdade();
